@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI大生态行研 · 完整上下游图谱</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #eef6f4;
+    --surface:   #ffffff;
+    --border:    #dceee9;
+    --text:      #1a2e28;
+    --muted:     #7a9e96;
+    --accent:    #1a9e70;
+
+    /* Layer palette */
+    --l1: #d97706; --l1-light: #fef3c7;
+    --l2: #2563eb; --l2-light: #dbeafe;
+    --l3: #16a34a; --l3-light: #dcfce7;
+    --l4: #9333ea; --l4-light: #f3e8ff;
+    --l5: #ea580c; --l5-light: #ffedd5;
+    --l6: #0891b2; --l6-light: #cffafe;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: linear-gradient(160deg, #e8f5f0 0%, #f0f8f5 40%, #eaf4f8 100%);
+    color: var(--text);
+    font-family: 'Inter', 'Noto Serif SC', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    padding: 56px 56px 44px;
+    text-align: center;
+    background: transparent;
+  }
+  .header-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .header-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 700;
+    background: linear-gradient(135deg, #1a6e50 0%, #1a5ec8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.25;
+    margin-bottom: 14px;
+  }
+  .header-sub {
+    font-size: 15px;
+    color: #5a8a80;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  /* ── Nav Stack ── */
+  .stack-nav {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 16px 40px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .stack-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #5a8a80;
+    background: #fff;
+    border: 1.5px solid var(--border);
+    transition: all 0.18s;
+    cursor: pointer;
+  }
+  .stack-pill:hover { background: var(--surface); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .stack-pill.l1 { color: var(--l1); border-color: var(--l1); background: var(--l1-light); }
+  .stack-pill.l2 { color: var(--l2); border-color: var(--l2); background: var(--l2-light); }
+  .stack-pill.l3 { color: var(--l3); border-color: var(--l3); background: var(--l3-light); }
+  .stack-pill.l4 { color: var(--l4); border-color: var(--l4); background: var(--l4-light); }
+  .stack-pill.l5 { color: var(--l5); border-color: var(--l5); background: var(--l5-light); }
+  .stack-pill.l6 { color: var(--l6); border-color: var(--l6); background: var(--l6-light); }
+
+  /* ── Main ── */
+  .main { padding: 0 40px 80px; max-width: 1400px; margin: 0 auto; }
+
+  /* ── Overview Stack Diagram ── */
+  .stack-overview {
+    margin: 40px 0 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stack-bar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 13px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .stack-bar:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .stack-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    width: 32px;
+    flex-shrink: 0;
+  }
+  .stack-name { font-weight: 700; font-size: 14px; flex-shrink: 0; width: 80px; }
+  .stack-desc { font-size: 13px; opacity: 0.85; flex: 1; }
+
+  .stack-bar.l1 { background: var(--l1-light); color: var(--l1); border-left: 4px solid var(--l1); }
+  .stack-bar.l2 { background: var(--l2-light); color: var(--l2); border-left: 4px solid var(--l2); }
+  .stack-bar.l3 { background: var(--l3-light); color: var(--l3); border-left: 4px solid var(--l3); }
+  .stack-bar.l4 { background: var(--l4-light); color: var(--l4); border-left: 4px solid var(--l4); }
+  .stack-bar.l5 { background: var(--l5-light); color: var(--l5); border-left: 4px solid var(--l5); }
+  .stack-bar.l6 { background: var(--l6-light); color: var(--l6); border-left: 4px solid var(--l6); }
+
+  /* ── Section ── */
+  .layer-section {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 28px 28px 32px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    scroll-margin-top: 70px;
+  }
+
+  .layer-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  .layer-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .layer-badge.l1 { background: var(--l1-light); color: var(--l1); }
+  .layer-badge.l2 { background: var(--l2-light); color: var(--l2); }
+  .layer-badge.l3 { background: var(--l3-light); color: var(--l3); }
+  .layer-badge.l4 { background: var(--l4-light); color: var(--l4); }
+  .layer-badge.l5 { background: var(--l5-light); color: var(--l5); }
+  .layer-badge.l6 { background: var(--l6-light); color: var(--l6); }
+
+  .layer-title-wrap { flex: 1; }
+  .layer-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .layer-roles {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .layer-insight {
+    background: #f0faf6;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #3a6858;
+    line-height: 1.75;
+  }
+  .layer-insight strong { color: #1a6e50; font-weight: 600; }
+
+  /* ── Table ── */
+  .sub-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 22px 0 8px;
+  }
+
+  .eco-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .eco-table thead th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    background: #f5faf8;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  .eco-table tbody tr {
+    border-bottom: 1px solid #edf3f0;
+    transition: background 0.12s;
+  }
+  .eco-table tbody tr:hover { background: #f5faf8; }
+  .eco-table tbody td {
+    padding: 10px 14px;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .col-sector { width: 120px; color: var(--muted); font-weight: 500; font-size: 12px; }
+  .col-origin { width: 70px; }
+  .col-player  { width: 160px; font-weight: 700; color: var(--text); }
+  .col-position { width: 230px; color: #5a7a70; }
+  .col-tags   { }
+
+  .badge-cn {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 600;
+    background: #fff3e8; color: #c2410c; border: 1px solid #fed7aa;
+  }
+  .badge-global {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 600;
+    background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe;
+  }
+
+  .tag {
+    display: inline-block;
+    margin: 2px 3px 2px 0;
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    background: #f1f5f4;
+    color: #5a7a70;
+    border: 1px solid #dceee9;
+  }
+  .tag.highlight { background: #dcfce7; color: #15803d; border-color: #86efac; }
+  .tag.warn      { background: #fff3e8; color: #c2410c; border-color: #fdba74; }
+  .tag.info      { background: #eff6ff; color: #1d4ed8; border-color: #93c5fd; }
+  .tag.purple    { background: #f5f3ff; color: #7c3aed; border-color: #c4b5fd; }
+
+  /* open/closed source badges */
+  .src-open {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 600;
+    background: #dcfce7; color: #15803d; border: 1px solid #86efac;
+  }
+  .src-closed {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 600;
+    background: #fef2f2; color: #dc2626; border: 1px solid #fca5a5;
+  }
+  .src-dual {
+    display: inline-block; padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; font-weight: 600;
+    background: #fefce8; color: #a16207; border: 1px solid #fde047;
+  }
+
+  /* ── Footer ── */
+  .site-footer {
+    text-align: center;
+    padding: 28px 40px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Value Summary ── */
+  .value-summary {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 8px 0;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+  }
+  .value-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .value-bars { display: flex; flex-direction: column; gap: 12px; }
+  .value-row { display: flex; align-items: center; gap: 16px; }
+  .value-layer-label {
+    font-size: 13px;
+    font-weight: 600;
+    width: 100px;
+    flex-shrink: 0;
+    color: var(--text);
+  }
+  .value-bar-track {
+    flex: 1;
+    height: 10px;
+    background: #edf3f0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .value-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+  }
+  .value-label-right {
+    font-size: 12px;
+    color: var(--muted);
+    width: 200px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  @media (max-width: 768px) {
+    .site-header, .stack-nav, .main { padding-left: 16px; padding-right: 16px; }
+    .layer-section { padding: 20px 16px; }
+    .eco-table { font-size: 12px; }
+    .eco-table thead th, .eco-table tbody td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <p class="header-eyebrow">行业研究 · 2026 · AI Ecosystem Deep Dive</p>
+  <h1 class="header-title">AI大生态 · 完整上下游图谱</h1>
+  <p class="header-sub">从能源底层到应用变现，六层架构 × 赛道 / 海内外 / 玩家 / 定位 / 关键标签 全维度梳理</p>
+  <p style="margin-top:16px;font-size:12px;color:#7a9e96;">📅 发布时间：2026年5月 &nbsp;|&nbsp; 📊 数据来源：IDC / Bernstein / FT / TechCrunch &nbsp;|&nbsp; 🎯 覆盖层级：L1~L6 六层生态</p>
+</header>
+
+<!-- ── STICKY NAV ── -->
+<nav class="stack-nav">
+  <a class="stack-pill l1" href="#l1">L1 能源层</a>
+  <a class="stack-pill l2" href="#l2">L2 算力层</a>
+  <a class="stack-pill l3" href="#l3">L3 数据层</a>
+  <a class="stack-pill l4" href="#l4">L4 模型层</a>
+  <a class="stack-pill l5" href="#l5">L5 平台层</a>
+  <a class="stack-pill l6" href="#l6">L6 应用层</a>
+  <a class="stack-pill" href="#value">价值分布</a>
+</nav>
+
+<main class="main">
+
+  <!-- ── STACK OVERVIEW ── -->
+  <div class="stack-overview">
+    <a class="stack-bar l6" href="#l6">
+      <span class="stack-label">L6</span>
+      <span class="stack-name">应用层</span>
+      <span class="stack-desc">AI原生应用 · 垂直行业Agent · AI硬件</span>
+    </a>
+    <a class="stack-bar l5" href="#l5">
+      <span class="stack-label">L5</span>
+      <span class="stack-name">平台层</span>
+      <span class="stack-desc">MaaS · Agent开发平台 · RAG工具链 · MLOps</span>
+    </a>
+    <a class="stack-bar l4" href="#l4">
+      <span class="stack-label">L4</span>
+      <span class="stack-name">模型层</span>
+      <span class="stack-desc">基础大模型 · 推理优化 · 开源生态</span>
+    </a>
+    <a class="stack-bar l3" href="#l3">
+      <span class="stack-label">L3</span>
+      <span class="stack-name">数据层</span>
+      <span class="stack-desc">数据采集 · 人工标注 · 合成数据 · 质量验证</span>
+    </a>
+    <a class="stack-bar l2" href="#l2">
+      <span class="stack-label">L2</span>
+      <span class="stack-name">算力层</span>
+      <span class="stack-desc">GPU/NPU芯片 · 云计算IaaS · 算力网络</span>
+    </a>
+    <a class="stack-bar l1" href="#l1">
+      <span class="stack-label">L1</span>
+      <span class="stack-name">能源层</span>
+      <span class="stack-desc">电力供应 · 数据中心建设 · 冷却 · 光互联基础设施</span>
+    </a>
+  </div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- L1  能源与基础设施层                       -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="layer-section" id="l1">
+    <div class="layer-header">
+      <div class="layer-badge l1">L1</div>
+      <div class="layer-title-wrap">
+        <div class="layer-title">🔋 能源与基础设施层</div>
+        <div class="layer-roles">数据中心运营 · 电力/能源 · 液冷散热 · 光模块/互联</div>
+      </div>
+    </div>
+    <div class="layer-insight">
+      训练一个 GPT-4 级别模型约耗电 <strong>5 GWh</strong>，相当于5000户家庭一年用电总量。AI 已成为全球最大新增用电需求方。<strong>微软 / Meta / 谷歌</strong>均签署了20年以上的核能购电协议。英伟达 GTC 2026 的核心议题之一就是"AI能源"。
+    </div>
+    <table class="eco-table">
+      <thead>
+        <tr>
+          <th class="col-sector">赛道</th>
+          <th class="col-origin">海内外</th>
+          <th class="col-player">玩家</th>
+          <th class="col-position">定位</th>
+          <th class="col-tags">关键标签</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-sector">数据中心运营</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Equinix</td>
+          <td class="col-position">全球最大中立数据中心运营商</td>
+          <td><span class="tag info">260+城市</span><span class="tag info">超级互联节点</span><span class="tag">中立IDC</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">数据中心运营</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Digital Realty</td>
+          <td class="col-position">超大规模AI专项数据中心</td>
+          <td><span class="tag info">超导/液冷专项</span><span class="tag">超大规模训练</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">数据中心运营</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">万国数据</td>
+          <td class="col-position">国内IDC龙头，一线城市核心资源</td>
+          <td><span class="tag warn">北上深核心位置</span><span class="tag">港股上市</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">数据中心运营</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">世纪互联</td>
+          <td class="col-position">国内第二大中立IDC</td>
+          <td><span class="tag info">微软Azure中国合作方</span><span class="tag">纳斯达克上市</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">电力/能源</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">NextEra Energy</td>
+          <td class="col-position">全球最大可再生能源商</td>
+          <td><span class="tag highlight">核能+风光</span><span class="tag highlight">AI供电20年协议</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">电力/能源</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">三峡能源</td>
+          <td class="col-position">清洁能源+算力基地结合</td>
+          <td><span class="tag highlight">绿电直供算力园区</span><span class="tag">西部算力布局</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">液冷散热</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Vertiv</td>
+          <td class="col-position">数据中心热管理全球第一</td>
+          <td><span class="tag info">液冷主要方案商</span><span class="tag info">NVIDIA官方合作</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">液冷散热</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">英维克</td>
+          <td class="col-position">国内液冷设备龙头</td>
+          <td><span class="tag">精密空调+液冷双线</span><span class="tag">A股上市</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">液冷散热</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">申菱环境</td>
+          <td class="col-position">液冷方案新兴龙头</td>
+          <td><span class="tag">浸没式液冷</span><span class="tag">算力园区配套</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">光模块/互联</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Coherent</td>
+          <td class="col-position">800G/1.6T高速光模块</td>
+          <td><span class="tag info">AI集群互联核心器件</span><span class="tag info">NVIDIA DGX专用</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">光模块/互联</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">中际旭创</td>
+          <td class="col-position">国内光模块出货量第一</td>
+          <td><span class="tag highlight">英伟达供应商</span><span class="tag highlight">800G国内领先</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">光模块/互联</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">天孚通信</td>
+          <td class="col-position">光无源器件专项</td>
+          <td><span class="tag">与中际旭创双龙头</span><span class="tag">光连接器件</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- L2  算力层                               -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="layer-section" id="l2">
+    <div class="layer-header">
+      <div class="layer-badge l2">L2</div>
+      <div class="layer-title-wrap">
+        <div class="layer-title">💻 算力层</div>
+        <div class="layer-roles">GPU/NPU芯片设计 · 晶圆代工 · 云算力IaaS · GPU专项租赁</div>
+      </div>
+    </div>
+    <div class="layer-insight">
+      中美博弈<strong>最激烈</strong>的层。出口管制把英伟达挡在中国门外，但国产替代面临 <strong>"有芯片没生态"</strong> 的核心矛盾——CUDA 软件生态的切换成本极高，相当于从 iOS 换 Android，整个工具链需要重写。预计国产替代真正软硬兼顾需要 <strong>3~5 年</strong>。
+    </div>
+
+    <p class="sub-section-title">芯片设计</p>
+    <table class="eco-table">
+      <thead>
+        <tr>
+          <th class="col-sector">赛道</th>
+          <th class="col-origin">海内外</th>
+          <th class="col-player">玩家</th>
+          <th class="col-position">定位</th>
+          <th class="col-tags">关键标签</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-sector">GPU训练芯片</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">NVIDIA</td>
+          <td class="col-position">全球AI算力绝对统治者</td>
+          <td><span class="tag info">H100/H200/B200</span><span class="tag warn">中国市占 95%→8%</span><span class="tag highlight">CUDA生态护城河</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">GPU训练芯片</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">AMD</td>
+          <td class="col-position">GPU二号位，追赶中</td>
+          <td><span class="tag info">MI300X</span><span class="tag">中国市占~12%</span><span class="tag warn">ROCm生态薄弱</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">NPU训练芯片</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">华为昇腾</td>
+          <td class="col-position">国内算力第一替代方案</td>
+          <td><span class="tag highlight">Ascend 910C</span><span class="tag highlight">2026国内市占~50%</span><span class="tag warn">CANN软件栈待成熟</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">NPU推理芯片</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">寒武纪</td>
+          <td class="col-position">国内上市AI芯片第一股</td>
+          <td><span class="tag">思元系列</span><span class="tag">推理侧切入</span><span class="tag">云端+边缘双线</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">GPU通用芯片</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">海光信息</td>
+          <td class="col-position">AMD架构适配国产版</td>
+          <td><span class="tag">DCU系列</span><span class="tag warn">主供国有云厂商</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">自研芯片</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">平头哥（阿里）</td>
+          <td class="col-position">互联网厂商自研芯片代表</td>
+          <td><span class="tag purple">含光/玄铁</span><span class="tag">主供内部训练</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">自研芯片</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">昆仑芯（百度）</td>
+          <td class="col-position">百度全栈自研配套芯片</td>
+          <td><span class="tag purple">主供文心大模型</span><span class="tag">训练+推理一体</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="sub-section-title">云算力 / IaaS</p>
+    <table class="eco-table">
+      <thead>
+        <tr>
+          <th class="col-sector">赛道</th>
+          <th class="col-origin">海内外</th>
+          <th class="col-player">玩家</th>
+          <th class="col-position">定位</th>
+          <th class="col-tags">关键标签</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-sector">综合云算力</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">AWS</td>
+          <td class="col-position">全球云计算第一</td>
+          <td><span class="tag info">SageMaker</span><span class="tag info">Trainium自研芯片</span><span class="tag">全球市占~33%</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">综合云算力</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">微软 Azure</td>
+          <td class="col-position">AI算力增速最快，OpenAI专属云</td>
+          <td><span class="tag info">OpenAI独家算力底座</span><span class="tag highlight">万卡GPU集群</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">综合云算力</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Google Cloud</td>
+          <td class="col-position">TPU自研+Gemini原生云</td>
+          <td><span class="tag info">TPU v5自研</span><span class="tag">A3 GPU实例</span><span class="tag">Gemini API绑定</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">GPU专项算力</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">CoreWeave</td>
+          <td class="col-position">纯GPU租赁独角兽</td>
+          <td><span class="tag highlight">NVIDIA战略合作</span><span class="tag highlight">IPO估值$230亿</span><span class="tag">裸金属GPU实例</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">综合云算力</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">阿里云</td>
+          <td class="col-position">国内AI训练市占第一</td>
+          <td><span class="tag highlight">AI训练市占~42%（IDC）</span><span class="tag">PAI训练平台</span><span class="tag">灵积MaaS</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">综合云算力</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">华为云</td>
+          <td class="col-position">全栈自主可控，国内第二</td>
+          <td><span class="tag">昇腾算力+鲲鹏CPU</span><span class="tag warn">市占~13%</span><span class="tag">政务/国央企首选</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">综合云算力</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">火山引擎（字节）</td>
+          <td class="col-position">增速最快的新兴云厂商</td>
+          <td><span class="tag purple">TikTok/抖音算力底座</span><span class="tag">MaaS+Agent平台</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">综合云算力</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">百度智能云</td>
+          <td class="col-position">AI原生云先行者</td>
+          <td><span class="tag">文心大模型绑定</span><span class="tag">千帆平台</span><span class="tag">昆仑芯配套</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- L3  数据层                               -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="layer-section" id="l3">
+    <div class="layer-header">
+      <div class="layer-badge l3">L3</div>
+      <div class="layer-title-wrap">
+        <div class="layer-title">📦 数据层</div>
+        <div class="layer-roles">数据采集 · 人工标注 · 合成数据 · 质量验证 · RLHF反馈</div>
+      </div>
+    </div>
+    <div class="layer-insight">
+      Scale AI 用 <strong>$290 亿</strong>估值（Meta $150亿投资，2025）证明数据层的战略价值。随着合成数据崛起，<strong>纯人工标注将降价</strong>，但<strong>高质量 RLHF 专家反馈</strong>和<strong>数据质量验证</strong>的价值反而上升——这是 ADSO 业务长期存在的底层逻辑。
+    </div>
+    <table class="eco-table">
+      <thead>
+        <tr>
+          <th class="col-sector">赛道</th>
+          <th class="col-origin">海内外</th>
+          <th class="col-player">玩家</th>
+          <th class="col-position">定位</th>
+          <th class="col-tags">关键标签</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-sector">数据标注全栈</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Scale AI</td>
+          <td class="col-position">数据服务全球一哥</td>
+          <td><span class="tag highlight">估值$290亿</span><span class="tag highlight">Meta $150亿投资(2025)</span><span class="tag info">RLHF专项</span><span class="tag warn">创始人Wang加入Meta</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">数据标注全栈</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Appen</td>
+          <td class="col-position">老牌上市众包标注平台</td>
+          <td><span class="tag">澳大利亚上市</span><span class="tag">全球众包网络</span><span class="tag info">中国业务专设</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">高端RLHF标注</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Surge AI</td>
+          <td class="col-position">专家级标注，RLHF专项</td>
+          <td><span class="tag highlight">OpenAI/Anthropic核心供应商</span><span class="tag info">领域专家（医/法/代码）</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">数据标注全栈</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">数据堂</td>
+          <td class="col-position">A股上市，国内标注龙头</td>
+          <td><span class="tag warn">对标Scale AI</span><span class="tag">自动驾驶+NLP双线</span><span class="tag">A股上市</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">语音数据专项</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">海天瑞声</td>
+          <td class="col-position">语音数据全球前三</td>
+          <td><span class="tag">语音识别训练数据</span><span class="tag">语音合成训练数据</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">自建数据闭环</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">字节 ADSO</td>
+          <td class="col-position">大厂自建数据运营体系</td>
+          <td><span class="tag purple">TikTok/抖音内容标注</span><span class="tag purple">算法反馈RLHF内化</span><span class="tag warn">数据飞轮核心</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">合成数据平台</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Gretel AI</td>
+          <td class="col-position">合成数据生成领域代表</td>
+          <td><span class="tag info">隐私安全+数据增强</span><span class="tag highlight">对抗真实数据触顶趋势</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">合成数据平台</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Mostly AI</td>
+          <td class="col-position">企业级合成数据专项</td>
+          <td><span class="tag info">金融/医疗结构化数据</span><span class="tag">隐私合规合成</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- L4  模型层                               -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="layer-section" id="l4">
+    <div class="layer-header">
+      <div class="layer-badge l4">L4</div>
+      <div class="layer-title-wrap">
+        <div class="layer-title">🧠 模型层</div>
+        <div class="layer-roles">基础大模型 · 推理优化 · 开源生态 · 多模态</div>
+      </div>
+    </div>
+    <div class="layer-insight">
+      模型层正经历 <strong>"能力平价化"</strong>：GPT-4 水平越来越便宜甚至开源。注意开源策略差异：<strong>Meta / DeepSeek / 通义千问</strong>走开放权重路线扩大开发者生态，同时通过 API 服务商业化——即<strong>权重开源 + 旗舰API闭源</strong>的双轨策略。
+    </div>
+    <table class="eco-table">
+      <thead>
+        <tr>
+          <th class="col-sector">赛道</th>
+          <th class="col-origin">海内外</th>
+          <th class="col-player">玩家</th>
+          <th class="col-position">定位</th>
+          <th class="col-tags">关键标签</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-sector">闭源通用大模型</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">OpenAI</td>
+          <td class="col-position">全球AI标杆</td>
+          <td><span class="src-closed">闭源</span> <span class="tag info">GPT-4o/o3</span><span class="tag highlight">ChatGPT 5亿MAU</span><span class="tag">估值~$3T</span><span class="tag">Codex</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">闭源通用大模型</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Anthropic</td>
+          <td class="col-position">安全优先派，OpenAI最强竞争者</td>
+          <td><span class="src-closed">闭源</span> <span class="tag purple">Claude 3.5/4系列</span><span class="tag highlight">估值$1.2万亿(2026.5)</span><span class="tag warn">反超OpenAI估值</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">闭源通用大模型</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Google DeepMind</td>
+          <td class="col-position">学术+产品双线，原生多模态</td>
+          <td><span class="src-closed">闭源</span> <span class="tag info">Gemini 2.0</span><span class="tag">AlphaFold</span><span class="tag">原生多模态</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">闭源通用大模型</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">xAI（马斯克）</td>
+          <td class="col-position">挑战者，绑定X平台实时数据</td>
+          <td><span class="src-closed">闭源</span> <span class="tag warn">Grok 3</span><span class="tag">与SpaceX合并</span><span class="tag info">X平台实时数据优势</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">开源战略大模型</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Meta AI</td>
+          <td class="col-position">开源战略核心推动者</td>
+          <td><span class="src-open">开源</span> <span class="tag highlight">Llama 4开源</span><span class="tag">Scale AI战略合作</span><span class="tag info">AI民主化</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">开源+闭源双轨</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">DeepSeek</td>
+          <td class="col-position">中国技术突破代表</td>
+          <td><span class="src-dual">开源+闭源</span> <span class="tag highlight">MoE架构</span><span class="tag highlight">$6M训练对标GPT-4</span><span class="tag warn">R1推理全球震动</span><span class="tag">权重开源/API收费</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">开源+闭源双轨</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">通义千问（阿里）</td>
+          <td class="col-position">国内开源生态最强输出者</td>
+          <td><span class="src-dual">开源+闭源</span> <span class="tag highlight">Qwen2.5全球开源Top3</span><span class="tag info">代码/数学突出</span><span class="tag">QwQ推理开源</span><span class="tag">旗舰Qwen-Max闭源API</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">闭源通用大模型</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">豆包大模型（字节）</td>
+          <td class="col-position">商业化最领先的国内模型</td>
+          <td><span class="src-closed">闭源</span> <span class="tag purple">MAU超1亿应用底座</span><span class="tag highlight">火山引擎MaaS主力供给</span><span class="tag">多模态</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">闭源通用大模型</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">文心大模型（百度）</td>
+          <td class="col-position">国内最早商业化</td>
+          <td><span class="src-closed">闭源</span> <span class="tag">文心4.0</span><span class="tag warn">企业API客户最多</span><span class="tag">搜索+文心一体化</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">闭源通用大模型</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">智谱AI（GLM）</td>
+          <td class="col-position">国内大模型第一梯队，B端深耕</td>
+          <td><span class="src-closed">闭源</span> <span class="tag">GLM-4</span><span class="tag info">B端商业化深</span><span class="tag">教育/政务垂类</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">长文本专项</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">月之暗面（Kimi）</td>
+          <td class="col-position">超长上下文专项</td>
+          <td><span class="src-closed">闭源</span> <span class="tag highlight">200万token上下文</span><span class="tag">知识处理场景领先</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">多模态平台化</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">MiniMax（稀宇）</td>
+          <td class="col-position">多模态+音视频一体化</td>
+          <td><span class="src-closed">闭源</span> <span class="tag">M2.5编程模型</span><span class="tag info">语音/视频生成</span><span class="tag">出海较早</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">推理优化</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">vLLM（开源项目）</td>
+          <td class="col-position">推理效率开源标准</td>
+          <td><span class="src-open">开源</span> <span class="tag highlight">PagedAttention技术</span><span class="tag">全球部署量第一</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">推理优化</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">面壁智能</td>
+          <td class="col-position">国内推理优化+小模型专项</td>
+          <td><span class="src-open">开源</span> <span class="tag">MiniCPM高效小模型</span><span class="tag">端侧部署</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- L5  平台层                               -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="layer-section" id="l5">
+    <div class="layer-header">
+      <div class="layer-badge l5">L5</div>
+      <div class="layer-title-wrap">
+        <div class="layer-title">🛠 平台层</div>
+        <div class="layer-roles">MaaS API · Agent开发平台 · RAG/知识库 · AI编程助手 · MLOps</div>
+      </div>
+    </div>
+    <div class="layer-insight">
+      B端商业化变现的<strong>主战场</strong>，也是增速最快的层。本质是把 L4 的模型能力转化为企业可直接消费的 SaaS/PaaS 服务。字节视角：火山引擎对标 AWS SageMaker，推出企业级 AI 智能体平台；<strong>Coze（扣子）</strong>C端面向个人，<strong>Coze Pro</strong> B端面向企业，形成双线布局。
+    </div>
+    <table class="eco-table">
+      <thead>
+        <tr>
+          <th class="col-sector">赛道</th>
+          <th class="col-origin">海内外</th>
+          <th class="col-player">玩家</th>
+          <th class="col-position">定位</th>
+          <th class="col-tags">关键标签</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-sector">MaaS API平台</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">OpenAI API</td>
+          <td class="col-position">事实标准，最大开发者生态</td>
+          <td><span class="tag highlight">GPT-4/o系列API</span><span class="tag highlight">全球最大调用量</span><span class="tag">Assistants API</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">MaaS API平台</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Anthropic API</td>
+          <td class="col-position">企业安全合规首选</td>
+          <td><span class="tag info">Claude API</span><span class="tag info">合规/长文本场景优势</span><span class="tag">Tool Use</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">MaaS API平台</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">阿里灵积（DashScope）</td>
+          <td class="col-position">国内MaaS市占第一</td>
+          <td><span class="tag highlight">多模型统一接入</span><span class="tag">阿里云生态绑定</span><span class="tag warn">国内API调用量最大</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">MaaS API平台</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">硅基流动</td>
+          <td class="col-position">新兴MaaS平台，性价比极高</td>
+          <td><span class="tag">低价推理</span><span class="tag info">DeepSeek等开源模型代理</span><span class="tag warn">价格战推动者</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">Agent开发平台</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">LangChain</td>
+          <td class="col-position">Agent框架开源标准</td>
+          <td><span class="src-open">开源</span> <span class="tag highlight">RAG+工具调用</span><span class="tag">全球最大开发者社区</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">Agent开发平台</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">AutoGen（微软）</td>
+          <td class="col-position">企业多Agent协作框架</td>
+          <td><span class="src-open">开源</span> <span class="tag info">微软出品</span><span class="tag info">Azure深度绑定</span><span class="tag">多Agent编排</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">Agent开发平台</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">扣子 Coze（字节）</td>
+          <td class="col-position">国内Agent平台用户量第一</td>
+          <td><span class="tag purple">C端+B端双线</span><span class="tag highlight">海外版Coze.com</span><span class="tag">豆包大模型驱动</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">Agent开发平台</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">百度千帆</td>
+          <td class="col-position">国内全栈MLOps平台</td>
+          <td><span class="tag">模型训练+推理+应用一体</span><span class="tag warn">文心大模型绑定</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">RAG/知识库</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">LlamaIndex</td>
+          <td class="col-position">RAG框架事实标准</td>
+          <td><span class="src-open">开源</span> <span class="tag highlight">向量存储+检索</span><span class="tag">与LangChain互补</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">RAG/知识库</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Pinecone</td>
+          <td class="col-position">向量数据库第一</td>
+          <td><span class="tag info">专用向量存储</span><span class="tag">RAG基础设施</span><span class="tag">托管服务</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI编程助手</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">GitHub Copilot</td>
+          <td class="col-position">企业AI编程第一</td>
+          <td><span class="tag highlight">1500万付费开发者</span><span class="tag">微软+OpenAI</span><span class="tag">IDE插件</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI编程助手</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Cursor</td>
+          <td class="col-position">增速最快的AI原生IDE</td>
+          <td><span class="tag highlight">ARR超$1亿</span><span class="tag warn">开发者口碑第一</span><span class="tag">原生AI编辑器</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI编程助手</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">通义灵码（阿里）</td>
+          <td class="col-position">国内AI编程市占最大</td>
+          <td><span class="tag">IDE插件+企业版</span><span class="tag">支持千问系列</span><span class="tag warn">国内开发者渗透率高</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI编程助手</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">MarsCode（字节）</td>
+          <td class="col-position">字节系AI编程工具</td>
+          <td><span class="tag purple">豆包大模型驱动</span><span class="tag">企业内部+对外开放</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">MLOps/模型管理</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Weights & Biases</td>
+          <td class="col-position">模型训练追踪标准工具</td>
+          <td><span class="tag info">实验管理</span><span class="tag">全球最大ML工程师社区</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">MLOps/模型管理</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Hugging Face</td>
+          <td class="col-position">开源模型托管第一平台</td>
+          <td><span class="src-open">开源</span> <span class="tag highlight">50万+模型托管</span><span class="tag">Transformers库</span><span class="tag">Spaces部署</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">MLOps/模型管理</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">魔塔社区（阿里）</td>
+          <td class="col-position">国内版Hugging Face</td>
+          <td><span class="tag">中文模型托管</span><span class="tag info">ModelScope</span><span class="tag">阿里云生态</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- L6  应用层                               -->
+  <!-- ═══════════════════════════════════════ -->
+  <section class="layer-section" id="l6">
+    <div class="layer-header">
+      <div class="layer-badge l6">L6</div>
+      <div class="layer-title-wrap">
+        <div class="layer-title">📱 应用层</div>
+        <div class="layer-roles">AI通用助手 · AI搜索 · AI视频/图像 · AI编程 · AI教育 · AI医疗 · AI硬件</div>
+      </div>
+    </div>
+    <div class="layer-insight">
+      利润最终在这一层变现，但<strong>竞争壁垒最低</strong>——先发优势弱、功能易模仿、迭代快。<strong>真正的护城河是数据飞轮</strong>：用户行为 → 模型优化 → 更多用户。快手的可灵、字节的即梦，本质上都是用 B/C 端应用数据<strong>反哺基础模型</strong>。
+    </div>
+    <table class="eco-table">
+      <thead>
+        <tr>
+          <th class="col-sector">赛道</th>
+          <th class="col-origin">海内外</th>
+          <th class="col-player">玩家</th>
+          <th class="col-position">定位</th>
+          <th class="col-tags">关键标签</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-sector">AI通用助手</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">ChatGPT（OpenAI）</td>
+          <td class="col-position">全球第一AI应用</td>
+          <td><span class="tag highlight">5亿MAU</span><span class="tag highlight">18个月破纪录增长</span><span class="tag">$50亿年收入(2025)</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI通用助手</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Perplexity</td>
+          <td class="col-position">AI搜索+助手融合，日活增速最快</td>
+          <td><span class="tag info">搜索原生AI</span><span class="tag">订阅制</span><span class="tag warn">反谷歌</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI通用助手</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">豆包（字节）</td>
+          <td class="col-position">国内MAU第一AI应用</td>
+          <td><span class="tag highlight">超1亿MAU</span><span class="tag purple">多模态</span><span class="tag warn">抖音数据飞轮</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI通用助手</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">Kimi（月之暗面）</td>
+          <td class="col-position">长文本/知识处理首选</td>
+          <td><span class="tag highlight">200万token</span><span class="tag info">知识工作者偏好</span><span class="tag">调研/报告场景</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI通用助手</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">元宝（腾讯）</td>
+          <td class="col-position">微信生态入口，社交数据加持</td>
+          <td><span class="tag highlight">微信生态入口</span><span class="tag warn">DeepSeek联合</span><span class="tag info">社交数据优势</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI通用助手</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">文心一言（百度）</td>
+          <td class="col-position">国内最早上线，B端企业为主</td>
+          <td><span class="tag">搜索+AI入口</span><span class="tag warn">先发但用户粘性弱</span><span class="tag">企业API客户最多</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI搜索</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Perplexity</td>
+          <td class="col-position">AI原生搜索第一</td>
+          <td><span class="tag info">引用溯源</span><span class="tag">订阅制</span><span class="tag warn">挑战Google</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI搜索</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">秘塔搜索</td>
+          <td class="col-position">国内AI搜索用户口碑最佳</td>
+          <td><span class="tag highlight">无广告</span><span class="tag">深度引用</span><span class="tag info">知识型用户偏好</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI视频生成</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Sora（OpenAI）</td>
+          <td class="col-position">文生视频技术标杆</td>
+          <td><span class="tag info">物理世界理解</span><span class="tag">120秒高质量视频</span><span class="tag warn">商业化慢</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI视频生成</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Runway</td>
+          <td class="col-position">创意视频生成商业化先行</td>
+          <td><span class="tag info">Gen-3</span><span class="tag">影视行业渗透深</span><span class="tag highlight">好莱坞合作</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI视频生成</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">可灵（快手）</td>
+          <td class="col-position">国内AI视频生成技术第一</td>
+          <td><span class="tag highlight">2分钟长视频</span><span class="tag highlight">物理仿真领先</span><span class="tag warn">快手数据飞轮</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI视频生成</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">即梦（字节）</td>
+          <td class="col-position">字节系视频生成</td>
+          <td><span class="tag purple">豆包多模态底座</span><span class="tag">抖音内容生态</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI图像生成</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Midjourney</td>
+          <td class="col-position">创意图像商业化最成功</td>
+          <td><span class="tag highlight">无融资纯盈利</span><span class="tag highlight">设计师首选</span><span class="tag warn">无开源</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI图像生成</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Stable Diffusion</td>
+          <td class="col-position">开源图像生成标准</td>
+          <td><span class="src-open">开源</span> <span class="tag">Stability AI出品</span><span class="tag info">本地部署生态</span><span class="tag">LoRA微调</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI编程</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Cursor</td>
+          <td class="col-position">增速最快AI编程工具</td>
+          <td><span class="tag highlight">ARR超$1亿</span><span class="tag warn">开发者口碑最佳</span><span class="tag">原生AI IDE</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI编程</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Devin（Cognition）</td>
+          <td class="col-position">全自主AI软件工程师</td>
+          <td><span class="tag info">端到端软件开发</span><span class="tag highlight">Agent范式先行</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI教育</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Khan Academy（Khanmigo）</td>
+          <td class="col-position">教育AI标杆</td>
+          <td><span class="tag info">GPT-4驱动</span><span class="tag highlight">全球最大免费教育平台</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI教育</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">学而思</td>
+          <td class="col-position">国内AI教育商业化最深</td>
+          <td><span class="tag warn">MathGPT</span><span class="tag">K12数学专项</span><span class="tag highlight">已商业化付费</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI医疗</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Tempus AI</td>
+          <td class="col-position">AI医疗数据+诊断</td>
+          <td><span class="tag highlight">纳斯达克上市</span><span class="tag info">基因组数据飞轮</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI医疗</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">阿里健康</td>
+          <td class="col-position">国内AI医疗入口</td>
+          <td><span class="tag">医疗数据积累</span><span class="tag">阿里生态入口</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI硬件</td>
+          <td class="col-origin"><span class="badge-global">海外</span></td>
+          <td class="col-player">Meta Ray-Ban</td>
+          <td class="col-position">消费级AI眼镜第一</td>
+          <td><span class="tag highlight">销量超100万</span><span class="tag info">Llama驱动</span><span class="tag">无屏幕设计</span></td>
+        </tr>
+        <tr>
+          <td class="col-sector">AI硬件</td>
+          <td class="col-origin"><span class="badge-cn">国内</span></td>
+          <td class="col-player">小米AI眼镜</td>
+          <td class="col-position">国内AI硬件先行者</td>
+          <td><span class="tag">小米生态链</span><span class="tag warn">雷军亲自推动</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 价值分布                                  -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="value" style="scroll-margin-top:70px;">
+    <div class="value-summary">
+      <div class="value-title">💰 产业链价值分布（2025-2026）</div>
+      <div class="value-bars">
+        <div class="value-row">
+          <span class="value-layer-label">L2 算力层</span>
+          <div class="value-bar-track"><div class="value-bar-fill" style="width:95%;background:linear-gradient(90deg,#4e6e8a,#7ab0d4);"></div></div>
+          <span class="value-label-right">NVIDIA $3.3T · AWS ~$1T</span>
+        </div>
+        <div class="value-row">
+          <span class="value-layer-label">L4 模型层</span>
+          <div class="value-bar-track"><div class="value-bar-fill" style="width:80%;background:linear-gradient(90deg,#7a5a8a,#bb7aee);"></div></div>
+          <span class="value-label-right">OpenAI ~$3T · Anthropic $1.2T</span>
+        </div>
+        <div class="value-row">
+          <span class="value-layer-label">L5 平台层</span>
+          <div class="value-bar-track"><div class="value-bar-fill" style="width:75%;background:linear-gradient(90deg,#7a6a4a,#eebb7a);"></div></div>
+          <span class="value-label-right">微软Azure AI · Google Cloud AI</span>
+        </div>
+        <div class="value-row">
+          <span class="value-layer-label">L6 应用层</span>
+          <div class="value-bar-track"><div class="value-bar-fill" style="width:45%;background:linear-gradient(90deg,#5a6a7a,#7ac4ee);"></div></div>
+          <span class="value-label-right">ChatGPT ~$50亿/年 · 分散竞争</span>
+        </div>
+        <div class="value-row">
+          <span class="value-layer-label">L1 能源层</span>
+          <div class="value-bar-track"><div class="value-bar-fill" style="width:35%;background:linear-gradient(90deg,#7c6f5a,#c4a966);"></div></div>
+          <span class="value-label-right">设施重资产 · 稳定但增速慢</span>
+        </div>
+        <div class="value-row">
+          <span class="value-layer-label">L3 数据层</span>
+          <div class="value-bar-track"><div class="value-bar-fill" style="width:20%;background:linear-gradient(90deg,#5a7a5a,#7ac47a);"></div></div>
+          <span class="value-label-right">Scale AI $290亿 · 价值被低估</span>
+        </div>
+      </div>
+      <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border);">
+        <p style="font-size:13px;color:#5a7a70;line-height:1.8;">
+          <strong style="color:#1a6e50;">当前利润排序：</strong> 算力层 ≫ 模型层 ≈ 平台层 ＞ 应用层 ＞ 数据层<br>
+          <strong style="color:#1a6e50;">未来5年重估：</strong> 数据层（高质量RLHF专家反馈）和应用层（超级App数据飞轮）价值将向上修正。你所在的 <strong style="color:#16a34a;">L3 ADSO业务</strong> 本质是维护整个 AI 系统的燃料供应链——随着 Synthetic Data 普及，价值重心从"人工标注量"转向"质量验证体系"。
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  AI大生态上下游图谱 · 行研版 2026.05 · 数据来源：IDC / Bernstein / FT / TechCrunch / 招银国际
+</footer>
+
+</body>
+</html>
