@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>亚马逊 AI 战略深度报告 2026 — Kyrie AI 洞察</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1c2128;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --blue: #58a6ff;
+      --blue-bg: rgba(88,166,255,.12);
+      --green: #3fb950;
+      --green-bg: rgba(63,185,80,.1);
+      --orange: #f0883e;
+      --orange-bg: rgba(240,136,62,.1);
+      --red: #f85149;
+      --red-bg: rgba(248,81,73,.1);
+      --purple: #bc8cff;
+      --purple-bg: rgba(188,140,255,.1);
+      --yellow: #e3b341;
+      --yellow-bg: rgba(227,179,65,.1);
+      --cyan: #39d3f0;
+      --cyan-bg: rgba(57,211,240,.1);
+      --amazon: #ff9900;
+      --amazon-bg: rgba(255,153,0,.12);
+      --sidebar-w: 280px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-logo { font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; }
+    .site-logo span { color: var(--blue); }
+    .back-btn {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
+    }
+    .back-btn:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0a1628 0%, #1a0a00 40%, #0d1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, rgba(255,153,0,.08) 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--amazon-bg);
+      border: 1px solid var(--amazon);
+      color: var(--amazon);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      letter-spacing: .5px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .hero h1 {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .hero h1 em { color: var(--amazon); font-style: normal; }
+    .hero-sub {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 680px;
+      margin: 0 auto 28px;
+      position: relative;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      font-size: 13px;
+      color: var(--muted);
+      position: relative;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 5px; }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      position: sticky;
+      top: 68px;
+      max-height: calc(100vh - 80px);
+      overflow-y: auto;
+      padding: 24px 0 24px 0;
+      margin-right: 28px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+      padding: 0 4px;
+    }
+
+    .kpi-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+    }
+    .kpi-card .kpi-label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+    .kpi-card .kpi-value { font-size: 18px; font-weight: 800; color: var(--amazon); line-height: 1.1; }
+    .kpi-card .kpi-note { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+    .glossary-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 6px;
+    }
+    .glossary-item .g-term { font-size: 12px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+    .glossary-item .g-def { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    .source-list { list-style: none; }
+    .source-list li { margin-bottom: 6px; }
+    .source-list a {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      transition: color .2s;
+      line-height: 1.4;
+    }
+    .source-list a:hover { color: var(--blue); }
+    .source-list a::before { content: '→'; flex-shrink: 0; color: var(--blue); }
+
+    /* ── MAIN ── */
+    .main { flex: 1; min-width: 0; padding-top: 28px; }
+
+    /* ── TABS ── */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--amazon); border-bottom-color: var(--amazon); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── CONTENT COMPONENTS ── */
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-desc { color: var(--muted); font-size: 14px; margin-bottom: 24px; line-height: 1.6; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 8px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+
+    @media (max-width: 900px) {
+      .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+      .layout { padding: 0 16px 60px; }
+      .sidebar { display: none; }
+    }
+    @media (max-width: 600px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      text-align: center;
+    }
+    .stat-card .stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .stat-card .stat-label { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .stat-card .stat-sub { font-size: 11px; color: var(--muted); margin-top: 4px; opacity: .7; }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .tag-orange { background: var(--orange-bg); color: var(--orange); border: 1px solid rgba(240,136,62,.3); }
+    .tag-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(88,166,255,.3); }
+    .tag-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(63,185,80,.3); }
+    .tag-purple { background: var(--purple-bg); color: var(--purple); border: 1px solid rgba(188,140,255,.3); }
+    .tag-red { background: var(--red-bg); color: var(--red); border: 1px solid rgba(248,81,73,.3); }
+    .tag-amazon { background: var(--amazon-bg); color: var(--amazon); border: 1px solid rgba(255,153,0,.3); }
+    .tag-cyan { background: var(--cyan-bg); color: var(--cyan); border: 1px solid rgba(57,211,240,.3); }
+
+    .highlight-box {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      border-left: 3px solid;
+    }
+    .highlight-box.orange { background: var(--orange-bg); border-color: var(--orange); }
+    .highlight-box.blue { background: var(--blue-bg); border-color: var(--blue); }
+    .highlight-box.green { background: var(--green-bg); border-color: var(--green); }
+    .highlight-box.red { background: var(--red-bg); border-color: var(--red); }
+    .highlight-box.purple { background: var(--purple-bg); border-color: var(--purple); }
+    .highlight-box.amazon { background: var(--amazon-bg); border-color: var(--amazon); }
+    .highlight-box .hb-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+    .highlight-box p { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; }
+
+    .table-wrap { overflow-x: auto; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead th {
+      background: var(--surface2);
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: rgba(255,255,255,.02); }
+    .td-highlight { font-weight: 700; color: var(--amazon); }
+    .td-blue { color: var(--blue); font-weight: 600; }
+    .td-green { color: var(--green); font-weight: 600; }
+    .td-muted { color: var(--muted); }
+
+    .timeline { position: relative; padding-left: 24px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 7px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--amazon);
+      border: 2px solid var(--bg);
+    }
+    .tl-date { font-size: 11px; color: var(--amazon); font-weight: 700; margin-bottom: 4px; }
+    .tl-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .tl-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    .stack-layer {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: border-color .2s;
+    }
+    .stack-layer:hover { border-color: var(--amazon); }
+    .stack-layer .layer-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .stack-layer .layer-body { flex: 1; }
+    .stack-layer .layer-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .stack-layer .layer-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .stack-layer .layer-tags { margin-top: 8px; }
+
+    .progress-bar-wrap { margin-bottom: 12px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+    .progress-label span:last-child { color: var(--muted); }
+    .progress-track { height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 4px; }
+
+    .insight-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .insight-card::before {
+      content: attr(data-num);
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      background: var(--amazon);
+      color: #000;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 9px 0 8px 0;
+    }
+    .insight-card .ic-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; padding-top: 4px; }
+    .insight-card .ic-body { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+    ul.dot-list { list-style: none; padding: 0; }
+    ul.dot-list li {
+      padding: 5px 0 5px 18px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      position: relative;
+    }
+    ul.dot-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--amazon);
+    }
+    ul.dot-list li strong { color: var(--text); font-weight: 600; }
+
+    .compare-col-aws { color: var(--amazon); }
+    .compare-col-ali { color: #ff6a00; }
+
+    /* ── FOOTER ── */
+    .report-footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .report-footer a { color: var(--blue); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="index.html" class="site-logo">Kyrie <span>AI Insight</span></a>
+  <a href="index.html" class="back-btn">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M9.78 12.78a.75.75 0 0 1-1.06 0L4.47 8.53a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 1.06L6.06 8l3.72 3.72a.75.75 0 0 1 0 1.06z"/></svg>
+    返回主页
+  </a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🛒 AI 战略深度报告 · 2026</div>
+  <h1>亚马逊 <em>全栈 AI 帝国</em> 深度解析</h1>
+  <p class="hero-sub">从核电站到购物车——解码亚马逊如何用能源、数据中心、自研芯片、云服务、大模型与电商应用，构建一套别人无法复制的 AI 全栈护城河</p>
+  <div class="hero-meta">
+    <span>📅 2026年6月</span>
+    <span>🔍 7大模块深度调研</span>
+    <span>📊 含与阿里云对比分析</span>
+    <span>🏷️ AWS · Trainium · Bedrock · Rufus</span>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">核心数据速查</div>
+      <div class="kpi-card">
+        <div class="kpi-label">AWS 年化收入（2026 Q1）</div>
+        <div class="kpi-value">$1,580亿</div>
+        <div class="kpi-note">同比 +28%，史上最快增速</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">AI 业务年化收入（2026 Q1）</div>
+        <div class="kpi-value">$150亿+</div>
+        <div class="kpi-note">三年内增长260倍</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">2026 年资本开支计划</div>
+        <div class="kpi-value">$2,000亿</div>
+        <div class="kpi-note">史上最大私人基建投入</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">全球数据中心设施数</div>
+        <div class="kpi-value">900+</div>
+        <div class="kpi-note">2025年11月泄露文件披露</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Rufus AI 购物助手销售拉动</div>
+        <div class="kpi-value">$120亿</div>
+        <div class="kpi-note">2025全年增量销售额</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">广告业务滚动12月收入</div>
+        <div class="kpi-value">$700亿</div>
+        <div class="kpi-note">AI 驱动增长，全球第三大广告平台</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">名词解释</div>
+
+      <div class="glossary-item">
+        <div class="g-term">Trainium</div>
+        <div class="g-def">亚马逊自研AI训练/推理专用芯片，Trainium3比同期NVIDIA GPU价格性能比高30-40%，已基本预订满。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">Graviton</div>
+        <div class="g-def">亚马逊自研ARM架构CPU芯片，比同期x86处理器价格性能比高40%，全球Top1000 EC2客户中98%在使用。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">Amazon Bedrock</div>
+        <div class="g-def">AWS核心AI推理服务平台，接入Claude（Anthropic）等前沿模型，2026年Q1单季度处理token数超过此前所有时间总和。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">Project Rainier</div>
+        <div class="g-def">亚马逊印第安纳州AI超级园区，1200英亩，设计算力2.2 GW，专为训练Anthropic Claude模型。投资$110亿，是全球最大非NVIDIA AI芯片集群。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">SMR（小型模块化核反应堆）</div>
+        <div class="g-def">比传统核电站体积小、建设周期短的新型核反应堆。亚马逊投资X-energy，目标2039年部署5 GW SMR，专门为AI算力供电。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">AgentCore</div>
+        <div class="g-def">AWS 2025年底发布的可扩展安全Agent运行环境，为企业级AI Agent提供部署、监控、安全管理平台。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">Rufus</div>
+        <div class="g-def">亚马逊生成式AI购物助手，2024年2月上线，2025年3亿用户，带动$120亿增量销售额，已升级为Agentic AI。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">Anthropic</div>
+        <div class="g-def">亚马逊最大AI战略投资，累计约$80亿，AWS是Anthropic主要训练云，Claude是Bedrock旗舰模型。2026年账面浮盈$168亿。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">PJM 电网</div>
+        <div class="g-def">覆盖美国弗吉尼亚到伊利诺伊13个州的区域电网。2024-2030年预计新增32 GW负荷，其中94%来自数据中心。2025年12月首次出现历史性容量短缺。</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">权威来源</div>
+      <ul class="source-list">
+        <li><a href="https://www.aboutamazon.com/news/company-news/amazon-ceo-andy-jassy-2025-letter-to-shareholders" target="_blank">Andy Jassy 2025年股东信</a></li>
+        <li><a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-First-Quarter-Results/default.aspx" target="_blank">亚马逊2026 Q1财报</a></li>
+        <li><a href="https://www.mmcginvest.com/post/aws-at-scale-inside-the-largest-private-infrastructure-buildout-the-world-has-ever-seen" target="_blank">MMCG Invest: AWS基建深度报告</a></li>
+        <li><a href="https://fortune.com/2025/11/02/amazon-rufus-ai-shopping-assistant-chatbot-10-billion-sales-monetization/" target="_blank">Fortune: Rufus $100亿销售预测</a></li>
+        <li><a href="https://newsletter.semianalysis.com/p/amazons-ai-resurgence-aws-anthropics-multi-gigawatt-trainium-expansion" target="_blank">SemiAnalysis: AWS AI 芯片深度</a></li>
+        <li><a href="https://carnegieendowment.org/research/2026/06/beyond-the-hype-assessing-hyperscaler-nuclear-commitments-against-us-energy-realities" target="_blank">Carnegie: 超大规模核能承诺评估</a></li>
+        <li><a href="https://x-energy.com/news/amazon-invests-in-x-energy-to-support-advanced-small-modular-nuclear-reactors-and-expand-carbon-free-power/" target="_blank">X-energy: 亚马逊SMR核能投资</a></li>
+      </ul>
+    </div>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TAB NAV -->
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('overview')">① 全栈全貌</button>
+      <button class="tab-btn" onclick="switchTab('infra')">② 数据中心</button>
+      <button class="tab-btn" onclick="switchTab('energy')">③ 能源电力</button>
+      <button class="tab-btn" onclick="switchTab('chips')">④ 自研芯片</button>
+      <button class="tab-btn" onclick="switchTab('cloud')">⑤ 云AI服务</button>
+      <button class="tab-btn" onclick="switchTab('ecommerce')">⑥ 电商AI应用</button>
+      <button class="tab-btn" onclick="switchTab('compare')">⑦ 对比阿里云</button>
+    </nav>
+
+    <!-- TAB: OVERVIEW -->
+    <section class="tab-panel active" id="tab-overview">
+      <div class="section-title">🏛️ 全栈 AI 帝国：四层架构鸟瞰</div>
+      <p class="section-desc">亚马逊的AI布局不是一个单点产品，而是一套从底层能源到顶层应用的完整垂直整合体系。理解这套体系，需要先看懂它的四层架构逻辑。</p>
+
+      <div class="highlight-box amazon">
+        <div class="hb-title">🔑 核心战略逻辑</div>
+        <p>亚马逊CEO Andy Jassy在2025年股东信中明确表态："AI不是一个独立战略，它是乘数效应。它将重塑我们提供的每一个客户体验，并解锁全新的体验。"亚马逊的差异化在于：<strong style="color:var(--amazon)">它是全球唯一一家从核电站到购物车都自己掌控的AI全栈公司。</strong></p>
+      </div>
+
+      <!-- 四层架构 -->
+      <div class="stack-layer" style="background:var(--surface);">
+        <div class="layer-icon" style="background:rgba(255,153,0,.15)">⚡</div>
+        <div class="layer-body">
+          <div class="layer-title" style="color:var(--amazon)">Layer 0：能源 / 电力层</div>
+          <div class="layer-desc">核能（SMR + 传统核电PPA）+ 可再生能源（40 GW，全球第一企业买家，连续5年）+ 天然气（过渡填空）。目标：为AI算力提供稳定、低成本、可预测的清洁基础电力。</div>
+          <div class="layer-tags"><span class="tag tag-amazon">X-energy SMR 5GW目标</span><span class="tag tag-orange">Talen核电PPA $180亿</span><span class="tag tag-green">40GW可再生能源</span></div>
+        </div>
+      </div>
+
+      <div class="stack-layer" style="background:var(--surface);">
+        <div class="layer-icon" style="background:rgba(57,211,240,.15)">🏢</div>
+        <div class="layer-body">
+          <div class="layer-title" style="color:var(--cyan)">Layer 1：数据中心层</div>
+          <div class="layer-desc">全球900+设施（2025年披露，此前市场估计翻倍），美国在用IT算力2.3 GW，远超Azure（1.2 GW）和Google Cloud（0.5 GW）。2026年资本开支$2000亿，史上最大私人基建。</div>
+          <div class="layer-tags"><span class="tag tag-cyan">39个地理区域</span><span class="tag tag-blue">Project Rainier 4.6GW</span><span class="tag tag-purple">北弗吉尼亚 2.75GW</span></div>
+        </div>
+      </div>
+
+      <div class="stack-layer" style="background:var(--surface);">
+        <div class="layer-icon" style="background:rgba(188,140,255,.15)">🔧</div>
+        <div class="layer-body">
+          <div class="layer-title" style="color:var(--purple)">Layer 2：自研芯片层</div>
+          <div class="layer-desc">Trainium（AI训练/推理）+ Graviton（CPU）+ Nitro（网络加速）。年化收入$200亿，若单独出售相当于$500亿。Trainium3比同期NVIDIA GPU价格性能比高30-40%，已几乎全部预订完。</div>
+          <div class="layer-tags"><span class="tag tag-purple">Trainium3 已预订完</span><span class="tag tag-blue">Graviton 98%头部客户</span><span class="tag tag-orange">年化$200亿芯片营收</span></div>
+        </div>
+      </div>
+
+      <div class="stack-layer" style="background:var(--surface);">
+        <div class="layer-icon" style="background:rgba(88,166,255,.15)">☁️</div>
+        <div class="layer-body">
+          <div class="layer-title" style="color:var(--blue)">Layer 3：云AI服务层</div>
+          <div class="layer-desc">SageMaker（模型训练）+ Bedrock（推理平台）+ AgentCore + Strands（Agent框架）+ Nova（自研模型）+ Anthropic Claude（战略绑定，$80亿投资）。</div>
+          <div class="layer-tags"><span class="tag tag-blue">Bedrock token量Q1翻历史总和</span><span class="tag tag-amazon">Anthropic $80亿战略绑定</span><span class="tag tag-green">AI年化$150亿</span></div>
+        </div>
+      </div>
+
+      <div class="stack-layer" style="background:var(--surface);">
+        <div class="layer-icon" style="background:rgba(63,185,80,.15)">🛒</div>
+        <div class="layer-body">
+          <div class="layer-title" style="color:var(--green)">Layer 4：AI 应用层</div>
+          <div class="layer-desc">电商（Rufus购物助手 $120亿增量销售）+ 广告（AI驱动 $700亿年化）+ 卖家工具（AI商品图、Enhance My Listing）+ 物流AI（100万机器人 + AI调度）+ Alexa+（6亿端点重写）+ Amazon Q企业助手。</div>
+          <div class="layer-tags"><span class="tag tag-green">Rufus 3亿用户</span><span class="tag tag-amazon">广告$700亿年化</span><span class="tag tag-orange">1M+物流机器人</span></div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- 关键财务数字 -->
+      <div class="section-title" style="font-size:16px;">📊 关键财务数字一览</div>
+      <div class="grid-4">
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--amazon)">$717亿</div>
+          <div class="stat-label">2025年全年总营收</div>
+          <div class="stat-sub">同比 +12%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--cyan)">$1,290亿</div>
+          <div class="stat-label">AWS 2025年全年营收</div>
+          <div class="stat-sub">同比 +20%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--green)">$800亿</div>
+          <div class="stat-label">2025年营业利润</div>
+          <div class="stat-sub">营业利润率 11.2%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--red)">$7.7亿</div>
+          <div class="stat-label">2025年自由现金流</div>
+          <div class="stat-sub">（大幅下降，因Capex$1347亿）</div>
+        </div>
+      </div>
+
+      <div class="highlight-box blue">
+        <div class="hb-title">💡 为什么说亚马逊是"最难被复制"的AI公司</div>
+        <p>全球没有第二家公司同时拥有：①云计算绝对第一（$1580亿年化）②全球最大电商数据飞轮（$6000亿零售规模）③自研AI芯片（Trainium，年化$200亿）④战略绑定顶级模型公司（Anthropic $80亿）⑤正在布局核能自供电（X-energy SMR）。这五个维度叠加，构成竞争对手需要<strong style="color:var(--blue)">10年以上时间才能接近的护城河深度</strong>。</p>
+      </div>
+
+    </section>
+    <!-- END TAB OVERVIEW -->
+
+    <!-- TAB: INFRA -->
+    <section class="tab-panel" id="tab-infra">
+      <div class="section-title">🏢 数据中心层：史上最大私人基建</div>
+      <p class="section-desc">2025年11月，Bloomberg/SourceMaterial泄露的亚马逊内部文件首次揭示了AWS数据中心的真实规模——此前行业估计的两倍。这不只是云计算设施，而是专为AI训练和推理重新设计的"算力工厂"。</p>
+
+      <div class="highlight-box amazon">
+        <div class="hb-title">💥 规模被严重低估：900+ 设施，前所未知</div>
+        <p>多年来外界估计AWS在全球拥有350-450个数据中心设施。2025年11月泄露文件打破这一认知：<strong style="color:var(--amazon)">实际超过900个</strong>，包含440+个co-location站点和220+个边缘节点。AWS的真实规模是微软Azure的两倍以上，Google Cloud的四倍以上。</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--amazon)">900+</div>
+          <div class="stat-label">全球设施总数</div>
+          <div class="stat-sub">此前市场估算仅 350-450</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--cyan)">2.3 GW</div>
+          <div class="stat-label">美国在用 IT 算力</div>
+          <div class="stat-sub">Azure 1.2 GW / Google 0.5 GW</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--blue)">39</div>
+          <div class="stat-label">全球地理区域</div>
+          <div class="stat-sub">120+ 可用区 / 700+ CDN节点</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--orange)">$965亿</div>
+          <div class="stat-label">2025年AWS资本开支</div>
+          <div class="stat-sub">同比 +81%，占AWS营收75%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--red)">$2,000亿</div>
+          <div class="stat-label">2026年计划资本开支</div>
+          <div class="stat-sub">史上最高，绝大部分用于AWS</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">🗺️ 三大标志性 AI 超级园区</div>
+      <p class="section-desc" style="margin-bottom:20px;">2024-2025年，亚马逊将新一代数据中心建设范式从"通用云"彻底转向"AI算力工厂"，三个旗舰园区是最典型的案例。</p>
+
+      <div class="card" style="border-left:3px solid var(--amazon)">
+        <div class="card-title">
+          🌧️ Project Rainier（印第安纳州）—— 全球最大非英伟达 AI 芯片集群
+          <span class="tag tag-amazon">旗舰园区</span>
+        </div>
+        <div class="grid-2" style="margin-bottom:12px;margin-top:8px;">
+          <div style="font-size:13px;color:var(--muted)">
+            <strong style="color:var(--text)">位置：</strong>印第安纳州圣约瑟夫县，New Carlisle（前农田）<br>
+            <strong style="color:var(--text)">面积：</strong>1,200英亩（约4.9平方公里），30栋楼<br>
+            <strong style="color:var(--text)">设计算力：</strong>2.2 GW（完工后）<br>
+            <strong style="color:var(--text)">第一期投资：</strong>$110亿（2024年宣布）<br>
+            <strong style="color:var(--text)">追加投资：</strong>北印第安纳+$150亿，2.4 GW<br>
+            <strong style="color:var(--text)">印第安纳州总承诺：</strong>$260亿，4.6 GW
+          </div>
+          <div style="font-size:13px;color:var(--muted)">
+            <strong style="color:var(--text)">核心配置：</strong>~50万枚 Trainium2 芯片（计划翻倍）<br>
+            <strong style="color:var(--text)">主要用途：</strong>专为训练 Anthropic Claude 模型<br>
+            <strong style="color:var(--text)">开工时间：</strong>2024年9月<br>
+            <strong style="color:var(--text)">进度：</strong>7个月内7栋楼已投入使用<br>
+            <strong style="color:var(--text)">AWS自评：</strong>"全球最大非NVIDIA AI芯片集群"
+          </div>
+        </div>
+        <div class="highlight-box orange" style="margin:0">
+          <div class="hb-title">战略意义</div>
+          <p>Project Rainier是亚马逊用基础设施"绑定"Anthropic的最直接体现。一个园区的算力等于Google Cloud在美国全量IT容量的4.6倍——这不是通用云，是为大模型训练专门建造的"算力神殿"。</p>
+        </div>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--yellow)">
+        <div class="card-title">
+          ☢️ 宾夕法尼亚州双园区 —— 核电站直连，史上最大私人投资
+          <span class="tag tag-amazon">核能驱动</span>
+        </div>
+        <ul class="dot-list" style="margin-top:8px;">
+          <li><strong>总投资 $200亿</strong>——宾夕法尼亚州史上最大私人投资项目</li>
+          <li><strong>Salem Township 主园区</strong>：1,200英亩，紧邻 Talen Energy 的 <strong>Susquehanna 核电站</strong></li>
+          <li><strong>核电PPA</strong>：2024年以$6.5亿收购Talen现有数据中心，签署17年/$180亿购电协议，最大1,920 MW核电，合同有效期至2042年</li>
+          <li><strong>Falls Township 第二园区</strong>：建于旧美国钢铁厂地块，接入PJM电网</li>
+          <li><strong>预计到2032年</strong>核电交付量升至满功率1,920 MW</li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--blue)">
+        <div class="card-title">
+          🏭 密西西比州园区 —— 自建发电厂，南部新基地
+        </div>
+        <ul class="dot-list" style="margin-top:8px;">
+          <li><strong>Madison County 主园区</strong>：1,700英亩，投资超$130亿，5个设施已投入使用</li>
+          <li><strong>Warren County 扩建</strong>：$30亿，自建 <strong>7.54亿瓦天然气发电厂</strong>（$12亿），为园区直接供电</li>
+          <li>已批准 <strong>700+台柴油备用发电机</strong>，应对电网不稳定</li>
+          <li>密西西比州政府提供$2.15亿贷款用于污水处理基础设施升级（供园区冷却水）</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">📍 其他重要区域集群</div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>区域</th>
+              <th>核心位置</th>
+              <th>设施数</th>
+              <th>在用算力</th>
+              <th>累计投资</th>
+              <th>能源特点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-highlight">北弗吉尼亚（US-East-1）</td>
+              <td>Loudoun County，华盛顿DC郊区</td>
+              <td>163个</td>
+              <td>2,754 MW</td>
+              <td class="td-blue">$915亿（累计）</td>
+              <td>Dominion电网+可再生能源</td>
+            </tr>
+            <tr>
+              <td class="td-highlight">俄勒冈（US-West-2）</td>
+              <td>Boardman / Umatilla / Hermiston</td>
+              <td>46个</td>
+              <td>1,000-1,500 MW</td>
+              <td>$392亿</td>
+              <td class="td-green">哥伦比亚河水电，95%可再生</td>
+            </tr>
+            <tr>
+              <td class="td-highlight">俄亥俄（US-East-2）</td>
+              <td>哥伦布市 New Albany/Dublin</td>
+              <td>53个</td>
+              <td>扩建中</td>
+              <td>$197亿（2030年$238亿）</td>
+              <td>俄亥俄电网</td>
+            </tr>
+            <tr>
+              <td>德国（欧洲主权云）</td>
+              <td>勃兰登堡州</td>
+              <td>新启动</td>
+              <td>—</td>
+              <td>EUR 78亿（至2040年）</td>
+              <td class="td-blue">EU居民运营，符合GDPR</td>
+            </tr>
+            <tr>
+              <td>印度</td>
+              <td>全国多区域</td>
+              <td>多区域</td>
+              <td>扩建中</td>
+              <td class="td-highlight">$350亿（至2030年）</td>
+              <td>本地电网</td>
+            </tr>
+            <tr>
+              <td>沙特阿拉伯</td>
+              <td>利雅得</td>
+              <td>独立区域</td>
+              <td>—</td>
+              <td>$53亿</td>
+              <td>主权云合规</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-box red">
+        <div class="hb-title">⚠️ 建设瓶颈：变压器短缺正在拖慢扩张</div>
+        <p>电力变压器（高压电网连接数据中心的关键设备）面临30%供应短缺，<strong style="color:var(--red)">交货期长达128周（约2.5年）</strong>，成本自2019年上涨77%。新的进口关税预计再涨20-30%。一个超大规模园区需要数十台变压器，每台重达45吨，单台成本高达$25万。获取电网并网资格已成为和拿地同等重要的战略资源。</p>
+      </div>
+
+    </section>
+    <!-- END TAB INFRA -->
+
+    <!-- TAB: ENERGY -->
+    <section class="tab-panel" id="tab-energy">
+      <div class="section-title">⚡ 能源电力层：从买电到造电</div>
+      <p class="section-desc">当AI算力需求开始逼近整个国家的电力消耗，电力供应本身变成了AWS最大的增长瓶颈。亚马逊的应对策略从"采购可再生能源"演变成"自己投资建核电站"——这是过去五年里最超出大众认知的战略动作。</p>
+
+      <div class="highlight-box red">
+        <div class="hb-title">🚨 电力危机：AWS正在逼近美国电网极限</div>
+        <p>PJM电网（覆盖美国弗吉尼亚到伊利诺伊13个州）预测2024-2030年新增<strong style="color:var(--red)">32 GW峰值负荷，其中94%来自数据中心</strong>。2025年12月，PJM容量拍卖首次历史性短缺6,625 MW（相当于费城全市用电）。电网并网等待队列已排到<strong style="color:var(--red)">8年后（2033年）</strong>。</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--red)">32 GW</div>
+          <div class="stat-label">PJM新增电力需求（2024-2030）</div>
+          <div class="stat-sub">94% 来自数据中心</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--amazon)">40 GW</div>
+          <div class="stat-label">亚马逊可再生能源采购总量</div>
+          <div class="stat-sub">全球企业最大买家，连续5年</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--yellow)">5 GW</div>
+          <div class="stat-label">X-energy SMR 核能目标（2039）</div>
+          <div class="stat-sub">约4-5个 Project Rainier 的全量用电</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--cyan)">3.9 GW</div>
+          <div class="stat-label">AWS 2025年新增电力容量</div>
+          <div class="stat-sub">计划2027年底前总量翻倍</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">🔋 三条腿能源战略</div>
+
+      <!-- 可再生能源 -->
+      <div class="card">
+        <div class="card-title" style="color:var(--green)">
+          🌱 第一条腿：可再生能源（规模最大，但不够用）
+        </div>
+        <p>亚马逊连续5年是<strong>全球企业最大可再生能源采购方</strong>，全球700+个项目，横跨28个国家，总装机超40 GW。但可再生能源有一个致命缺陷：<strong>间歇性</strong>——太阳能晚上不发电，风电随风力波动，无法满足AI训练集群对稳定基础电力的需求。</p>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="highlight-box green" style="margin:0">
+            <div class="hb-title">✅ 优势</div>
+            <p>成本下降快，建设周期短（12-18个月），绿色认证满足ESG要求，俄勒冈区域已实现95%可再生供电。</p>
+          </div>
+          <div class="highlight-box red" style="margin:0">
+            <div class="hb-title">❌ 局限</div>
+            <p>无法提供AI训练所需的7×24稳定基础负荷。间歇性电力必须配合储能或其他稳定电源才能使用。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 核能 -->
+      <div class="card" style="border-color:var(--yellow);">
+        <div class="card-title" style="color:var(--yellow)">
+          ☢️ 第二条腿：核能（最激进的赌注，战略核心）
+        </div>
+        <p style="margin-bottom:16px;">核能是AWS能源战略里最超前、也最具战略意图的一步。核电提供稳定、低碳、高密度的基础电力，完美契合AI训练集群的需求。</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>项目</th>
+                <th>合作方</th>
+                <th>规模</th>
+                <th>金额</th>
+                <th>时间线</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-highlight">Talen Susquehanna 核电PPA</td>
+                <td>Talen Energy</td>
+                <td>最高 1,920 MW</td>
+                <td class="td-blue">$180亿（17年）</td>
+                <td>2024签约，2032年满功率</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">X-energy SMR 投资</td>
+                <td>X-energy</td>
+                <td>目标 5 GW（2039年）</td>
+                <td class="td-blue">领投$5亿C轮，2个董事会席位</td>
+                <td>2024年10月宣布</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">Energy Northwest SMR 合作</td>
+                <td>Energy Northwest</td>
+                <td>12台SMR，960 MW</td>
+                <td>未披露</td>
+                <td>华盛顿州，Columbia核电站旁</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">Dominion Energy MoU</td>
+                <td>Dominion Energy</td>
+                <td>至少 300 MW</td>
+                <td>未披露</td>
+                <td>弗吉尼亚州 North Anna 核电站旁</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">KHNP + 斗山合作</td>
+                <td>韩国水力核力 / 斗山能源</td>
+                <td>AI基础设施供电</td>
+                <td>未披露</td>
+                <td>2025年8月宣布，国际化核能布局</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="highlight-box amazon">
+          <div class="hb-title">🔑 SMR 是什么，为什么重要</div>
+          <p><strong style="color:var(--amazon)">小型模块化反应堆（SMR）</strong>：比传统大型核电站体积小得多（单台30-300 MW vs 传统核电1,000+ MW），建设周期更短（约5-7年 vs 传统15年+），造价更低，可在数据中心旁就近部署。亚马逊通过X-energy锁定的5 GW SMR目标，相当于4-5个Project Rainier的满负荷用电需求。这是把"能源主权"纳入AI战略的最激进体现。</p>
+        </div>
+      </div>
+
+      <!-- 天然气 -->
+      <div class="card">
+        <div class="card-title" style="color:var(--orange)">
+          🔥 第三条腿：天然气 + 柴油（过渡期填空）
+        </div>
+        <p>在核能和储能大规模商业化之前，天然气和柴油发电机承担"保底"角色。</p>
+        <ul class="dot-list" style="margin-top:8px;">
+          <li><strong>2024年大型燃气轮机订单</strong>达20年新高（14 GW），2025年上半年进一步升至18 GW</li>
+          <li><strong>弗吉尼亚州</strong>数据中心已批准 <strong>9,000+台柴油备用发电机</strong></li>
+          <li><strong>密西西比州 Warren County</strong>：AWS自建 <strong>$12亿、7.54亿瓦天然气发电厂</strong>，直接为园区供电</li>
+          <li><strong>密西西比州 Madison County</strong>：700+台柴油发电机，排放量约为附近日产制造厂的9倍（引发当地环保争议）</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">💸 电力危机的社会代价</div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">📈 电价涨价转嫁给普通居民</div>
+          <p>PJM容量价格从 $28.92/MW天 飙升至 <strong style="color:var(--red)">$333.44/MW天（10倍）</strong>，额外费用$147亿转嫁给普通电力用户。美国自然资源保护委员会估计，2033年前消费者将额外支付 $1,630亿。</p>
+        </div>
+        <div class="card">
+          <div class="card-title">🌊 水资源争议</div>
+          <p>AWS承诺2030年实现"水正向"（用水返还超过消耗），目前进度53%。但俄勒冈州数据中心已造成数千万加仑地下水抽取，当地调查将其与罕见癌症病例集群相关联（2025年11月滚石杂志调查）。</p>
+        </div>
+      </div>
+
+      <div class="highlight-box blue">
+        <div class="hb-title">💡 洞察：亚马逊正在成为"能源公司"</div>
+        <p>当AWS开始自建天然气发电厂、领投SMR核能公司、和核电站签署17年长期协议——它已经不只是一家云计算公司，而是在构建一张<strong style="color:var(--blue)">平行于国家电网的"AI专用能源网络"</strong>。这种垂直整合程度，在科技行业史上没有先例。它正在做的，与19世纪铁路公司自建煤矿如出一辙。</p>
+      </div>
+
+    </section>
+    <!-- END TAB ENERGY -->
+
+    <!-- TAB: CHIPS -->
+    <section class="tab-panel" id="tab-chips">
+      <div class="section-title">🔧 自研芯片层：打破英伟达垄断的赌注</div>
+      <p class="section-desc">AWS芯片战略的核心逻辑来自一个历史类比：2018年前，AWS的服务器全部跑在Intel CPU上。亚马逊自研了Graviton后，凭借40%的价格性能比优势，彻底替换掉了Intel的生态位。Andy Jassy认为，AI芯片会上演同样的剧本——只是速度更快、规模更大。</p>
+
+      <div class="highlight-box amazon">
+        <div class="hb-title">📜 历史剧本复现</div>
+        <p>"我们见过这部电影。在CPU领域，几乎所有工作负载跑在Intel芯片上，直到我们2018年发明了Graviton。Graviton比x86处理器价格性能比高40%，现在被前1000大EC2客户中98%的公司广泛使用。<strong style="color:var(--amazon)">AI领域同样的故事正在上演。</strong>" —— Andy Jassy, 2025年股东信</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--amazon)">$200亿+</div>
+          <div class="stat-label">芯片业务年化营收</div>
+          <div class="stat-sub">含 Graviton + Trainium + Nitro</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--purple)">~$500亿</div>
+          <div class="stat-label">等效独立出售规模</div>
+          <div class="stat-sub">若向第三方直接销售估算</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--green)">3位数%</div>
+          <div class="stat-label">芯片业务YoY增速</div>
+          <div class="stat-sub">2026 Q1 triple digits YoY</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">三款自研芯片详解</div>
+
+      <div class="card" style="border-left:3px solid var(--amazon);">
+        <div class="card-title" style="color:var(--amazon)">⚡ Trainium 系列 —— AI 训练 / 推理专用芯片</div>
+        <p>由亚马逊子公司 <strong>Annapurna Labs</strong>（2015年$3.5亿收购）设计。Trainium是AWS打破英伟达垄断最核心的武器。</p>
+
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead>
+              <tr>
+                <th>型号</th>
+                <th>状态</th>
+                <th>价格性能比优势</th>
+                <th>主要进展</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-highlight">Trainium2</td>
+                <td><span class="tag tag-green">已大规模部署</span></td>
+                <td class="td-green">比同期GPU +30%</td>
+                <td>Project Rainier 50万枚，已基本售罄</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">Trainium3</td>
+                <td><span class="tag tag-amazon">2026年初上市</span></td>
+                <td class="td-green">比T2再高 +30-40%</td>
+                <td>几乎全部已预订完（上市即满）</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">Trainium4</td>
+                <td><span class="tag tag-blue">约18个月后广泛上市</span></td>
+                <td>预计更高</td>
+                <td>大量容量已被提前预订</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="highlight-box green" style="margin:0">
+            <div class="hb-title">💰 经济意义</div>
+            <p>Jassy原话："Trainium将每年为AWS节省<strong style="color:var(--green)">数百亿美元Capex</strong>，并比依赖他人芯片获得高出<strong style="color:var(--green)">几百基点的营业利润率</strong>。"</p>
+          </div>
+          <div class="highlight-box blue" style="margin:0">
+            <div class="hb-title">🔗 Bedrock 绑定</div>
+            <p>Amazon Bedrock（核心推理服务）<strong style="color:var(--blue)">已将大部分推理迁移到 Trainium 上运行</strong>，形成芯片→服务→收入的完整闭环。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--blue);">
+        <div class="card-title" style="color:var(--blue)">🖥️ Graviton 系列 —— 通用计算 CPU</div>
+        <ul class="dot-list" style="margin-top:6px;">
+          <li><strong>定位</strong>：ARM 架构服务器 CPU，替代 Intel x86</li>
+          <li><strong>价格性能比</strong>：比同期x86高40%，能效更高</li>
+          <li><strong>市场渗透</strong>：前1000大EC2客户中 <strong>98% 在使用</strong></li>
+          <li><strong>Graviton5</strong>：2025年 re:Invent 发布，AWS史上最强CPU</li>
+          <li><strong>需求过热</strong>：两个大客户请求"包下全部Graviton容量"（被AWS拒绝）</li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--purple);">
+        <div class="card-title" style="color:var(--purple)">🌐 Nitro 系列 —— 网络加速芯片</div>
+        <ul class="dot-list" style="margin-top:6px;">
+          <li><strong>定位</strong>：EC2 网卡（NIC）加速芯片，降低虚拟化开销</li>
+          <li><strong>作用</strong>：将安全、存储I/O、网络虚拟化从CPU卸载到专用硬件，使EC2计算资源100%给客户使用（竞争对手通常损耗15-30%）</li>
+          <li><strong>AI意义</strong>：高速互联是大规模AI训练的关键，Nitro系统为AI集群提供低延迟高带宽网络</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">📊 芯片战略对比：亚马逊 vs 英伟达</div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th>英伟达</th>
+              <th>AWS Trainium</th>
+              <th>结论</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>价格性能比</td>
+              <td>基准</td>
+              <td class="td-green">Trainium3 高30-40%</td>
+              <td>Trainium 已超越</td>
+            </tr>
+            <tr>
+              <td>销售对象</td>
+              <td>全市场（含竞争对手）</td>
+              <td>主要内部使用（EC2）</td>
+              <td>AWS自用降成本，未来可能对外销售</td>
+            </tr>
+            <tr>
+              <td>供应紧张度</td>
+              <td>持续供不应求</td>
+              <td class="td-highlight">T3几乎全预订完</td>
+              <td>两者都是卖方市场</td>
+            </tr>
+            <tr>
+              <td>生态软件</td>
+              <td>CUDA 生态极强</td>
+              <td>Neuron SDK，生态追赶中</td>
+              <td>英伟达软件护城河更深</td>
+            </tr>
+            <tr>
+              <td>战略目的</td>
+              <td>销售利润</td>
+              <td>降低AWS成本 + 利润率提升</td>
+              <td>两者目标根本不同</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-box purple">
+        <div class="hb-title">🔮 未来可能：向第三方出售Trainium机架</div>
+        <p>Andy Jassy在股东信中明确暗示："有相当大的可能性，我们未来会向第三方出售Trainium机架。" 若兑现，AWS芯片业务将从内部成本工具变身为独立商业产品，直接挑战英伟达的to-B芯片市场。届时 <strong style="color:var(--purple)">$500亿等效规模</strong> 将成为真实收入。</p>
+      </div>
+
+    </section>
+    <!-- END TAB CHIPS -->
+
+    <!-- TAB: CLOUD -->
+    <section class="tab-panel" id="tab-cloud">
+      <div class="section-title">☁️ 云AI服务层：Bedrock、Anthropic与Agent生态</div>
+      <p class="section-desc">这一层是AWS AI的"产品脸面"——企业客户直接与之交互的平台。2025-2026年，AWS推出了一套完整的AI产品矩阵，从模型训练到推理、从API调用到Agent部署，覆盖企业AI应用的全生命周期。</p>
+
+      <div class="grid-4">
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--amazon)">$150亿+</div>
+          <div class="stat-label">AWS AI 年化收入（2026 Q1）</div>
+          <div class="stat-sub">快速上升中</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--blue)">2×</div>
+          <div class="stat-label">Bedrock 月环比增速</div>
+          <div class="stat-sub">2026年3月 MoM nearly doubled</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--green)">历史总和</div>
+          <div class="stat-label">Bedrock 2026 Q1 处理 token 量</div>
+          <div class="stat-sub">单季度超过此前所有时间总和</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--purple)">76天</div>
+          <div class="stat-label">Bedrock"Mantle"重构引擎</div>
+          <div class="stat-sub">6人团队，76天完成架构重写</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">🛠️ AWS AI 产品矩阵全图</div>
+
+      <div class="card">
+        <div class="card-title" style="color:var(--cyan)">🧱 模型训练层：SageMaker</div>
+        <p>AWS的模型训练平台，支持从小型微调到超大规模预训练。与Trainium芯片深度集成，为企业提供端到端的模型开发环境。2025年推出<strong>Nova 模型系列定制化训练</strong>能力。</p>
+      </div>
+
+      <div class="card" style="border-color:var(--blue)">
+        <div class="card-title" style="color:var(--blue)">🚀 推理平台：Amazon Bedrock —— 核心产品</div>
+        <p>AWS最重要的AI服务，也是整个AI战略的"流量入口"。提供主流前沿模型的API调用，配合企业安全和合规能力。</p>
+        <div class="grid-2" style="margin-top:12px;">
+          <div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text)">核心能力</div>
+            <ul class="dot-list">
+              <li><strong>多模型市场</strong>：接入Claude（Anthropic）、Llama（Meta）、Mistral等前沿模型</li>
+              <li><strong>企业安全</strong>：数据不离开AWS环境，符合各类合规要求</li>
+              <li><strong>Mantle 推理引擎</strong>：76天重写的新架构，性能大幅提升</li>
+              <li><strong>定价灵活</strong>：按token计费，支持预留容量</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px;color:var(--text)">2025-2026 关键数据</div>
+            <ul class="dot-list">
+              <li>2026年3月：<strong>月环比增速接近翻倍</strong></li>
+              <li>2026 Q1：<strong>单季token量超过此前所有时间总和</strong></li>
+              <li>大部分推理已迁移至 Trainium 芯片运行</li>
+              <li>Claude 是 Bedrock 上最重要的前沿模型</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:var(--green)">
+        <div class="card-title" style="color:var(--green)">🤖 Agent 生态：Strands + AgentCore</div>
+        <p>2025年底 re:Invent 大会，AWS发布了完整的Agent开发和部署体系，这被视为AI从"API调用"走向"自主执行"的关键产品。</p>
+        <div class="grid-2" style="margin-top:12px;">
+          <div class="highlight-box green" style="margin:0">
+            <div class="hb-title">Strands —— Agent 构建框架</div>
+            <p>面向开发者的Agent SDK，支持多步骤工作流、工具调用、多模型协作。类比LangChain但更深度整合AWS服务。</p>
+          </div>
+          <div class="highlight-box blue" style="margin:0">
+            <div class="hb-title">AgentCore —— Agent 运行平台</div>
+            <p>企业级Agent部署、监控、安全管理平台。提供可扩展的运行环境，支持数百并发Agent执行，内置审计和安全控制。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:var(--purple)">
+        <div class="card-title" style="color:var(--purple)">📦 垂直应用 Agent：Kiro / Transform / Quick / Q</div>
+        <div class="table-wrap" style="margin-top:8px;">
+          <table>
+            <thead>
+              <tr><th>产品</th><th>定位</th><th>目标用户</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-highlight">Amazon Q</td>
+                <td>企业AI助手，连接企业内部数据和系统</td>
+                <td>全体企业员工</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">Kiro</td>
+                <td>AI编程工具（类Claude Code / Cursor）</td>
+                <td>开发者</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">Transform</td>
+                <td>AI辅助软件迁移（如Java→云原生）</td>
+                <td>企业IT部门</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">Quick</td>
+                <td>知识工作者日常任务自动化Agent</td>
+                <td>知识工作者</td>
+              </tr>
+              <tr>
+                <td class="td-highlight">Alexa+</td>
+                <td>生成式AI重写的个人助手，6亿活跃端点</td>
+                <td>消费者</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">🤝 Anthropic：最重要的战略绑定</div>
+
+      <div class="highlight-box amazon">
+        <div class="hb-title">💡 不是财务投资，是战略锁定</div>
+        <p>外界常把亚马逊投Anthropic理解为"财务回报"——2026年初账面浮盈$168亿确实很好看。但战略意义远大于此：<strong style="color:var(--amazon)">AWS是Anthropic的主要训练云，Anthropic用Trainium训练Claude，Claude是Bedrock最重要的模型</strong>。这形成了"芯片→算力→模型→服务"的完整闭环，Anthropic既是AWS的最大客户之一，也是AWS AI产品的核心供应商。</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">📈 Anthropic 投资时间线</div>
+          <div class="timeline" style="margin-top:8px;">
+            <div class="tl-item">
+              <div class="tl-date">2023年</div>
+              <div class="tl-title">首轮投资 ~$12.5亿</div>
+              <div class="tl-desc">指定AWS为"主要训练合作伙伴和云提供商"</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">2024年</div>
+              <div class="tl-title">追加至累计 ~$80亿</div>
+              <div class="tl-desc">亚马逊成为Anthropic最大股东，Claude接入Bedrock</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">2026年4月</div>
+              <div class="tl-title">签署 5 GW Trainium 算力协议</div>
+              <div class="tl-desc">Anthropic将使用高达5吉瓦的AWS Trainium算力——这等于绑定了未来至少5年的算力需求</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">2026年Q1</div>
+              <div class="tl-title">账面浮盈 $168亿</div>
+              <div class="tl-desc">亚马逊Q1财报含Anthropic投资税前收益$168亿</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">⚠️ Anthropic 绑定的风险</div>
+          <ul class="dot-list" style="margin-top:8px;">
+            <li>Anthropic是<strong>独立公司</strong>，有自己的战略节奏，AWS并非唯一控制方</li>
+            <li>Google也是Anthropic重要投资方，Claude同时在Google Cloud和Azure上可用</li>
+            <li>2026年2月 Series G轮：Anthropic估值$3800亿，包含与NVIDIA/微软的$150亿合作——<strong>Anthropic在主动"对冲"对AWS的依赖</strong></li>
+            <li>若Anthropic研发出革命性模型后降低对AWS的依赖，AWS将面临"旗舰模型流失"风险</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:var(--orange)">
+        <div class="card-title" style="color:var(--orange)">🌟 Amazon Nova —— 自研模型的补充</div>
+        <p>2025年底发布，定位是Bedrock上性价比导向的自研基础模型系列。并非挑战Claude的顶级模型，而是为客户提供更低成本的推理选项，同时验证亚马逊自身的模型研发能力。DeSantis在2025年12月从AWS基础设施部门移至Nova模型研发团队，显示亚马逊正在加大自研投入。</p>
+      </div>
+
+    </section>
+    <!-- END TAB CLOUD -->
+
+    <!-- TAB: ECOMMERCE -->
+    <section class="tab-panel" id="tab-ecommerce">
+      <div class="section-title">🛒 电商 AI 应用层：AI 飞轮的变现终端</div>
+      <p class="section-desc">你的理解完全正确——电商是亚马逊AI最大的应用场景，同时也是AI训练数据的最重要来源。但更准确的理解是：<strong>电商、AWS、广告三个业务是互相喂养的AI飞轮</strong>，不存在单向的"支撑"关系。</p>
+
+      <div class="highlight-box amazon">
+        <div class="hb-title">🔄 三角飞轮的本质</div>
+        <p>① <strong style="color:var(--amazon)">电商</strong>产生海量用户行为数据 → 训练推荐/搜索/广告模型<br>
+        ② <strong style="color:var(--blue)">AWS</strong>提供算力基础设施 → 支撑上述AI模型的训练和推理成本下降<br>
+        ③ <strong style="color:var(--green)">广告</strong>用AI变得更精准 → 广告收入反哺AI研发投入<br>
+        三者形成正向循环，<strong style="color:var(--amazon)">没有电商数据飞轮，AWS的AI就没有差异化；没有AWS，电商AI就没有成本优势</strong>。</p>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">🤖 Rufus：全球最大 AI 购物助手</div>
+
+      <div class="grid-4">
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--amazon)">$120亿</div>
+          <div class="stat-label">2025年增量销售额</div>
+          <div class="stat-sub">超出$100亿预测，实际$120亿</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--blue)">3亿</div>
+          <div class="stat-label">Rufus 用户数（2025年）</div>
+          <div class="stat-sub">全球覆盖，购物App内嵌</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--green)">+38%</div>
+          <div class="stat-label">2025黑五 Rufus 使用量 YoY</div>
+          <div class="stat-sub">大促期间爆发式增长</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--purple)">2024.2</div>
+          <div class="stat-label">正式上线时间</div>
+          <div class="stat-sub">2025年升级为 Agentic AI</div>
+        </div>
+      </div>
+
+      <div class="card" style="border-left:3px solid var(--amazon);">
+        <div class="card-title">Rufus 是什么，能做什么</div>
+        <div class="grid-2">
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">核心功能</div>
+            <ul class="dot-list">
+              <li><strong>对话式购物咨询</strong>："帮我找适合露营的防水夹克"</li>
+              <li><strong>商品横向比较</strong>："这台咖啡机和那台有什么区别"</li>
+              <li><strong>个性化推荐</strong>：基于历史购买记录和偏好</li>
+              <li><strong>购物清单跟踪</strong>（Agentic升级后）</li>
+              <li><strong>主动推送</strong>：记忆用户偏好，主动提醒符合习惯的商品</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;">2025年核心升级</div>
+            <ul class="dot-list">
+              <li>从被动问答升级为 <strong>Agentic AI</strong>（主动执行）</li>
+              <li>接入用户完整购物历史，真正"记得"用户</li>
+              <li>视觉搜索联动（拍照找同款）</li>
+              <li>技术开放：AWS 2026年5月向第三方零售商开放"Agentic Shopping Assistant"API，让其他平台也能用同款技术</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box green">
+        <div class="hb-title">💬 Jassy 原话（2025年Q3财报电话）</div>
+        <p>"Rufus预计每年为我们带来超过<strong style="color:var(--green)">$100亿的增量销售额</strong>。" 实际2025全年实现$120亿，成为全球迄今为止有最明确商业化数据的AI购物助手案例。</p>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">📢 广告业务：AI 驱动 $700 亿年化</div>
+
+      <div class="grid-3">
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--amazon)">$700亿+</div>
+          <div class="stat-label">广告 TTM 收入（2026 Q1）</div>
+          <div class="stat-sub">全球第三大广告平台</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--blue)">$172亿</div>
+          <div class="stat-label">2026 Q1 单季广告收入</div>
+          <div class="stat-sub">同比持续双位数增长</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" style="color:var(--green)">#3</div>
+          <div class="stat-label">全球广告平台排名</div>
+          <div class="stat-sub">仅次于 Google 和 Meta</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">AI 如何提升广告业务</div>
+        <div class="grid-2" style="margin-top:8px;">
+          <div>
+            <ul class="dot-list">
+              <li><strong>AI创意生成</strong>：卖家一键生成商品图、广告素材（2025年unBoxed发布"创意引擎"），降低中小卖家创意成本</li>
+              <li><strong>AI出价优化</strong>：广告竞价自动优化，基于实时转化数据动态调整出价</li>
+            </ul>
+          </div>
+          <div>
+            <ul class="dot-list">
+              <li><strong>Rufus广告联动</strong>：用户在Rufus对话中问产品推荐时，相关广告位出现在对话上下文中——全新广告展示形式正在形成</li>
+              <li><strong>Prime Video 广告扩展</strong>：AI推动流媒体广告精准定向，广告库存快速扩张</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">🏪 卖家侧：AI 降低经营门槛</div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title" style="color:var(--blue)">📝 Enhance My Listing</div>
+          <p>AI自动分析卖家现有商品标题、描述、图片，生成优化建议。一键确认即可更新，降低中小卖家运营成本。2025年5月正式推出，面向全球卖家。</p>
+        </div>
+        <div class="card">
+          <div class="card-title" style="color:var(--green)">🖼️ AI 商品场景图生成</div>
+          <p>卖家上传白底产品图，AI生成厨房、卧室、户外等场景化展示图，提升商品点击率（CTR）。已为<strong>数百万卖家商品</strong>生成场景图。</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">🚚 物流与供应链 AI</div>
+
+      <div class="card">
+        <div class="card-title">物流AI四大能力</div>
+        <div class="grid-2" style="margin-top:12px;">
+          <div>
+            <div class="highlight-box blue" style="margin-bottom:10px">
+              <div class="hb-title">🔮 AI 需求预测</div>
+              <p>预测各SKU未来销量，自动指导跨仓库备货，减少缺货和积压。2020年开始建设，2025年大规模应用，已覆盖数亿SKU。</p>
+            </div>
+            <div class="highlight-box green">
+              <div class="hb-title">🗺️ AI 配送路径优化</div>
+              <p>实时分析天气、交通、包裹密度，优化最后一公里路线规划，减少配送时间和成本。</p>
+            </div>
+          </div>
+          <div>
+            <div class="highlight-box orange" style="margin-bottom:10px">
+              <div class="hb-title">🤖 AI 机器人协作调度</div>
+              <p>全球仓库超<strong>100万台机器人</strong>协作（负责拣货、分拣、仓内运输），AI调度系统已将某些仓库人工步行距离减少40%。</p>
+            </div>
+            <div class="highlight-box purple">
+              <div class="hb-title">📍 AI 地址校正</div>
+              <p>AI识别模糊地址（如"楼下收"），官方称2025年减少<strong>数百万次配送失败</strong>，显著降低末端配送成本。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box amazon">
+        <div class="hb-title">📊 电商AI的战略位置</div>
+        <p>Rufus + 广告AI + 卖家工具 + 物流AI，构成亚马逊电商AI的完整闭环。其中<strong style="color:var(--amazon)">Rufus $120亿增量销售额</strong>是目前全球有最清晰ROI归因的AI产品商业化案例——这不只是技术成功，而是AI商业化路径的标杆示范。更关键的是：这$120亿增量，大部分还带动了更多广告收入，而广告AI又进一步优化了Rufus的推荐质量。三角飞轮在电商层完成了最后一圈的闭合。</p>
+      </div>
+
+    </section>
+    <!-- END TAB ECOMMERCE -->
+
+    <!-- TAB: COMPARE -->
+    <section class="tab-panel" id="tab-compare">
+      <div class="section-title">⚖️ 对比阿里云：相似的路，不同的终点</div>
+      <p class="section-desc">亚马逊AWS与阿里云在AI战略上高度相似——都走"全栈AI云"路线，从芯片到应用全面覆盖。但一个核心差异，牵出了两家截然不同的战略命运。</p>
+
+      <div class="highlight-box orange">
+        <div class="hb-title">🔑 一句话核心差异</div>
+        <p><strong style="color:var(--orange)">阿里云有通义千问（自研顶级模型）；AWS没有自研顶级模型，但战略绑定了Anthropic。</strong><br>
+        前者意味着完全控制AI价值链的定价权、数据权和产品方向权；后者意味着灵活但存在依赖风险。这一个差异，决定了两家在AI时代的战略纵深完全不同。</p>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">📊 全维度横向对比</div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>维度</th>
+              <th class="compare-col-aws">AWS（亚马逊）</th>
+              <th class="compare-col-ali">阿里云</th>
+              <th>谁更占优</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>云市场规模</strong></td>
+              <td class="compare-col-aws">$1,580亿年化（全球第一）</td>
+              <td class="compare-col-ali">~$120亿年化（全球第三四位）</td>
+              <td class="td-highlight">AWS 绝对领先（12倍差距）</td>
+            </tr>
+            <tr>
+              <td><strong>AI收入</strong></td>
+              <td class="compare-col-aws">$150亿+年化（2026 Q1）</td>
+              <td class="compare-col-ali">约$20亿（估算，快速增长）</td>
+              <td class="td-highlight">AWS 领先约7-8倍</td>
+            </tr>
+            <tr>
+              <td><strong>自研AI芯片</strong></td>
+              <td class="compare-col-aws">Trainium（AI）+ Graviton（CPU）</td>
+              <td class="compare-col-ali">含光（AI推理）+ 平头哥</td>
+              <td class="td-blue">势均力敌，路径相同</td>
+            </tr>
+            <tr>
+              <td><strong>顶级基础模型</strong></td>
+              <td class="compare-col-aws">无自研，依赖Anthropic Claude</td>
+              <td class="compare-col-ali td-green">通义千问（自研，开源）</td>
+              <td class="td-green">阿里云优势（控制权更强）</td>
+            </tr>
+            <tr>
+              <td><strong>模型推理平台</strong></td>
+              <td class="compare-col-aws">Bedrock（多模型市场）</td>
+              <td class="compare-col-ali">百炼/DashScope（多模型+通义）</td>
+              <td class="td-muted">路径相同，规模差异大</td>
+            </tr>
+            <tr>
+              <td><strong>训练平台</strong></td>
+              <td class="compare-col-aws">SageMaker</td>
+              <td class="compare-col-ali">PAI</td>
+              <td class="td-muted">功能相当</td>
+            </tr>
+            <tr>
+              <td><strong>Agent 产品</strong></td>
+              <td class="compare-col-aws">AgentCore / Strands / Kiro / Q</td>
+              <td class="compare-col-ali">通义Agent / 钉钉AI</td>
+              <td class="td-muted">都在快速迭代</td>
+            </tr>
+            <tr>
+              <td><strong>数据中心</strong></td>
+              <td class="compare-col-aws">全球900+设施，29-31%市场份额</td>
+              <td class="compare-col-ali">飞天数据中心，国内领先</td>
+              <td class="td-highlight">AWS 全球规模无可比拟</td>
+            </tr>
+            <tr>
+              <td><strong>能源策略</strong></td>
+              <td class="compare-col-aws">自建核电/SMR，40GW可再生</td>
+              <td class="compare-col-ali">西部水电+东数西算政策红利</td>
+              <td class="td-muted">模式不同，各有优势</td>
+            </tr>
+            <tr>
+              <td><strong>年度资本开支</strong></td>
+              <td class="compare-col-aws">$2,000亿（2026年计划）</td>
+              <td class="compare-col-ali">~$500亿（估算）</td>
+              <td class="td-highlight">AWS 领先4倍</td>
+            </tr>
+            <tr>
+              <td><strong>全球化</strong></td>
+              <td class="compare-col-aws">全球绝对领导者，39个区域</td>
+              <td class="compare-col-ali">主要在亚太，国际扩张中</td>
+              <td class="td-highlight">AWS 全球化程度远高</td>
+            </tr>
+            <tr>
+              <td><strong>本土市场地位</strong></td>
+              <td class="compare-col-aws">美国绝对第一</td>
+              <td class="compare-col-ali td-green">中国第一（约42%市场份额）</td>
+              <td class="td-muted">各自本土市场均领先</td>
+            </tr>
+            <tr>
+              <td><strong>C端AI入口</strong></td>
+              <td class="compare-col-aws">Alexa（6亿端点，但场景受限）</td>
+              <td class="compare-col-ali td-green">通义APP（独立C端，淘宝/钉钉联动）</td>
+              <td class="td-green">阿里云C端落地更直接</td>
+            </tr>
+            <tr>
+              <td><strong>电商AI变现</strong></td>
+              <td class="compare-col-aws td-highlight">Rufus $120亿增量销售（有明确数字）</td>
+              <td class="compare-col-ali">淘宝AI导购（规模扩大中，数据未公开）</td>
+              <td class="td-highlight">AWS量化更清晰</td>
+            </tr>
+            <tr>
+              <td><strong>广告AI</strong></td>
+              <td class="compare-col-aws">$700亿广告年化</td>
+              <td class="compare-col-ali">阿里妈妈，约$300亿+</td>
+              <td class="td-highlight">AWS 规模更大</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">🔍 五个深层差异</div>
+
+      <div class="insight-card" data-num="01">
+        <div class="ic-title">模型控制权：最核心的战略分歧</div>
+        <div class="ic-body">阿里有通义千问，可以全权控制模型的训练数据、定价策略、开源节奏、产品定义。AWS的Claude依赖Anthropic，Anthropic是独立公司，有自己的节奏，甚至和谷歌也深度合作。这意味着阿里云能做到"云+模型深度绑定"，而AWS的绑定是财务性的，不是技术控制性的。<strong>控制顶级模型 = 控制AI价值链的定价权</strong>，这是两家最实质的战略分歧。</div>
+      </div>
+
+      <div class="insight-card" data-num="02">
+        <div class="ic-title">竞争烈度：巨头博弈 vs 多维混战</div>
+        <div class="ic-body">AWS在美国面对的是Azure（微软+OpenAI）和Google Cloud。三家都打全球，竞争是有规律的巨头博弈，彼此能力有边界。阿里云在国内面对的是：华为云（政府/央企市场极强）、腾讯云（微信生态）、字节火山引擎（抖音流量）。竞争维度更混乱，还叠加了合规/政策变量，护城河更难建立。</div>
+      </div>
+
+      <div class="insight-card" data-num="03">
+        <div class="ic-title">规模决定策略空间</div>
+        <div class="ic-body">AWS $1580亿年化 vs 阿里云约$120亿年化，差距约13倍。AWS可以同时打多个平行赌注（Anthropic + Nova + Trainium + Leo + Alexa + 机器人 + 核能…），阿里云必须更聚焦。规模差距直接决定了谁能承受更多"同时在押的赌注数量"。</div>
+      </div>
+
+      <div class="insight-card" data-num="04">
+        <div class="ic-title">能源策略：市场化 vs 政策化</div>
+        <div class="ic-body">AWS的基础设施 = 国家级工程——投核电、建SMR、自建电厂、推卫星宽带（Amazon Leo），实质上是在构建平行于国家电网的"AI能源-算力网络"，这是完全市场化的逻辑。阿里云的能源战略更多是"遵循政策"——飞天数据中心靠近西部水电，借助国家东数西算政策，在国家规划体系里取得优势。这不是优劣之分，而是体制差异——一家在市场体系里自己解决能源问题，一家在国家规划里借助政策红利。</div>
+      </div>
+
+      <div class="insight-card" data-num="05">
+        <div class="ic-title">相同的战略共识：飞轮、全栈、Agent</div>
+        <div class="ic-body">两家最大的相似处不在产品，而在<strong>战略思维框架</strong>：都相信"云是基础设施，AI是加速器，数据飞轮是护城河"。都在押注Agent作为AI商业化的下一个关键节点。都在通过自研芯片降低对英伟达的依赖。都相信全栈控制是长期竞争力的来源。差异只是执行路径和市场纵深，但底层战略逻辑惊人地相似——只有真正懂"平台+数据+基础设施"三位一体逻辑的公司，才能跑通这套模型。</div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-title" style="font-size:16px;">💡 核心洞察</div>
+
+      <div class="card" style="border-color:var(--amazon)">
+        <div class="card-title" style="color:var(--amazon)">洞察1：$2000亿Capex是这轮AI军备竞赛最清晰的信号</div>
+        <p>Jassy说："我们已经有足够的客户预订承诺，$2000亿不是赌博。"这意味着AI需求已经从"市场预期"转化为"合同锁定"。AWS已经在需求确认的情况下提速建设，而不是在押注未来——这是云计算进入AI时代最重要的结构性变化。</p>
+      </div>
+
+      <div class="card" style="border-color:var(--blue)">
+        <div class="card-title" style="color:var(--blue)">洞察2：Rufus $120亿是AI商业化的里程碑</div>
+        <p>全球很少有AI产品能给出如此清晰的ROI归因数字。Rufus $120亿增量销售额，证明了"AI购物助手"这个品类在全球最大电商平台上是有商业逻辑的。这也是阿里淘宝AI导购战略的参照系——如果Rufus在Amazon能做到这一点，淘天有没有同等潜力？</p>
+      </div>
+
+      <div class="card" style="border-color:var(--green)">
+        <div class="card-title" style="color:var(--green)">洞察3：AI军备竞赛的终局可能是"能源主权"</div>
+        <p>AWS投核电、建SMR，表面上是解决电力问题，实质上是在"锁定AI未来10年的成本结构"。谁能获得最便宜、最稳定的电力，谁就能在AI推理成本上取得持久优势。这是比芯片和模型更底层的竞争维度——能源，是AI战争的终极护城河。</p>
+      </div>
+
+    </section>
+    <!-- END TAB COMPARE -->
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="report-footer">
+  <p>© 2026 <a href="index.html">Kyrie AI Insight</a> · 亚马逊 AI 战略深度报告 · 数据来源：Andy Jassy 2025年股东信 / 亚马逊财报 / MMCG Invest / SemiAnalysis / Carnegie Endowment / Fortune / X-energy</p>
+</footer>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo({ top: document.querySelector('.tab-nav').offsetTop - 60, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
