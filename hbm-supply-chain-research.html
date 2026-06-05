@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HBM 供应链深度报告 2026 — Kyrie AI 洞察</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #1c2128;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --blue: #58a6ff;
+      --blue-bg: rgba(88,166,255,.12);
+      --green: #3fb950;
+      --green-bg: rgba(63,185,80,.1);
+      --orange: #f0883e;
+      --orange-bg: rgba(240,136,62,.1);
+      --red: #f85149;
+      --red-bg: rgba(248,81,73,.1);
+      --purple: #bc8cff;
+      --purple-bg: rgba(188,140,255,.1);
+      --yellow: #d29922;
+      --yellow-bg: rgba(210,153,34,.1);
+      --cyan: #39d3f0;
+      --sidebar-w: 280px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-logo { font-weight: 700; font-size: 15px; color: var(--text); text-decoration: none; }
+    .site-logo span { color: var(--blue); }
+    .back-btn {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .2s;
+    }
+    .back-btn:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 50%, #091520 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--red-bg);
+      border: 1px solid var(--red);
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 12px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+      letter-spacing: .5px;
+    }
+    .hero h1 {
+      font-size: clamp(22px, 4vw, 36px);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+    .hero h1 em { font-style: normal; color: var(--blue); }
+    .hero-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-num {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label { font-size: 12px; color: var(--muted); }
+
+    /* ── NAV TABS ── */
+    .nav-tabs {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      overflow-x: auto;
+      padding: 0 24px;
+      gap: 4px;
+      scrollbar-width: none;
+    }
+    .nav-tabs::-webkit-scrollbar { display: none; }
+    .nav-tab {
+      flex-shrink: 0;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+    .nav-tab:hover { color: var(--text); }
+    .nav-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+    /* ── LAYOUT ── */
+    .page-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      display: grid;
+      grid-template-columns: 1fr var(--sidebar-w);
+      gap: 28px;
+      align-items: start;
+    }
+    .main-content { min-width: 0; }
+    .sidebar { position: sticky; top: 84px; }
+
+    @media (max-width: 920px) {
+      .page-body { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+    }
+
+    /* ── SECTION ── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .section.active { display: block; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .section h2 { font-size: 20px; font-weight: 700; }
+    .section h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--blue);
+      margin: 24px 0 10px;
+    }
+    .section h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      margin: 16px 0 8px;
+    }
+    .section p { margin-bottom: 12px; color: #c9d1d9; }
+    .section ul { padding-left: 20px; margin-bottom: 12px; }
+    .section li { margin-bottom: 6px; color: #c9d1d9; }
+    strong { color: var(--text); }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 16px 0;
+      border-left: 3px solid;
+    }
+    .hb-blue { background: var(--blue-bg); border-color: var(--blue); }
+    .hb-red { background: var(--red-bg); border-color: var(--red); }
+    .hb-orange { background: var(--orange-bg); border-color: var(--orange); }
+    .hb-green { background: var(--green-bg); border-color: var(--green); }
+    .hb-purple { background: var(--purple-bg); border-color: var(--purple); }
+    .highlight-box .hb-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: .3px;
+    }
+    .hb-blue .hb-title { color: var(--blue); }
+    .hb-red .hb-title { color: var(--red); }
+    .hb-orange .hb-title { color: var(--orange); }
+    .hb-green .hb-title { color: var(--green); }
+    .hb-purple .hb-title { color: var(--purple); }
+    .highlight-box p { margin: 0; font-size: 14px; }
+
+    /* ── TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+    .data-table th {
+      background: var(--surface2);
+      color: var(--muted);
+      font-weight: 600;
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      color: #c9d1d9;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--surface2); }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .tag-green { background: var(--green-bg); color: var(--green); }
+    .tag-red { background: var(--red-bg); color: var(--red); }
+    .tag-orange { background: var(--orange-bg); color: var(--orange); }
+    .tag-blue { background: var(--blue-bg); color: var(--blue); }
+    .tag-muted { background: rgba(139,148,158,.1); color: var(--muted); }
+
+    /* ── SUPPLIER CARDS ── */
+    .supplier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .supplier-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .supplier-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .supplier-share {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1;
+      margin: 8px 0 4px;
+    }
+    .supplier-label { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+    .supplier-detail { font-size: 12px; color: #8b949e; line-height: 1.6; }
+
+    /* ── TIMELINE ── */
+    .timeline { position: relative; padding-left: 20px; margin: 16px 0; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .tl-item { position: relative; padding: 0 0 20px 18px; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid;
+      background: var(--bg);
+    }
+    .tl-item.blue::before { border-color: var(--blue); }
+    .tl-item.red::before { border-color: var(--red); }
+    .tl-item.green::before { border-color: var(--green); }
+    .tl-item.orange::before { border-color: var(--orange); }
+    .tl-date { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+    .tl-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .tl-desc { font-size: 13px; color: #8b949e; }
+
+    /* ── INSIGHT CARDS ── */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    @media (max-width: 600px) { .insight-grid { grid-template-columns: 1fr; } }
+    .insight-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .insight-num {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .insight-card p { font-size: 13px; color: var(--muted); margin: 0; }
+
+    /* ── DEMAND SUPPLY VIZ ── */
+    .ds-chart { margin: 20px 0; }
+    .ds-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+    .ds-label { font-size: 13px; color: var(--muted); min-width: 60px; }
+    .ds-bar-wrap { flex: 1; background: var(--surface2); border-radius: 4px; height: 24px; overflow: hidden; position: relative; }
+    .ds-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding: 0 8px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .ds-value { font-size: 13px; font-weight: 600; min-width: 50px; text-align: right; }
+
+    /* ── SIDEBAR ── */
+    .sidebar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .sidebar-title {
+      background: var(--surface2);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .4px;
+      text-transform: uppercase;
+    }
+    .glossary-list { padding: 4px 0; }
+    .glossary-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .glossary-item:last-child { border-bottom: none; }
+    .glossary-term {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 3px;
+    }
+    .glossary-def { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .glossary-def.collapsed {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ── SOURCE LINKS ── */
+    .source-links { padding: 12px 16px; }
+    .source-link {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+    }
+    .source-link:last-child { border-bottom: none; }
+    .source-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .source-link-text { font-size: 12px; color: var(--muted); line-height: 1.5; transition: color .2s; }
+    .source-link:hover .source-link-text { color: var(--blue); }
+
+    /* ── EVENT CARD ── */
+    .event-card {
+      background: linear-gradient(135deg, var(--red-bg), rgba(248,81,73,.05));
+      border: 1px solid var(--red);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .event-date { font-size: 12px; color: var(--red); font-weight: 600; margin-bottom: 6px; }
+    .event-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+    .event-desc { font-size: 13px; color: var(--muted); margin-bottom: 12px; line-height: 1.6; }
+    .event-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--blue);
+      text-decoration: none;
+      border: 1px solid var(--blue);
+      padding: 5px 12px;
+      border-radius: 6px;
+      transition: all .2s;
+    }
+    .event-link:hover { background: var(--blue-bg); }
+
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <a href="index.html" class="site-logo">Kyrie <span>AI 洞察</span></a>
+  <a href="index.html" class="back-btn">← 返回主页</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🔥 供应链深度报告</div>
+  <h1>HBM：AI 产业的新<em>稀缺资源</em></h1>
+  <p class="hero-meta">调研时间：2026年6月 &nbsp;|&nbsp; 数据截至：2026 Q2 &nbsp;|&nbsp; 报告类型：产业链调研</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num" style="color: var(--red);">$1T</div>
+      <div class="stat-label">SK海力士市值</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" style="color: var(--orange);">100%</div>
+      <div class="stat-label">2026年HBM产能售罄率</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" style="color: var(--blue);">$100B</div>
+      <div class="stat-label">2028年预测市场规模</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" style="color: var(--green);">40%</div>
+      <div class="stat-label">HBM市场年复合增速</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav-tabs">
+  <div class="nav-tab active" onclick="switchTab('event', this)">标志性事件</div>
+  <div class="nav-tab" onclick="switchTab('why', this)">为什么是HBM</div>
+  <div class="nav-tab" onclick="switchTab('tech', this)">技术栈拆解</div>
+  <div class="nav-tab" onclick="switchTab('suppliers', this)">三方格局</div>
+  <div class="nav-tab" onclick="switchTab('buyers', this)">大厂采购博弈</div>
+  <div class="nav-tab" onclick="switchTab('forecast', this)">供需预测</div>
+  <div class="nav-tab" onclick="switchTab('insights', this)">核心洞察</div>
+</div>
+
+<!-- PAGE BODY -->
+<div class="page-body">
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- 标志性事件 -->
+    <div id="tab-event" class="section active">
+      <div class="section-header">
+        <div class="section-icon" style="background: var(--red-bg);">🚨</div>
+        <h2>标志性事件：巨头排队也买不到货</h2>
+      </div>
+
+      <div class="event-card">
+        <div class="event-date">2026年5月底</div>
+        <div class="event-title">SK海力士市值破万亿，KOSPI触发熔断</div>
+        <div class="event-desc">SK海力士单日暴涨14.9%，成为全球第三家市值突破万亿美元的内存芯片厂商（另两家：三星、美光）。韩国股市 KOSPI 指数触发自动熔断，指数创历史新高 8,457 点。驱动因素只有一个：<strong>2026年全年HBM产能已全部售罄</strong>，排队的客户只能等2027年交货。</div>
+        <a class="event-link" href="https://aiweekly.co/alerts/sk-hynix-crosses-1-trillion-as-2026-hbm-sells-out" target="_blank" rel="noopener">
+          📰 阅读原文 →
+        </a>
+      </div>
+
+      <div class="highlight-box hb-red">
+        <div class="hb-title">🔴 什么叫"拒绝巨头"</div>
+        <p>谷歌、微软、亚马逊、Meta 在2025年10月集体找美光要货，得到的答复是：<strong>2026年产能全部预订完毕，想要货请签2027年合同</strong>。三家供应商同时宣布售罄，在DRAM行业30年历史中从未出现过。</p>
+      </div>
+
+      <h3>事件时间线</h3>
+      <div class="timeline">
+        <div class="tl-item blue">
+          <div class="tl-date">2025年10月</div>
+          <div class="tl-title">三家供应商宣布2026年HBM全部售罄</div>
+          <div class="tl-desc">SK海力士、美光同时宣布2026年HBM产能满仓；谷歌/微软/亚马逊/Meta找美光要货被拒，被告知需签2027年合同</div>
+        </div>
+        <div class="tl-item orange">
+          <div class="tl-date">2025年12月</div>
+          <div class="tl-title">三家同步停止DDR4新订单</div>
+          <div class="tl-desc">SK海力士、三星、美光近乎同步宣布停止DDR4新订单，分析师称"在DRAM行业30年历史中前所未有的协同行为"</div>
+        </div>
+        <div class="tl-item orange">
+          <div class="tl-date">2026年1月</div>
+          <div class="tl-title">三星/SK海力士 DRAM报价涨60-70%</div>
+          <div class="tl-desc">服务器DRAM报价单季度上涨60%-70%；美光FY2026 Q1营收136亿美元，同比增长57%，毛利率突破50%</div>
+        </div>
+        <div class="tl-item green">
+          <div class="tl-date">2026年2月</div>
+          <div class="tl-title">SK海力士/三星加速HBM4量产</div>
+          <div class="tl-desc">两家将HBM4量产时间表提前至2026年2月，均向英伟达交付HBM4最终样品</div>
+        </div>
+        <div class="tl-item red">
+          <div class="tl-date">2026年5月底</div>
+          <div class="tl-title">SK海力士市值破万亿，KOSPI熔断</div>
+          <div class="tl-desc">SK海力士涨14.9%破万亿美元，与三星合计占KOSPI指数权重40%+，引发市场自动熔断</div>
+        </div>
+      </div>
+
+      <div class="highlight-box hb-blue">
+        <div class="hb-title">💡 权力关系的历史性翻转</div>
+        <p>过去30年：英特尔、英伟达等买方是强势方，内存厂商跟随定价。<br>
+        2026年：SK海力士可以在英伟达发布会前就让整条供应链焦虑，超大规模云厂商需要<strong>提前18-24个月预订、并支付巨额预付款</strong>才能确保供货。</p>
+      </div>
+    </div>
+
+    <!-- 为什么是HBM -->
+    <div id="tab-why" class="section">
+      <div class="section-header">
+        <div class="section-icon" style="background: var(--blue-bg);">🧮</div>
+        <h2>为什么AI非HBM不可</h2>
+      </div>
+
+      <div class="highlight-box hb-red">
+        <div class="hb-title">🔴 核心矛盾：AI是带宽受限，不是算力受限</div>
+        <p>H100 GPU 有 1,979 TFLOPS 算力，但 Transformer 推理的实际算术强度只有 <strong>0.5~10 FLOPS/byte</strong>，与H100的"收支平衡点"（591 FLOPS/byte）相差2~3个数量级。<br><strong>加算力没用，加带宽才有用。</strong></p>
+      </div>
+
+      <h3>内存类型对比</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>内存类型</th><th>带宽</th><th>能效 (pJ/bit)</th><th>用途</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>DDR5</td><td>~100 GB/s</td><td>15-25</td><td>普通服务器/PC内存</td></tr>
+          <tr><td>GDDR7</td><td>~192 GB/s/chip</td><td>~8</td><td>游戏显卡显存</td></tr>
+          <tr><td style="color: var(--blue); font-weight: 700;">HBM3E</td><td style="color: var(--blue); font-weight: 700;">1.2 TB/s/stack</td><td style="color: var(--green);">2.5-4 ✓</td><td>AI训练/推理加速器</td></tr>
+        </tbody>
+      </table>
+
+      <h3>GPU内存需求的飞速增长</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>GPU产品</th><th>HBM版本</th><th>容量</th><th>带宽</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>H100</td><td>HBM3</td><td>80GB</td><td>3.35 TB/s</td></tr>
+          <tr><td>H200</td><td>HBM3e</td><td>141GB</td><td>4.8 TB/s</td></tr>
+          <tr><td>B200（当前主流）</td><td>HBM3e</td><td>192GB</td><td>8.0 TB/s</td></tr>
+          <tr><td style="color: var(--blue);">Rubin R100（即将）</td><td style="color: var(--blue);">HBM4</td><td style="color: var(--blue);">288GB</td><td style="color: var(--blue);">13-15 TB/s</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box hb-orange">
+        <div class="hb-title">⚠️ KV Cache：隐藏的容量杀手</div>
+        <p>Llama 2 70B 在 4K 上下文下 KV Cache = 10.7GB；扩展到 128K 上下文时 = <strong>343GB</strong>，已超过 B200 的 192GB 容量上限。模型越大、上下文越长，HBM容量就越是硬门槛。</p>
+      </div>
+
+      <div class="insight-grid">
+        <div class="insight-card">
+          <div class="insight-num" style="color: var(--blue);">2GB</div>
+          <p>每10亿参数需要约2GB GPU内存（FP16精度）</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-num" style="color: var(--orange);">3.6×</div>
+          <p>从H100到Rubin，单卡HBM容量增长3.6倍</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-num" style="color: var(--red);">10×</div>
+          <p>HBM3E带宽密度是GDDR7的约10倍</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-num" style="color: var(--green);">5×</div>
+          <p>HBM每GB售价约$15-20，是DDR5的5-10倍</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 技术栈 -->
+    <div id="tab-tech" class="section">
+      <div class="section-header">
+        <div class="section-icon" style="background: var(--purple-bg);">⚙️</div>
+        <h2>技术栈拆解：HBM如何做到的</h2>
+      </div>
+
+      <h3>HBM代际演进</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>代际</th><th>层数</th><th>容量/stack</th><th>带宽/stack</th><th>量产时间</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>HBM2e</td><td>8-Hi</td><td>16GB</td><td>~2 TB/s</td><td>2020</td></tr>
+          <tr><td>HBM3</td><td>8-Hi</td><td>80GB</td><td>3.35 TB/s</td><td>2023</td></tr>
+          <tr><td>HBM3E</td><td>12-Hi</td><td>141-192GB</td><td>4.8-8.0 TB/s</td><td>2024-2025</td></tr>
+          <tr style="background: rgba(88,166,255,.06);"><td style="color: var(--blue); font-weight: 700;">HBM4</td><td>12-Hi</td><td>288GB</td><td><strong>11+ TB/s</strong></td><td><strong>H2 2026</strong></td></tr>
+          <tr style="background: rgba(88,166,255,.03);"><td style="color: var(--muted);">HBM4E</td><td>16-Hi</td><td>512GB+</td><td>15+ TB/s</td><td>2027</td></tr>
+        </tbody>
+      </table>
+
+      <h3>三层核心技术</h3>
+      <div class="highlight-box hb-blue">
+        <div class="hb-title">① TSV — 硅通孔（核心专利壁垒）</div>
+        <p>在硅片上打直径5-10μm的微小铜柱，穿透多层芯片实现垂直导电。每个HBM堆叠有5000+个TSV。这是HBM相对普通内存最关键的物理结构，也是三家厂商最难被复制的专利壁垒。16层→需要将晶圆从775μm研磨至约30μm（比头发丝还薄），良率是16-Hi最大挑战。</p>
+      </div>
+      <div class="highlight-box hb-purple">
+        <div class="hb-title">② 接口位宽翻倍（HBM4关键突破）</div>
+        <p>HBM3：1024位接口；HBM4：<strong>2048位</strong>（翻倍）。带宽几乎翻倍而不需要成比例提高信号速率，同时底层Die（Base Die）改用TSMC 12nm逻辑工艺制造，可以集成更多智能逻辑。</p>
+      </div>
+      <div class="highlight-box hb-orange">
+        <div class="hb-title">③ CoWoS封装（台积电独家 · 另一个瓶颈）</div>
+        <p>把GPU芯片和HBM堆叠放在一块硅中介层上紧密连接。H100用CoWoS-S（约2500mm²），B200用CoWoS-L（更大面积，双Die）。CoWoS本身也在严重供不应求。</p>
+      </div>
+
+      <h3>CoWoS产能扩张（月产片数）</h3>
+      <div class="ds-chart">
+        <div class="ds-row">
+          <div class="ds-label">2023年</div>
+          <div class="ds-bar-wrap"><div class="ds-bar" style="width:15%;background:var(--border);color:var(--muted);">1.2-1.5万</div></div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-label">2024年</div>
+          <div class="ds-bar-wrap"><div class="ds-bar" style="width:35%;background:rgba(88,166,255,.3);color:var(--blue);">2.5-3.5万</div></div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-label">2025年</div>
+          <div class="ds-bar-wrap"><div class="ds-bar" style="width:60%;background:rgba(88,166,255,.4);color:var(--blue);">5-6万</div></div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-label">2026年</div>
+          <div class="ds-bar-wrap"><div class="ds-bar" style="width:100%;background:rgba(88,166,255,.5);color:var(--blue);">8-10万</div></div>
+        </div>
+      </div>
+      <p style="font-size:12px; color: var(--muted);">注：CoWoS扩产需要高精度贴片机等专用设备，采购周期超12个月，产能扩张有硬性上限。即便到2026年满产，仍无法满足需求侧的40%年增速。</p>
+    </div>
+
+    <!-- 三方格局 -->
+    <div id="tab-suppliers" class="section">
+      <div class="section-header">
+        <div class="section-icon" style="background: var(--green-bg);">🏭</div>
+        <h2>三方格局：一场不对称的寡头战争</h2>
+      </div>
+
+      <div class="highlight-box hb-blue">
+        <div class="hb-title">寡头结构的历史成因</div>
+        <p>2009年：10家DRAM厂商 → 2013年：3家（SK/三星/美光）。2011年行业下行周期淘汰了所有弱者：SK电信以30亿美元收购海力士（2012），美光收购破产的日本尔必达（2013）。现在三家控制全球95%+ DRAM产能，HBM子市场更集中。</p>
+      </div>
+
+      <div class="supplier-grid">
+        <div class="supplier-card" style="border-color: rgba(88,166,255,.4);">
+          <div class="supplier-name" style="color: var(--blue);">🇰🇷 SK海力士</div>
+          <div class="supplier-share" style="color: var(--blue);">62%</div>
+          <div class="supplier-label">HBM市占率（2025 Q2）</div>
+          <div class="supplier-detail">
+            ✓ 英伟达独家主供（占英伟达HBM 90%）<br>
+            ✓ 2026年产能全部售罄<br>
+            ✓ HBM毛利率约60-70%<br>
+            ✓ 与TSMC合作：HBM4底层Die用12nm<br>
+            ✓ 2025 Q1首次超越三星成DRAM第一<br>
+            ✓ 2026年股价年涨约250%
+          </div>
+        </div>
+        <div class="supplier-card" style="border-color: rgba(248,81,73,.3);">
+          <div class="supplier-name" style="color: var(--orange);">🇰🇷 三星</div>
+          <div class="supplier-share" style="color: var(--orange);">17%</div>
+          <div class="supplier-label">HBM市占率（2025 Q2，跌至第三）</div>
+          <div class="supplier-detail">
+            ✗ HBM3E多次无法通过英伟达热测试<br>
+            ✗ 失去DRAM市场第一（保持30年）<br>
+            ← 主供AMD和谷歌（非主流平台）<br>
+            → 差异化：HBM-PIM内存内计算<br>
+            → 爬坡中：2026年份额未明显收窄
+          </div>
+        </div>
+        <div class="supplier-card" style="border-color: rgba(63,185,80,.3);">
+          <div class="supplier-name" style="color: var(--green);">🇺🇸 美光</div>
+          <div class="supplier-share" style="color: var(--green);">21%</div>
+          <div class="supplier-label">HBM市占率（2025 Q2）</div>
+          <div class="supplier-detail">
+            ✓ 唯一美国本土HBM制造商<br>
+            ✓ CHIPS Act获64亿美元补贴<br>
+            ✓ 宣称HBM3E速度领先<br>
+            ✗ 量产规模远小于SK海力士<br>
+            ⏳ 爱达荷新工厂：2027年中出货
+          </div>
+        </div>
+      </div>
+
+      <h3>三星：王者跌落完整复盘</h3>
+      <div class="timeline">
+        <div class="tl-item orange">
+          <div class="tl-date">2023年</div>
+          <div class="tl-title">HBM3 良率问题，英伟达资质认证延迟</div>
+          <div class="tl-desc">SK海力士乘势拿下英伟达H100的HBM3大单，三星开始落后</div>
+        </div>
+        <div class="tl-item red">
+          <div class="tl-date">2024年上半年</div>
+          <div class="tl-title">HBM3E 热测试失败，英伟达认证未通过</div>
+          <div class="tl-desc">高密度堆叠散热不达标，被迫主供AMD和谷歌（非英伟达B100/B200主流平台）</div>
+        </div>
+        <div class="tl-item orange">
+          <div class="tl-date">2024年下半年</div>
+          <div class="tl-title">宣称完成HBM3E认证，开始量产爬坡</div>
+          <div class="tl-desc">但市场份额差距已形成，SK海力士已锁定英伟达Blackwell全系供货</div>
+        </div>
+        <div class="tl-item blue">
+          <div class="tl-date">2025年 Q1</div>
+          <div class="tl-title">失去DRAM市场第一（保持了30年）</div>
+          <div class="tl-desc">SK海力士整体DRAM市占率首次超越三星，历史性翻盘</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 大厂采购博弈 -->
+    <div id="tab-buyers" class="section">
+      <div class="section-header">
+        <div class="section-icon" style="background: var(--orange-bg);">🤝</div>
+        <h2>AI大厂的采购博弈</h2>
+      </div>
+
+      <h3>谁消耗了多少HBM</h3>
+      <div class="highlight-box hb-orange">
+        <div class="hb-title">英伟达：最大单一买家</div>
+        <p>英伟达消耗SK海力士约 <strong>90%</strong> 的HBM产能。每一块Blackwell B200配备192GB HBM3e（8个堆叠），每一块Rubin R100将配备288GB HBM4。英伟达的产能扩张直接决定了HBM的消耗速度。</p>
+      </div>
+
+      <h3>三层客户的分配逻辑</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>层级</th><th>谁</th><th>获取方式</th><th>现状</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-green">T1 优先</span></td>
+            <td>英伟达 + 超大规模云厂商<br><small style="color:var(--muted);">(微软/谷歌/亚马逊/Meta)</small></td>
+            <td>长期合同 + 预付款</td>
+            <td style="color: var(--green);">有保障，但需提前18-24个月预订</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-orange">T2 紧张</span></td>
+            <td>中型云厂商、AI创业公司</td>
+            <td>现货市场</td>
+            <td style="color: var(--orange);">价格高且供应不稳定</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-red">T3 牺牲</span></td>
+            <td>消费电子、游戏显卡</td>
+            <td>被挤占产能</td>
+            <td style="color: var(--red);">英伟达RTX 50系列砍产30-40%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>"预付款"成为行业标准</h3>
+      <div class="highlight-box hb-purple">
+        <div class="hb-title">历史性翻转</div>
+        <p>超大规模云厂商开始向内存厂商支付<strong>数十亿美元预付款</strong>换取未来产能保障。买方主动给卖方预付定金——这在半导体行业30年历史中从未发生过，是供需格局根本性翻转的直接证明。</p>
+      </div>
+
+      <h3>价格维度</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>品类</th><th>单价</th><th>对比DDR5溢价</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>普通 DDR5</td><td>~$2-3/GB</td><td>基准</td></tr>
+          <tr><td style="color: var(--blue);">HBM3E</td><td style="color: var(--blue); font-weight: 700;">~$15-20/GB</td><td style="color: var(--orange); font-weight: 700;">5-10倍溢价</td></tr>
+          <tr><td>内存整体价格</td><td colspan="2">2025年全年上涨 <strong style="color:var(--red);">246%</strong>，2026年继续涨</td></tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box hb-red">
+        <div class="hb-title">游戏玩家的无辜代价</div>
+        <p>AI的资源竞争波及无辜：供应商优先满足HBM大单，GDDR7产能被挤压。英伟达RTX 50系列（5070 Ti / 5060 Ti 16GB）砍产30-40%，RTX 50 Super系列延期至2026年Q3以后。消费者面临更高价格和更长等待。</p>
+      </div>
+    </div>
+
+    <!-- 供需预测 -->
+    <div id="tab-forecast" class="section">
+      <div class="section-header">
+        <div class="section-icon" style="background: var(--yellow-bg);">📈</div>
+        <h2>供需预测 2026–2028</h2>
+      </div>
+
+      <h3>市场规模飙升</h3>
+      <div class="ds-chart">
+        <div class="ds-row">
+          <div class="ds-label">2025年</div>
+          <div class="ds-bar-wrap"><div class="ds-bar" style="width:35%;background:rgba(88,166,255,.35);color:var(--text);">$350亿</div></div>
+          <div class="ds-value" style="color:var(--blue);">$35B</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-label">2026年</div>
+          <div class="ds-bar-wrap"><div class="ds-bar" style="width:55%;background:rgba(88,166,255,.45);color:var(--text);">~$550亿（估算）</div></div>
+          <div class="ds-value" style="color:var(--blue);">~$55B</div>
+        </div>
+        <div class="ds-row">
+          <div class="ds-label">2028年</div>
+          <div class="ds-bar-wrap"><div class="ds-bar" style="width:100%;background:rgba(88,166,255,.6);color:var(--text); font-weight:700;">$1000亿（美光官方预测）</div></div>
+          <div class="ds-value" style="color:var(--blue); font-weight:700;">$100B</div>
+        </div>
+      </div>
+      <p style="font-size:12px; color: var(--muted);">CAGR约40%；原本预测2030年才达$1000亿，现在提前两年。</p>
+
+      <h3>供需缺口弥合时间表</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>时间节点</th><th>关键事件</th><th>影响</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026 Q3-Q4</td>
+            <td>HBM4（12-Hi）量产</td>
+            <td><span class="tag tag-blue">带宽翻倍，但供给总量有限</span></td>
+          </tr>
+          <tr>
+            <td>2026 Q4</td>
+            <td>HBM4E（16-Hi）样品交付</td>
+            <td><span class="tag tag-orange">良率是最大变数</span></td>
+          </tr>
+          <tr>
+            <td>2027 H1</td>
+            <td>美光爱达荷工厂首批晶圆</td>
+            <td><span class="tag tag-green">供给侧开始实质性扩张</span></td>
+          </tr>
+          <tr>
+            <td>2027</td>
+            <td>新CoWoS产能释放</td>
+            <td><span class="tag tag-green">可能缓解部分封装瓶颈</span></td>
+          </tr>
+          <tr>
+            <td>2027-2028</td>
+            <td>供应追赶需求</td>
+            <td><span class="tag tag-orange">价格溢价可能收窄</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="highlight-box hb-red">
+        <div class="hb-title">⚠️ 结构性矛盾：供给跑不赢需求</div>
+        <p>需求端也在以40%/年的速度增长：单卡HBM从B200的192GB → Rubin的288GB → Rubin Ultra的512GB，NVL576系统甚至可能需要 <strong>1TB/GPU</strong>。供给扩张永远在追赶需求扩张，结构性短缺可能是常态。</p>
+      </div>
+
+      <h3>替代方案：短期无解</h3>
+      <table class="data-table">
+        <thead>
+          <tr><th>替代路线</th><th>带宽</th><th>现状</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CXL扩展内存</td><td>~64 GB/s/x16链路</td><td><span class="tag tag-muted">比HBM低100倍，只能做冷数据扩容</span></td></tr>
+          <tr><td>PIM（内存内计算）</td><td>理论高</td><td><span class="tag tag-muted">三星推进中，编程复杂，生态不成熟</span></td></tr>
+          <tr><td>光互连</td><td>Tbit级（理论）</td><td><span class="tag tag-muted">2028年以后，目前仍是研究阶段</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 核心洞察 -->
+    <div id="tab-insights" class="section">
+      <div class="section-header">
+        <div class="section-icon" style="background: var(--purple-bg);">💡</div>
+        <h2>核心洞察</h2>
+      </div>
+
+      <div class="highlight-box hb-blue">
+        <div class="hb-title">洞察一：内存是新算力，HBM是新石油</div>
+        <p>AI的瓶颈不在TFLOPS，在带宽。拥有HBM产能就等于拥有了AI基础设施的定价权。SK海力士的逻辑地位，本质上类似2010年代TSMC对先进制程逻辑工艺的垄断——不是技术本身有多神秘，而是<strong>没有它就转不动</strong>。</p>
+      </div>
+
+      <div class="highlight-box hb-orange">
+        <div class="hb-title">洞察二：寡头协同，30年未有</div>
+        <p>三家同时停止DDR4新订单、同时宣布2026年HBM售罄——这种协同在DRAM行业30年历史上从未发生。"周期性行业"的逻辑正在被颠覆：不再是产能过剩→降价→亏损的死亡螺旋，而是持续的供给稀缺→价格溢价→高利润。</p>
+      </div>
+
+      <div class="highlight-box hb-purple">
+        <div class="hb-title">洞察三：权力关系历史性翻转</div>
+        <p>过去：买方（英伟达、英特尔）强势，内存厂商跟随定价。<br>现在：超大规模云厂商需要提前18-24个月、用数十亿美元预付款才能确保供货。SK海力士可以在英伟达发布会前就让整条供应链焦虑。</p>
+      </div>
+
+      <div class="highlight-box hb-red">
+        <div class="hb-title">洞察四：地缘政治成为供应链核心变量</div>
+        <p>100%先进DRAM产能集中在韩国+台湾（CoWoS在台积电），美国通过CHIPS Act用$64亿收买美光，但2027年才能出货。<strong>现在是"无力改变"的过渡期</strong>——地缘风险暴露在那里，没有快速解法。</p>
+      </div>
+
+      <div class="highlight-box hb-green">
+        <div class="hb-title">洞察五：三星翻盘窗口正在关闭</div>
+        <p>三星HBM3E良率问题让其错失英伟达Blackwell全系，SK海力士已与英伟达Rubin平台签署优先供应协议。三星的机会是<strong>差异化（PIM内存内计算）</strong>而非正面硬拼，但时间窗口随HBM4锁定协议的签署而收窄。</p>
+      </div>
+
+      <div class="insight-grid" style="margin-top: 24px;">
+        <div class="insight-card">
+          <div class="insight-num" style="color: var(--blue);">250%</div>
+          <p>SK海力士2026年股价年涨幅（全球大盘最强之一）</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-num" style="color: var(--orange);">3家</div>
+          <p>市值破万亿美元的内存厂商（SK/三星/美光），全部因HBM</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-num" style="color: var(--red);">40%</div>
+          <p>KOSPI指数由SK海力士+三星两家占比，已超系统性风险阈值</p>
+        </div>
+        <div class="insight-card">
+          <div class="insight-num" style="color: var(--green);">2027</div>
+          <p>最早可能缓解供给紧张的时间节点（美光爱达荷工厂出货）</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- 名词解释 -->
+    <div class="sidebar-card">
+      <div class="sidebar-title">📖 名词解释</div>
+      <div class="glossary-list">
+        <div class="glossary-item">
+          <div class="glossary-term">DRAM</div>
+          <div class="glossary-def">Dynamic Random Access Memory，动态随机存取内存。电脑/手机的"工作桌面"，程序运行时数据临时存放在这里，速度快但断电即清空。手机的8GB/16GB内存说的就是它。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">HBM</div>
+          <div class="glossary-def">High Bandwidth Memory，高带宽内存。把多层DRAM芯片像叠汉堡一样摞起来，用TSV铜柱垂直连接，并紧贴GPU封装在一起。带宽是普通内存的10-30倍，能耗只有1/5，专为AI大模型设计。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">TSV（硅通孔）</div>
+          <div class="glossary-def">Through-Silicon Via。在芯片上打直径5-10微米的铜柱孔（比头发丝细5-10倍），穿透多层芯片实现垂直导电。每个HBM堆叠有5000+个TSV，是三家供应商最核心的专利壁垒。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">CoWoS</div>
+          <div class="glossary-def">Chip on Wafer on Substrate，台积电的高端封装工艺。把GPU和HBM放在硅中介层上紧密粘合，让两者数据传输距离极短。H100、B200都用CoWoS。也是AI芯片的第二个瓶颈。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">GDDR</div>
+          <div class="glossary-def">Graphics Double Data Rate，显存，游戏显卡用的内存（RTX系列配的就是它）。带宽比普通DRAM强，但远不及HBM，成本也低得多。AI不够用，游戏刚好够。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">KV Cache</div>
+          <div class="glossary-def">大模型推理时存储历史对话的Key-Value缓存。上下文越长，KV Cache占用越多内存。128K上下文可能需要343GB，超过当前最强GPU的容量上限，是HBM容量需求暴增的重要驱动。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">HBM代数</div>
+          <div class="glossary-def">HBM3（H100用，3.35TB/s）→ HBM3E（B200用，8TB/s）→ HBM4（Rubin用，11+TB/s，H2 2026量产）。代数越高，带宽越大，容量越多，制造难度越高。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">Hyperscaler</div>
+          <div class="glossary-def">超大规模云厂商，指微软Azure、谷歌Cloud、亚马逊AWS、Meta、Oracle等。这些公司是HBM最大的终端买家（通过英伟达GPU），也是与供应商博弈最激烈的一群。</div>
+        </div>
+        <div class="glossary-item">
+          <div class="glossary-term">CXL</div>
+          <div class="glossary-def">Compute Express Link，新型内存扩展接口。可以在GPU之外扩展更多内存，但带宽比HBM低约100倍，只能做"冷数据"扩容，无法替代HBM承担的高速带宽角色。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 关键数据 -->
+    <div class="sidebar-card">
+      <div class="sidebar-title">📊 关键数据速查</div>
+      <div style="padding: 12px 16px;">
+        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+          <span style="color: var(--muted);">SK海力士HBM份额</span>
+          <span style="font-weight: 700; color: var(--blue);">62%</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+          <span style="color: var(--muted);">英伟达HBM来源</span>
+          <span style="font-weight: 700; color: var(--orange);">SK 占 90%</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+          <span style="color: var(--muted);">HBM3E均价溢价</span>
+          <span style="font-weight: 700; color: var(--red);">DDR5的5-10倍</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+          <span style="color: var(--muted);">2025内存价格涨幅</span>
+          <span style="font-weight: 700; color: var(--red);">+246%</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px;">
+          <span style="color: var(--muted);">HBM4量产时间</span>
+          <span style="font-weight: 700; color: var(--green);">H2 2026</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 8px 0; font-size: 13px;">
+          <span style="color: var(--muted);">2028年HBM市场TAM</span>
+          <span style="font-weight: 700; color: var(--blue);">$100B</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 原文链接 -->
+    <div class="sidebar-card">
+      <div class="sidebar-title">🔗 原文来源</div>
+      <div class="source-links">
+        <a class="source-link" href="https://aiweekly.co/alerts/sk-hynix-crosses-1-trillion-as-2026-hbm-sells-out" target="_blank" rel="noopener">
+          <div class="source-dot"></div>
+          <div class="source-link-text">SK Hynix Crosses $1 Trillion as 2026 HBM Sells Out — AI Weekly</div>
+        </a>
+        <a class="source-link" href="https://introl.com/blog/ai-memory-supercycle-hbm-2026" target="_blank" rel="noopener">
+          <div class="source-dot"></div>
+          <div class="source-link-text">The AI Memory Supercycle: How HBM Became AI's Most Critical Bottleneck — Introl</div>
+        </a>
+        <a class="source-link" href="https://www.enostech.com/the-ai-memory-crisis-a-deep-technical-analysis-of-hbm3e-hbm4-dram-process-technology-and-the-bandwidth-wall-constraining-ai/" target="_blank" rel="noopener">
+          <div class="source-dot"></div>
+          <div class="source-link-text">The AI Memory Crisis: Deep Technical Analysis of HBM3E, HBM4 — EnosTech</div>
+        </a>
+        <a class="source-link" href="https://counterpointresearch.com/en/insights/global-dram-and-hbm-market-share" target="_blank" rel="noopener">
+          <div class="source-dot"></div>
+          <div class="source-link-text">Global DRAM and HBM Market Share: Quarterly — Counterpoint Research</div>
+        </a>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<footer>
+  Kyrie 的 AI 洞察基地 · 数据来源：AI Weekly / Introl / EnosTech / Counterpoint Research / Micron IR · 2026.06 更新
+</footer>
+
+<script>
+  function switchTab(name, el) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
