@@ -505,14 +505,14 @@ body {
   <div class="header-meta">
     <span>📅 最近更新：2026年6月6日</span>
     <span>📰 本期资讯：12条（新）</span>
-    <span>🔬 专题报告：3篇</span>
+    <span>🔬 专题报告：6篇</span>
   </div>
 </header>
 
 <!-- ── NAV ── -->
 <nav class="main-nav">
-  <a class="nav-btn active" href="#news">📰 AI行业资讯</a>
-  <a class="nav-btn" href="#research">🔬 AI专题调研</a>
+  <a class="nav-btn active" href="index.html">📰 AI行业资讯</a>
+  <a class="nav-btn" href="research.html">🔬 AI专题调研</a>
 </nav>
 
 <div class="main-wrap">
@@ -528,16 +528,14 @@ body {
 
   <!-- 时间轴导航 -->
   <div class="timeline-nav">
-    <span class="timeline-label">📅 期数</span>
+    <span class="timeline-label">Timeline</span>
     <div class="timeline-track">
-      <button class="timeline-btn active" onclick="switchNewsTab('week0606')">
-        <span class="timeline-date">6.1–6.6</span>
-        <span class="timeline-tag">最新</span>
+      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0606')">
+        <span class="timeline-date">2026.06.06</span>
       </button>
       <div class="timeline-line"></div>
-      <button class="timeline-btn" onclick="switchNewsTab('week0523')">
-        <span class="timeline-date">5.23–5.29</span>
-        <span class="timeline-tag">上期</span>
+      <button class="timeline-btn" onclick="switchNewsTab(event, 'week0523')">
+        <span class="timeline-date">2026.05.29</span>
       </button>
     </div>
   </div>
@@ -987,155 +985,6 @@ body {
   </div><!-- /date-panel week0523 -->
 
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  PART 2  AI 专题调研                   -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="part-divider" id="research">
-    <span class="part-label">🔬 AI 专题调研</span>
-    <div class="part-line"></div>
-    <span class="part-num">5 篇 · 持续更新</span>
-  </div>
-
-  <div class="research-grid">
-
-    <!-- 报告1：AI生态上下游 -->
-    <div class="research-card" onclick="window.open('ai-ecosystem-research.html','_blank')">
-      <div class="research-cover" style="background:linear-gradient(135deg,#1a6e50 0%,#2563eb 100%);">
-        🌐
-      </div>
-      <div class="research-body">
-        <div class="research-category" style="color:var(--green);">生态图谱</div>
-        <div class="research-title">AI 大生态完整上下游图谱</div>
-        <div class="research-desc">从 L1 能源层到 L6 应用层，六层架构全维度拆解。覆盖芯片/云算力/数据/模型/平台/应用各层领头羊，含开闭源标注与关键数据。</div>
-        <div class="research-footer">
-          <div>
-            <div class="research-tags">
-              <span class="ntag ntag-green">L1-L6 全链</span>
-              <span class="ntag ntag-blue">海内外对比</span>
-            </div>
-            <div class="research-date" style="margin-top:5px;">2026.05.29</div>
-          </div>
-          <a class="research-cta" style="background:var(--green);" href="ai-ecosystem-research.html" target="_blank">查看报告 →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 报告2：AI助手应用调研 -->
-    <div class="research-card" onclick="window.open('ai-assistant-research-2026.html','_blank')">
-      <div class="research-cover" style="background:linear-gradient(135deg,#7c3aed 0%,#0891b2 100%);">
-        🤖
-      </div>
-      <div class="research-body">
-        <div class="research-category" style="color:var(--purple);">应用调研</div>
-        <div class="research-title">2026 国内主流 AI 助手深度研究报告</div>
-        <div class="research-desc">豆包 / DeepSeek / 通义千问 / 元宝 四款产品深度对比。覆盖市场格局、能力地图、深度洞察、破局建议、未来趋势五大维度。</div>
-        <div class="research-footer">
-          <div>
-            <div class="research-tags">
-              <span class="ntag ntag-purple">4款产品</span>
-              <span class="ntag ntag-cyan">能力对比</span>
-            </div>
-            <div class="research-date" style="margin-top:5px;">2026.03.27</div>
-          </div>
-          <a class="research-cta" style="background:var(--purple);" href="ai-assistant-research-2026.html" target="_blank">查看报告 →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 报告3：阿里云MaaS（占位） -->
-    <div class="research-card" onclick="window.open('alibaba-cloud-maas-research.html','_blank')">
-      <div class="research-cover" style="background:linear-gradient(135deg,#ea580c 0%,#ca8a04 100%);">
-        ☁️
-      </div>
-      <div class="research-body">
-        <div class="research-category" style="color:var(--orange);">战略调研</div>
-        <div class="research-title">阿里云业务与 MaaS 战略深度调研</div>
-        <div class="research-desc">阿里云 AI 训练市占 42% 背后的完整战略拆解。覆盖灵积 DashScope MaaS 平台定位、PAI 训练平台、与通义千问的协同路径及企业 B 端商业化模式。</div>
-        <div class="research-footer">
-          <div>
-            <div class="research-tags">
-              <span class="ntag ntag-orange">阿里云</span>
-              <span class="ntag ntag-yellow">MaaS</span>
-            </div>
-            <div class="research-date" style="margin-top:5px;">2026.04</div>
-          </div>
-          <a class="research-cta" style="background:var(--orange);" href="alibaba-cloud-maas-research.html" target="_blank">查看报告 →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 报告4：AI Agent 商业化行研 -->
-    <div class="research-card" onclick="window.open('ai-agent-report/index.html','_blank')">
-      <div class="research-cover" style="background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);">
-        <span style="font-size:48px;">🤖</span>
-      </div>
-      <div class="research-body">
-        <div class="research-category" style="color:#58a6ff;">商业化行研</div>
-        <div class="research-title">AI Agent 商业化行研 2026</div>
-        <div class="research-desc">从爆红到落地，这条路有多难？横评10大平台，拆解4大案例，提炼3个核心洞察。88%的Pilot失败率背后，谁真正跑进了生产环境？</div>
-        <div class="research-footer">
-          <div>
-            <div class="research-tags">
-              <span class="ntag ntag-blue">10大平台</span>
-              <span class="ntag ntag-blue">4大案例</span>
-              <span class="ntag ntag-blue">OpenClaw</span>
-            </div>
-            <div class="research-date" style="margin-top:5px;">2026.06</div>
-          </div>
-          <a class="research-cta" style="background:#58a6ff;" href="ai-agent-report/index.html" target="_blank">查看报告 →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 报告6：亚马逊 AI 战略深度报告 -->
-    <div class="research-card" onclick="window.open('amazon-ai-strategy-research.html','_blank')">
-      <div class="research-cover" style="background:linear-gradient(135deg,#1a0800 0%,#2d1200 50%,#0d1117 100%)">
-        <span style="font-size:48px;">🛒</span>
-      </div>
-      <div class="research-body">
-        <div class="research-category" style="color:#ff9900;">企业战略深度</div>
-        <div class="research-title">亚马逊全栈 AI 帝国深度报告 2026</div>
-        <div class="research-desc">从核电站到购物车——解码亚马逊如何用能源、数据中心、自研芯片、云服务、大模型与电商应用构建AI全栈护城河。含与阿里云深度对比，Rufus $120亿商业化案例，$2000亿Capex战略解析。</div>
-        <div class="research-footer">
-          <div>
-            <div class="research-tags">
-              <span class="ntag ntag-orange">AWS</span>
-              <span class="ntag ntag-orange">Trainium</span>
-              <span class="ntag ntag-orange">Rufus</span>
-              <span class="ntag ntag-orange">Anthropic</span>
-            </div>
-            <div class="research-date" style="margin-top:5px;">2026.06</div>
-          </div>
-          <a class="research-cta" style="background:#ff9900;color:#000;" href="amazon-ai-strategy-research.html" target="_blank">查看报告 →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 报告5：HBM 供应链深度报告 -->
-    <div class="research-card" onclick="window.open('hbm-supply-chain-research.html','_blank')">
-      <div class="research-cover" style="background:linear-gradient(135deg,#1a0a2e 0%,#16213e 50%,#0a2a1a 100%)">
-        <span style="font-size:48px;">💾</span>
-      </div>
-      <div class="research-body">
-        <div class="research-category" style="color:#f85149;">供应链深度</div>
-        <div class="research-title">HBM 供应链深度报告 2026</div>
-        <div class="research-desc">SK海力士拒绝巨头，2026年产能全部售罄。HBM成为AI产业新稀缺资源。技术栈拆解、三方格局、大厂采购博弈、2026-2028供需预测全覆盖。含名词解释侧边栏。</div>
-        <div class="research-footer">
-          <div>
-            <div class="research-tags">
-              <span class="ntag ntag-orange">HBM4</span>
-              <span class="ntag ntag-orange">SK海力士</span>
-              <span class="ntag ntag-orange">供需预测</span>
-            </div>
-            <div class="research-date" style="margin-top:5px;">2026.06</div>
-          </div>
-          <a class="research-cta" style="background:#f85149;" href="hbm-supply-chain-research.html" target="_blank">查看报告 →</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
 </div>
 
 <footer class="site-footer">
@@ -1144,32 +993,13 @@ body {
 
 <script>
   // 时间轴切换
-  function switchNewsTab(id) {
+  function switchNewsTab(evt, id) {
     document.querySelectorAll('.date-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.timeline-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    event.currentTarget.classList.add('active');
+    evt.currentTarget.classList.add('active');
   }
 
-  // 导航激活状态
-  const navBtns = document.querySelectorAll('.nav-btn');
-  const sections = ['news', 'research'];
-  window.addEventListener('scroll', () => {
-    let current = 'news';
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && window.scrollY + 80 >= el.offsetTop) current = id;
-    });
-    navBtns.forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('href') === '#' + current);
-    });
-  });
-  navBtns.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      navBtns.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
 </script>
 
 </body>
