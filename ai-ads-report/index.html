@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI × 广告：从预测到生成，广告行业的第二轮重构 · Kyrie AI Insight</title>
+  <meta name="description" content="围绕创意生产、投放优化与 AI 搜索/AI 助手新入口，拆解 AI 如何推动广告行业进入第二轮升级。">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="../research.html" class="site-logo">Kyrie <span>AI Insight</span></a>
+  <a href="../research.html" class="back-btn">← 返回专题调研</a>
+</header>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-badge">AI × 广告深度报告 · 2026</div>
+    <h1 class="hero-title">从预测到生成，<span>广告行业的第二轮重构</span></h1>
+    <p class="hero-desc">创意生产、投放优化与 AI 搜索 / AI 助手新入口，正在把广告从“算法买量”推向“生成—分发—反馈”的闭环系统。</p>
+    <div class="hero-meta">
+      <span>📅 2026年6月</span>
+      <span>🧭 3 条主线 + 1 个补充视角</span>
+      <span>🏢 Google / Meta / OpenAI / Amazon / 巨量引擎</span>
+    </div>
+  </div>
+</section>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">关键定义</div>
+      <div class="glossary-item">
+        <div class="g-term">预测型 AI</div>
+        <div class="g-def">用于排序、出价、分发与转化预估的算法系统，是广告行业第一轮 AI 化的核心基础设施。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">生成式 AI</div>
+        <div class="g-def">用于生成文案、图片、视频及交互式回答的模型能力，正在推动广告行业进入第二轮升级。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">效果广告</div>
+        <div class="g-def">以点击、转化与 ROI 为核心目标的广告形态，最先被 AI 深度改造。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">AI Search</div>
+        <div class="g-def">以生成式回答为核心交互的搜索形态，广告开始从结果页向回答界面迁移。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">决策入口</div>
+        <div class="g-def">比普通流量入口更接近用户判断与选择的交互位置，是 AI 助手广告最有价值也最敏感的地方。</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">核心判断</div>
+      <div class="kpi-card">
+        <div class="kpi-label">判断 1</div>
+        <div class="kpi-value">不是第一次 AI 化</div>
+        <div class="kpi-note">广告行业早已完成第一轮预测型 AI 化</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">判断 2</div>
+        <div class="kpi-value">创意执行层先变</div>
+        <div class="kpi-note">AI 最先工业化的是素材生产与测试流程</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">判断 3</div>
+        <div class="kpi-value">内容与分发合流</div>
+        <div class="kpi-note">真正新增量是素材也开始进入自动优化闭环</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">判断 4</div>
+        <div class="kpi-value">中立性是关键边界</div>
+        <div class="kpi-note">AI 助手广告的核心矛盾不是广告位，而是信任机制</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">证据等级</div>
+      <div class="glossary-item">
+        <div class="g-term">A 级</div>
+        <div class="g-def">官方发布、产品文档、帮助中心、财报或公司正式博文。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">B 级</div>
+        <div class="g-def">主流媒体、行业研究机构、高管公开发言。</div>
+      </div>
+      <div class="glossary-item">
+        <div class="g-term">C 级</div>
+        <div class="g-def">基于多信号归纳的趋势判断。本文尽量不把 C 级推断写成既成事实。</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">后续观察清单</div>
+      <ul class="source-list">
+        <li>Google 是否继续公开 AI Search 广告效果数据</li>
+        <li>OpenAI 广告机制是否扩大与细化</li>
+        <li>国内平台是否出现 AI 助手型广告信号</li>
+        <li>归因体系是否出现新的标志性拐点</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="main">
+    <nav class="tab-nav">
+      <button class="tab-btn active" data-tab="overview" onclick="switchTab(event, 'overview')">总论</button>
+      <button class="tab-btn" data-tab="creative" onclick="switchTab(event, 'creative')">创意生产</button>
+      <button class="tab-btn" data-tab="delivery" onclick="switchTab(event, 'delivery')">投放优化</button>
+      <button class="tab-btn" data-tab="entry" onclick="switchTab(event, 'entry')">新广告入口</button>
+      <button class="tab-btn" data-tab="landscape" onclick="switchTab(event, 'landscape')">归因与格局</button>
+    </nav>
+
+    <section class="tab-panel active" id="tab-overview">
+      <div class="section-title">总论：为什么说这是第二轮 AI 化？</div>
+      <p class="section-desc">这篇报告的核心，不是证明广告“开始使用 AI”，而是把第一轮预测型 AI 与第二轮生成式 AI 的边界厘清，并解释为什么这一轮变化值得单独研究。</p>
+
+      <div class="grid-2 intro-grid">
+        <div class="summary-card summary-card-blue">
+          <div class="summary-label">总判断</div>
+          <h3>广告行业不是第一次 AI 化</h3>
+          <p>CTR/CVR 预估、自动出价、广告排序、人群扩展与预算分配，本来就是广告行业过去十多年最成熟的 AI 工业能力。</p>
+        </div>
+        <div class="summary-card summary-card-orange">
+          <div class="summary-label">新变化</div>
+          <h3>生成式 AI 开始进入内容生产与交互入口</h3>
+          <p>广告系统不再只优化流量分发，也开始参与内容生成、素材筛选与更接近决策过程的交互界面设计。</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">第一轮 vs 第二轮 AI 化</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>维度</th>
+                <th>第一轮 AI 化</th>
+                <th>第二轮 AI 化</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>技术核心</td>
+                <td>预测型 AI</td>
+                <td>生成式 AI</td>
+              </tr>
+              <tr>
+                <td>主要作用</td>
+                <td>排序、出价、分发、转化预估</td>
+                <td>生成、交互、闭环优化</td>
+              </tr>
+              <tr>
+                <td>内容关系</td>
+                <td>人做内容，机器分发</td>
+                <td>机器参与做内容，机器继续分发</td>
+              </tr>
+              <tr>
+                <td>行业特征</td>
+                <td>算法买量</td>
+                <td>生成—分发—反馈</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="mini-card">
+          <div class="mini-icon">🎯</div>
+          <div class="mini-title">为什么值得研究</div>
+          <p>内容生产开始进入广告系统，不再只是投放前的人工作业。</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon">🧠</div>
+          <div class="mini-title">为什么不能写太满</div>
+          <p>不是所有广告变化都由大模型直接带来，必须区分旧 AI 与新 AI。</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon">📌</div>
+          <div class="mini-title">本文聚焦</div>
+          <p>创意生产、投放优化、新广告入口三条主线，以及一个补充视角。</p>
+        </div>
+      </div>
+
+      <div class="highlight-box blue">
+        <div class="hb-title">报告边界</div>
+        <p>本文不把“AI 已全面颠覆广告行业”作为前提，不把品牌广告与效果广告混写，也不把归因体系抬成当前最显著主线。</p>
+      </div>
+
+      <div class="page-conclusion">广告行业已经完成第一轮预测型 AI 化；当前真正值得研究的，是生成式 AI 是否正在改变内容生产、交互入口与广告闭环。</div>
+    </section>
+
+    <section class="tab-panel" id="tab-creative">
+      <div class="section-title">主线一：创意生产</div>
+      <p class="section-desc">AI 最先改造的，不是品牌创意的最高层思考，而是效果广告素材的供给机制、版本密度与测试效率。</p>
+
+      <div class="grid-4 compact-grid">
+        <div class="stat-card">
+          <div class="stat-value">慢</div>
+          <div class="stat-label">传统创意生产周期长</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">贵</div>
+          <div class="stat-label">人工设计与版本试错成本高</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">少</div>
+          <div class="stat-label">同一 campaign 可测试版本有限</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">难测</div>
+          <div class="stat-label">素材池不够大，优化空间被锁死</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">AI 到底改了什么？</div>
+        <div class="grid-3">
+          <div class="mini-card mini-card-dark">
+            <div class="mini-title">文案批量生成</div>
+            <p>标题、卖点、描述、CTA 可以快速扩成多个表达版本，进入统一素材池。</p>
+          </div>
+          <div class="mini-card mini-card-dark">
+            <div class="mini-title">图像 / 视频变体</div>
+            <p>背景、风格、封面、开头钩子与不同尺寸开始参数化生产。</p>
+          </div>
+          <div class="mini-card mini-card-dark">
+            <div class="mini-title">测试密度提升</div>
+            <p>过去测试 2–3 个版本，如今可以快速拉起数十个变体，交由系统筛选。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-subtitle">平台证据</div>
+      <div class="grid-2">
+        <div class="evidence-card">
+          <div class="evidence-head"><span class="tag tag-blue">Google</span><span class="evidence-level">A 级</span></div>
+          <h3>Performance Max 的生成式创意能力</h3>
+          <p>Google 已将生成式创意资产引入 PMax，并持续扩展 lifestyle imagery 等视觉素材生成能力。</p>
+          <div class="evidence-claim">说明：生成式 AI 已进入核心广告产品，而不是外围小工具。</div>
+        </div>
+        <div class="evidence-card">
+          <div class="evidence-head"><span class="tag tag-purple">Meta</span><span class="evidence-level">A 级</span></div>
+          <h3>GenAI 创意能力 + 透明度机制</h3>
+          <p>Meta 不只提供生成式广告创意，还开始扩展透明度机制，说明这类能力已进入治理阶段。</p>
+          <div class="evidence-claim">说明：AI 创意不再是实验功能，而是平台正式产品的一部分。</div>
+        </div>
+        <div class="evidence-card">
+          <div class="evidence-head"><span class="tag tag-orange">Amazon Ads</span><span class="evidence-level">A 级</span></div>
+          <h3>Generative AI Ad Solutions</h3>
+          <p>Amazon Ads 将 AI 创意工具正式产品化，强调其在 full-funnel creative 供给中的作用。</p>
+          <div class="evidence-claim">说明：创意工业化是跨平台趋势，不是 Google / Meta 的局部现象。</div>
+        </div>
+        <div class="evidence-card">
+          <div class="evidence-head"><span class="tag tag-green">巨量引擎</span><span class="evidence-level">A / B 级</span></div>
+          <h3>智能平台 / 巨量创意 / 巨量学</h3>
+          <p>国内短视频平台也正在把创意制作、投放辅助和培训体系打包成广告生产力工具链。</p>
+          <div class="evidence-claim">说明：国内路径同样偏向创意执行层与投放提效，而非先做助手广告。</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">边界：AI 改造的是效果创意执行层，不是品牌创意顶层</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>更容易被 AI 改造</th>
+                <th>暂时更难被 AI 替代</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>效果广告文案</td>
+                <td>品牌大创意命题</td>
+              </tr>
+              <tr>
+                <td>图片 / 视频变体</td>
+                <td>长期品牌叙事</td>
+              </tr>
+              <tr>
+                <td>多版本测试流程</td>
+                <td>审美判断与文化语境理解</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="page-conclusion">AI 最先工业化的不是创意思想，而是创意执行与测试流程。</div>
+    </section>
+
+    <section class="tab-panel" id="tab-delivery">
+      <div class="section-title">主线二：投放优化</div>
+      <p class="section-desc">自动投放并不新，真正的新变化是内容本身开始被并入自动优化系统，创意和分发之间的边界正在被打通。</p>
+
+      <div class="highlight-box red">
+        <div class="hb-title">先打掉一个误解</div>
+        <p>“AI 自动投放”不是大模型时代才出现的新事物。推荐、排序、竞价和预算优化，本来就是广告行业第一轮 AI 化的主战场。</p>
+      </div>
+
+      <div class="grid-2 flow-grid">
+        <div class="flow-card">
+          <div class="flow-label">旧链路</div>
+          <div class="flow-steps">
+            <span>人做素材</span>
+            <span>系统分发</span>
+            <span>人看报表</span>
+            <span>人再优化</span>
+          </div>
+        </div>
+        <div class="flow-card flow-card-highlight">
+          <div class="flow-label">新链路</div>
+          <div class="flow-steps">
+            <span>系统参与生成素材</span>
+            <span>系统自动分发</span>
+            <span>系统根据反馈继续筛素材与预算</span>
+            <span>内容与投放开始合流</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-subtitle">关键平台证据</div>
+      <div class="grid-3">
+        <div class="evidence-card compact-evidence">
+          <div class="evidence-head"><span class="tag tag-blue">Google</span><span class="evidence-level">A 级</span></div>
+          <h3>Gemini 进入 Performance Max</h3>
+          <p>生成式模型进入核心投放产品，不再只是创意工具层的外部补丁。</p>
+          <div class="evidence-claim">可写重：内容与分发开始进入同一优化系统。</div>
+        </div>
+        <div class="evidence-card compact-evidence">
+          <div class="evidence-head"><span class="tag tag-purple">Meta</span><span class="evidence-level">A 级</span></div>
+          <h3>AI Drives Performance / GEM</h3>
+          <p>Meta 的主轴仍然是更强的广告推荐、排序与性能模型，而不是完全重写广告系统。</p>
+          <div class="evidence-claim">可写重：自动投放的底层本质仍然是更强的推荐模型 + 自动调参。</div>
+        </div>
+        <div class="evidence-card compact-evidence">
+          <div class="evidence-head"><span class="tag tag-green">巨量引擎</span><span class="evidence-level">A / B 级</span></div>
+          <h3>创意制作 + 效果优化一体化</h3>
+          <p>国内平台更现实的路径是增强现有效果广告系统，而不是先跳到新的媒介形态。</p>
+          <div class="evidence-claim">可写重：国内 AI 广告升级更像系统提效，而非范式跳跃。</div>
+        </div>
+      </div>
+
+      <div class="grid-3 role-grid">
+        <div class="mini-card">
+          <div class="mini-icon">🎛️</div>
+          <div class="mini-title">投手</div>
+          <p>从手工调盘，转向目标设定、策略选择与异常诊断。</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon">📈</div>
+          <div class="mini-title">广告主</div>
+          <p>更容易用较低门槛启动测试，但也更依赖平台系统定义优化目标。</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon">🏗️</div>
+          <div class="mini-title">平台</div>
+          <p>从流量平台进一步走向增长系统，内容与分发团队边界被重写。</p>
+        </div>
+      </div>
+
+      <div class="highlight-box blue">
+        <div class="hb-title">边界提醒</div>
+        <p>平台正在从静态标签走向更细粒度、上下文相关的意图预测，但这仍然更接近“更强预测”，而不是“真正理解人”。</p>
+      </div>
+
+      <div class="page-conclusion">本轮 AI 对投放系统的新增量，不是让投放首次自动化，而是让内容本身也开始进入自动优化闭环。</div>
+    </section>
+
+    <section class="tab-panel" id="tab-entry">
+      <div class="section-title">主线三：AI 搜索 / AI 助手新入口</div>
+      <p class="section-desc">这一页要看的不是“广告位多了一个”，而是广告开始进入更接近用户需求表达和决策形成的界面，这会同时抬高商业价值与信任风险。</p>
+
+      <div class="card">
+        <div class="card-title">为什么说它是新入口？</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>传统广告位</th>
+                <th>AI 助手 / AI Search</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>浏览场景</td>
+                <td>提问场景</td>
+              </tr>
+              <tr>
+                <td>争注意力</td>
+                <td>争决策影响力</td>
+              </tr>
+              <tr>
+                <td>广告像展示</td>
+                <td>广告更像建议</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="evidence-card feature-card">
+          <div class="evidence-head"><span class="tag tag-blue">Google 路径</span><span class="evidence-level">A 级</span></div>
+          <h3>把旧广告机器迁移到 AI Search</h3>
+          <p>Google 已在官方层面提出 “A new generation of ads for the AI era of Search”，说明 AI Search 与广告新格式是内生设计，不是外部冲击。</p>
+          <div class="evidence-claim">报告判断：Google 是旧广告体系向新交互界面的升级者。</div>
+        </div>
+        <div class="evidence-card feature-card feature-card-highlight">
+          <div class="evidence-head"><span class="tag tag-purple">OpenAI 路径</span><span class="evidence-level">A 级</span></div>
+          <h3>从工具走向媒介，但先撞上信任边界</h3>
+          <p>OpenAI 已公开讨论广告，并在帮助中心明确“广告系统与聊天模型分离”，广告主无权影响回答排序和内容。</p>
+          <div class="evidence-claim">报告判断：AI 助手广告的核心问题首先不是供给，而是中立性。</div>
+        </div>
+      </div>
+
+      <div class="highlight-box purple large-highlight">
+        <div class="hb-title">核心矛盾：AI 助手广告的问题，不是广告位，而是中立性</div>
+        <p>用户对信息流与搜索平台天然接受商业内容混入，但对 AI 助手的预期更接近顾问与建议系统。广告一旦进入回答过程，用户最自然的疑问不是“这个广告点击率如何”，而是“这是更适合我的建议，还是它付了钱”。</p>
+      </div>
+
+      <div class="section-subtitle">这条路能不能跑通，关键看三件事</div>
+      <div class="grid-3">
+        <div class="mini-card">
+          <div class="mini-icon">🏷️</div>
+          <div class="mini-title">广告标识</div>
+          <p>商业内容是否足够清晰，不会伪装成中立回答的一部分。</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon">🔍</div>
+          <div class="mini-title">推荐依据</div>
+          <p>平台是否能解释为什么给出某个推荐，而不只是让用户“相信系统”。</p>
+        </div>
+        <div class="mini-card">
+          <div class="mini-icon">⚙️</div>
+          <div class="mini-title">模式选择权</div>
+          <p>用户是否拥有关闭、切换或升级到更低商业干扰模式的权利。</p>
+        </div>
+      </div>
+
+      <div class="page-conclusion">AI 搜索与 AI 助手的商业价值来自其更接近决策过程，而其最大约束也同样来自这一点。</div>
+    </section>
+
+    <section class="tab-panel" id="tab-landscape">
+      <div class="section-title">补充视角：归因体系与平台格局</div>
+      <p class="section-desc">这一页不再铺开第三条主线，而是补上两个更像“底层判断”的视角：为什么归因现在不宜写成 headline，以及为什么不同平台不是走同一条路。</p>
+
+      <div class="card">
+        <div class="card-title">归因体系：重要，但当前还不是最显著主线</div>
+        <div class="grid-3">
+          <div class="mini-card mini-card-dark">
+            <div class="mini-title">为什么重要</div>
+            <p>它决定预算怎么流、哪些触点被判定有效、平台最终如何被评价。</p>
+          </div>
+          <div class="mini-card mini-card-dark">
+            <div class="mini-title">为什么不做主线</div>
+            <p>变化更像渐进演化，且生成式 AI 不是唯一驱动力，证据张力也不如前三条硬。</p>
+          </div>
+          <div class="mini-card mini-card-dark">
+            <div class="mini-title">合理位置</div>
+            <p>它是下一阶段的隐性战场，但当前更适合作为补充视角，而不是并列主线。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-subtitle">平台格局：不同玩家走的不是一条路</div>
+      <div class="card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>平台</th>
+                <th>当前主路径</th>
+                <th>最强能力</th>
+                <th>当前边界</th>
+                <th>报告判断</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Google</td>
+                <td>旧广告机器迁移到 AI Search</td>
+                <td>搜索意图 + 商业化体系</td>
+                <td>新广告格式仍在演进</td>
+                <td>最稳升级者</td>
+              </tr>
+              <tr>
+                <td>Meta</td>
+                <td>效果广告机器强化</td>
+                <td>排序 / 推荐 / 创意工具</td>
+                <td>助手入口弱</td>
+                <td>效果广告最强</td>
+              </tr>
+              <tr>
+                <td>OpenAI</td>
+                <td>新决策入口试验</td>
+                <td>对话入口</td>
+                <td>中立性与信任风险高</td>
+                <td>高潜力高风险</td>
+              </tr>
+              <tr>
+                <td>Amazon</td>
+                <td>交易广告闭环增强</td>
+                <td>转化链路闭环</td>
+                <td>媒介属性变化较弱</td>
+                <td>更偏商业闭环</td>
+              </tr>
+              <tr>
+                <td>巨量引擎</td>
+                <td>现有效果广告系统 AI 增强</td>
+                <td>创意 + 投放工具链</td>
+                <td>助手广告路径未成型</td>
+                <td>先提效后变形</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="highlight-box green">
+        <div class="hb-title">最后一个总判断</div>
+        <p>广告行业的下一轮竞争，不是所有平台走同一条路，而是不同平台沿着各自最强的基础设施进入第二轮 AI 化：Google 升级旧秩序，Meta 强化效果广告机器，OpenAI 试探新入口，Amazon 深化交易闭环，国内短视频平台则优先增强现有效果广告系统。</p>
+      </div>
+
+      <div class="page-conclusion">归因体系不是不重要，而是当前更像隐性基础设施变化；真正 headline 级的变化，仍然集中在创意生产、投放优化和新广告入口。</div>
+    </section>
+  </main>
+</div>
+
+<footer class="report-footer">
+  <p>AI × 广告研究报告 · Kyrie AI Insight · 2026年6月版本</p>
+  <p>证据以平台官方产品页、官方博客、帮助中心与公开资料为主；趋势判断已与既成事实做显式区分。</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
