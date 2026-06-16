@@ -23,10 +23,16 @@ body {
   padding: 12px 0;
 }
 .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
-.header-brand { display: flex; align-items: center; gap: 12px; }
-.brand-logo { font-size: 28px; }
-.brand-title { font-size: 16px; font-weight: 700; color: #f0f6fc; }
-.brand-sub { font-size: 11px; color: #8b949e; }
+.site-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 999px;
+  text-decoration: none; background: #161b22;
+  border: 1px solid #30363d; color: #f0f6fc;
+  font-size: 14px; font-weight: 700; white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15); transition: all 0.2s;
+}
+.site-link span { color: #58a6ff; }
+.site-link:hover { background: rgba(88,166,255,0.08); border-color: rgba(88,166,255,0.35); transform: translateY(-1px); }
 .header-nav { display: flex; gap: 4px; }
 .nav-link {
   color: #8b949e; text-decoration: none; padding: 6px 12px;

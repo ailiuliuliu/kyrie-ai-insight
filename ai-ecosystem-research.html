@@ -42,6 +42,28 @@
     text-align: center;
     background: transparent;
   }
+  .site-link-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #1a6e50;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(26,158,112,0.20);
+    box-shadow: 0 8px 22px rgba(26,110,80,0.08);
+    transition: all 0.18s;
+  }
+  .site-link span { color: #1a5ec8; }
+  .site-link:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(26,110,80,0.12); border-color: rgba(26,158,112,0.34); }
   .header-eyebrow {
     font-size: 12px;
     letter-spacing: 0.12em;
@@ -357,6 +379,9 @@
 
 <!-- ── HEADER ── -->
 <header class="site-header">
+  <div class="site-link-wrap">
+    <a href="index.html" class="site-link">Kyrie <span>AI Insight</span></a>
+  </div>
   <p class="header-eyebrow">行业研究 · 2026 · AI Ecosystem Deep Dive</p>
   <h1 class="header-title">AI大生态 · 完整上下游图谱</h1>
   <p class="header-sub">从能源底层到应用变现，六层架构 × 赛道 / 海内外 / 玩家 / 定位 / 关键标签 全维度梳理</p>

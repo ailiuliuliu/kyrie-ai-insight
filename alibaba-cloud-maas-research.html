@@ -58,6 +58,38 @@
             padding: var(--spacing-xl) 0;
             position: relative;
         }
+
+        .site-link-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .site-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--color-success);
+            background: rgba(255,255,255,0.92);
+            border: 1px solid rgba(5,150,105,0.18);
+            box-shadow: 0 6px 18px rgba(5,150,105,0.10);
+            font-size: 14px;
+            font-weight: 700;
+            transition: all var(--transition-normal);
+        }
+
+        .site-link span {
+            color: var(--color-info);
+        }
+
+        .site-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(5,150,105,0.14);
+            border-color: rgba(5,150,105,0.32);
+        }
         
         .header::after {
             content: '';
@@ -465,6 +497,9 @@
 <body>
     <div class="container">
         <div class="header">
+            <div class="site-link-wrap">
+                <a href="index.html" class="site-link">Kyrie <span>AI Insight</span></a>
+            </div>
             <div class="header-title">阿里云业务与MaaS战略深度调研报告</div>
             <div class="header-meta">调研时间: 2026年3月 | 数据截至: 2025Q4 | 报告类型: 行业调研 | 研究维度: 云计算 + MaaS</div>
         </div>
