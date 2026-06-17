@@ -313,6 +313,31 @@ body {
 .ntag-red    { background: var(--red-light);    color: var(--red); }
 
 /* ── RESEARCH CARDS ── */
+.research-group {
+  margin-bottom: 32px;
+}
+.research-group-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.research-group-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid;
+}
+.research-group-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+.research-group-desc {
+  font-size: 12px;
+  color: var(--muted);
+}
 .research-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -505,7 +530,7 @@ body {
   <div class="header-meta">
     <span>📅 最近更新：2026年6月6日</span>
     <span>📰 本期资讯：独立页面</span>
-    <span>🔬 专题报告：6篇</span>
+    <span>🔬 专题报告：7篇</span>
   </div>
 </header>
 
@@ -526,7 +551,76 @@ body {
     <span class="part-num">7 篇 · 持续更新</span>
   </div>
 
-  <div class="research-grid">
+  <div class="research-group">
+    <div class="research-group-header">
+      <span class="research-group-badge" style="background:var(--orange-light);color:var(--orange);border-color:#fed7aa;">玩家类</span>
+      <div>
+        <div class="research-group-title">玩家类</div>
+        <div class="research-group-desc">聚焦头部 AI 玩家与云厂商的战略、能力栈和商业路径</div>
+      </div>
+    </div>
+
+    <div class="research-grid">
+
+    <!-- 报告3：阿里云MaaS（占位） -->
+    <div class="research-card" onclick="window.open('alibaba-cloud-maas-research.html','_blank')">
+      <div class="research-cover" style="background:linear-gradient(135deg,#ea580c 0%,#ca8a04 100%);">
+        ☁️
+      </div>
+      <div class="research-body">
+        <div class="research-category" style="color:var(--orange);">战略调研</div>
+        <div class="research-title">阿里云业务与 MaaS 战略深度调研</div>
+        <div class="research-desc">阿里云 AI 训练市占 42% 背后的完整战略拆解。覆盖灵积 DashScope MaaS 平台定位、PAI 训练平台、与通义千问的协同路径及企业 B 端商业化模式。</div>
+        <div class="research-footer">
+          <div>
+            <div class="research-tags">
+              <span class="ntag ntag-orange">阿里云</span>
+              <span class="ntag ntag-yellow">MaaS</span>
+            </div>
+            <div class="research-date" style="margin-top:5px;">2026.04</div>
+          </div>
+          <a class="research-cta" style="background:var(--orange);" href="alibaba-cloud-maas-research.html" target="_blank">查看报告 →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 报告6：亚马逊 AI 战略深度报告 -->
+    <div class="research-card" onclick="window.open('amazon-ai-strategy-research.html','_blank')">
+      <div class="research-cover" style="background:linear-gradient(135deg,#1a0800 0%,#2d1200 50%,#0d1117 100%)">
+        <span style="font-size:48px;">🛒</span>
+      </div>
+      <div class="research-body">
+        <div class="research-category" style="color:#ff9900;">企业战略深度</div>
+        <div class="research-title">亚马逊全栈 AI 帝国深度报告 2026</div>
+        <div class="research-desc">从核电站到购物车——解码亚马逊如何用能源、数据中心、自研芯片、云服务、大模型与电商应用构建AI全栈护城河。含与阿里云深度对比，Rufus $120亿商业化案例，$2000亿Capex战略解析。</div>
+        <div class="research-footer">
+          <div>
+            <div class="research-tags">
+              <span class="ntag ntag-orange">AWS</span>
+              <span class="ntag ntag-orange">Trainium</span>
+              <span class="ntag ntag-orange">Rufus</span>
+              <span class="ntag ntag-orange">Anthropic</span>
+            </div>
+            <div class="research-date" style="margin-top:5px;">2026.06</div>
+          </div>
+          <a class="research-cta" style="background:#ff9900;color:#000;" href="amazon-ai-strategy-research.html" target="_blank">查看报告 →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <div class="research-group">
+    <div class="research-group-header">
+      <span class="research-group-badge" style="background:var(--blue-light);color:var(--blue);border-color:#bfdbfe;">行业类</span>
+      <div>
+        <div class="research-group-title">行业类</div>
+        <div class="research-group-desc">围绕应用、生态、产业链与行业演进展开的专题研究</div>
+      </div>
+    </div>
+
+    <div class="research-grid">
 
     <!-- 报告0：AI × 广告 -->
     <div class="research-card" onclick="window.open('ai-ads-report/index.html','_blank')">
@@ -596,28 +690,6 @@ body {
       </div>
     </div>
 
-    <!-- 报告3：阿里云MaaS（占位） -->
-    <div class="research-card" onclick="window.open('alibaba-cloud-maas-research.html','_blank')">
-      <div class="research-cover" style="background:linear-gradient(135deg,#ea580c 0%,#ca8a04 100%);">
-        ☁️
-      </div>
-      <div class="research-body">
-        <div class="research-category" style="color:var(--orange);">战略调研</div>
-        <div class="research-title">阿里云业务与 MaaS 战略深度调研</div>
-        <div class="research-desc">阿里云 AI 训练市占 42% 背后的完整战略拆解。覆盖灵积 DashScope MaaS 平台定位、PAI 训练平台、与通义千问的协同路径及企业 B 端商业化模式。</div>
-        <div class="research-footer">
-          <div>
-            <div class="research-tags">
-              <span class="ntag ntag-orange">阿里云</span>
-              <span class="ntag ntag-yellow">MaaS</span>
-            </div>
-            <div class="research-date" style="margin-top:5px;">2026.04</div>
-          </div>
-          <a class="research-cta" style="background:var(--orange);" href="alibaba-cloud-maas-research.html" target="_blank">查看报告 →</a>
-        </div>
-      </div>
-    </div>
-
     <!-- 报告4：AI Agent 商业化行研 -->
     <div class="research-card" onclick="window.open('ai-agent-report/index.html','_blank')">
       <div class="research-cover" style="background:linear-gradient(135deg,#0f2027 0%,#203a43 50%,#2c5364 100%);">
@@ -637,30 +709,6 @@ body {
             <div class="research-date" style="margin-top:5px;">2026.06</div>
           </div>
           <a class="research-cta" style="background:#58a6ff;" href="ai-agent-report/index.html" target="_blank">查看报告 →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- 报告6：亚马逊 AI 战略深度报告 -->
-    <div class="research-card" onclick="window.open('amazon-ai-strategy-research.html','_blank')">
-      <div class="research-cover" style="background:linear-gradient(135deg,#1a0800 0%,#2d1200 50%,#0d1117 100%)">
-        <span style="font-size:48px;">🛒</span>
-      </div>
-      <div class="research-body">
-        <div class="research-category" style="color:#ff9900;">企业战略深度</div>
-        <div class="research-title">亚马逊全栈 AI 帝国深度报告 2026</div>
-        <div class="research-desc">从核电站到购物车——解码亚马逊如何用能源、数据中心、自研芯片、云服务、大模型与电商应用构建AI全栈护城河。含与阿里云深度对比，Rufus $120亿商业化案例，$2000亿Capex战略解析。</div>
-        <div class="research-footer">
-          <div>
-            <div class="research-tags">
-              <span class="ntag ntag-orange">AWS</span>
-              <span class="ntag ntag-orange">Trainium</span>
-              <span class="ntag ntag-orange">Rufus</span>
-              <span class="ntag ntag-orange">Anthropic</span>
-            </div>
-            <div class="research-date" style="margin-top:5px;">2026.06</div>
-          </div>
-          <a class="research-cta" style="background:#ff9900;color:#000;" href="amazon-ai-strategy-research.html" target="_blank">查看报告 →</a>
         </div>
       </div>
     </div>
@@ -688,6 +736,7 @@ body {
       </div>
     </div>
 
+  </div>
   </div>
 
 </div>
