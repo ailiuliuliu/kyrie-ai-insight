@@ -503,9 +503,9 @@ body {
   </div>
   <p class="header-sub">AI 行业资讯追踪 · 专题深度调研 · 持续更新</p>
   <div class="header-meta">
-    <span>📅 最近更新：2026年6月14日</span>
-    <span>📰 本期资讯：10条（新）</span>
-    <span>🔬 专题报告：6篇</span>
+    <span>📅 最近更新：2026年6月21日</span>
+    <span>📰 本期资讯：9条（新）</span>
+    <span>🔬 专题报告：7篇</span>
   </div>
 </header>
 
@@ -523,14 +523,18 @@ body {
   <div class="part-divider" id="news">
     <span class="part-label">📰 AI 行业资讯</span>
     <div class="part-line"></div>
-    <span class="part-num">持续更新 · 3期</span>
+    <span class="part-num">持续更新 · 4期</span>
   </div>
 
   <!-- 时间轴导航 -->
   <div class="timeline-nav">
     <span class="timeline-label">Timeline</span>
     <div class="timeline-track">
-      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0614')">
+      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0621')">
+        <span class="timeline-date">2026.06.21</span>
+      </button>
+      <div class="timeline-line"></div>
+      <button class="timeline-btn" onclick="switchNewsTab(event, 'week0614')">
         <span class="timeline-date">2026.06.14</span>
       </button>
       <div class="timeline-line"></div>
@@ -545,9 +549,187 @@ body {
   </div>
 
   <!-- ═══════════════════════════════════ -->
+  <!-- 第4期：2026.6.15–6.21               -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="date-panel active" id="week0621">
+
+  <!-- 本周必读 -->
+  <div id="mustread0621" style="scroll-margin-top:64px;">
+    <div class="section-title">
+      <div class="section-icon" style="background:#fef9c3;">⭐</div>
+      <div>
+        <div class="section-name">本周必读</div>
+        <div class="section-desc">从本周资讯中提炼3条最具结构性价值的新闻</div>
+      </div>
+      <span class="section-tag">编辑精选</span>
+    </div>
+    <div class="mustread-card">
+      <div class="mustread-summary">
+        本周核心判断：AI 行业进入一个微妙的<strong>「战略洗牌周」</strong>——没有重磅新模型，但人才流动、财务真相、并购估值三条线同时引爆，揭示出当前前沿 AI 竞争的真实生态。谷歌 DeepMind 一周流失三位顶级研究员、OpenAI 泄露财报亏损 385 亿、SpaceX 600 亿收购 Cursor，三件事合在一起传递一个判断：<strong>AI 编程工具已被当作战略基础设施定价，人才流向正在重新定义格局，而不是模型版本号。</strong>
+      </div>
+      <div class="mustread-list">
+        <div class="mustread-item">
+          <div class="mustread-rank rank-1">🥇</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://www.cnbc.com/2026/06/16/spacex-spcx-cursor-acquisition-ipo.html" target="_blank">SpaceX 600 亿美元收购 Cursor 母公司 Anysphere</a></div>
+            <div class="mustread-why">600 亿意味着什么？是 Anysphere 年化 ARR 约 23 倍。AI 编程工具市场正在从"产品赛道"被重新定价为<em>战略基础设施</em>，收购不是结束，而是 AI Coding 市场整合的信号枪。Cursor 被 SpaceX 纳入后，团队去向与产品策略可能随时改变，<em>依赖单一 Coding 工具的团队要开始做切换预案了</em>。</div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-blue">AI编程</span>
+              <span class="ntag ntag-orange">并购</span>
+              <span class="ntag ntag-red">格局信号</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-2">🥈</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://qz.com/openai-leaked-financials-losses-revenue-ipo-061626" target="_blank">OpenAI 泄露财报：营收 131 亿，净亏损 385 亿美元</a></div>
+            <div class="mustread-why">运营亏损约 210 亿，净亏 385 亿（含 416 亿一次性重组费用）；仅付给微软的费用就高达 172 亿。这是 AI 军备竞赛真实代价首次被量化曝光。<em>今天 API 定价是亏损补贴出来的</em>——在这个价格上建立的成本模型，都面临脆断风险。</div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-orange">OpenAI</span>
+              <span class="ntag ntag-red">财务</span>
+              <span class="ntag ntag-purple">产业洞察</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-3">🥉</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://artificialanalysis.ai/articles/glm-5-2-is-the-new-leading-open-weights-model-on-the-artificial-analysis-intelligence-index" target="_blank">Z.ai 发布 GLM-5.2：用华为芯片训练的开源前沿模型，Coding 排名第一</a></div>
+            <div class="mustread-why">不依赖 Nvidia、MIT 开源、Coding 能力逼近 Claude Opus 4.8——这三点叠加，让 GLM-5.2 成为目前<em>对出口管制最有力的技术回应</em>。对国内团队来说，它是目前自部署方向最值得认真评测的选项。每次调用成本约 $2.40，对比 Fable 5 的 $31，价格差距同样惊人。</div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-green">开源模型</span>
+              <span class="ntag ntag-cyan">国内</span>
+              <span class="ntag ntag-blue">自部署</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三个资讯模块 -->
+  <div class="modules-grid" style="margin-top:24px;">
+
+    <!-- AI 应用 -->
+    <div class="card" id="app-news-0621">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--cyan-light);">📱</div>
+        <div>
+          <div class="card-title">AI 应用</div>
+          <div class="card-subtitle">产品动态 · 商业化进展 · 场景落地</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.cnbc.com/2026/06/16/spacex-spcx-cursor-acquisition-ipo.html" target="_blank">SpaceX 600 亿收购 Cursor，AI 编程工具进入战略并购时代</a></div>
+            <div class="news-date">6.16</div>
+          </div>
+          <div class="news-item-body">SpaceX 以 600 亿美元股票收购 AI 编程工具 Cursor 的母公司 Anysphere（ARR 约 26 亿美元），预计 Q3 完成。Cursor 同期预告正在从头训练 1.5 万亿参数的 Composer 3 编程模型。<strong>编程 Agent 从工具演进为战略资产，市场整合进入快车道。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">AI编程</span><span class="ntag ntag-orange">并购</span><span class="ntag ntag-purple">SpaceX</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://venturebeat.com/data/anthropics-claude-code-artifacts-update-brings-live-shared-dashboards-and-interactive-workspaces-to-enterprises" target="_blank">Anthropic Claude Code 上线 Live Artifacts + 企业级 MCP 统一授权</a></div>
+            <div class="news-date">6.17</div>
+          </div>
+          <div class="news-item-body">Claude Code 新增 Artifacts 功能，coding 过程实时渲染为可分享的交互页面；同步推出 Enterprise-Managed Authorization，IT 管理员可一次性配置 MCP 连接器权限，员工首次登录即可直接使用（支持 Okta，Azure AD 路线图中）。<strong>大企业 Agent 部署的最大痛点——鉴权——有了系统性解法。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-purple">Anthropic</span><span class="ntag ntag-green">Agent</span><span class="ntag ntag-cyan">企业落地</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://9to5google.com/2026/06/18/gemini-live-memory/" target="_blank">Google Gemini Live 新增跨对话持久记忆</a></div>
+            <div class="news-date">6.18</div>
+          </div>
+          <div class="news-item-body">Gemini 语音助手可记住历史对话内容，并从 Gmail/Workspace/YouTube 等连接 App 中调取信息，英语区先行上线。<strong>语音 AI 助手从"每次从零开始"迈向"真正了解你的助理"。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">Google</span><span class="ntag ntag-cyan">记忆系统</span><span class="ntag ntag-green">个人化</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 大模型 -->
+    <div class="card" id="model-news-0621">
+      <div class="card-header">
+        <div class="card-icon" style="background:var(--purple-light);">🧠</div>
+        <div>
+          <div class="card-title">大模型能力</div>
+          <div class="card-subtitle">模型发布 · 能力评测 · 格局演变</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://artificialanalysis.ai/articles/glm-5-2-is-the-new-leading-open-weights-model-on-the-artificial-analysis-intelligence-index" target="_blank">Z.ai 发布 GLM-5.2：开源 MoE 模型，Coding 能力逼近 Claude Opus 4.8</a></div>
+            <div class="news-date">6.16</div>
+          </div>
+          <div class="news-item-body">GLM-5.2 MIT 开源，百万 Token 上下文，Coding 评分 74.4（Claude Opus 4.8 为 75.1），在独立评测 Intelligence Index 中排名开源第一。全系列基于华为 Ascend 芯片训练，无 Nvidia 依赖。<strong>国产开源大模型首次在 Coding 赛道正面叫板全球闭源前沿。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-green">开源</span><span class="ntag ntag-cyan">国内</span><span class="ntag ntag-blue">Coding</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.cnbc.com/2026/06/19/john-jumper-to-leave-google-deepmind-for-anthropic.html" target="_blank">Google DeepMind 一周流失三位顶级研究员</a></div>
+            <div class="news-date">6.15–6.19</div>
+          </div>
+          <div class="news-item-body">Nobel 奖得主 John Jumper（AlphaFold）去 Anthropic；Gemini 联席负责人 Noam Shazeer（Transformer 论文作者，Google 曾花 27 亿美元买回）去 OpenAI；Transformer 另一作者 Ashish Vaswani 随 Essential AI 团队被 Nvidia 收购。<strong>人才流向正在成为模型格局最灵敏的先行指标。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">人才流动</span><span class="ntag ntag-blue">Google</span><span class="ntag ntag-orange">格局信号</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://artificialanalysis.ai/articles/aa-briefcase" target="_blank">AA-Briefcase 基准发布：最强模型 Fable 5 仅完成 3% 的长周期任务</a></div>
+            <div class="news-date">6.17</div>
+          </div>
+          <div class="news-item-body">Artificial Analysis 推出面向多周知识工作（财务模型/董事会汇报）的基准测试，结果显示：当前最强模型 Claude Fable 5 仅在 3% 的任务上满足所有验收标准。<strong>这说明"全流程自动化"仍需要人类 checkpoint，企业落地不可过度押注。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-purple">评测</span><span class="ntag ntag-cyan">Agent能力</span><span class="ntag ntag-yellow">落地预期</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI 产业上下游（全宽） -->
+  <div class="card" id="industry-news-0621" style="margin-bottom:28px;">
+    <div class="card-header">
+      <div class="card-icon" style="background:var(--orange-light);">🏭</div>
+      <div>
+        <div class="card-title">AI 产业上下游</div>
+        <div class="card-subtitle">芯片算力 · 供应链 · 云厂商 · 融资并购</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://qz.com/openai-leaked-financials-losses-revenue-ipo-061626" target="_blank">OpenAI 2025 财报曝光：营收 131 亿，净亏 385 亿美元</a></div>
+          <div class="news-date">6.16</div>
+        </div>
+        <div class="news-item-body">运营亏损约 210 亿美元，净亏 385 亿（含约 416 亿非现金重组费用），付给微软 172 亿。AI 竞争的真实成本首次被量化。<strong>今天的低价 API 是亏损补贴的产物，依赖当前价格建立的成本模型风险极高。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-orange">OpenAI</span><span class="ntag ntag-red">财务</span><span class="ntag ntag-purple">IPO</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://www.scmp.com/tech/tech-trends/article/3352945/deepseek-soon-close-first-external-fundraising-us50b-valuation-sources" target="_blank">DeepSeek 完成首轮外部融资，估值超 500 亿美元</a></div>
+          <div class="news-date">6.18</div>
+        </div>
+        <div class="news-item-body">DeepSeek 以逾 500 亿美元估值完成首轮外部融资，募资约 74 亿，国家背景投资者与创始人梁文锋为主要参与方。<strong>中国顶级独立大模型正式进入超级独角兽序列，资本层面的战略布局意图清晰。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-cyan">国内</span><span class="ntag ntag-orange">DeepSeek</span><span class="ntag ntag-purple">融资</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://finance.yahoo.com/technology/ai/articles/accenture-just-had-worst-day-025503036.html" target="_blank">Accenture 单日暴跌 18%：AI 正在吃掉传统咨询预算</a></div>
+          <div class="news-date">6.19</div>
+        </div>
+        <div class="news-item-body">Accenture 财报显示客户正将传统 IT 咨询预算切向 AI，导致传统服务收入大幅下滑，股价创年内最大单日跌幅。这一现象被称为"tokenminimizing"——<strong>AI 不只在创造增量，也在主动消灭传统服务业务。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-red">产业冲击</span><span class="ntag ntag-blue">咨询行业</span><span class="ntag ntag-yellow">替代效应</span></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /date-panel week0621 -->
+
+  <!-- ═══════════════════════════════════ -->
   <!-- 第3期：2026.6.8–6.14                -->
   <!-- ═══════════════════════════════════ -->
-  <div class="date-panel active" id="week0614">
+  <div class="date-panel" id="week0614">
 
   <!-- 本周必读 -->
   <div id="mustread0614" style="scroll-margin-top:64px;">
@@ -1178,7 +1360,7 @@ body {
 </div>
 
 <footer class="site-footer">
-  Kyrie 的 AI 洞察基地 · 数据来源：OpenAI / Anthropic / TechCrunch / 36氪 / 虎嗅 / Reuters · 2026.06.14 更新
+  Kyrie 的 AI 洞察基地 · 数据来源：OpenAI / Anthropic / TechCrunch / ODSC / Reuters / SCMP · 2026.06.21 更新
 </footer>
 
 <script>
