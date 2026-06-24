@@ -37,8 +37,8 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: linear-gradient(160deg, #e4f3ee 0%, #eef6f4 45%, #e8f4f8 100%);
-  color: var(--text);
+  background: linear-gradient(160deg, #070d1a 0%, #0a1020 50%, #0d1520 100%);
+  color: #c8d8e8;
   font-family: 'Inter', 'Noto Serif SC', sans-serif;
   font-size: 14px;
   line-height: 1.7;
@@ -135,8 +135,8 @@ body {
 
 /* ── TOC ── */
 .toc-bar {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: rgba(10,16,32,0.95);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
   padding: 10px 60px;
   display: flex;
   gap: 24px;
@@ -145,12 +145,12 @@ body {
 }
 .toc-link {
   white-space: nowrap;
-  color: var(--muted);
+  color: rgba(255,255,255,0.35);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.15s;
 }
-.toc-link:hover { color: var(--text); }
+.toc-link:hover { color: rgba(255,255,255,0.8); }
 
 /* ── MAIN ── */
 .main-wrap {
@@ -202,7 +202,7 @@ body {
   gap: 12px;
   margin: 48px 0 20px;
   padding-bottom: 14px;
-  border-bottom: 2px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   scroll-margin-top: 80px;
 }
 .section-num {
@@ -218,23 +218,23 @@ body {
   font-family: 'Noto Serif SC', serif;
   font-size: 20px;
   font-weight: 700;
-  color: var(--text);
+  color: #e2eaf4;
 }
-.section-desc-text { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.section-desc-text { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 2px; }
 
 /* ── BLOCK ── */
 .block {
-  background: var(--surface);
+  background: rgba(255,255,255,0.04);
   border-radius: 14px;
   padding: 24px;
-  box-shadow: var(--shadow);
-  border: 1px solid var(--border);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.08);
   margin-bottom: 18px;
 }
 .block-title {
   font-size: 15px;
   font-weight: 700;
-  color: var(--text);
+  color: #e2eaf4;
   margin-bottom: 14px;
   display: flex;
   align-items: center;
@@ -243,16 +243,16 @@ body {
 .block-body {
   font-size: 13px;
   line-height: 1.85;
-  color: #3a5a50;
+  color: #8aabbf;
 }
 .block-body p { margin-bottom: 10px; }
 .block-body p:last-child { margin-bottom: 0; }
-.block-body strong { color: var(--text); font-weight: 700; }
-.block-body em { color: var(--blue); font-style: normal; font-weight: 600; }
+.block-body strong { color: #e2eaf4; font-weight: 700; }
+.block-body em { color: #7dd3fc; font-style: normal; font-weight: 600; }
 
 /* ── CODE / MONO BLOCK ── */
 .mono-block {
-  background: #0d1117;
+  background: #060c18;
   border-radius: 10px;
   padding: 16px 20px;
   margin: 14px 0;
@@ -261,6 +261,7 @@ body {
   line-height: 1.8;
   color: #e6edf3;
   overflow-x: auto;
+  border: 1px solid rgba(255,255,255,0.06);
 }
 .mono-block .comment { color: #6e7681; }
 .mono-block .highlight { color: #79c0ff; }
@@ -281,6 +282,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
 }
 .gpu-layer-name { font-size: 13px; font-weight: 700; }
 .gpu-layer-spec { font-size: 11px; font-family: var(--mono); }
@@ -323,22 +325,22 @@ body {
   margin: 14px 0;
 }
 .data-table th {
-  background: #f0faf6;
+  background: rgba(255,255,255,0.06);
   padding: 9px 14px;
   text-align: left;
   font-weight: 700;
-  color: var(--text);
-  border-bottom: 2px solid var(--border);
+  color: #e2eaf4;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .data-table td {
   padding: 9px 14px;
-  border-bottom: 1px solid var(--border);
-  color: #3a5a50;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: #8aabbf;
   vertical-align: middle;
   line-height: 1.55;
 }
-.data-table tr:hover td { background: #fafcfb; }
-.data-table td:first-child { font-weight: 700; color: var(--text); }
+.data-table tr:hover td { background: rgba(255,255,255,0.03); }
+.data-table td:first-child { font-weight: 700; color: #c8d8e8; }
 
 /* ── COMPARISON GRID ── */
 .compare-2col {
@@ -347,7 +349,7 @@ body {
   gap: 12px;
   margin: 14px 0;
 }
-.compare-col { border-radius: 10px; padding: 14px 16px; border: 1px solid; }
+.compare-col { border-radius: 10px; padding: 14px 16px; border: 1px solid rgba(255,255,255,0.08); }
 .compare-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 10px; }
 .compare-col-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
 .compare-col-list li { font-size: 12px; line-height: 1.6; display: flex; gap: 6px; }
@@ -355,16 +357,16 @@ body {
 
 /* ── INSIGHT QUOTE ── */
 .insight-quote {
-  border-left: 4px solid var(--green);
-  background: #f0faf6;
+  border-left: 4px solid #16a34a;
+  background: rgba(22,163,74,0.1);
   border-radius: 0 10px 10px 0;
   padding: 14px 18px;
   margin: 14px 0;
   font-size: 13px;
   line-height: 1.8;
-  color: #1a5a3a;
+  color: #86efac;
 }
-.insight-quote strong { color: #1a6e50; }
+.insight-quote strong { color: #bbf7d0; }
 
 /* ── MCP DIAGRAM ── */
 .mcp-before-after {
@@ -392,7 +394,7 @@ body {
 }
 .mcp-matrix { display: grid; gap: 4px; }
 
-/* ── HAND ANALOGY ── */
+/* ── ANALOGY CARDS ── */
 .analogy-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -402,14 +404,14 @@ body {
 .analogy-card {
   border-radius: 10px;
   padding: 16px;
-  border: 1px solid var(--border);
-  background: #fafcfb;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
   text-align: center;
 }
 .analogy-icon { font-size: 28px; margin-bottom: 8px; }
-.analogy-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-.analogy-before { font-size: 11px; color: var(--red); margin-bottom: 4px; line-height: 1.55; }
-.analogy-after { font-size: 11px; color: var(--green); line-height: 1.55; }
+.analogy-name { font-size: 13px; font-weight: 700; color: #e2eaf4; margin-bottom: 6px; }
+.analogy-before { font-size: 11px; color: #f87171; margin-bottom: 4px; line-height: 1.55; }
+.analogy-after { font-size: 11px; color: #86efac; line-height: 1.55; }
 
 /* ── CONCLUSION ── */
 .conclusion-box {
@@ -452,8 +454,8 @@ body {
 /* ── FOOTER ── */
 .site-footer {
   text-align: center; padding: 24px 40px;
-  font-size: 12px; color: var(--muted);
-  border-top: 1px solid var(--border);
+  font-size: 12px; color: rgba(255,255,255,0.25);
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
 @media (max-width: 768px) {
@@ -586,27 +588,27 @@ body {
       <p>窗口能不能做大，本质上是一个<strong>算力和显存的工程问题</strong>，不是智力问题。有三条路径共同推动了这件事。</p>
     </div>
 
-    <div style="margin:16px 0 8px;font-size:13px;font-weight:700;color:var(--text);">路径一：Flash Attention — 重新安排计算顺序</div>
+    <div style="margin:16px 0 8px;font-size:13px;font-weight:700;color:#c8d8e8;">路径一：Flash Attention — 重新安排计算顺序</div>
 
     <div class="block-body">
       <p>理解 Flash Attention，先要知道 GPU 的内存是分层的：</p>
     </div>
 
     <div class="gpu-diagram">
-      <div class="gpu-layer" style="background:#dcfce7;border:1px solid #86efac;">
+      <div class="gpu-layer" style="background:rgba(22,163,74,0.12);">
         <div>
-          <div class="gpu-layer-name" style="color:#15803d;">SRAM（片上缓存）</div>
-          <div class="gpu-layer-spec" style="color:#166534;">大小：~20 MB &nbsp;·&nbsp; 离计算单元最近</div>
+          <div class="gpu-layer-name" style="color:#86efac;">SRAM（片上缓存）</div>
+          <div class="gpu-layer-spec" style="color:#4ade80;">大小：~20 MB &nbsp;·&nbsp; 离计算单元最近</div>
         </div>
-        <div class="gpu-layer-speed" style="color:#15803d;">🚀 速度极快</div>
+        <div class="gpu-layer-speed" style="color:#86efac;">🚀 速度极快</div>
       </div>
-      <div style="text-align:center;font-size:11px;color:var(--muted);padding:2px 0;">↕ 速度差约 10 倍</div>
-      <div class="gpu-layer" style="background:#fef2f2;border:1px solid #fca5a5;">
+      <div style="text-align:center;font-size:11px;color:rgba(255,255,255,0.3);padding:2px 0;">↕ 速度差约 10 倍</div>
+      <div class="gpu-layer" style="background:rgba(220,38,38,0.12);">
         <div>
-          <div class="gpu-layer-name" style="color:#b91c1c;">HBM 显存（GPU 主内存）</div>
-          <div class="gpu-layer-spec" style="color:#991b1b;">大小：40 ~ 192 GB &nbsp;·&nbsp; 离计算单元较远</div>
+          <div class="gpu-layer-name" style="color:#fca5a5;">HBM 显存（GPU 主内存）</div>
+          <div class="gpu-layer-spec" style="color:#f87171;">大小：40 ~ 192 GB &nbsp;·&nbsp; 离计算单元较远</div>
         </div>
-        <div class="gpu-layer-speed" style="color:#b91c1c;">🐢 相对较慢</div>
+        <div class="gpu-layer-speed" style="color:#fca5a5;">🐢 相对较慢</div>
       </div>
     </div>
 
@@ -617,27 +619,27 @@ body {
     </div>
 
     <div class="flow-compare">
-      <div class="flow-box" style="background:#fef2f2;border-color:#fca5a5;">
-        <div class="flow-title" style="color:var(--red);">⛔ 标准 Attention（原来）</div>
+      <div class="flow-box" style="background:rgba(220,38,38,0.08);border-color:rgba(248,113,113,0.3);">
+        <div class="flow-title" style="color:#fca5a5;">⛔ 标准 Attention（原来）</div>
         <div class="flow-steps">
-          <div class="flow-step" style="background:#fee2e2;color:#991b1b;">① 算 Q×K → 写入 HBM</div>
-          <div class="flow-arrow">↓ 从 HBM 读出（慢）</div>
-          <div class="flow-step" style="background:#fee2e2;color:#991b1b;">② 做 Softmax → 写入 HBM</div>
-          <div class="flow-arrow">↓ 从 HBM 读出（慢）</div>
-          <div class="flow-step" style="background:#fee2e2;color:#991b1b;">③ 乘以 V → 写入 HBM</div>
+          <div class="flow-step" style="background:rgba(220,38,38,0.15);color:#fca5a5;">① 算 Q×K → 写入 HBM</div>
+          <div class="flow-arrow" style="color:rgba(255,255,255,0.3);">↓ 从 HBM 读出（慢）</div>
+          <div class="flow-step" style="background:rgba(220,38,38,0.15);color:#fca5a5;">② 做 Softmax → 写入 HBM</div>
+          <div class="flow-arrow" style="color:rgba(255,255,255,0.3);">↓ 从 HBM 读出（慢）</div>
+          <div class="flow-step" style="background:rgba(220,38,38,0.15);color:#fca5a5;">③ 乘以 V → 写入 HBM</div>
         </div>
-        <div style="margin-top:10px;font-size:11px;color:#991b1b;">中间矩阵（40GB+）反复进出 HBM</div>
+        <div style="margin-top:10px;font-size:11px;color:#f87171;">中间矩阵（40GB+）反复进出 HBM</div>
       </div>
-      <div class="flow-box" style="background:#f0faf6;border-color:#86efac;">
-        <div class="flow-title" style="color:var(--green);">✅ Flash Attention（改进后）</div>
+      <div class="flow-box" style="background:rgba(22,163,74,0.08);border-color:rgba(74,222,128,0.3);">
+        <div class="flow-title" style="color:#86efac;">✅ Flash Attention（改进后）</div>
         <div class="flow-steps">
-          <div class="flow-step" style="background:#dcfce7;color:#15803d;">① 从 HBM 载入一小块 Q、K</div>
-          <div class="flow-arrow">↓ 全程留在 SRAM（快）</div>
-          <div class="flow-step" style="background:#dcfce7;color:#15803d;">② 在 SRAM 里完成 Softmax</div>
-          <div class="flow-arrow">↓ 继续留在 SRAM</div>
-          <div class="flow-step" style="background:#dcfce7;color:#15803d;">③ 加权求和 → 仅输出写回 HBM</div>
+          <div class="flow-step" style="background:rgba(22,163,74,0.15);color:#86efac;">① 从 HBM 载入一小块 Q、K</div>
+          <div class="flow-arrow" style="color:rgba(255,255,255,0.3);">↓ 全程留在 SRAM（快）</div>
+          <div class="flow-step" style="background:rgba(22,163,74,0.15);color:#86efac;">② 在 SRAM 里完成 Softmax</div>
+          <div class="flow-arrow" style="color:rgba(255,255,255,0.3);">↓ 继续留在 SRAM</div>
+          <div class="flow-step" style="background:rgba(22,163,74,0.15);color:#86efac;">③ 加权求和 → 仅输出写回 HBM</div>
         </div>
-        <div style="margin-top:10px;font-size:11px;color:#15803d;">中间过程消失，HBM 读写次数从 O(n²) 降到 O(n)</div>
+        <div style="margin-top:10px;font-size:11px;color:#4ade80;">中间过程消失，HBM 读写次数从 O(n²) 降到 O(n)</div>
       </div>
     </div>
 
@@ -646,13 +648,13 @@ body {
       <p>这让中间那个 40GB 的大矩阵完全不需要存在，显存压力少了一个数量级，这才是上下文窗口能从 4K 推到 100K+ 的直接原因。</p>
     </div>
 
-    <div style="margin:16px 0 8px;font-size:13px;font-weight:700;color:var(--text);">路径二：位置编码改进（RoPE）</div>
+    <div style="margin:16px 0 8px;font-size:13px;font-weight:700;color:#c8d8e8;">路径二：位置编码改进（RoPE）</div>
     <div class="block-body">
       <p>AI 处理文字时，除了看内容，还要知道每个字的"位置"——第 1 个字和第 10 万个字的语义权重不同。早期的位置编码是固定长度的，训练时最长见过 4000 个字，超过就不知道怎么处理了，相当于地图只画到 4000 米就没了。</p>
       <p><strong>RoPE（旋转位置编码）</strong>改用相对坐标系记录位置，让模型可以自然推断"没见过的更长位置"，理论上可以无限延伸——就像地图用了经纬度，不管你走多远都有坐标。</p>
     </div>
 
-    <div style="margin:16px 0 8px;font-size:13px;font-weight:700;color:var(--text);">路径三：硬件进步（最直接的方式）</div>
+    <div style="margin:16px 0 8px;font-size:13px;font-weight:700;color:#c8d8e8;">路径三：硬件进步（最直接的方式）</div>
     <div class="block-body">
       <p>SRAM 快但小，塞不下大序列；HBM 慢但大，是最终的存储上限。H100 显存 80GB，最新的 B200 是 192GB——显存越大，能同时装进去的上下文就越多。算力投入直接拉高了物理上限。</p>
     </div>
@@ -677,7 +679,7 @@ body {
       <p>AI 本身不知道今天的股价、不能查你的日历、不能读你本地的文件——这些都需要"调用外部工具"来完成。工具可以是任何东西：查天气、发邮件、搜索网页、操作 Excel、读数据库……</p>
       <p>这件事早就有了，叫 <strong>Function Calling（工具调用）</strong>。问题不在于"能不能调用"，而在于：</p>
     </div>
-    <div class="insight-quote" style="background:var(--red-light);border-color:var(--red);color:#7a2020;">
+    <div class="insight-quote" style="background:rgba(220,38,38,0.1);border-color:rgba(248,113,113,0.4);color:#fca5a5;">
       每个 AI 厂商、每个平台，调用工具的<strong>接口格式都不一样</strong>。一个工具想支持 Claude、GPT、Gemini 三个 AI，就要分别写三套对接代码。反过来，每个 AI 要接 100 个工具，就是 300 套代码。生态碎片化，极难规模化。
     </div>
   </div>
@@ -693,39 +695,39 @@ body {
       <div class="mcp-side">
         <div class="mcp-label">MCP 之前</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-          <div class="mcp-box" style="background:var(--blue-light);color:var(--blue);">Claude</div>
-          <div class="mcp-box" style="background:#fef3c7;color:#92400e;">GPT</div>
-          <div class="mcp-box" style="background:var(--green-light);color:var(--green);">Gemini</div>
-          <div class="mcp-box" style="background:var(--purple-light);color:var(--purple);">其他AI</div>
+          <div class="mcp-box" style="background:rgba(37,99,235,0.2);color:#93c5fd;">Claude</div>
+          <div class="mcp-box" style="background:rgba(234,179,8,0.15);color:#fde047;">GPT</div>
+          <div class="mcp-box" style="background:rgba(22,163,74,0.15);color:#86efac;">Gemini</div>
+          <div class="mcp-box" style="background:rgba(124,58,237,0.15);color:#c4b5fd;">其他AI</div>
         </div>
-        <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:4px;">每两者之间都要单独开发</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);text-align:center;margin-top:4px;">每两者之间都要单独开发</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
-          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">日历工具</div>
-          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">文件工具</div>
-          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">数据库</div>
-          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">邮件工具</div>
+          <div class="mcp-box" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-size:10px;">日历工具</div>
+          <div class="mcp-box" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-size:10px;">文件工具</div>
+          <div class="mcp-box" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-size:10px;">数据库</div>
+          <div class="mcp-box" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-size:10px;">邮件工具</div>
         </div>
-        <div style="font-size:10px;color:var(--red);text-align:center;margin-top:4px;">4个AI × 4个工具 = 最多16套对接</div>
+        <div style="font-size:10px;color:#f87171;text-align:center;margin-top:4px;">4个AI × 4个工具 = 最多16套对接</div>
       </div>
       <div class="mcp-arrow-col">→</div>
       <div class="mcp-side">
         <div class="mcp-label">MCP 之后</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-          <div class="mcp-box" style="background:var(--blue-light);color:var(--blue);">Claude</div>
-          <div class="mcp-box" style="background:#fef3c7;color:#92400e;">GPT</div>
-          <div class="mcp-box" style="background:var(--green-light);color:var(--green);">Gemini</div>
-          <div class="mcp-box" style="background:var(--purple-light);color:var(--purple);">其他AI</div>
+          <div class="mcp-box" style="background:rgba(37,99,235,0.2);color:#93c5fd;">Claude</div>
+          <div class="mcp-box" style="background:rgba(234,179,8,0.15);color:#fde047;">GPT</div>
+          <div class="mcp-box" style="background:rgba(22,163,74,0.15);color:#86efac;">Gemini</div>
+          <div class="mcp-box" style="background:rgba(124,58,237,0.15);color:#c4b5fd;">其他AI</div>
         </div>
         <div style="text-align:center;padding:8px 0;">
           <div style="background:linear-gradient(135deg,#1a6e50,#2563eb);color:#fff;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;">MCP 统一标准层</div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">日历工具</div>
-          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">文件工具</div>
-          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">数据库</div>
-          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">邮件工具</div>
+          <div class="mcp-box" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-size:10px;">日历工具</div>
+          <div class="mcp-box" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-size:10px;">文件工具</div>
+          <div class="mcp-box" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-size:10px;">数据库</div>
+          <div class="mcp-box" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.4);font-size:10px;">邮件工具</div>
         </div>
-        <div style="font-size:10px;color:var(--green);text-align:center;margin-top:4px;">工具只写一次 MCP 接口，所有 AI 通用</div>
+        <div style="font-size:10px;color:#86efac;text-align:center;margin-top:4px;">工具只写一次 MCP 接口，所有 AI 通用</div>
       </div>
     </div>
 
@@ -781,7 +783,7 @@ body {
     </div>
 
     <div style="margin-top:16px;">
-      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">📊 关键里程碑</div>
+      <div style="font-size:13px;font-weight:700;color:#c8d8e8;margin-bottom:10px;">📊 关键里程碑</div>
       <table class="data-table">
         <thead>
           <tr><th>能力</th><th>关键时间</th><th>标志事件</th><th>实用化时间</th></tr>
@@ -818,24 +820,24 @@ body {
       <p>现在 AI 自己能运行代码，这个反馈循环变成了"机器内部循环"：写 → 跑 → 报错 → 自动修改 → 再跑 → 直到输出正确结果。<strong>你拿到的直接是一个跑通的结果，而不是一段需要你去验证的代码。</strong></p>
     </div>
     <div class="compare-2col">
-      <div class="compare-col" style="background:#fef2f2;border-color:#fca5a5;">
-        <div class="compare-col-title" style="color:var(--red);">以前（无代码执行）</div>
+      <div class="compare-col" style="background:rgba(220,38,38,0.08);">
+        <div class="compare-col-title" style="color:#fca5a5;">以前（无代码执行）</div>
         <ul class="compare-col-list">
-          <li style="color:#7a2020;">AI 写完代码 → 交给你</li>
-          <li style="color:#7a2020;">你运行 → 发现报错</li>
-          <li style="color:#7a2020;">复制报错 → 告诉 AI</li>
-          <li style="color:#7a2020;">AI 修改 → 你再运行</li>
-          <li style="color:#7a2020;">…… 重复 N 轮</li>
+          <li style="color:#fca5a5;">AI 写完代码 → 交给你</li>
+          <li style="color:#fca5a5;">你运行 → 发现报错</li>
+          <li style="color:#fca5a5;">复制报错 → 告诉 AI</li>
+          <li style="color:#fca5a5;">AI 修改 → 你再运行</li>
+          <li style="color:#fca5a5;">…… 重复 N 轮</li>
         </ul>
       </div>
-      <div class="compare-col" style="background:#f0faf6;border-color:#86efac;">
-        <div class="compare-col-title" style="color:var(--green);">现在（有代码执行）</div>
+      <div class="compare-col" style="background:rgba(22,163,74,0.08);">
+        <div class="compare-col-title" style="color:#86efac;">现在（有代码执行）</div>
         <ul class="compare-col-list">
-          <li style="color:#1a5a3a;">AI 写代码 → 自己跑</li>
-          <li style="color:#1a5a3a;">发现报错 → 自动修改</li>
-          <li style="color:#1a5a3a;">自己再跑 → 验证结果</li>
-          <li style="color:#1a5a3a;">结果正确 → 交给你</li>
-          <li style="color:#1a5a3a;">你拿到的是跑通的成品</li>
+          <li style="color:#86efac;">AI 写代码 → 自己跑</li>
+          <li style="color:#86efac;">发现报错 → 自动修改</li>
+          <li style="color:#86efac;">自己再跑 → 验证结果</li>
+          <li style="color:#86efac;">结果正确 → 交给你</li>
+          <li style="color:#86efac;">你拿到的是跑通的成品</li>
         </ul>
       </div>
     </div>
@@ -843,7 +845,7 @@ body {
 
   <!-- ─────────────── SUMMARY ─────────────── -->
   <div class="section-head" id="s4">
-    <div class="section-num" style="background:var(--text);">总</div>
+    <div class="section-num" style="background:rgba(255,255,255,0.15);">总</div>
     <div>
       <div class="section-title-text">三件事合在一起，意味着什么</div>
     </div>
@@ -851,17 +853,17 @@ body {
 
   <div class="block">
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
-      <div style="background:var(--blue-light);border-radius:10px;padding:14px;text-align:center;">
-        <div style="font-size:11px;font-weight:700;color:var(--blue);margin-bottom:6px;">上下文窗口</div>
-        <div style="font-size:12px;color:#1a3a7a;line-height:1.55;">AI 有了<strong>足够长的工作记忆</strong>，能在一次对话里处理完整的真实项目，不再在中途失忆</div>
+      <div style="background:rgba(37,99,235,0.1);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(37,99,235,0.2);">
+        <div style="font-size:11px;font-weight:700;color:#93c5fd;margin-bottom:6px;">上下文窗口</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.55;">AI 有了<strong style="color:#bfdbfe;">足够长的工作记忆</strong>，能在一次对话里处理完整的真实项目，不再在中途失忆</div>
       </div>
-      <div style="background:var(--purple-light);border-radius:10px;padding:14px;text-align:center;">
-        <div style="font-size:11px;font-weight:700;color:var(--purple);margin-bottom:6px;">MCP 协议</div>
-        <div style="font-size:12px;color:#3a1a7a;line-height:1.55;">AI 有了<strong>标准化的工具语言</strong>，可以和外部世界大规模对接，而不是每次单独开发</div>
+      <div style="background:rgba(124,58,237,0.1);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(124,58,237,0.2);">
+        <div style="font-size:11px;font-weight:700;color:#c4b5fd;margin-bottom:6px;">MCP 协议</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.55;">AI 有了<strong style="color:#ddd6fe;">标准化的工具语言</strong>，可以和外部世界大规模对接，而不是每次单独开发</div>
       </div>
-      <div style="background:var(--orange-light);border-radius:10px;padding:14px;text-align:center;">
-        <div style="font-size:11px;font-weight:700;color:var(--orange);margin-bottom:6px;">执行能力</div>
-        <div style="font-size:12px;color:#7a2a0a;line-height:1.55;">AI 有了<strong>完成任务的手脚</strong>，从给建议变成了能自主执行、自我验证、交付结果</div>
+      <div style="background:rgba(234,88,12,0.1);border-radius:10px;padding:14px;text-align:center;border:1px solid rgba(234,88,12,0.2);">
+        <div style="font-size:11px;font-weight:700;color:#fdba74;margin-bottom:6px;">执行能力</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.55;">AI 有了<strong style="color:#fed7aa;">完成任务的手脚</strong>，从给建议变成了能自主执行、自我验证、交付结果</div>
       </div>
     </div>
     <div class="block-body">
@@ -875,10 +877,10 @@ body {
     <div class="conclusion-inner">
       <div class="conclusion-label">结语</div>
       <p class="conclusion-text">
-        前两波是 AI 的大脑越来越强。<br>
-        第三波是<em>大脑终于长出了身体</em>。<br><br>
+        从 2012 年 AlexNet 到今天，AI 走过了感知、生成、行动三个阶段。<br>
+        连接层的成熟，是"行动时代"的起点。<br><br>
         <strong>上下文是记忆，MCP 是语言，执行能力是手脚。</strong>
-        这三件事在 2026 年初同时成熟，让 AI 第一次从"你问它答"的顾问，
+        这三件事在 2025 年底到 2026 年初同时成熟，让 AI 第一次从"你问它答"的顾问，
         变成了<em>能独立推进一段工作的助理</em>——不够完美，但已经真实可用。
       </p>
     </div>
