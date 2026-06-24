@@ -472,8 +472,10 @@ body {
 <div class="report-hero">
   <div class="hero-inner">
     <div class="hero-breadcrumb">
-      <a href="research.html">← AI 专题调研</a>
-      <span>·</span>
+      <a href="research.html" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;">
+        <span style="font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;background:linear-gradient(90deg,#fff 0%,#93c5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Kyrie</span><span style="font-family:'Noto Serif SC',serif;font-size:15px;font-weight:400;color:rgba(255,255,255,0.5);">AI Insight</span>
+      </a>
+      <span style="color:rgba(255,255,255,0.25);">·</span>
       <span>AI 能力演化</span>
     </div>
     <div class="hero-tags">
@@ -493,15 +495,9 @@ body {
   </div>
 </div>
 
-<!-- ── NAV ── -->
-<nav class="main-nav">
-  <a class="nav-btn" href="index.html">📰 AI行业资讯</a>
-  <a class="nav-btn active" href="research.html">🔬 AI专题调研</a>
-</nav>
-
 <!-- ── TOC ── -->
 <div class="toc-bar">
-  <a class="toc-link" href="#overview">纵观三波</a>
+  <a class="toc-link" href="#overview">📌 本文聚焦</a>
   <a class="toc-link" href="#s1">① 上下文窗口</a>
   <a class="toc-link" href="#s1b">└ Flash Attention 原理</a>
   <a class="toc-link" href="#s2">② MCP 协议</a>
@@ -512,36 +508,14 @@ body {
 <div class="main-wrap">
 
   <!-- ─────────────── OVERVIEW ─────────────── -->
-  <div class="section-head" id="overview">
-    <div class="section-num" style="background:var(--muted);">↗</div>
-    <div>
-      <div class="section-title-text">纵观三波：每一波解锁了谁</div>
-      <div class="section-desc-text">从 2023 到 2026，AI 进步的三个不同驱动力</div>
-    </div>
-  </div>
-
-  <div class="wave-row">
-    <div class="wave-card" style="background:#f0faf6;border-color:#bbf7d0;">
-      <div class="wave-num" style="color:var(--green);">第一波 · 2023 H2</div>
-      <div class="wave-name">对话能力 + 生态补位</div>
-      <div class="wave-desc" style="color:#3a7a5a;">GPT-4 的能力 × 生态应用的爆发，让知识工作者第一次把 AI 当生产工具用</div>
-    </div>
-    <div class="wave-card" style="background:#eff6ff;border-color:#bfdbfe;">
-      <div class="wave-num" style="color:var(--blue);">第二波 · 2024末-2025初</div>
-      <div class="wave-name">推理能力跃迁</div>
-      <div class="wave-desc" style="color:#3a5a7a;">o1、DeepSeek R1，模型学会"想一想再回答"，复杂逻辑和代码调试开始可信</div>
-    </div>
-    <div class="wave-card active-wave" style="background:linear-gradient(135deg,#eff6ff,#f3e8ff);border-color:#a5b4fc;border-width:2px;">
-      <div class="wave-num" style="color:var(--purple);">第三波 · 2026初 ★</div>
-      <div class="wave-name">连接层成熟</div>
-      <div class="wave-desc" style="color:#4a3a7a;">记忆（长上下文）× 语言（MCP）× 手（执行能力），AI 开始真正"干活"</div>
-    </div>
-  </div>
-
-  <div class="block" style="background:linear-gradient(135deg,#f8faff,#f3f4f6);border-color:#c7d2fe;">
-    <div class="block-body">
-      <p>第三波和前两波有一个本质区别：<strong>前两波是"大脑变强了"，第三波是"大脑终于连上了身体"。</strong></p>
-      <p>模型的智力本身没有在 2026 年初发生第二次跃迁——真正发生的是，AI 第一次具备了完成一个完整任务链的基础能力：记得住足够长的上下文、能用统一方式调用外部工具、能够自己执行操作而不只是给建议。</p>
+  <div id="overview" style="margin-bottom:28px;">
+    <div style="background:linear-gradient(135deg,#0a0f1e 0%,#0f2027 60%,#0a1628 100%);border-radius:16px;padding:28px 32px;color:#fff;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(37,99,235,0.18) 0%,transparent 55%),radial-gradient(ellipse at 15% 80%,rgba(22,163,74,0.1) 0%,transparent 50%);"></div>
+      <div style="position:relative;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:12px;">本文聚焦</div>
+        <p style="font-size:15px;line-height:1.85;color:rgba(255,255,255,0.88);margin-bottom:14px;">从 2012 年深度学习崛起，到 2022 年 ChatGPT 引爆大众，AI 的每一轮跃迁都是<strong style="color:#fff;">大脑变强了</strong>——更博学、更善推理、更会表达。</p>
+        <p style="font-size:15px;line-height:1.85;color:rgba(255,255,255,0.88);">2025 年底到 2026 年初发生的事情，性质不同：<strong style="color:#93c5fd;">不是大脑又一次变强，而是大脑终于长出了身体。</strong>三件事同时成熟——足够长的记忆（上下文窗口）、标准化的工具语言（MCP）、可靠的执行之手（Computer Use）——让 AI 第一次有了独立完成一段工作的基础能力。</p>
+      </div>
     </div>
   </div>
 
