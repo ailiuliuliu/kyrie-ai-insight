@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 第三波跃迁：连接层的成熟 · Kyrie AI 洞察</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #eef6f4;
+  --surface: #ffffff;
+  --border: #dceee9;
+  --text: #1a2e28;
+  --muted: #7a9e96;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --green-mid: #bbf7d0;
+  --blue: #2563eb;
+  --blue-light: #dbeafe;
+  --purple: #7c3aed;
+  --purple-light: #f3e8ff;
+  --orange: #ea580c;
+  --orange-light: #ffedd5;
+  --cyan: #0891b2;
+  --cyan-light: #cffafe;
+  --yellow: #ca8a04;
+  --yellow-light: #fefce8;
+  --red: #dc2626;
+  --red-light: #fef2f2;
+  --shadow: 0 2px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: linear-gradient(160deg, #e4f3ee 0%, #eef6f4 45%, #e8f4f8 100%);
+  color: var(--text);
+  font-family: 'Inter', 'Noto Serif SC', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.report-hero {
+  background: linear-gradient(135deg, #0a0f1e 0%, #0f2027 40%, #0a1628 100%);
+  color: #fff;
+  padding: 56px 60px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.report-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 75% 30%, rgba(37,99,235,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 70%, rgba(22,163,74,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(124,58,237,0.1) 0%, transparent 50%);
+}
+.hero-inner { position: relative; max-width: 900px; }
+.hero-breadcrumb {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-breadcrumb a { color: rgba(255,255,255,0.45); text-decoration: none; }
+.hero-breadcrumb a:hover { color: rgba(255,255,255,0.75); }
+.hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.hero-tag {
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.hero-subtitle {
+  font-size: 15px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+  max-width: 680px;
+  margin-bottom: 28px;
+}
+.hero-meta {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+}
+.hero-meta span { display: flex; align-items: center; gap: 5px; }
+
+/* ── NAV ── */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 40px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-btn {
+  padding: 7px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.18s;
+}
+.nav-btn:hover { background: var(--green-light); color: var(--green); border-color: var(--green); }
+.nav-btn.active { background: var(--green); color: #fff; border-color: var(--green); }
+
+/* ── TOC ── */
+.toc-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 60px;
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  font-size: 12px;
+}
+.toc-link {
+  white-space: nowrap;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+.toc-link:hover { color: var(--text); }
+
+/* ── MAIN ── */
+.main-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 44px 40px 100px;
+}
+
+/* ── WAVE OVERVIEW ── */
+.wave-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 36px;
+}
+.wave-card {
+  border-radius: 12px;
+  padding: 16px 18px;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+}
+.wave-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.wave-name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.wave-desc { font-size: 12px; line-height: 1.6; }
+.wave-card.active-wave::after {
+  content: '← 本文重点';
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+/* ── SECTION HEADER ── */
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 48px 0 20px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border);
+  scroll-margin-top: 80px;
+}
+.section-num {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  font-weight: 800;
+  flex-shrink: 0;
+  color: #fff;
+}
+.section-title-text {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+.section-desc-text { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* ── BLOCK ── */
+.block {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+.block-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.block-body {
+  font-size: 13px;
+  line-height: 1.85;
+  color: #3a5a50;
+}
+.block-body p { margin-bottom: 10px; }
+.block-body p:last-child { margin-bottom: 0; }
+.block-body strong { color: var(--text); font-weight: 700; }
+.block-body em { color: var(--blue); font-style: normal; font-weight: 600; }
+
+/* ── CODE / MONO BLOCK ── */
+.mono-block {
+  background: #0d1117;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 14px 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: #e6edf3;
+  overflow-x: auto;
+}
+.mono-block .comment { color: #6e7681; }
+.mono-block .highlight { color: #79c0ff; }
+.mono-block .warn { color: #ffa657; }
+.mono-block .good { color: #7ee787; }
+
+/* ── GPU DIAGRAM ── */
+.gpu-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 16px 0;
+}
+.gpu-layer {
+  border-radius: 8px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gpu-layer-name { font-size: 13px; font-weight: 700; }
+.gpu-layer-spec { font-size: 11px; font-family: var(--mono); }
+.gpu-layer-speed { font-size: 11px; font-weight: 600; }
+
+/* ── FLOW DIAGRAM ── */
+.flow-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 14px 0;
+}
+.flow-box {
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid;
+}
+.flow-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.flow-steps { display: flex; flex-direction: column; gap: 4px; }
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  padding: 5px 8px;
+  border-radius: 6px;
+}
+.flow-arrow { font-size: 11px; color: var(--muted); text-align: center; padding: 2px 0; }
+
+/* ── TABLE ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 14px 0;
+}
+.data-table th {
+  background: #f0faf6;
+  padding: 9px 14px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 2px solid var(--border);
+}
+.data-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: #3a5a50;
+  vertical-align: middle;
+  line-height: 1.55;
+}
+.data-table tr:hover td { background: #fafcfb; }
+.data-table td:first-child { font-weight: 700; color: var(--text); }
+
+/* ── COMPARISON GRID ── */
+.compare-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 14px 0;
+}
+.compare-col { border-radius: 10px; padding: 14px 16px; border: 1px solid; }
+.compare-col-title { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 10px; }
+.compare-col-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.compare-col-list li { font-size: 12px; line-height: 1.6; display: flex; gap: 6px; }
+.compare-col-list li::before { content: '·'; flex-shrink: 0; font-weight: 700; }
+
+/* ── INSIGHT QUOTE ── */
+.insight-quote {
+  border-left: 4px solid var(--green);
+  background: #f0faf6;
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #1a5a3a;
+}
+.insight-quote strong { color: #1a6e50; }
+
+/* ── MCP DIAGRAM ── */
+.mcp-before-after {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+  margin: 16px 0;
+}
+.mcp-side { display: flex; flex-direction: column; gap: 8px; }
+.mcp-arrow-col { display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--muted); }
+.mcp-box {
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+}
+.mcp-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 8px; }
+.mcp-conn-line {
+  height: 2px;
+  background: var(--border);
+  border-radius: 2px;
+  flex: 1;
+}
+.mcp-matrix { display: grid; gap: 4px; }
+
+/* ── HAND ANALOGY ── */
+.analogy-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 14px 0;
+}
+.analogy-card {
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: #fafcfb;
+  text-align: center;
+}
+.analogy-icon { font-size: 28px; margin-bottom: 8px; }
+.analogy-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.analogy-before { font-size: 11px; color: var(--red); margin-bottom: 4px; line-height: 1.55; }
+.analogy-after { font-size: 11px; color: var(--green); line-height: 1.55; }
+
+/* ── CONCLUSION ── */
+.conclusion-box {
+  background: linear-gradient(135deg, #0a0f1e 0%, #0f2027 60%, #0a1628 100%);
+  border-radius: 16px;
+  padding: 32px 36px;
+  color: #fff;
+  margin-top: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.conclusion-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 75% 25%, rgba(37,99,235,0.2) 0%, transparent 55%);
+}
+.conclusion-inner { position: relative; }
+.conclusion-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 12px;
+}
+.conclusion-text { font-size: 15px; line-height: 1.85; color: rgba(255,255,255,0.88); }
+.conclusion-text strong { color: #fff; }
+.conclusion-text em { color: #93c5fd; font-style: normal; font-weight: 600; }
+
+/* ── TAGS ── */
+.ntag {
+  padding: 1px 7px; border-radius: 4px;
+  font-size: 10px; font-weight: 600;
+}
+.ntag-green  { background: var(--green-light);  color: var(--green); }
+.ntag-blue   { background: var(--blue-light);   color: var(--blue); }
+.ntag-purple { background: var(--purple-light); color: var(--purple); }
+.ntag-orange { background: var(--orange-light); color: var(--orange); }
+.ntag-cyan   { background: var(--cyan-light);   color: var(--cyan); }
+.ntag-yellow { background: var(--yellow-light); color: var(--yellow); }
+.ntag-red    { background: var(--red-light);    color: var(--red); }
+
+/* ── FOOTER ── */
+.site-footer {
+  text-align: center; padding: 24px 40px;
+  font-size: 12px; color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .report-hero { padding: 36px 20px 32px; }
+  .toc-bar { padding: 10px 20px; }
+  .main-wrap { padding: 28px 16px 80px; }
+  .wave-row, .flow-compare, .compare-2col, .analogy-row { grid-template-columns: 1fr; }
+  .mcp-before-after { grid-template-columns: 1fr; }
+  .mcp-arrow-col { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="report-hero">
+  <div class="hero-inner">
+    <div class="hero-breadcrumb">
+      <a href="research.html">← AI 专题调研</a>
+      <span>·</span>
+      <span>AI 能力演化</span>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag" style="background:rgba(37,99,235,0.25);color:#93c5fd;">🔬 技术深度</span>
+      <span class="hero-tag" style="background:rgba(22,163,74,0.25);color:#86efac;">上下文窗口</span>
+      <span class="hero-tag" style="background:rgba(124,58,237,0.25);color:#c4b5fd;">MCP 协议</span>
+      <span class="hero-tag" style="background:rgba(234,88,12,0.2);color:#fdba74;">AI 执行能力</span>
+    </div>
+    <h1 class="hero-title">AI 第三波跃迁：连接层的成熟<br><span style="font-size:0.7em;color:rgba(255,255,255,0.6);">—— 大脑终于有了记忆、语言和手</span></h1>
+    <p class="hero-subtitle">2026 年初，AI 没有变得"更聪明"，但它第一次有了可以可靠运作的记忆（上下文）、统一语言（MCP）和执行之手（Computer Use）。这三件事合在一起，让 AI 从顾问变成了能干活的助手。</p>
+    <div class="hero-meta">
+      <span>📅 2026年6月24日</span>
+      <span>✍️ Kyrie</span>
+      <span>📖 约 3500 字</span>
+      <span>⚙️ 技术 · 工程 · 应用</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="main-nav">
+  <a class="nav-btn" href="index.html">📰 AI行业资讯</a>
+  <a class="nav-btn active" href="research.html">🔬 AI专题调研</a>
+</nav>
+
+<!-- ── TOC ── -->
+<div class="toc-bar">
+  <a class="toc-link" href="#overview">纵观三波</a>
+  <a class="toc-link" href="#s1">① 上下文窗口</a>
+  <a class="toc-link" href="#s1b">└ Flash Attention 原理</a>
+  <a class="toc-link" href="#s2">② MCP 协议</a>
+  <a class="toc-link" href="#s3">③ 执行能力</a>
+  <a class="toc-link" href="#s4">总结</a>
+</div>
+
+<div class="main-wrap">
+
+  <!-- ─────────────── OVERVIEW ─────────────── -->
+  <div class="section-head" id="overview">
+    <div class="section-num" style="background:var(--muted);">↗</div>
+    <div>
+      <div class="section-title-text">纵观三波：每一波解锁了谁</div>
+      <div class="section-desc-text">从 2023 到 2026，AI 进步的三个不同驱动力</div>
+    </div>
+  </div>
+
+  <div class="wave-row">
+    <div class="wave-card" style="background:#f0faf6;border-color:#bbf7d0;">
+      <div class="wave-num" style="color:var(--green);">第一波 · 2023 H2</div>
+      <div class="wave-name">对话能力 + 生态补位</div>
+      <div class="wave-desc" style="color:#3a7a5a;">GPT-4 的能力 × 生态应用的爆发，让知识工作者第一次把 AI 当生产工具用</div>
+    </div>
+    <div class="wave-card" style="background:#eff6ff;border-color:#bfdbfe;">
+      <div class="wave-num" style="color:var(--blue);">第二波 · 2024末-2025初</div>
+      <div class="wave-name">推理能力跃迁</div>
+      <div class="wave-desc" style="color:#3a5a7a;">o1、DeepSeek R1，模型学会"想一想再回答"，复杂逻辑和代码调试开始可信</div>
+    </div>
+    <div class="wave-card active-wave" style="background:linear-gradient(135deg,#eff6ff,#f3e8ff);border-color:#a5b4fc;border-width:2px;">
+      <div class="wave-num" style="color:var(--purple);">第三波 · 2026初 ★</div>
+      <div class="wave-name">连接层成熟</div>
+      <div class="wave-desc" style="color:#4a3a7a;">记忆（长上下文）× 语言（MCP）× 手（执行能力），AI 开始真正"干活"</div>
+    </div>
+  </div>
+
+  <div class="block" style="background:linear-gradient(135deg,#f8faff,#f3f4f6);border-color:#c7d2fe;">
+    <div class="block-body">
+      <p>第三波和前两波有一个本质区别：<strong>前两波是"大脑变强了"，第三波是"大脑终于连上了身体"。</strong></p>
+      <p>模型的智力本身没有在 2026 年初发生第二次跃迁——真正发生的是，AI 第一次具备了完成一个完整任务链的基础能力：记得住足够长的上下文、能用统一方式调用外部工具、能够自己执行操作而不只是给建议。</p>
+    </div>
+  </div>
+
+  <!-- ─────────────── SECTION 1 ─────────────── -->
+  <div class="section-head" id="s1">
+    <div class="section-num" style="background:var(--blue);">1</div>
+    <div>
+      <div class="section-title-text">上下文窗口：从"失忆"到"记得住一本书"</div>
+      <div class="section-desc-text">不是 AI 记性变好了，而是工程上找到了撑住更大窗口的方法</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📏 上下文窗口是什么</div>
+    <div class="block-body">
+      <p>你跟 AI 说的每一句话、AI 的每一句回复，都会占用一个叫"上下文窗口"的空间。单位是 <strong>token</strong>，中文大约一个字对应 1~2 个 token。这个空间有上限，超出去的内容 AI 完全看不见——不是模糊记得，而是字面意义的不存在。</p>
+    </div>
+    <table class="data-table" style="margin-top:14px;">
+      <thead>
+        <tr>
+          <th>时间</th>
+          <th>代表模型</th>
+          <th>窗口大小</th>
+          <th>能装多少</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2023年初</td>
+          <td>GPT-3.5</td>
+          <td>4K token</td>
+          <td>约 4 页 A4 纸</td>
+        </tr>
+        <tr>
+          <td>2023年中</td>
+          <td>GPT-4 / Claude 1</td>
+          <td>8K ~ 32K</td>
+          <td>一篇中等长度报告</td>
+        </tr>
+        <tr>
+          <td>2024年</td>
+          <td>Claude 2 / GPT-4 Turbo</td>
+          <td>100K ~ 128K</td>
+          <td>一本薄书</td>
+        </tr>
+        <tr>
+          <td>2025年旗舰</td>
+          <td>Gemini 1.5 Pro</td>
+          <td><strong>100万 token</strong></td>
+          <td>《哈利·波特》全集 × 3</td>
+        </tr>
+        <tr>
+          <td>2026年基线</td>
+          <td>主流中档模型</td>
+          <td>100K ~ 200K（普及）</td>
+          <td>百万级已成旗舰标配</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="block-body" style="margin-top:4px;">
+      <p>实用意义：窗口够大之后，你可以把整个代码库、一份完整的研究报告、整次对话历史一次性丢进去。AI 全程"记得"，分析的连贯性和准确度直接上了一个台阶。</p>
+    </div>
+  </div>
+
+  <div class="block" id="s1b">
+    <div class="block-title">⚙️ 怎么实现变大的：三条工程路径</div>
+    <div class="block-body">
+      <p>窗口能不能做大，本质上是一个<strong>算力和显存的工程问题</strong>，不是智力问题。有三条路径共同推动了这件事。</p>
+    </div>
+
+    <div style="margin:16px 0 8px;font-size:13px;font-weight:700;color:var(--text);">路径一：Flash Attention — 重新安排计算顺序</div>
+
+    <div class="block-body">
+      <p>理解 Flash Attention，先要知道 GPU 的内存是分层的：</p>
+    </div>
+
+    <div class="gpu-diagram">
+      <div class="gpu-layer" style="background:#dcfce7;border:1px solid #86efac;">
+        <div>
+          <div class="gpu-layer-name" style="color:#15803d;">SRAM（片上缓存）</div>
+          <div class="gpu-layer-spec" style="color:#166534;">大小：~20 MB &nbsp;·&nbsp; 离计算单元最近</div>
+        </div>
+        <div class="gpu-layer-speed" style="color:#15803d;">🚀 速度极快</div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--muted);padding:2px 0;">↕ 速度差约 10 倍</div>
+      <div class="gpu-layer" style="background:#fef2f2;border:1px solid #fca5a5;">
+        <div>
+          <div class="gpu-layer-name" style="color:#b91c1c;">HBM 显存（GPU 主内存）</div>
+          <div class="gpu-layer-spec" style="color:#991b1b;">大小：40 ~ 192 GB &nbsp;·&nbsp; 离计算单元较远</div>
+        </div>
+        <div class="gpu-layer-speed" style="color:#b91c1c;">🐢 相对较慢</div>
+      </div>
+    </div>
+
+    <div class="block-body">
+      <p>Attention 的核心数学是：对每一个字，算它和前面所有字的相关性，然后加权求和。这个计算量是 <strong>n²</strong>（n 是序列长度）——序列翻 10 倍，计算量翻 100 倍。</p>
+      <p>更要命的是：标准实现中，每一步的中间结果都要<strong>写进 HBM，下一步再从 HBM 读出来</strong>。当 n = 10 万时，中间的 n×n 矩阵大小约 40GB——这份数据在 HBM 里反复搬来搬去，而搬运本身比数学计算慢得多。</p>
+      <p><em>瓶颈不是算力，是数据搬运。</em></p>
+    </div>
+
+    <div class="flow-compare">
+      <div class="flow-box" style="background:#fef2f2;border-color:#fca5a5;">
+        <div class="flow-title" style="color:var(--red);">⛔ 标准 Attention（原来）</div>
+        <div class="flow-steps">
+          <div class="flow-step" style="background:#fee2e2;color:#991b1b;">① 算 Q×K → 写入 HBM</div>
+          <div class="flow-arrow">↓ 从 HBM 读出（慢）</div>
+          <div class="flow-step" style="background:#fee2e2;color:#991b1b;">② 做 Softmax → 写入 HBM</div>
+          <div class="flow-arrow">↓ 从 HBM 读出（慢）</div>
+          <div class="flow-step" style="background:#fee2e2;color:#991b1b;">③ 乘以 V → 写入 HBM</div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:#991b1b;">中间矩阵（40GB+）反复进出 HBM</div>
+      </div>
+      <div class="flow-box" style="background:#f0faf6;border-color:#86efac;">
+        <div class="flow-title" style="color:var(--green);">✅ Flash Attention（改进后）</div>
+        <div class="flow-steps">
+          <div class="flow-step" style="background:#dcfce7;color:#15803d;">① 从 HBM 载入一小块 Q、K</div>
+          <div class="flow-arrow">↓ 全程留在 SRAM（快）</div>
+          <div class="flow-step" style="background:#dcfce7;color:#15803d;">② 在 SRAM 里完成 Softmax</div>
+          <div class="flow-arrow">↓ 继续留在 SRAM</div>
+          <div class="flow-step" style="background:#dcfce7;color:#15803d;">③ 加权求和 → 仅输出写回 HBM</div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;color:#15803d;">中间过程消失，HBM 读写次数从 O(n²) 降到 O(n)</div>
+      </div>
+    </div>
+
+    <div class="block-body">
+      <p>Flash Attention 的核心洞察是：Softmax 可以被<strong>分块增量计算</strong>——处理一小块，记录一个修正因子，下一块用修正因子调整之前的结果，最终结果和全量算完全相同。</p>
+      <p>这让中间那个 40GB 的大矩阵完全不需要存在，显存压力少了一个数量级，这才是上下文窗口能从 4K 推到 100K+ 的直接原因。</p>
+    </div>
+
+    <div style="margin:16px 0 8px;font-size:13px;font-weight:700;color:var(--text);">路径二：位置编码改进（RoPE）</div>
+    <div class="block-body">
+      <p>AI 处理文字时，除了看内容，还要知道每个字的"位置"——第 1 个字和第 10 万个字的语义权重不同。早期的位置编码是固定长度的，训练时最长见过 4000 个字，超过就不知道怎么处理了，相当于地图只画到 4000 米就没了。</p>
+      <p><strong>RoPE（旋转位置编码）</strong>改用相对坐标系记录位置，让模型可以自然推断"没见过的更长位置"，理论上可以无限延伸——就像地图用了经纬度，不管你走多远都有坐标。</p>
+    </div>
+
+    <div style="margin:16px 0 8px;font-size:13px;font-weight:700;color:var(--text);">路径三：硬件进步（最直接的方式）</div>
+    <div class="block-body">
+      <p>SRAM 快但小，塞不下大序列；HBM 慢但大，是最终的存储上限。H100 显存 80GB，最新的 B200 是 192GB——显存越大，能同时装进去的上下文就越多。算力投入直接拉高了物理上限。</p>
+    </div>
+
+    <div class="insight-quote">
+      <strong>一句话：</strong>上下文窗口变大，不是 AI 变聪明了，而是工程上找到了更省力的计算方式（Flash Attention）、更通用的位置表示（RoPE）、加上硬件存储的持续增长，三力合一把这个上限推高的。
+    </div>
+  </div>
+
+  <!-- ─────────────── SECTION 2 ─────────────── -->
+  <div class="section-head" id="s2">
+    <div class="section-num" style="background:var(--purple);">2</div>
+    <div>
+      <div class="section-title-text">MCP：AI 工具调用的"USB 标准"</div>
+      <div class="section-desc-text">解决的不是"AI能不能调用工具"，而是"一次接入，到处可用"</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🔌 先理解"AI 调用工具"</div>
+    <div class="block-body">
+      <p>AI 本身不知道今天的股价、不能查你的日历、不能读你本地的文件——这些都需要"调用外部工具"来完成。工具可以是任何东西：查天气、发邮件、搜索网页、操作 Excel、读数据库……</p>
+      <p>这件事早就有了，叫 <strong>Function Calling（工具调用）</strong>。问题不在于"能不能调用"，而在于：</p>
+    </div>
+    <div class="insight-quote" style="background:var(--red-light);border-color:var(--red);color:#7a2020;">
+      每个 AI 厂商、每个平台，调用工具的<strong>接口格式都不一样</strong>。一个工具想支持 Claude、GPT、Gemini 三个 AI，就要分别写三套对接代码。反过来，每个 AI 要接 100 个工具，就是 300 套代码。生态碎片化，极难规模化。
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🔧 MCP 做了什么</div>
+    <div class="block-body">
+      <p><strong>MCP（Model Context Protocol）</strong>是 Anthropic 于 2024 年 11 月提出的开放标准协议，已被 OpenAI、Google、微软等主要厂商跟进支持。</p>
+      <p>它做的事类比 USB 接口标准：充电口标准化之前，每个品牌用不同接口，一根线只能用一台设备；USB-C 统一之后，一根线充所有设备。</p>
+    </div>
+
+    <div class="mcp-before-after">
+      <div class="mcp-side">
+        <div class="mcp-label">MCP 之前</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div class="mcp-box" style="background:var(--blue-light);color:var(--blue);">Claude</div>
+          <div class="mcp-box" style="background:#fef3c7;color:#92400e;">GPT</div>
+          <div class="mcp-box" style="background:var(--green-light);color:var(--green);">Gemini</div>
+          <div class="mcp-box" style="background:var(--purple-light);color:var(--purple);">其他AI</div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);text-align:center;margin-top:4px;">每两者之间都要单独开发</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px;">
+          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">日历工具</div>
+          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">文件工具</div>
+          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">数据库</div>
+          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">邮件工具</div>
+        </div>
+        <div style="font-size:10px;color:var(--red);text-align:center;margin-top:4px;">4个AI × 4个工具 = 最多16套对接</div>
+      </div>
+      <div class="mcp-arrow-col">→</div>
+      <div class="mcp-side">
+        <div class="mcp-label">MCP 之后</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div class="mcp-box" style="background:var(--blue-light);color:var(--blue);">Claude</div>
+          <div class="mcp-box" style="background:#fef3c7;color:#92400e;">GPT</div>
+          <div class="mcp-box" style="background:var(--green-light);color:var(--green);">Gemini</div>
+          <div class="mcp-box" style="background:var(--purple-light);color:var(--purple);">其他AI</div>
+        </div>
+        <div style="text-align:center;padding:8px 0;">
+          <div style="background:linear-gradient(135deg,#1a6e50,#2563eb);color:#fff;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;">MCP 统一标准层</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">日历工具</div>
+          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">文件工具</div>
+          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">数据库</div>
+          <div class="mcp-box" style="background:#f0f0f0;color:#666;font-size:10px;">邮件工具</div>
+        </div>
+        <div style="font-size:10px;color:var(--green);text-align:center;margin-top:4px;">工具只写一次 MCP 接口，所有 AI 通用</div>
+      </div>
+    </div>
+
+    <div class="block-body" style="margin-top:8px;">
+      <p>截至 2026 年中，已有数千个第三方工具完成了 MCP 对接，覆盖开发工具（GitHub、VS Code）、生产力工具（日历、邮件、Notion）、数据库、企业内部系统等。这就是为什么现在用 Claude Code 或 MyFlicker，能"一键接上"各种外部系统——背后靠的是标准化，而不是每个组合单独开发。</p>
+    </div>
+  </div>
+
+  <!-- ─────────────── SECTION 3 ─────────────── -->
+  <div class="section-head" id="s3">
+    <div class="section-num" style="background:var(--orange);">3</div>
+    <div>
+      <div class="section-title-text">执行能力：AI 终于有了"手"</div>
+      <div class="section-desc-text">文件访问 · 代码执行 · Computer Use，从"给建议"到"去做事"</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🤔 以前 AI 只有嘴，没有手</div>
+    <div class="block-body">
+      <p>在这之前，AI 能做的事本质上只有一种：<strong>说</strong>。它告诉你应该怎么做，但它自己不会去做。</p>
+      <p>让它分析一份 Excel：它最多告诉你"你可以用这个公式……"<br>
+      让它改一段代码：它写完给你，对不对你自己去运行验证<br>
+      让它帮你订一个会议：它说"你可以去日历里这样操作……"</p>
+      <p><em>AI 是一个没有手的顾问</em>——给建议无限好，但执行还是你的事。</p>
+    </div>
+    <div class="insight-quote">
+      2026 年初发生的，是 AI 的三种"手"同时开始在主流产品中稳定可用。
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🖐 三种"手"分别是什么</div>
+    <div class="analogy-row">
+      <div class="analogy-card">
+        <div class="analogy-icon">📂</div>
+        <div class="analogy-name">文件访问</div>
+        <div class="analogy-before">❌ 以前：你把文字复制进对话框，AI 才能"看"</div>
+        <div class="analogy-after">✅ 现在：直接丢给 AI 一个 PDF / 代码库，它真的在读里面的内容</div>
+      </div>
+      <div class="analogy-card">
+        <div class="analogy-icon">⚙️</div>
+        <div class="analogy-name">代码执行</div>
+        <div class="analogy-before">❌ 以前：AI 写完代码给你，你去运行，你告诉它报错了</div>
+        <div class="analogy-after">✅ 现在：AI 写完自己跑一遍，看结果，不对自己改，改完再跑，直到正确</div>
+      </div>
+      <div class="analogy-card">
+        <div class="analogy-icon">🖥️</div>
+        <div class="analogy-name">Computer Use</div>
+        <div class="analogy-before">❌ 以前：告诉你"点这个按钮，然后填这个表单……"</div>
+        <div class="analogy-after">✅ 现在：AI 直接操作你的屏幕，看到按钮就点，看到输入框就填</div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">📊 关键里程碑</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>能力</th><th>关键时间</th><th>标志事件</th><th>实用化时间</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>文件访问</td>
+            <td>2024 H1</td>
+            <td>GPT-4o 支持上传文档、Gemini 1.5 支持长文档分析</td>
+            <td>2025 年底普及，2026 年成基线</td>
+          </tr>
+          <tr>
+            <td>代码执行（Code Interpreter）</td>
+            <td>2023 H2</td>
+            <td>ChatGPT Code Interpreter 发布</td>
+            <td>2024 年普及，2025 年 Agent 化</td>
+          </tr>
+          <tr>
+            <td>Computer Use</td>
+            <td>2024 年 10 月</td>
+            <td>Anthropic 发布 Claude Computer Use API</td>
+            <td>2025-2026 年开发者工具中实用化</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">💡 代码执行的意义：为什么"自己验证"这么重要</div>
+    <div class="block-body">
+      <p>代码执行看起来是最"技术"的那个，但对普通用户来说，它的影响最直接。</p>
+      <p>以前让 AI 写代码，准确率是一个概率问题——它大概 70% 的时候写对了，但你不知道这次是不是那 30%，你需要自己去运行、看报错、再告诉它。每次来回是一个"人工反馈循环"。</p>
+      <p>现在 AI 自己能运行代码，这个反馈循环变成了"机器内部循环"：写 → 跑 → 报错 → 自动修改 → 再跑 → 直到输出正确结果。<strong>你拿到的直接是一个跑通的结果，而不是一段需要你去验证的代码。</strong></p>
+    </div>
+    <div class="compare-2col">
+      <div class="compare-col" style="background:#fef2f2;border-color:#fca5a5;">
+        <div class="compare-col-title" style="color:var(--red);">以前（无代码执行）</div>
+        <ul class="compare-col-list">
+          <li style="color:#7a2020;">AI 写完代码 → 交给你</li>
+          <li style="color:#7a2020;">你运行 → 发现报错</li>
+          <li style="color:#7a2020;">复制报错 → 告诉 AI</li>
+          <li style="color:#7a2020;">AI 修改 → 你再运行</li>
+          <li style="color:#7a2020;">…… 重复 N 轮</li>
+        </ul>
+      </div>
+      <div class="compare-col" style="background:#f0faf6;border-color:#86efac;">
+        <div class="compare-col-title" style="color:var(--green);">现在（有代码执行）</div>
+        <ul class="compare-col-list">
+          <li style="color:#1a5a3a;">AI 写代码 → 自己跑</li>
+          <li style="color:#1a5a3a;">发现报错 → 自动修改</li>
+          <li style="color:#1a5a3a;">自己再跑 → 验证结果</li>
+          <li style="color:#1a5a3a;">结果正确 → 交给你</li>
+          <li style="color:#1a5a3a;">你拿到的是跑通的成品</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────── SUMMARY ─────────────── -->
+  <div class="section-head" id="s4">
+    <div class="section-num" style="background:var(--text);">总</div>
+    <div>
+      <div class="section-title-text">三件事合在一起，意味着什么</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;">
+      <div style="background:var(--blue-light);border-radius:10px;padding:14px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--blue);margin-bottom:6px;">上下文窗口</div>
+        <div style="font-size:12px;color:#1a3a7a;line-height:1.55;">AI 有了<strong>足够长的工作记忆</strong>，能在一次对话里处理完整的真实项目，不再在中途失忆</div>
+      </div>
+      <div style="background:var(--purple-light);border-radius:10px;padding:14px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--purple);margin-bottom:6px;">MCP 协议</div>
+        <div style="font-size:12px;color:#3a1a7a;line-height:1.55;">AI 有了<strong>标准化的工具语言</strong>，可以和外部世界大规模对接，而不是每次单独开发</div>
+      </div>
+      <div style="background:var(--orange-light);border-radius:10px;padding:14px;text-align:center;">
+        <div style="font-size:11px;font-weight:700;color:var(--orange);margin-bottom:6px;">执行能力</div>
+        <div style="font-size:12px;color:#7a2a0a;line-height:1.55;">AI 有了<strong>完成任务的手脚</strong>，从给建议变成了能自主执行、自我验证、交付结果</div>
+      </div>
+    </div>
+    <div class="block-body">
+      <p>这三件事的意义不是各自独立的，而是共同构成了一个闭环：</p>
+      <p><strong>记得住（长上下文）→ 能接入工具（MCP）→ 能自己干（执行能力）</strong></p>
+      <p>有了这个闭环，AI 第一次具备了在没有人时刻盯着的情况下，<em>独立完成一个有一定复杂度的任务</em>的基础能力。这也是为什么 2026 年是 Agent 从"演示阶段"走向"实用阶段"的起点。</p>
+    </div>
+  </div>
+
+  <div class="conclusion-box">
+    <div class="conclusion-inner">
+      <div class="conclusion-label">结语</div>
+      <p class="conclusion-text">
+        前两波是 AI 的大脑越来越强。<br>
+        第三波是<em>大脑终于长出了身体</em>。<br><br>
+        <strong>上下文是记忆，MCP 是语言，执行能力是手脚。</strong>
+        这三件事在 2026 年初同时成熟，让 AI 第一次从"你问它答"的顾问，
+        变成了<em>能独立推进一段工作的助理</em>——不够完美，但已经真实可用。
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  Kyrie 的 AI 洞察基地 · 专题报告：AI 能力演化 · 2026.06.24
+</footer>
+
+</body>
+</html>
