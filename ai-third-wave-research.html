@@ -504,7 +504,8 @@ body {
   <a class="toc-link" href="#s1b">└ Flash Attention 原理</a>
   <a class="toc-link" href="#s2">② MCP 协议</a>
   <a class="toc-link" href="#s3">③ 执行能力</a>
-  <a class="toc-link" href="#s4">总结</a>
+  <a class="toc-link" href="#s4">④ Harness 编排层</a>
+  <a class="toc-link" href="#s5">总结</a>
 </div>
 
 <div class="main-wrap">
@@ -843,8 +844,90 @@ body {
     </div>
   </div>
 
-  <!-- ─────────────── SUMMARY ─────────────── -->
+  <!-- ─────────────── SECTION 4: HARNESS ─────────────── -->
   <div class="section-head" id="s4">
+    <div class="section-num" style="background:var(--green);">4</div>
+    <div>
+      <div class="section-title-text">Agent Harness：把三种能力串起来的工程层</div>
+      <div class="section-desc-text">真正让 Agent "可用"而不只是"可演示"的，是外面那层脚手架</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🤔 一个反常识的问题</div>
+    <div class="block-body">
+      <p>上下文窗口在 2023 年就到了 100K，MCP 2024 年 11 月就发布了，Computer Use 2024 年 10 月就上线了——<strong>如果技术早就有，为什么 Agent 直到 2025 年底才开始"真正可用"？</strong></p>
+      <p>因为这三种能力单独存在，不等于能被可靠地运用。就像你有了引擎、轮子和方向盘，不代表你有了一辆能开的车——你还需要有人把它们组装起来，加上刹车、油门、仪表盘、错误保护……这套"组装逻辑"就是 <strong>Agent Harness</strong>（Agent 工程编排框架）。</p>
+    </div>
+    <div class="insight-quote" style="background:rgba(22,163,74,0.1);border-color:rgba(74,222,128,0.4);color:#86efac;">
+      <strong>模型能力 ≠ 系统能力。</strong>Harness 做的事，是把一个"偶尔能干活"的模型，变成一个"可以被依赖地交付结果"的工作流。
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">⚙️ Harness 具体做了哪几件事</div>
+
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:8px;">
+      <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:16px 18px;border-left:3px solid rgba(37,99,235,0.6);">
+        <div style="font-size:13px;font-weight:700;color:#93c5fd;margin-bottom:6px;">① 任务分解（Task Planning）</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.7;">模型单次调用能处理的复杂度是有限的。Harness 负责把一个复杂任务（"帮我分析这个代码库的架构"）拆成一系列子任务，按顺序或并行分发给模型执行，再把结果汇总。没有这一层，模型面对复杂任务会输出一个看起来完整但实际缺失细节的答案。</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:16px 18px;border-left:3px solid rgba(124,58,237,0.6);">
+        <div style="font-size:13px;font-weight:700;color:#c4b5fd;margin-bottom:6px;">② 上下文管理（Context Management）</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.7;">窗口再大也是有限的，真实项目可能涉及几百个文件。Harness 决定"把什么放进当前窗口"——主动检索相关文件、摘要压缩历史对话、把关键状态持久化到外部存储。这本质是一个工程调度问题，跟模型本身的记忆能力无关。</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:16px 18px;border-left:3px solid rgba(234,88,12,0.6);">
+        <div style="font-size:13px;font-weight:700;color:#fdba74;margin-bottom:6px;">③ 错误处理与重试（Error Handling & Retry）</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.7;">模型单次调用有概率失败：工具调用格式错、代码逻辑有 bug、API 超时……Harness 在每一步都加入验证、重试、回退逻辑。早期 Agent 产品（2024 年初）最大的问题就是没有这层——任务中途断了就断了，用户只能重来。这是"可演示"和"可依赖"之间最关键的工程差距。</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border-radius:10px;padding:16px 18px;border-left:3px solid rgba(22,163,74,0.6);">
+        <div style="font-size:13px;font-weight:700;color:#86efac;margin-bottom:6px;">④ 循环终止判断（Loop Termination）</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.7;">Agent 的本质是一个"想-做-看结果-再想"的循环。但模型本身不知道什么时候该停——它可能陷入死循环（一直改一直跑），或者过早停下（第一个能跑的版本并不是最优的）。Harness 设计退出条件，判断"这个结果已经够好了"或"已经超过最大轮次了"。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📊 同一个模型，不同 Harness，体验差距极大</div>
+    <div class="block-body">
+      <p>这就是为什么，同样调用 Claude API，不同的 Coding Agent 产品（Cursor、Claude Code、MyFlicker）用起来体验差距那么大——模型是一样的，差在 Harness 写得怎么样。</p>
+    </div>
+    <div style="overflow-x:auto;margin-top:4px;">
+      <table class="data-table">
+        <thead>
+          <tr><th>维度</th><th>只有模型能力</th><th>有完整 Harness</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>长任务稳定性</td>
+            <td style="color:#fca5a5;">中途易崩，靠运气</td>
+            <td style="color:#86efac;">有重试+检查点，断了能续</td>
+          </tr>
+          <tr>
+            <td>处理大项目</td>
+            <td style="color:#fca5a5;">窗口塞满后失忆</td>
+            <td style="color:#86efac;">主动管理上下文，相关内容按需载入</td>
+          </tr>
+          <tr>
+            <td>工具调用失败</td>
+            <td style="color:#fca5a5;">报错停止，等人处理</td>
+            <td style="color:#86efac;">自动重试，格式纠错，有限次数内自愈</td>
+          </tr>
+          <tr>
+            <td>结果质量</td>
+            <td style="color:#fca5a5;">取决于单次输出运气</td>
+            <td style="color:#86efac;">有验证循环，确认结果符合预期才交付</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="insight-quote" style="margin-top:16px;">
+      <strong>2025 年底到 2026 年初，Agent 产品从"演示可跑"走向"实际可用"，Harness 工程的成熟贡献可能比模型能力的提升更大。</strong>长上下文、MCP、执行能力在 2024 年已经存在，但没有稳定的编排框架，就像有了三块积木却没有图纸——偶尔能搭起来，但大多数时候会散掉。
+    </div>
+  </div>
+
+  <!-- ─────────────── SUMMARY ─────────────── -->
+  <div class="section-head" id="s5">
     <div class="section-num" style="background:rgba(255,255,255,0.15);">总</div>
     <div>
       <div class="section-title-text">四件事合在一起，意味着什么</div>
