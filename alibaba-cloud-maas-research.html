@@ -42,6 +42,23 @@
   --color-warning:          #fbbf24;
   --color-danger:           #f87171;
   --color-purple:           #c4b5fd;
+  /* ── 缺失变量补全 ── */
+  --gradient-hero:          linear-gradient(135deg, #6ee7b7 0%, #93c5fd 100%);
+  --content-max-width:      1200px;
+  --spacing-xl:             48px;
+  --spacing-lg:             24px;
+  --spacing-md:             16px;
+  --spacing-sm:             8px;
+  --radius-lg:              14px;
+  --radius-md:              10px;
+  --radius-sm:              6px;
+  --transition-normal:      0.2s ease;
+  --shadow-card:            0 2px 12px rgba(0,0,0,0.3);
+  --shadow-hover:           0 8px 24px rgba(0,0,0,0.4);
+  --color-success-50:       rgba(74,222,128,0.08);
+  --color-info-50:          rgba(96,165,250,0.08);
+  --color-purple-50:        rgba(196,181,253,0.08);
+  --color-warning-50:       rgba(251,191,36,0.08);
 }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -129,7 +146,7 @@
             gap: 8px;
             background: rgba(10,16,32,0.92);
             backdrop-filter: blur(20px) saturate(1.8);
-            border: 1px solid rgba(255,255,255,0.7);
+            border: 1px solid rgba(255,255,255,0.12);
             border-radius: var(--radius-lg);
             padding: 5px;
             position: sticky;
@@ -276,10 +293,10 @@
             font-weight: 500;
         }
         
-        .tag-green { background: rgba(5, 150, 105, 0.12); color: #059669; }
-        .tag-blue { background: rgba(37, 99, 235, 0.12); color: #2563EB; }
-        .tag-orange { background: rgba(217, 119, 6, 0.12); color: #D97706; }
-        .tag-red { background: rgba(225, 29, 72, 0.12); color: #E11D48; }
+        .tag-green { background: rgba(5, 150, 105, 0.12); color: #4ade80; }
+        .tag-blue { background: rgba(37, 99, 235, 0.12); color: #60a5fa; }
+        .tag-orange { background: rgba(217, 119, 6, 0.12); color: #fbbf24; }
+        .tag-red { background: rgba(225, 29, 72, 0.12); color: #f87171; }
         
         .insight-box {
             border-left: 3px solid var(--color-warning);
@@ -607,12 +624,12 @@
                 <h3>🔥 2026最新动态（2026财年Q3财报，3月19日发布）</h3>
                 
                 <div class="insight-box" style="border-left-color: #2563EB; background: rgba(37, 99, 235, 0.06);">
-                    <div class="insight-title" style="color: #2563EB;">📅 财年说明</div>
+                    <div class="insight-title" style="color: #60a5fa;">📅 财年说明</div>
                     <p><strong>阿里巴巴财年定义</strong>：每年4月1日至次年3月31日。<strong>2026财年Q3</strong> = 2025年10-12月（非2026年7-9月），财报于2026年3月19日发布，是目前最新的官方财务数据。</p>
                 </div>
 
                 <div class="insight-box" style="border-left-color: #E11D48; background: rgba(225, 29, 72, 0.06); margin-top: 16px;">
-                    <div class="insight-title" style="color: #E11D48;">💥 重磅：MaaS将成阿里云最大收入产品</div>
+                    <div class="insight-title" style="color: #f87171;">💥 重磅：MaaS将成阿里云最大收入产品</div>
                     <p><strong>CEO吴泳铭宣布</strong>：过去三个月（2025年10-12月），百炼MaaS平台Token消耗规模<strong>提升6倍</strong>，预计商业化MaaS收入将成为阿里云<strong>最大的收入产品</strong>（超过IaaS）。</p>
                 </div>
 

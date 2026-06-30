@@ -39,6 +39,15 @@
   --radius-lg:        14px;
   --radius-md:        10px;
   --radius-sm:        6px;
+  /* ── 层级颜色变量（L1-L6） ── */
+  --l1: #f59e0b;       --l1-light: rgba(245,158,11,0.12);
+  --l2: #60a5fa;       --l2-light: rgba(96,165,250,0.12);
+  --l3: #34d399;       --l3-light: rgba(52,211,153,0.12);
+  --l4: #c084fc;       --l4-light: rgba(192,132,252,0.12);
+  --l5: #fb923c;       --l5-light: rgba(251,146,60,0.12);
+  --l6: #f472b6;       --l6-light: rgba(244,114,182,0.12);
+  /* ── accent ── */
+  --accent: #4ade80;
 }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -102,7 +111,7 @@
   }
   .header-sub {
     font-size: 15px;
-    color: #5a8a80;
+    color: rgba(200,216,232,0.45);
     max-width: 640px;
     margin: 0;
   }
@@ -272,7 +281,7 @@
     white-space: nowrap;
   }
   .eco-table tbody tr {
-    border-bottom: 1px solid #edf3f0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
     transition: background 0.12s;
   }
   .eco-table tbody tr:hover { background: rgba(255,255,255,0.03); }
@@ -285,7 +294,7 @@
   .col-sector { width: 120px; color: rgba(255,255,255,0.4); font-weight: 500; font-size: 12px; }
   .col-origin { width: 70px; }
   .col-player  { width: 160px; font-weight: 700; color: #c8d8e8; }
-  .col-position { width: 230px; color: #5a7a70; }
+  .col-position { width: 230px; color: rgba(200,216,232,0.55); }
   .col-tags   { }
 
   .badge-cn {
@@ -296,7 +305,7 @@
   .badge-global {
     display: inline-block; padding: 2px 8px; border-radius: 4px;
     font-size: 11px; font-weight: 600;
-    background: rgba(37,99,235,0.08); color: #1d4ed8; border: 1px solid #bfdbfe;
+    background: rgba(37,99,235,0.15); color: #60a5fa; border: 1px solid rgba(37,99,235,0.3);
   }
 
   .tag {
@@ -306,30 +315,30 @@
     border-radius: 4px;
     font-size: 11px;
     font-weight: 500;
-    background: rgba(255,255,255,0.04);
-    color: #5a7a70;
-    border: 1px solid #dceee9;
+    background: rgba(255,255,255,0.06);
+    color: rgba(200,216,232,0.65);
+    border: 1px solid rgba(255,255,255,0.1);
   }
-  .tag.highlight { background: rgba(22,163,74,0.15); color: #15803d; border-color: #86efac; }
-  .tag.warn      { background: rgba(234,88,12,0.12); color: #fdba74; border-color: rgba(234,88,12,0.3); }
-  .tag.info      { background: rgba(37,99,235,0.08); color: #1d4ed8; border-color: #93c5fd; }
-  .tag.purple    { background: rgba(124,58,237,0.12); color: #c4b5fd; border-color: rgba(124,58,237,0.3); }
+  .tag.highlight { background: rgba(74,222,128,0.12); color: #4ade80; border-color: rgba(74,222,128,0.3); }
+  .tag.warn      { background: rgba(251,191,36,0.12); color: #fbbf24; border-color: rgba(251,191,36,0.3); }
+  .tag.info      { background: rgba(96,165,250,0.12); color: #60a5fa; border-color: rgba(96,165,250,0.3); }
+  .tag.purple    { background: rgba(196,181,253,0.12); color: #c4b5fd; border-color: rgba(196,181,253,0.3); }
 
   /* open/closed source badges */
   .src-open {
     display: inline-block; padding: 2px 8px; border-radius: 4px;
     font-size: 11px; font-weight: 600;
-    background: rgba(22,163,74,0.15); color: #15803d; border: 1px solid #86efac;
+    background: rgba(74,222,128,0.12); color: #4ade80; border: 1px solid rgba(74,222,128,0.3);
   }
   .src-closed {
     display: inline-block; padding: 2px 8px; border-radius: 4px;
     font-size: 11px; font-weight: 600;
-    background: rgba(220,38,38,0.15); color: #dc2626; border: 1px solid #fca5a5;
+    background: rgba(248,113,113,0.12); color: #f87171; border: 1px solid rgba(248,113,113,0.3);
   }
   .src-dual {
     display: inline-block; padding: 2px 8px; border-radius: 4px;
     font-size: 11px; font-weight: 600;
-    background: rgba(202,138,4,0.15); color: #a16207; border: 1px solid #fde047;
+    background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3);
   }
 
   /* ── Footer ── */
@@ -402,7 +411,7 @@
   <p class="header-eyebrow">行业研究 · 2026 · AI Ecosystem Deep Dive</p>
   <h1 class="header-title">AI大生态 · 完整上下游图谱</h1>
   <p class="header-sub">从能源底层到应用变现，六层架构 × 赛道 / 海内外 / 玩家 / 定位 / 关键标签 全维度梳理</p>
-  <p style="margin-top:16px;font-size:12px;color:#7a9e96;">📅 发布时间：2026年5月 &nbsp;|&nbsp; 📊 数据来源：IDC / Bernstein / FT / TechCrunch &nbsp;|&nbsp; 🎯 覆盖层级：L1~L6 六层生态</p>
+  <p style="margin-top:16px;font-size:12px;color:rgba(200,216,232,0.45);">📅 发布时间：2026年5月 &nbsp;|&nbsp; 📊 数据来源：IDC / Bernstein / FT / TechCrunch &nbsp;|&nbsp; 🎯 覆盖层级：L1~L6 六层生态</p>
 </header>
 
 <!-- ── STICKY NAV ── -->
@@ -1298,9 +1307,9 @@
         </div>
       </div>
       <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border);">
-        <p style="font-size:13px;color:#5a7a70;line-height:1.8;">
-          <strong style="color:#1a6e50;">当前利润排序：</strong> 算力层 ≫ 模型层 ≈ 平台层 ＞ 应用层 ＞ 数据层<br>
-          <strong style="color:#1a6e50;">未来5年重估：</strong> 数据层（高质量RLHF专家反馈）和应用层（超级App数据飞轮）价值将向上修正。随着合成数据大规模普及，L3 数据层的价值重心将从"人工标注规模"向"质量验证体系与专家反馈机制"迁移——能建立可信数据质量标准的参与者，将成为整个 AI 训练管线中不可替代的关键节点。
+        <p style="font-size:13px;color:rgba(200,216,232,0.45);line-height:1.8;">
+          <strong style="color:#4ade80;">当前利润排序：</strong> 算力层 ≫ 模型层 ≈ 平台层 ＞ 应用层 ＞ 数据层<br>
+          <strong style="color:#4ade80;">未来5年重估：</strong> 数据层（高质量RLHF专家反馈）和应用层（超级App数据飞轮）价值将向上修正。随着合成数据大规模普及，L3 数据层的价值重心将从"人工标注规模"向"质量验证体系与专家反馈机制"迁移——能建立可信数据质量标准的参与者，将成为整个 AI 训练管线中不可替代的关键节点。
         </p>
       </div>
     </div>
