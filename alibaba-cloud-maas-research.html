@@ -7,31 +7,42 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23059669'/><path d='M8 22V12l4 6 4-8 4 5 4-7v14H8z' fill='none' stroke='white' stroke-width='2'/></svg>">
     <style>
         :root {
-            --color-success: #059669;
-            --color-success-light: #10B981;
-            --color-danger: #E11D48;
-            --color-warning: #D97706;
-            --color-info: #2563EB;
-            --color-purple: #7C3AED;
-            --color-text-primary: #1C1917;
-            --color-text-secondary: #57534E;
-            --color-text-muted: #78716C;
-            --color-border: #E7E5E4;
-            --color-border-light: #F5F5F4;
-            --color-bg: #F8FAFB;
-            --color-bg-card: #FFFFFF;
-            --color-bg-table-header: #FAFAF9;
-            --gradient-hero: linear-gradient(135deg, #059669 0%, #2563EB 50%, #7C3AED 100%);
-            --shadow-card: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-            --shadow-hover: 0 6px 16px rgba(5,150,105,0.15), 0 2px 6px rgba(5,150,105,0.1);
-            --spacing-md: 16px;
-            --spacing-lg: 24px;
-            --spacing-xl: 32px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-            --content-max-width: 980px;
-        }
+  --bg: #070d1a;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.09);
+  --text: #c8d8e8;
+  --muted: rgba(255,255,255,0.4);
+  --green: #16a34a;
+  --green-light: rgba(22,163,74,0.15);
+  --blue: #2563eb;
+  --blue-light: rgba(37,99,235,0.15);
+  --purple: #7c3aed;
+  --purple-light: rgba(124,58,237,0.15);
+  --orange: #ea580c;
+  --orange-light: rgba(234,88,12,0.15);
+  --cyan: #0891b2;
+  --cyan-light: rgba(8,145,178,0.15);
+  --yellow: #ca8a04;
+  --yellow-light: rgba(202,138,4,0.15);
+  --red: #dc2626;
+  --red-light: rgba(220,38,38,0.15);
+  --shadow: 0 2px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+  /* ── 旧版变量映射（深色模式） ── */
+  --color-bg:               #070d1a;
+  --color-bg-card:          rgba(255,255,255,0.04);
+  --color-bg-table-header:  rgba(255,255,255,0.06);
+  --color-border:           rgba(255,255,255,0.09);
+  --color-border-light:     rgba(255,255,255,0.06);
+  --color-text-primary:     #c8d8e8;
+  --color-text-secondary:   rgba(200,216,232,0.75);
+  --color-text-muted:       rgba(255,255,255,0.38);
+  --color-success:          #4ade80;
+  --color-info:             #60a5fa;
+  --color-warning:          #fbbf24;
+  --color-danger:           #f87171;
+  --color-purple:           #c4b5fd;
+}
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
@@ -40,10 +51,8 @@
             font-size: 15px;
             line-height: 1.65;
             color: var(--color-text-secondary);
-            background: var(--color-bg);
-            background-image: radial-gradient(at 20% 20%, rgba(5,150,105,0.08) 0%, transparent 50%),
-                              radial-gradient(at 80% 80%, rgba(37,99,235,0.06) 0%, transparent 50%),
-                              radial-gradient(at 50% 50%, rgba(124,58,237,0.04) 0%, transparent 50%);
+            background: linear-gradient(160deg, #070d1a 0%, #0a1020 50%, #0d1520 100%);
+            
             background-attachment: fixed;
         }
         
@@ -1336,7 +1345,7 @@
             <div class="section">
                 <h2>🥊 深度竞对分析：字节火山引擎 vs 百度智能云</h2>
 
-                <div class="insight-box" style="background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%); border-left: 4px solid var(--color-danger);">
+                <div class="insight-box" style="background: rgba(220,38,38,0.12); border-left: 4px solid var(--color-danger);">
                     <div class="insight-title" style="color: var(--color-danger);">⚠️ 市场格局重大变化</div>
                     <p><strong>结论：字节火山引擎已取代百度成为最大威胁（2025H2数据）</strong></p>
                     <ul style="margin-top: 8px;">
