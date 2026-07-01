@@ -425,6 +425,75 @@ body {
   .milestone-cards { padding-left: 52px; }
   .milestone-cards::before { left: -14px; width: 14px; }
 }
+/* ── ERA COLLAPSE ── */
+.era-collapse-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1.5px dashed rgba(255,255,255,0.15);
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin: 0 0 24px 72px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.era-collapse-card:hover {
+  border-color: rgba(255,200,80,0.4);
+  background: rgba(255,200,80,0.04);
+}
+.era-collapse-card.open {
+  border-color: rgba(255,200,80,0.35);
+  background: rgba(255,200,80,0.04);
+}
+.era-collapse-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.era-collapse-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+.era-collapse-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 4px;
+}
+.era-collapse-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.5;
+}
+.era-collapse-arrow {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,200,80,0.7);
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.era-collapse-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.era-collapse-content.open {
+  max-height: 9999px;
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .era-collapse-card { margin-left: 46px; padding: 14px 16px; }
+  .era-collapse-icon { font-size: 22px; }
+  .era-collapse-title { font-size: 13px; }
+}
+
 </style>
 </head>
 <body>
@@ -481,6 +550,20 @@ body {
 
   <!-- ── TIMELINE ── -->
   <div class="timeline-wrap">
+
+    <!-- ── 2012–2022 折叠区 ── -->
+    <div class="era-collapse-card" id="era-toggle" onclick="toggleEra()">
+      <div class="era-collapse-left">
+        <div class="era-collapse-icon">📚</div>
+        <div>
+          <div class="era-collapse-title">2012 — 2022 · 奠基十年</div>
+          <div class="era-collapse-desc">AlexNet → GAN → AlphaGo → Transformer → BERT → GPT-3 → ChatGPT<br>深度学习从实验室走向大众，共 7 个关键节点</div>
+        </div>
+      </div>
+      <div class="era-collapse-arrow" id="era-arrow">▼ 展开</div>
+    </div>
+
+    <div class="era-collapse-content" id="era-content">
 
     <!-- 2012 -->
     <div class="year-group">
@@ -723,6 +806,8 @@ body {
       </div>
     </div>
 
+    </div><!-- /era-collapse-content -->
+
     <!-- 2023 -->
     <div class="year-group">
       <div class="year-marker">
@@ -916,6 +1001,24 @@ body {
 <footer class="site-footer">
   Kyrie 的 AI 洞察基地 · AI 发展时间线 · 2026.06.24 更新
 </footer>
+
+<script>
+function toggleEra() {
+  const content = document.getElementById('era-content');
+  const toggle = document.getElementById('era-toggle');
+  const arrow = document.getElementById('era-arrow');
+  const isOpen = content.classList.contains('open');
+  if (isOpen) {
+    content.classList.remove('open');
+    toggle.classList.remove('open');
+    arrow.textContent = '▼ 展开';
+  } else {
+    content.classList.add('open');
+    toggle.classList.add('open');
+    arrow.textContent = '▲ 收起';
+  }
+}
+</script>
 
 </body>
 </html>
