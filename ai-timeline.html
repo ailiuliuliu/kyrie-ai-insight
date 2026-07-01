@@ -791,6 +791,28 @@ body {
 
     </div><!-- /era-collapse-content -->
 
+    <!-- ── 2023–至今 折叠区（默认展开） ── -->
+    <div class="era-collapse-card" id="era2-toggle" onclick="toggleEra2()">
+      <div class="era-collapse-inner">
+        <div class="era-collapse-toggle" id="era2-arrow">▲ 收起</div>
+        <div class="prehistory-label">2023 — 至今 · 爆发落地</div>
+        <div class="prehistory-title">涌现与落地：AI 从"能用"到"改变每个人的工作方式"</div>
+        <div class="prehistory-body">
+          2023 年，GPT-4 第一次在专业考试上超越人类均值，AI 从"差不多能用"跨越到"比专家还强"。随后三年，开源民主化（DeepSeek）、推理质变（o1）、连接层成熟（Agent 实用化）相继到来——这不再是某一项技术的突破，而是整个能力体系同时成熟，AI 开始真正渗入每个人的工作流。
+        </div>
+        <div class="prehistory-pills">
+          <span class="prehistory-pill">2023 GPT-4</span>
+          <span class="prehistory-pill">2024 Sora</span>
+          <span class="prehistory-pill">2024 o1 推理质变</span>
+          <span class="prehistory-pill">2025 DeepSeek R1</span>
+          <span class="prehistory-pill">2025 Agent 实用化</span>
+          <span class="prehistory-pill">2026 连接层成熟</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="era-collapse-content open" id="era2-content">
+
     <!-- 2023 -->
     <div class="year-group">
       <div class="year-marker">
@@ -978,6 +1000,8 @@ body {
       </div>
     </div>
 
+    </div><!-- /era2-collapse-content -->
+
   </div><!-- end timeline-wrap -->
 </div>
 
@@ -986,6 +1010,18 @@ body {
 </footer>
 
 <script>
+function toggleEra2() {
+  const content = document.getElementById('era2-content');
+  const arrow = document.getElementById('era2-arrow');
+  const isOpen = content.classList.contains('open');
+  if (isOpen) {
+    content.classList.remove('open');
+    arrow.textContent = '▼ 展开';
+  } else {
+    content.classList.add('open');
+    arrow.textContent = '▲ 收起';
+  }
+}
 function toggleEra() {
   const content = document.getElementById('era-content');
   const toggle = document.getElementById('era-toggle');
