@@ -431,49 +431,53 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  background: rgba(255,255,255,0.03);
-  border: 1.5px dashed rgba(255,255,255,0.15);
-  border-radius: 14px;
-  padding: 18px 22px;
-  margin: 0 0 24px 72px;
+  background: linear-gradient(135deg, #0a0f1e 0%, #0f2027 60%, #0a1628 100%);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 36px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
   user-select: none;
 }
-.era-collapse-card:hover {
-  border-color: rgba(255,200,80,0.4);
-  background: rgba(255,200,80,0.04);
+.era-collapse-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 30%, rgba(37,99,235,0.18) 0%, transparent 55%), radial-gradient(ellipse at 15% 80%, rgba(22,163,74,0.1) 0%, transparent 50%);
+  pointer-events: none;
 }
-.era-collapse-card.open {
-  border-color: rgba(255,200,80,0.35);
-  background: rgba(255,200,80,0.04);
-}
+.era-collapse-card:hover { opacity: 0.88; }
 .era-collapse-left {
   display: flex;
   align-items: center;
   gap: 14px;
+  position: relative;
 }
 .era-collapse-icon {
   font-size: 28px;
   flex-shrink: 0;
 }
 .era-collapse-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
-  color: rgba(255,255,255,0.9);
+  color: #fff;
   margin-bottom: 4px;
+  font-family: 'Noto Serif SC', serif;
 }
 .era-collapse-desc {
   font-size: 12px;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.5;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
 }
 .era-collapse-arrow {
   font-size: 12px;
   font-weight: 700;
-  color: rgba(255,200,80,0.7);
+  color: rgba(255,255,255,0.45);
   white-space: nowrap;
   flex-shrink: 0;
+  position: relative;
   transition: all 0.2s;
 }
 
@@ -489,9 +493,9 @@ body {
 }
 
 @media (max-width: 640px) {
-  .era-collapse-card { margin-left: 46px; padding: 14px 16px; }
+  .era-collapse-card { padding: 18px 16px; }
   .era-collapse-icon { font-size: 22px; }
-  .era-collapse-title { font-size: 13px; }
+  .era-collapse-title { font-size: 14px; }
 }
 
 </style>
