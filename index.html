@@ -531,14 +531,18 @@ body {
   <div class="part-divider" id="news">
     <span class="part-label">📰 AI 行业资讯</span>
     <div class="part-line"></div>
-    <span class="part-num">持续更新 · 5期</span>
+    <span class="part-num">持续更新 · 6期</span>
   </div>
 
   <!-- 时间轴导航 -->
   <div class="timeline-nav">
     <span class="timeline-label">Timeline</span>
     <div class="timeline-track">
-      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0628')">
+      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0705')">
+        <span class="timeline-date">2026.07.05</span>
+      </button>
+      <div class="timeline-line"></div>
+      <button class="timeline-btn" onclick="switchNewsTab(event, 'week0628')">
         <span class="timeline-date">2026.06.28</span>
       </button>
       <div class="timeline-line"></div>
@@ -561,9 +565,187 @@ body {
   </div>
 
   <!-- ═══════════════════════════════════ -->
+  <!-- 第6期：2026.6.29–7.5                -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="date-panel active" id="week0705">
+
+  <!-- 本周必读 -->
+  <div id="mustread0705" style="scroll-margin-top:64px;">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(202,138,4,0.15);">⭐</div>
+      <div>
+        <div class="section-name">本周必读</div>
+        <div class="section-desc">从本周资讯中提炼3条最具结构性价值的新闻</div>
+      </div>
+      <span class="section-tag">编辑精选</span>
+    </div>
+    <div class="mustread-card">
+      <div class="mustread-summary">
+        本周核心判断：AI 从"技术竞赛"进入<strong>「体系竞赛」</strong>——基础设施争夺（韩国8800亿）、监管框架成型（Fable 5 解禁换来发布前审查制度）、商业模式重构（Copilot 按量计费冲击）三件事同时发生，传递同一个信号：<strong>能力本身不再是唯一竞争维度，谁控制芯片供给、谁进入政府采购、谁找到可持续的定价模型，才是下一阶段的胜负手。</strong>
+      </div>
+      <div class="mustread-list">
+        <div class="mustread-item">
+          <div class="mustread-rank rank-1">🥇</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://www.reuters.com/world/asia-pacific/south-korea-announces-880-billion-semiconductor-ai-investment-plan-2026-06-30/" target="_blank">韩国宣布 8800 亿美元国家 AI 与半导体十年计划</a></div>
+            <div class="mustread-why">这不是企业融资，是国家战略资产配置。8800亿美元直接绑定三星+SK海力士——恰好是全球 HBM 最大供应商。时机微妙：正值美国出口管制收紧、中国自研芯片崛起节点。<em>AI 军备竞赛已从模型层向下穿透到「谁控制芯片供应链谁说了算」的阶段。</em>韩国这一步是在提前锁定下一轮 AI 基础设施的话语权。</div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-orange">产业格局</span>
+              <span class="ntag ntag-blue">半导体</span>
+              <span class="ntag ntag-red">格局信号</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-2">🥈</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://www.anthropic.com/news/fable-mythos-access" target="_blank">Claude Fable 5 解禁全球复访，政府预审框架随之成型</a></div>
+            <div class="mustread-why">表面是模型重新开放，实质是一个先例被固化：政府可以叫停已上线商业模型，而解禁代价是 Anthropic 承诺「未来前沿模型发布前须提供政府预审」。白宫随即推进自愿发布标准，OpenAI/Google 同步参与制定。<em>AI 监管的「事后管」时代结束，「发布前审查」时代正式开启。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-red">政策监管</span>
+              <span class="ntag ntag-purple">Anthropic</span>
+              <span class="ntag ntag-orange">结构性变化</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-3">🥉</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://github.blog/news-insights/product-news/github-copilot-moving-to-usage-based-billing/" target="_blank">GitHub Copilot 按量计费首月结算，账单暴涨50倍</a></div>
+            <div class="mustread-why">重度用户账单从$29飙至$750，单次 Agent 会话最高$40。这是微软亲手宣告：「固定月费无限用」在 Agent 时代不可持续。<em>AI 工具正走向「基础功能免费/Agent 用量收费」双轨制</em>，Cursor/Claude Code 立刻获益。接下来所有 AI 工具公司都面临同样的定价重构压力。</div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-blue">AI工具</span>
+              <span class="ntag ntag-cyan">商业模式</span>
+              <span class="ntag ntag-green">Agent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三个资讯模块 -->
+  <div class="modules-grid" style="margin-top:24px;">
+
+    <!-- 大模型能力 -->
+    <div class="card" id="model-news-0705">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(124,58,237,0.15);">🧠</div>
+        <div>
+          <div class="card-title">大模型能力</div>
+          <div class="card-subtitle">模型发布 · 能力评测 · 格局演变</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.anthropic.com/news/fable-mythos-access" target="_blank">Claude Fable 5 全球复访，附带政府预审承诺</a></div>
+            <div class="news-date">7.1</div>
+          </div>
+          <div class="news-item-body">被封禁19天后恢复全球访问，Anthropic 上线新安全分类器（拦截率99%+），并承诺未来前沿模型发布前提供政府预审，与 Amazon/Microsoft/Google 共建 jailbreak 风险评分框架。<strong>史上首次前沿模型被政府强制下架后复出，开创了先例。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-purple">Anthropic</span><span class="ntag ntag-red">政策</span><span class="ntag ntag-orange">安全</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.anthropic.com/news/claude-sonnet-5" target="_blank">Claude Sonnet 5 发布，成为 Free/Pro 默认模型</a></div>
+            <div class="news-date">6.30</div>
+          </div>
+          <div class="news-item-body">定价 $2/$10（百万token），8月底前优惠价，之后恢复$3/$15。核心能力：自主制定计划、调用浏览器/终端工具、连续多步执行，性能接近 Opus 4.8 但成本大幅降低。<strong>Agent 能力下沉至中等定价，「旗舰 Agent」不再是稀有品。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-purple">Anthropic</span><span class="ntag ntag-green">Agent</span><span class="ntag ntag-blue">新模型</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.cnbc.com/2026/07/02/openai-proposes-us-government-own-5percent-stake-to-address-political-blowback.html" target="_blank">OpenAI 提议将公司5%股权（约426亿美元）给美国政府</a></div>
+            <div class="news-date">7.2</div>
+          </div>
+          <div class="news-item-body">Sam Altman 提出将5%股权以类似「阿拉斯加永久基金」形式分给公众，同期 ChatGPT 计划史上最大重设计，升级为集 Agent 工作流、代码工具、第三方服务于一体的「超级应用」。<strong>OpenAI 正在将政治资本和产品生态同步押注 IPO 前景。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-orange">OpenAI</span><span class="ntag ntag-red">政策</span><span class="ntag ntag-purple">IPO</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 应用 -->
+    <div class="card" id="app-news-0705">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(8,145,178,0.15);">📱</div>
+        <div>
+          <div class="card-title">AI 应用</div>
+          <div class="card-subtitle">产品动态 · 商业化进展 · 场景落地</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://github.blog/news-insights/product-news/github-copilot-moving-to-usage-based-billing/" target="_blank">GitHub Copilot 按量计费首月结算：账单暴涨10-50倍</a></div>
+            <div class="news-date">6.30</div>
+          </div>
+          <div class="news-item-body">重度用户账单从$29/月飙至$750，从$50涨至$3000；单次 Agent 会话消耗$30-40。社区强烈反弹，Claude Code 和 Cursor 成受益者。<strong>AI 工具「固定月费无限用」时代正式终结，定价模式重构开始。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">AI编程</span><span class="ntag ntag-cyan">商业模式</span><span class="ntag ntag-orange">微软</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.statnews.com/2026/06/30/anthropic-release-claude-science-ceo-dario-amodei/" target="_blank">Anthropic 发布 Claude Science，宣布自建药物研发团队</a></div>
+            <div class="news-date">6.30</div>
+          </div>
+          <div class="news-item-body">集成60+科学数据库（基因组学、蛋白质组学、结构生物学），Novo Nordisk/Allen Institute 为首批用户，同时宣布自建药物研发团队聚焦被忽视疾病。<strong>AI 实验室直接进入药物研发，与 OpenAI/DeepMind 三方竞争科学 AI 高地。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-purple">Anthropic</span><span class="ntag ntag-green">科学AI</span><span class="ntag ntag-blue">医疗</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://techcrunch.com/2026/07/02/enterprise-ai-coding-study/" target="_blank">大规模研究：持续使用 AI 编程工具，工程师产出可翻倍</a></div>
+            <div class="news-date">7.2</div>
+          </div>
+          <div class="news-item-body">覆盖802名开发者、19.6万个 PR 的纵向研究发现，长期使用 AI 编程助手与约2倍工程吞吐量相关，同时代码质量指标基本稳定。<strong>这是目前最大规模的企业真实环境 AI 生产力研究，为企业采购决策提供了量化依据。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-cyan">AI编程</span><span class="ntag ntag-green">企业落地</span><span class="ntag ntag-yellow">研究</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI 产业上下游（全宽） -->
+  <div class="card" id="industry-news-0705" style="margin-bottom:28px;">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(234,88,12,0.15);">🏭</div>
+      <div>
+        <div class="card-title">AI 产业上下游</div>
+        <div class="card-subtitle">芯片算力 · 供应链 · 云厂商 · 融资并购</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://www.aljazeera.com/economy/2026/6/30/south-korea-announces-historic-ai-semiconductor-investment" target="_blank">韩国宣布 8800 亿美元半导体+AI 十年国家计划</a></div>
+          <div class="news-date">6.30</div>
+        </div>
+        <div class="news-item-body">三星+SK 海力士合计承诺5180亿美元建设新晶圆厂，SK/GS/Naver 提供3560亿美元建设 AI 数据中心。总统李在明称「国家存亡之战」。<strong>规模超过美国芯片法案，AI 基础设施争夺已升至国家战略级别。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-orange">存储芯片</span><span class="ntag ntag-blue">韩国</span><span class="ntag ntag-red">国家战略</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://www.cnbc.com/2026/06/30/aws-summit-dc-2026.html" target="_blank">微软投入25亿美元成立 Frontier Company，派驻6000名 AI 专家</a></div>
+          <div class="news-date">7.2</div>
+        </div>
+        <div class="news-item-body">新成立 Microsoft Frontier Company，将6000名行业/工程专家直接嵌入企业客户，共同设计和部署 AI 系统，强调可测量 ROI。<strong>AI 竞争从「卖模型/API」转向「驻场实施」，服务能力成为新壁垒。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-blue">微软</span><span class="ntag ntag-orange">企业服务</span><span class="ntag ntag-green">落地</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://www.crunchbase.com/article/h1-2026-vc-funding" target="_blank">全球 VC H1 2026 创纪录：OpenAI+Anthropic 独占43%</a></div>
+          <div class="news-date">7.2</div>
+        </div>
+        <div class="news-item-body">H1 全球 VC 达5100亿美元历史新高，OpenAI+Anthropic 合计2170亿美元，占全球初创企业融资43%。AI 领域整体吸走约65-70%的全球 VC。<strong>资本向头部极度集中，AI 赛道「赢者通吃」格局已从模型层蔓延至融资层。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-purple">融资</span><span class="ntag ntag-yellow">产业格局</span><span class="ntag ntag-cyan">VC</span></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /date-panel week0705 -->
+
+  <!-- ═══════════════════════════════════ -->
   <!-- 第5期：2026.6.22–6.28               -->
   <!-- ═══════════════════════════════════ -->
-  <div class="date-panel active" id="week0628">
+  <div class="date-panel" id="week0628">
 
   <!-- 本周必读 -->
   <div id="mustread0628" style="scroll-margin-top:64px;">
@@ -1582,7 +1764,7 @@ body {
 </div>
 
 <footer class="site-footer">
-  Kyrie 的 AI 洞察基地 · 数据来源：OpenAI / Anthropic / TechCrunch / ODSC / Reuters / SCMP · 2026.06.21 更新
+  Kyrie 的 AI 洞察基地 · 数据来源：Anthropic / OpenAI / Reuters / TechCrunch / BuildFastWithAI · 2026.07.06 更新
 </footer>
 
 <script>
