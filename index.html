@@ -531,14 +531,18 @@ body {
   <div class="part-divider" id="news">
     <span class="part-label">📰 AI 行业资讯</span>
     <div class="part-line"></div>
-    <span class="part-num">持续更新 · 6期</span>
+    <span class="part-num">持续更新 · 7期</span>
   </div>
 
   <!-- 时间轴导航 -->
   <div class="timeline-nav">
     <span class="timeline-label">Timeline</span>
     <div class="timeline-track">
-      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0705')">
+      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0712')">
+        <span class="timeline-date">2026.07.13</span>
+      </button>
+      <div class="timeline-line"></div>
+      <button class="timeline-btn" onclick="switchNewsTab(event, 'week0705')">
         <span class="timeline-date">2026.07.05</span>
       </button>
       <div class="timeline-line"></div>
@@ -565,9 +569,187 @@ body {
   </div>
 
   <!-- ═══════════════════════════════════ -->
+  <!-- 第7期：2026.7.6–7.12               -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="date-panel active" id="week0712">
+
+  <!-- 本周必读 -->
+  <div id="mustread0712" style="scroll-margin-top:64px;">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(202,138,4,0.15);">⭐</div>
+      <div>
+        <div class="section-name">本周必读</div>
+        <div class="section-desc">从本周资讯中提炼3条最具结构性价值的新闻</div>
+      </div>
+      <span class="section-tag">编辑精选</span>
+    </div>
+    <div class="mustread-card">
+      <div class="mustread-summary">
+        本周核心判断：AI 产品从「模型发布」到<strong>「全面 Agent 化」</strong>的跃迁完成——OpenAI 一周内密集落地 GPT-Live、GPT-5.6、ChatGPT Work，构成「听+说+写+做」完整闭环；国内工信部"人形机器人产量破10万台"预测则标志着具身智能从实验室走向产线的拐点到来。<strong>能力不再稀缺，集成方式与工作流渗透深度，才是接下来真正的竞争维度。</strong>
+      </div>
+      <div class="mustread-list">
+        <div class="mustread-item">
+          <div class="mustread-rank rank-1">🥇</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://openai.com/zh-Hans-CN/index/gpt-5-6/" target="_blank">OpenAI 一周四连发：GPT-5.6 旗舰 + ChatGPT Work + GPT-Live 全面落地</a></div>
+            <div class="mustread-why">7月8-9日，OpenAI 同时发布三款产品，各自攻克不同场景：GPT-5.6 Sol 在编程/科学/安全领域设新标杆；ChatGPT Work 将 ChatGPT 从「对话工具」变为「跨应用任务 Agent」；GPT-Live 以全双工语音架构重塑人机交互。<em>单家公司一周内覆盖语音、文本、编程、任务执行四个应用层，AI 平台化竞争的密度前所未见。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-orange">OpenAI</span>
+              <span class="ntag ntag-green">Agent</span>
+              <span class="ntag ntag-red">格局信号</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-2">🥈</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://www.news.cn/tech/20260707/1e0c79e82bb94a97a1488ebe3984834d/c.html" target="_blank">工信部：2026年人形机器人整机产量有望突破10万台</a></div>
+            <div class="mustread-why">10万台是一个象征性门槛——意味着行业从「有多少样机」的阶段，进入「能量产多少」的阶段，产业链压力随即转移到专用芯片、灵巧手、减速器等关键零部件的供给能力上。<em>这条信息真正重要的不是数字本身，而是它宣告了具身智能进入了需要「供应链思维」而非「实验室思维」的新阶段。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-blue">具身智能</span>
+              <span class="ntag ntag-orange">产业拐点</span>
+              <span class="ntag ntag-red">国内</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-3">🥉</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://www.anthropic.com/research/global-workspace" target="_blank">Anthropic 发现 Claude 内部存在「全局工作空间」神经模式</a></div>
+            <div class="mustread-why">这是业界罕见的对 LLM 内部运行机制的实证研究——Claude 内部有一组特定神经模式，在所有处理过程中扮演「全局协调」角色，类似人类大脑的工作记忆。<em>这类「打开黑盒」的研究对于理解模型行为、构建可信AI有深远意义，也预示着 Anthropic 的可解释性研究正在走向实质性突破。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-purple">Anthropic</span>
+              <span class="ntag ntag-cyan">可解释性</span>
+              <span class="ntag ntag-yellow">研究</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三个资讯模块 -->
+  <div class="modules-grid" style="margin-top:24px;">
+
+    <!-- 大模型能力 -->
+    <div class="card" id="model-news-0712">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(124,58,237,0.15);">🧠</div>
+        <div>
+          <div class="card-title">大模型能力</div>
+          <div class="card-subtitle">模型发布 · 能力评测 · 格局演变</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://openai.com/zh-Hans-CN/index/introducing-gpt-live/" target="_blank">OpenAI 发布 GPT-Live：新一代全双工语音模型上线</a></div>
+            <div class="news-date">7.8</div>
+          </div>
+          <div class="news-item-body">采用全双工架构（可同时听与说），支持语音+网页搜索+深度推理联动，已取代原 ChatGPT Voice 模式。官方定位「迄今最智能的语音模型」，对话更自然、延迟更低。<strong>语音交互正式进入 Agent 时代，不再是单纯的语音转文字。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-orange">OpenAI</span><span class="ntag ntag-green">语音</span><span class="ntag ntag-blue">新模型</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://openai.com/zh-Hans-CN/index/gpt-5-6/" target="_blank">GPT-5.6 Sol/Terra/Luna 三档发布，编程 Agent 指数创新高</a></div>
+            <div class="news-date">7.9</div>
+          </div>
+          <div class="news-item-body">旗舰版 Sol 重点强化代码、科学研究、网络安全，在 Artificial Analysis 独立编程 Agent 指数上超过此前所有模型；Terra/Luna 两档覆盖不同算力需求。<strong>三档定价策略标志 OpenAI 从「单一旗舰」转向「梯度化能力平台」。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-orange">OpenAI</span><span class="ntag ntag-purple">旗舰模型</span><span class="ntag ntag-cyan">编程</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://seed.bytedance.com/en/blog/beyond-generation-it-understands-design-introducing-seedream-5-0-pro" target="_blank">字节跳动 Seedream 5.0 Pro 发布，盲测与 GPT Image 2 难辨伯仲</a></div>
+            <div class="news-date">7.8</div>
+          </div>
+          <div class="news-item-body">字节 Seed 团队发布多模态图像创作模型 Seedream 5.0 Pro，强化复杂信息可视化和真实场景还原。发布48小时内在 X 平台引发大规模盲测，结果显示普通用户难以区分其与 OpenAI GPT Image 2 的输出质量。<strong>国内图像生成模型首次在真实用户体验层面与 OpenAI 旗舰产品达到同等水准。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">国内</span><span class="ntag ntag-blue">字节</span><span class="ntag ntag-yellow">图像生成</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 应用 -->
+    <div class="card" id="app-news-0712">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(8,145,178,0.15);">📱</div>
+        <div>
+          <div class="card-title">AI 应用</div>
+          <div class="card-subtitle">产品动态 · 商业化进展 · 场景落地</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://openai.com/index/chatgpt-for-your-most-ambitious-work/" target="_blank">ChatGPT Work 正式发布：ChatGPT 从对话工具变成任务 Agent</a></div>
+            <div class="news-date">7.9</div>
+          </div>
+          <div class="news-item-body">基于 GPT-5.6 驱动，能跨应用和文件执行长周期复杂任务（调研、分析、多文档整合）；Codex（开发者编程 Agent）同步合并进新桌面 App。<strong>OpenAI 明确将 ChatGPT 定位从「聊天产品」转向「企业任务执行 Agent」，产品形态发生根本性转变。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-orange">OpenAI</span><span class="ntag ntag-green">Agent</span><span class="ntag ntag-blue">企业</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.figma.com/blog/got-skills-make-the-figma-agent-a-better-collaborator/" target="_blank">Figma Agent 开放技能扩展：AI 设计工具进入「可编程」阶段</a></div>
+            <div class="news-date">7.1</div>
+          </div>
+          <div class="news-item-body">Figma 发布"Got Skills"更新，允许用户为 Figma Agent 添加自定义技能、附件和连接器，让 AI 设计助手可按需灵活扩展；同步上线多图片 AI 编辑并行处理能力。<strong>设计工具的 AI Agent 化从「固定功能」进入「可编程扩展」阶段，积木式 AI 工作流成为新方向。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-cyan">设计工具</span><span class="ntag ntag-green">Agent</span><span class="ntag ntag-purple">Figma</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.worldaic.com.cn/" target="_blank">WAIC 2026 下周上海开幕：超300款国产AI新品集中首发</a></div>
+            <div class="news-date">7.7</div>
+          </div>
+          <div class="news-item-body">2026世界人工智能大会定于7月17-20日在上海举行，超300款AI新品将在大会首发，首设 WAIC Academic 学术会议，华为最大规模超节点真机亮相，国内头部大模型厂商新版本将集中发布。<strong>国内AI产业今年最大集中展示窗口，预计下周将有一波密集发布值得重点追踪。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">国内</span><span class="ntag ntag-orange">WAIC</span><span class="ntag ntag-yellow">产业峰会</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI 产业上下游（全宽） -->
+  <div class="card" id="industry-news-0712" style="margin-bottom:28px;">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(234,88,12,0.15);">🏭</div>
+      <div>
+        <div class="card-title">AI 产业上下游</div>
+        <div class="card-subtitle">芯片算力 · 供应链 · 云厂商 · 融资并购</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://www.news.cn/tech/20260707/1e0c79e82bb94a97a1488ebe3984834d/c.html" target="_blank">工信部：2026年人形机器人整机产量有望突破10万台</a></div>
+          <div class="news-date">7.7</div>
+        </div>
+        <div class="news-item-body">工信部科技司副司长甘小斌在 WAIC 新闻发布会上披露，今年全年整机产量有望破10万台；工业 AI 应用普及率已超30%，"AI+制造"进入规模落地阶段。<strong>行业从「能不能做」进入「能做多少」的量产竞争阶段，产业链压力转移到专用芯片和关键零部件。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-red">国内</span><span class="ntag ntag-blue">具身智能</span><span class="ntag ntag-orange">产业拐点</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="http://www.cb.com.cn/index/show/gs1/cv/cv12548327137" target="_blank">人形机器人专用芯片成为卡脖子新关卡</a></div>
+          <div class="news-date">7.10</div>
+        </div>
+        <div class="news-item-body">随着整机产量规模扩大，通用 GPU 方案的算力/功耗问题暴露——针对机器人运动控制、感知融合设计的专用芯片（类似自动驾驶的专用 SoC）被认为是下一个核心卡点，多家芯片厂商已宣布布局。<strong>具身智能供应链竞争从本体延伸到芯片层，这将是下半年最值得关注的国产替代方向之一。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-blue">芯片</span><span class="ntag ntag-cyan">具身智能</span><span class="ntag ntag-red">国产替代</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://app.xinhuanet.com/news/article.html?articleId=20260708637a1b5e5fb442e180d38b93cada5643" target="_blank">上半年人形机器人行业并购加速，供应链整合提速</a></div>
+          <div class="news-date">7.8</div>
+        </div>
+        <div class="news-item-body">上半年 A 股人形机器人赛道并购重组明显活跃，头部整机厂商通过收购锁定减速器、灵巧手、传感器等上游关键产能，供应链自主可控成核心战略诉求，赛道集中度快速提升。<strong>行业从「百花齐放」进入整合期，整机厂主导产业链话语权的格局正在形成。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-purple">并购</span><span class="ntag ntag-yellow">产业整合</span><span class="ntag ntag-orange">供应链</span></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /date-panel week0712 -->
+
+  <!-- ═══════════════════════════════════ -->
   <!-- 第6期：2026.6.29–7.5                -->
   <!-- ═══════════════════════════════════ -->
-  <div class="date-panel active" id="week0705">
+  <div class="date-panel" id="week0705">
 
   <!-- 本周必读 -->
   <div id="mustread0705" style="scroll-margin-top:64px;">
@@ -1764,7 +1946,7 @@ body {
 </div>
 
 <footer class="site-footer">
-  Kyrie 的 AI 洞察基地 · 数据来源：Anthropic / OpenAI / Reuters / TechCrunch / BuildFastWithAI · 2026.07.06 更新
+  Kyrie 的 AI 洞察基地 · 数据来源：Anthropic / OpenAI / Reuters / TechCrunch / BuildFastWithAI · 2026.07.15 更新
 </footer>
 
 <script>
