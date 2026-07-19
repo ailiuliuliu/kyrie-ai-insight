@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7BHTYGVGF9"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7BHTYGVGF9');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seed 数据团队岗位知识体系 · Kyrie AI 洞察</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:#16a34a;--green-light:#dcfce7;--blue:#2563eb;--blue-light:#dbeafe;
+  --purple:#7c3aed;--purple-light:#f3e8ff;--orange:#ea580c;--orange-light:#ffedd5;
+  --cyan:#0891b2;--cyan-light:#cffafe;--yellow:#ca8a04;--yellow-light:#fefce8;
+  --red:#dc2626;--red-light:#fef2f2;--muted:#7a9e96;--border:#dceee9;
+  --mono:'JetBrains Mono','Courier New',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:linear-gradient(160deg,#070d1a 0%,#0a1020 50%,#0d1520 100%);color:#c8d8e8;font-family:'Inter','Noto Serif SC',sans-serif;font-size:14px;line-height:1.7;min-height:100vh;}
+
+/* HERO */
+.report-hero{background:linear-gradient(135deg,#0a0f1e 0%,#0f2027 40%,#0a1628 100%);color:#fff;padding:56px 60px 48px;position:relative;overflow:hidden;}
+.report-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 30%,rgba(37,99,235,0.2) 0%,transparent 55%),radial-gradient(ellipse at 20% 70%,rgba(22,163,74,0.12) 0%,transparent 50%);}
+.hero-inner{position:relative;max-width:900px;}
+.hero-breadcrumb{font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:18px;display:flex;align-items:center;gap:6px;}
+.hero-breadcrumb a{color:rgba(255,255,255,0.45);text-decoration:none;}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.hero-tag{padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:0.05em;}
+.hero-title{font-family:'Noto Serif SC',serif;font-size:clamp(22px,3.5vw,36px);font-weight:700;line-height:1.35;color:#fff;margin-bottom:14px;}
+.hero-subtitle{font-size:15px;color:rgba(255,255,255,0.65);line-height:1.75;max-width:680px;margin-bottom:28px;}
+.hero-meta{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,0.45);}
+.hero-meta span{display:flex;align-items:center;gap:5px;}
+
+/* TOC */
+.toc-bar{background:rgba(10,16,32,0.95);border-bottom:1px solid rgba(255,255,255,0.08);padding:10px 60px;display:flex;gap:24px;overflow-x:auto;font-size:12px;}
+.toc-link{white-space:nowrap;color:rgba(255,255,255,0.35);text-decoration:none;font-weight:600;transition:color 0.15s;}
+.toc-link:hover{color:rgba(255,255,255,0.8);}
+
+/* MAIN */
+.main-wrap{max-width:960px;margin:0 auto;padding:44px 40px 100px;}
+
+/* SECTION HEAD */
+.section-head{display:flex;align-items:center;gap:12px;margin:48px 0 20px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,0.1);scroll-margin-top:80px;}
+.section-num{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0;color:#fff;}
+.section-title-text{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:#e2eaf4;}
+.section-desc-text{font-size:12px;color:rgba(255,255,255,0.35);margin-top:2px;}
+
+/* BLOCK */
+.block{background:rgba(255,255,255,0.04);border-radius:14px;padding:24px;box-shadow:0 2px 20px rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.08);margin-bottom:18px;}
+.block-title{font-size:15px;font-weight:700;color:#e2eaf4;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.block-body{font-size:13px;line-height:1.85;color:#8aabbf;}
+.block-body p{margin-bottom:10px;}
+.block-body p:last-child{margin-bottom:0;}
+.block-body strong{color:#e2eaf4;font-weight:700;}
+.block-body em{color:#7dd3fc;font-style:normal;font-weight:600;}
+
+/* TABLE */
+.data-table{width:100%;border-collapse:collapse;font-size:12px;margin:14px 0;}
+.data-table th{background:rgba(255,255,255,0.06);padding:9px 14px;text-align:left;font-weight:700;color:#e2eaf4;border-bottom:1px solid rgba(255,255,255,0.1);}
+.data-table td{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.06);color:#8aabbf;vertical-align:middle;line-height:1.55;}
+.data-table tr:hover td{background:rgba(255,255,255,0.03);}
+.data-table td:first-child{font-weight:700;color:#c8d8e8;}
+
+/* INSIGHT QUOTE */
+.insight-quote{border-left:4px solid #16a34a;background:rgba(22,163,74,0.1);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0;font-size:13px;line-height:1.8;color:#86efac;}
+.insight-quote strong{color:#bbf7d0;}
+
+/* MONO BLOCK */
+.mono-block{background:#060c18;border-radius:10px;padding:16px 20px;margin:14px 0;font-family:var(--mono);font-size:12px;line-height:1.8;color:#e6edf3;overflow-x:auto;border:1px solid rgba(255,255,255,0.06);}
+.mono-block .c{color:#6e7681;}
+.mono-block .h{color:#79c0ff;}
+.mono-block .w{color:#ffa657;}
+.mono-block .g{color:#7ee787;}
+
+/* TREND LIST */
+.trend-list{display:flex;flex-direction:column;gap:14px;margin:14px 0;}
+.trend-item{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);}
+.trend-num{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;color:#fff;}
+.trend-content{flex:1;}
+.trend-title{font-size:13px;font-weight:700;color:#e2eaf4;margin-bottom:5px;}
+.trend-body{font-size:12px;line-height:1.7;color:#8aabbf;}
+.trend-body strong{color:#c8d8e8;}
+
+/* COMPARE 2COL */
+.compare-2col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+.compare-col{border-radius:10px;padding:14px 16px;border:1px solid rgba(255,255,255,0.08);}
+.compare-col-title{font-size:11px;font-weight:700;letter-spacing:0.05em;margin-bottom:10px;}
+.compare-col-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.compare-col-list li{font-size:12px;line-height:1.6;display:flex;gap:6px;}
+.compare-col-list li::before{content:'·';flex-shrink:0;font-weight:700;}
+
+/* STEP FLOW */
+.step-flow{display:flex;flex-direction:column;gap:6px;margin:14px 0;}
+.step-item{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);}
+.step-badge{width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;color:#fff;}
+.step-text{font-size:12px;line-height:1.65;color:#8aabbf;}
+.step-text strong{color:#c8d8e8;}
+.step-arrow{text-align:center;font-size:11px;color:rgba(255,255,255,0.2);padding:2px 0;}
+
+/* TAG */
+.ntag{padding:1px 7px;border-radius:4px;font-size:10px;font-weight:600;}
+.ntag-green{background:var(--green-light);color:var(--green);}
+.ntag-blue{background:var(--blue-light);color:var(--blue);}
+.ntag-purple{background:var(--purple-light);color:var(--purple);}
+.ntag-orange{background:var(--orange-light);color:var(--orange);}
+.ntag-cyan{background:var(--cyan-light);color:var(--cyan);}
+.ntag-yellow{background:var(--yellow-light);color:var(--yellow);}
+.ntag-red{background:var(--red-light);color:var(--red);}
+
+/* CONCLUSION */
+.conclusion-box{background:linear-gradient(135deg,#0a0f1e 0%,#0f2027 60%,#0a1628 100%);border-radius:16px;padding:32px 36px;color:#fff;margin-top:36px;position:relative;overflow:hidden;}
+.conclusion-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 75% 25%,rgba(37,99,235,0.2) 0%,transparent 55%);}
+.conclusion-inner{position:relative;}
+.conclusion-label{font-size:11px;font-weight:700;letter-spacing:0.1em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:12px;}
+.conclusion-text{font-size:14px;line-height:1.9;color:rgba(255,255,255,0.85);}
+.conclusion-text strong{color:#fff;}
+.conclusion-text em{color:#93c5fd;font-style:normal;font-weight:600;}
+
+/* FOOTER */
+.site-footer{text-align:center;padding:24px 40px;font-size:12px;color:rgba(255,255,255,0.25);border-top:1px solid rgba(255,255,255,0.06);}
+
+/* HIGHLIGHT ROW */
+.hl-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0;}
+.hl-card{border-radius:10px;padding:16px;text-align:center;border:1px solid rgba(255,255,255,0.08);}
+.hl-num{font-size:26px;font-weight:800;font-family:'Inter',sans-serif;}
+.hl-label{font-size:11px;color:rgba(255,255,255,0.45);margin-top:4px;line-height:1.5;}
+
+@media(max-width:768px){
+  .report-hero{padding:36px 20px 32px;}
+  .toc-bar{padding:10px 20px;}
+  .main-wrap{padding:28px 16px 80px;}
+  .compare-2col,.hl-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="report-hero">
+  <div class="hero-inner">
+    <div class="hero-breadcrumb">
+      <a href="research.html" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;">
+        <span style="font-family:'Noto Serif SC',serif;font-size:15px;font-weight:700;background:linear-gradient(90deg,#fff 0%,#93c5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Kyrie</span><span style="font-family:'Noto Serif SC',serif;font-size:15px;font-weight:400;color:rgba(255,255,255,0.5);">AI Insight</span>
+      </a>
+      <span style="color:rgba(255,255,255,0.25);">·</span>
+      <span>岗位指南</span>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag" style="background:rgba(37,99,235,0.25);color:#93c5fd;">🗂️ 岗位知识体系</span>
+      <span class="hero-tag" style="background:rgba(22,163,74,0.25);color:#86efac;">数据 Sourcing</span>
+      <span class="hero-tag" style="background:rgba(124,58,237,0.25);color:#c4b5fd;">Mid-train</span>
+      <span class="hero-tag" style="background:rgba(234,88,12,0.2);color:#fdba74;">质量验证</span>
+    </div>
+    <h1 class="hero-title">Seed 数据团队岗位知识体系<br><span style="font-size:0.7em;color:rgba(255,255,255,0.6);">—— 从训练阶段认知到 Sourcing 全流程的完整指南</span></h1>
+    <p class="hero-subtitle">整合大模型三段训练认知、5TB STEM 数据 Sourcing 五条路线、五层质量验证体系、岗位工作方式与行业生态，覆盖这个岗位需要掌握的全部核心知识点。</p>
+    <div class="hero-meta">
+      <span>📅 2026年7月19日</span>
+      <span>✍️ Kyrie</span>
+      <span>📖 约 5000 字</span>
+      <span>🏭 大模型 · 数据 · 岗位指南</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc-bar">
+  <a class="toc-link" href="#s1">① 训练三阶段认知</a>
+  <a class="toc-link" href="#s2">② Sourcing 五条路线</a>
+  <a class="toc-link" href="#s3">③ 五层质量验证</a>
+  <a class="toc-link" href="#s4">④ 岗位工作方式</a>
+  <a class="toc-link" href="#s5">⑤ 行业生态认知</a>
+</div>
+
+<div class="main-wrap">
+
+  <!-- OVERVIEW -->
+  <div style="margin-bottom:28px;">
+    <div style="background:linear-gradient(135deg,#0a0f1e 0%,#0f2027 60%,#0a1628 100%);border-radius:16px;padding:28px 32px;color:#fff;position:relative;overflow:hidden;">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(37,99,235,0.18) 0%,transparent 55%),radial-gradient(ellipse at 15% 80%,rgba(22,163,74,0.1) 0%,transparent 50%);"></div>
+      <div style="position:relative;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:0.1em;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:12px;">背景</div>
+        <p style="font-size:15px;line-height:1.85;color:rgba(255,255,255,0.88);margin-bottom:14px;">字节 Seed 数据团队的核心职责是：为基座大模型的每一次迭代提供"燃料"。这个岗位夹在研究员和标注团队/供应商之间，核心能力是<strong style="color:#93c5fd;">把模糊的技术需求翻译成可执行的采集标准，并保证数据最终能转化为模型能力提升。</strong></p>
+        <p style="font-size:15px;line-height:1.85;color:rgba(255,255,255,0.88);">当前最核心的业务痛点：高质量<em style="color:#fbbf24;">过程性数据</em>极度稀缺——公开互联网里存在的是"知识介绍"，而非"专家在真实工程环境中一步步完成复杂任务的推理过程"。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: 训练三阶段 -->
+  <div class="section-head" id="s1">
+    <div class="section-num" style="background:var(--blue);">1</div>
+    <div>
+      <div class="section-title-text">大模型训练三阶段认知</div>
+      <div class="section-desc-text">Pre-train → Mid-train → Post-train，每段的目的和数据需求完全不同</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📐 三段训练全览</div>
+    <table class="data-table">
+      <thead><tr><th>阶段</th><th>目的</th><th>数据形态</th><th>数据量级</th><th>改变的是</th></tr></thead>
+      <tbody>
+        <tr><td>Pre-train 预训练</td><td>建立语言理解和世界知识骨架</td><td>海量互联网文本，几乎不筛选</td><td>万亿 token</td><td>模型"知道什么"的基础边界</td></tr>
+        <tr><td>Mid-train 中间训练</td><td>在通用能力基础上强化特定领域</td><td>高质量垂直领域文档，精心筛选</td><td>千亿 token</td><td>特定领域推理深度和能力天花板</td></tr>
+        <tr><td>Post-train 后训练</td><td>改变行为模式，变成有用的助手</td><td>指令-回复对、人类偏好排序</td><td>十亿 token 级</td><td>模型"怎么说话"和"愿不愿意做"</td></tr>
+      </tbody>
+    </table>
+    <div class="insight-quote">
+      <strong>最关键的判断：</strong>Post-train 补不了 Pre-train/Mid-train 的能力缺口。数据质量决定模型能力天花板，后训练只是"解锁"已有能力，而不是创造新能力。DeepSeek 的启示：Pre-train 做得足够好，Post-train 可以很"省"；反过来不成立。
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🔍 Mid-train 详解：什么时候必须做</div>
+    <div class="block-body">
+      <p>判断标准只有一条：<strong>公开互联网里这类高质量数据稀不稀缺？</strong></p>
+    </div>
+    <div class="compare-2col" style="margin-top:14px;">
+      <div class="compare-col" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.2);">
+        <div class="compare-col-title" style="color:#fca5a5;">❌ 不需要 Mid-train</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>日常对话、写作、翻译：互联网数据海量且质量够</li>
+          <li>简单问答：公开数据覆盖充分</li>
+          <li>Pre-train 数据已经充足覆盖的通用场景</li>
+        </ul>
+      </div>
+      <div class="compare-col" style="background:rgba(22,163,74,0.06);border-color:rgba(22,163,74,0.2);">
+        <div class="compare-col-title" style="color:#86efac;">✅ 必须做 Mid-train</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>数学深度推理：过程性数据稀缺</li>
+          <li>医学临床诊断：推理链路数据少</li>
+          <li>法律推理：判决文书多但推理链稀缺</li>
+          <li>AI4S（尖端科研）：极度稀缺，不做基本废</li>
+          <li>金融建模决策链：几乎没有公开数据</li>
+        </ul>
+      </div>
+    </div>
+    <div class="block-body" style="margin-top:12px;">
+      <p><strong>Mid-train 和 Post-train 的本质区别：</strong>Mid-train 还是语言建模（预测下一个 token），改变的是"模型知道什么、推理有多深"；Post-train 用 SFT + RLHF，改变的是"模型怎么说话、愿不愿意做某事"。前者扩充能力，后者改变行为。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Sourcing 五条路线 -->
+  <div class="section-head" id="s2">
+    <div class="section-num" style="background:var(--green);">2</div>
+    <div>
+      <div class="section-title-text">5TB STEM 数据 Sourcing 五条路线</div>
+      <div class="section-desc-text">配比建议、操作细节、注意事项一网打尽</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📊 五条路线总览与配比</div>
+    <table class="data-table">
+      <thead><tr><th>路线</th><th>建议体量</th><th>预算占比</th><th>核心价值</th><th>启动时机</th></tr></thead>
+      <tbody>
+        <tr><td>公开学术/代码库清洗</td><td>2.5TB（50%）</td><td>10%</td><td>覆盖基础量，成本最低</td><td>第 1 周并行推进</td></tr>
+        <tr><td>专业数据库授权</td><td>1TB（20%）</td><td>40%</td><td>高质量全文学术内容</td><td>第 1 周开始谈，3 月交付</td></tr>
+        <tr><td>高校/专家定制生产</td><td>200GB（4%）</td><td>30%</td><td>唯一来源的专家过程性数据</td><td>第 2 周开始，持续产出</td></tr>
+        <tr><td>合成数据增强</td><td>800GB（16%）</td><td>10%</td><td>放大种子数据，填补覆盖盲区</td><td>有种子数据后开始</td></tr>
+        <tr><td>供应商定制采集</td><td>500GB（10%）</td><td>10%</td><td>补充优先级场景缺口</td><td>补充阶段</td></tr>
+      </tbody>
+    </table>
+    <div class="insight-quote">
+      <strong>核心原则：</strong>用预算的 80% 搞清楚数据来源和质量，用剩下 20% 做合成扩充。5TB 的量不难凑，真正难的是"过程性"和"高质量"两个约束同时满足。
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📚 路线一：公开学术/代码库——分层采集策略</div>
+    <div class="block-body">
+      <p><strong>核心洞察：</strong>不是爬下来就能用，关键在分层筛选。以 arXiv 为例，只提取方法论和讨论章节（而非整篇），有效数据密度提升 3–5 倍。</p>
+    </div>
+    <table class="data-table" style="margin-top:14px;">
+      <thead><tr><th>数据源</th><th>领域</th><th>采集重点</th></tr></thead>
+      <tbody>
+        <tr><td>arXiv</td><td>数学/物理/CS/生物/材料</td><td>只提取方法论和讨论章节，解析 .tex 源码而非 PDF</td></tr>
+        <tr><td>S2ORC（Semantic Scholar）</td><td>全学科</td><td>已预处理好的结构化论文语料，直接可用</td></tr>
+        <tr><td>PubMed Central</td><td>生物医学</td><td>区分 Open Access 和仅摘要开放，只采全文</td></tr>
+        <tr><td>GitHub 顶级仓库（Star>1000）</td><td>代码/科学计算</td><td>抓 commit history + issue + PR 完整推理轨迹</td></tr>
+        <tr><td>Lean/Mathlib</td><td>形式化数学</td><td>每条都是机器可验证证明，质量极高，约 10 万条</td></tr>
+        <tr><td>Stack Exchange 数学/物理版</td><td>专家问答</td><td>过滤 score > 10 的回答，推导过程完整</td></tr>
+      </tbody>
+    </table>
+    <div class="block-body" style="margin-top:10px;">
+      <p><strong>被严重低估的数据类型：GitHub commit history。</strong>从 bug 出现、定位、修复到验证的完整过程，本质上就是"专家在真实工程约束下完成多步任务的过程性数据"，精准对应业务痛点。</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🏛️ 路线二：专业数据库授权——谈判全流程</div>
+    <table class="data-table">
+      <thead><tr><th>供应商</th><th>覆盖领域</th><th>授权通道</th><th>谈判周期</th></tr></thead>
+      <tbody>
+        <tr><td>Elsevier</td><td>医学/材料/化学（Cell/Lancet）</td><td>TDM（Text & Data Mining）许可证，专门针对 AI 训练</td><td>3–6 个月</td></tr>
+        <tr><td>Springer Nature</td><td>自然科学全学科（Nature 系列）</td><td>SpringerLink Text Mining 服务</td><td>3–6 个月</td></tr>
+        <tr><td>Wiley</td><td>化学/工程/生命科学</td><td>独立 AI 训练授权通道</td><td>2–4 个月</td></tr>
+        <tr><td>知网（CNKI）</td><td>国内全学科</td><td>2023 年后收紧，需走专项 AI 训练合同</td><td>1–3 个月</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:14px;font-size:13px;font-weight:700;color:#e2eaf4;margin-bottom:10px;">授权合同必须明确的 5 个点</div>
+    <div class="trend-list">
+      <div class="trend-item">
+        <div class="trend-num" style="background:var(--red);">!</div>
+        <div class="trend-content">
+          <div class="trend-title">用途范围</div>
+          <div class="trend-body">必须写明"用于大语言模型预训练/中间训练"，不能只写"研究用途"——否则后续有法律风险</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:var(--orange);">!</div>
+        <div class="trend-content">
+          <div class="trend-title">衍生模型权</div>
+          <div class="trend-body">用该数据训练出来的模型是否可以商业化发布——这一条很多人谈判时漏掉</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:var(--yellow);">!</div>
+        <div class="trend-content">
+          <div class="trend-title">数据留存权 & 转让限制</div>
+          <div class="trend-body">训练完成后数据是否可留存；数据是否可以给外包标注公司使用</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:var(--muted);">!</div>
+        <div class="trend-content">
+          <div class="trend-title">审计权</div>
+          <div class="trend-body">出版商是否保留审计数据使用方式的权利——需要明确限制范围，否则被动</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🎓 路线三：高校/专家定制生产——三种方式</div>
+    <div class="block-body" style="margin-bottom:14px;">
+      <p>这是获取"专家思维过程"最直接的路——公开数据库和出版商都没有的，只能靠人产生。量少但价值密度最高，建议把预算的 30% 集中在这里。</p>
+    </div>
+    <div class="trend-list">
+      <div class="trend-item">
+        <div class="trend-num" style="background:var(--blue);">A</div>
+        <div class="trend-content">
+          <div class="trend-title">结构化任务采集（主力，推荐）</div>
+          <div class="trend-body">设计模拟真实工程场景的任务，采集完整推理链路，不是答案。示例（材料科学）：给定导电率/熔点/成本约束，设计合金配方，写出完整推理过程和排除其他方案的理由。任务必须模拟真实工程约束，不能是选择题或简答题。</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:var(--purple);">B</div>
+        <div class="trend-content">
+          <div class="trend-title">Think-Aloud Protocol（精品）</div>
+          <div class="trend-body">心理学经典方法，请专家边操作边说出思维过程，录音转文字。成本高但质量最高，适合采集 50–200 条精品样本，用作质检基准和种子数据。</div>
+        </div>
+      </div>
+      <div class="trend-item">
+        <div class="trend-num" style="background:var(--cyan);">C</div>
+        <div class="trend-content">
+          <div class="trend-title">结构化标注已有论文</div>
+          <div class="trend-body">给专家看论文，让他把方法论章节的每一个关键步骤打标签：假设建立 / 文献支撑 / 实验设计 / 异常处理 / 结论推断。适合批量生产结构化推理数据。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🤖 路线四：合成数据增强——边界与工程流程</div>
+    <div class="compare-2col">
+      <div class="compare-col" style="background:rgba(22,163,74,0.06);border-color:rgba(22,163,74,0.2);">
+        <div class="compare-col-title" style="color:#86efac;">✅ 合成数据能做</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>放大种子数据（1000 条真实 → 合成 1 万条变体）</li>
+          <li>填补子领域覆盖盲区</li>
+          <li>生成负样本（错误推理 + 错误标注，训练纠错能力）</li>
+        </ul>
+      </div>
+      <div class="compare-col" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.2);">
+        <div class="compare-col-title" style="color:#fca5a5;">❌ 合成数据不能做</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>替代真实专家原始推理（继承原始模型知识边界）</li>
+          <li>用于 Benchmark 校准（造成循环依赖）</li>
+          <li>合成:真实 比例超过 3:1</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:14px;font-size:13px;font-weight:700;color:#e2eaf4;margin-bottom:8px;">工程流程</div>
+    <div class="step-flow">
+      <div class="step-item"><div class="step-badge" style="background:var(--blue);">1</div><div class="step-text">选取 <strong>200–500 条</strong>高质量真实专家数据作为种子</div></div>
+      <div class="step-arrow">↓</div>
+      <div class="step-item"><div class="step-badge" style="background:var(--blue);">2</div><div class="step-text">让 GPT-4/Claude 按种子数据的格式和风格生成新任务</div></div>
+      <div class="step-arrow">↓</div>
+      <div class="step-item"><div class="step-badge" style="background:var(--blue);">3</div><div class="step-text">自动过滤：去重 / 格式检查 / 基本逻辑验证</div></div>
+      <div class="step-arrow">↓</div>
+      <div class="step-item"><div class="step-badge" style="background:var(--orange);">4</div><div class="step-text">专家抽检 <strong>5–10%</strong>，不合格整批返工</div></div>
+      <div class="step-arrow">↓</div>
+      <div class="step-item"><div class="step-badge" style="background:var(--green);">5</div><div class="step-text">合格数据混入真实数据，<strong>合成:真实 ≤ 3:1</strong>，追踪模型 loss 变化</div></div>
+    </div>
+    <div class="block-body" style="margin-top:10px;">
+      <p><strong>模型坍塌的早期信号：</strong>生成内容多样性下降（重复表达增多）/ 真实 Benchmark 表现下降 / 推理链路越来越短或模板化。出现以上信号立即停止。</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📋 路线五：供应商 SOW 六要素</div>
+    <div class="block-body" style="margin-bottom:14px;"><p>SOW（工作说明书）是决定数据质量的核心文档，写得不好会拿到一堆垃圾数据。</p></div>
+    <div class="trend-list">
+      <div class="trend-item"><div class="trend-num" style="background:var(--blue);">1</div><div class="trend-content"><div class="trend-title">任务定义</div><div class="trend-body">子领域 + 难度等级（本科/研究生/研究前沿）+ 任务格式（开放推理 vs 选择题 vs 证明题）。不能只写"数学推理数据"。</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--green);">2</div><div class="trend-content"><div class="trend-title">标注者资质</div><div class="trend-body">相关领域硕士及以上，或 3 年以上行业从业经验；设置 qualification test，低于 80 分不录用；要求提供标注者 credential 样本，签约前审核。</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--purple);">3</div><div class="trend-content"><div class="trend-title">推理链路深度</div><div class="trend-body">最少步骤数（根据难度定 5–15 步）；关键节点标注（假设建立/关键转折/结论验证）；禁止跳步——不能从问题直接跳到结论。</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--orange);">4</div><div class="trend-content"><div class="trend-title">质量检验机制</div><div class="trend-body">双盲标注（同一条数据两人独立完成），一致率 > 85%；甲方保留抽检权，不合格率 > 10% 整批返工。</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--red);">5</div><div class="trend-content"><div class="trend-title">数据安全</div><div class="trend-body">禁止供应商用于自身模型训练；标注者不得保留数据副本；签 NDA。</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--cyan);">6</div><div class="trend-content"><div class="trend-title">交付格式</div><div class="trend-body">统一 jsonl，每条含：原始问题 / 完整推理链路 / 最终答案 / 难度标注 / 子领域标注 / 标注者 ID（用于追责）。</div></div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: 质量验证 -->
+  <div class="section-head" id="s3">
+    <div class="section-num" style="background:var(--purple);">3</div>
+    <div>
+      <div class="section-title-text">五层数据质量验证体系</div>
+      <div class="section-desc-text">从人工抽检到模型探针，确保每分钱买的数据都真正有用</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🔬 第 1 层：领域专家抽检（分层抽样）</div>
+    <div class="block-body" style="margin-bottom:12px;"><p><strong>不能随机抽检，要分层抽样：</strong>每个子领域至少 1% / 供应商新加入标注者的数据抽 5% / 极端长短数据各抽 3%。</p></div>
+    <table class="data-table">
+      <thead><tr><th>评分维度</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td>领域准确性</td><td>推理过程有没有领域性错误</td></tr>
+        <tr><td>步骤完整性</td><td>有没有跳步，每步前提是否明确</td></tr>
+        <tr><td>语言清晰度</td><td>表达是否清晰准确</td></tr>
+        <tr><td>推理规范性</td><td>是否符合该领域的规范表达方式</td></tr>
+        <tr><td>难度准确性</td><td>打的难度标签和实际难度是否匹配</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">⚙️ 第 2 层：可执行性验证（机器自动化）</div>
+    <div class="compare-2col">
+      <div class="compare-col">
+        <div class="compare-col-title" style="color:#93c5fd;">代码数据（100% 自动）</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>搭建 Docker 沙箱执行环境</li>
+          <li>每条代码直接执行，记录运行结果和边界条件</li>
+          <li>执行失败的数据直接打标，不进训练</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-title" style="color:#86efac;">数学数据（部分自动）</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>有数值结果的题目用 Python + SymPy 验证最终答案</li>
+          <li>验证通过率 &lt; 90% 的批次需要返工</li>
+          <li>形式化数学（Lean）可 100% 机器验证</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🧪 第 3 层：模型探针评估（最终黑盒验证）</div>
+    <div class="block-body" style="margin-bottom:12px;"><p>最有说服力的验证方式，直接测数据对模型是否有提升价值。</p></div>
+    <div class="step-flow">
+      <div class="step-item"><div class="step-badge" style="background:var(--blue);">1</div><div class="step-text">随机抽取 <strong>5,000–10,000 条</strong>买来的数据</div></div>
+      <div class="step-arrow">↓</div>
+      <div class="step-item"><div class="step-badge" style="background:var(--blue);">2</div><div class="step-text">在基座模型上 SFT（<strong>仅用这批数据</strong>）</div></div>
+      <div class="step-arrow">↓</div>
+      <div class="step-item"><div class="step-badge" style="background:var(--blue);">3</div><div class="step-text">在目标 Benchmark 上评测：MATH / GSM8K / MMLU-STEM 子集</div></div>
+      <div class="step-arrow">↓</div>
+      <div class="step-item"><div class="step-badge" style="background:var(--green);">4</div><div class="step-text">对比 baseline，<strong>提升幅度 > 2%</strong> 认为数据有效；否则停下来和供应商复盘</div></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📊 第 4 层：数据分布分析</div>
+    <div class="trend-list">
+      <div class="trend-item"><div class="trend-num" style="background:var(--blue);">D</div><div class="trend-content"><div class="trend-title">子领域覆盖</div><div class="trend-body">用 topic model 或 TF-IDF 聚类，检查分布均衡性——不能 80% 都是同一个子领域</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--green);">D</div><div class="trend-content"><div class="trend-title">难度分布</div><div class="trend-body">频率分布应接近正态，不能全堆简单或困难两端</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--orange);">D</div><div class="trend-content"><div class="trend-title">推理链路长度分布</div><div class="trend-body">极端短（&lt; 3 步）和极端长（&gt; 50 步）的数据比例不超过 5%</div></div></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🛡️ 第 5 层：Benchmark 污染检测</div>
+    <div class="block-body">
+      <p><strong>工具：</strong>MinHash LSH，计算与公开 Benchmark 数据集的 Jaccard 相似度，字符级 n-gram 相似度 > 50% 直接剔除。</p>
+      <p><strong>必须覆盖的 Benchmark 列表：</strong>MATH / MMLU（STEM 子集）/ SciQ / ARC / GPQA / AIME / AMC</p>
+      <p>这个问题比想象中普遍——如果训练数据里包含了评测集题目，模型 Benchmark 表现会虚高，但实际能力并没有那么强。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 4: 岗位工作方式 -->
+  <div class="section-head" id="s4">
+    <div class="section-num" style="background:var(--orange);">4</div>
+    <div>
+      <div class="section-title-text">岗位实际工作方式</div>
+      <div class="section-desc-text">你的工作界面、需求管理、价值度量、沟通策略</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🔄 工作界面：你夹在谁和谁之间</div>
+    <div class="mono-block">
+<span class="h">研究员</span>  ──[提需求：模糊的技术判断]──▶  <span class="w">数据 PM（你）</span>
+                                                    │
+                                         [翻译成可执行标准]
+                                                    │
+                                                    ▼
+                              <span class="c">标注团队 / 外部供应商</span>
+                                                    │
+                                              [交付数据]
+                                                    │
+<span class="w">数据 PM（你）</span>  ◀──[质检/清洗/格式化/打回]──────┘
+          │
+          │ [入库 + 追踪模型提升]
+          ▼
+<span class="g">模型团队</span>  ──[反馈：这批数据有没有用]──▶  <span class="w">数据 PM（你）</span>（下一轮迭代）
+    </div>
+    <div class="block-body" style="margin-top:8px;">
+      <p><strong>核心技能：语言翻译。</strong>研究员说的"推理链路质量好"是模糊的技术判断，你要能把它拆解成标注者能执行的具体标准——几步、什么格式、如何验证、怎么算合格。翻译得好不好，直接决定数据能不能被用上。</p>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📐 需求优先级框架</div>
+    <table class="data-table">
+      <thead><tr><th></th><th>模型提升收益大</th><th>模型提升收益小</th></tr></thead>
+      <tbody>
+        <tr><td>生产难度低</td><td style="color:#86efac;font-weight:700;">✅ 立刻做</td><td style="color:#8aabbf;">有余力再做</td></tr>
+        <tr><td>生产难度高</td><td style="color:#fbbf24;font-weight:700;">🔴 专项评估，仔细权衡</td><td style="color:#f87171;">❌ 基本不做</td></tr>
+      </tbody>
+    </table>
+    <div class="compare-2col" style="margin-top:14px;">
+      <div class="compare-col">
+        <div class="compare-col-title" style="color:#93c5fd;">难度评估维度</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>数据稀缺程度（公开能采到吗）</li>
+          <li>专家资源可得性</li>
+          <li>版权/合规风险</li>
+          <li>生产周期</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-title" style="color:#86efac;">收益评估维度</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>对应哪个 Benchmark 或产品功能</li>
+          <li>研究员给的预期提升量</li>
+          <li>是否是当前迭代的关键缺口</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📈 衡量工作价值的指标体系</div>
+    <div class="compare-2col">
+      <div class="compare-col">
+        <div class="compare-col-title" style="color:#93c5fd;">过程指标（你能控制）</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>数据采集完成率（计划 vs 实际）</li>
+          <li>数据质检通过率</li>
+          <li>数据交付周期（需求提出到可用）</li>
+          <li>标注一致率（衡量 Guideline 质量）</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-title" style="color:#86efac;">结果指标（和研究员对齐）</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>每批数据的"探针提升"（1 万条 SFT 测提升）</li>
+          <li>数据入库率（采了多少被实际训练用）</li>
+          <li>Benchmark 提升中可归因于数据的比例</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">💬 和研究员沟通：三大摩擦点处理</div>
+    <table class="data-table">
+      <thead><tr><th>常见摩擦点</th><th>处理方式</th></tr></thead>
+      <tbody>
+        <tr><td>需求过于宽泛（"采些高质量理科数据"）</td><td>主动拆解，给出具体子任务清单，让对方确认后再开始执行</td></tr>
+        <tr><td>质量判断是直觉的（"感觉这批数据不好"）</td><td>把直觉转化为可量化指标，建立标准，避免反复返工</td></tr>
+        <tr><td>需求优先级随时变化</td><td>书面需求记录 + 变更管理机制，不靠口头约定</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🏗️ 数据基建产品化：从项目制到持续积累</div>
+    <div class="block-body" style="margin-bottom:12px;"><p>初级做法是"项目制"——研究员要了才采。成熟做法是"产品化"：</p></div>
+    <div class="trend-list">
+      <div class="trend-item"><div class="trend-num" style="background:var(--blue);">P</div><div class="trend-content"><div class="trend-title">数据资产管理</div><div class="trend-body">每批数据有完整 metadata：来源 / 质量分 / 使用历史 / 对模型提升的实测效果</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--green);">P</div><div class="trend-content"><div class="trend-title">持续采集储备</div><div class="trend-body">核心领域数据持续积累，不等需求来了再开始——类比备货而非按单生产</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--purple);">P</div><div class="trend-content"><div class="trend-title">版本管理</div><div class="trend-body">历史数据可追溯、可复现（类比代码的 Git），避免"数据债"</div></div></div>
+      <div class="trend-item"><div class="trend-num" style="background:var(--orange);">P</div><div class="trend-content"><div class="trend-title">供应商质量追踪</div><div class="trend-body">追踪每家供应商的历史质量分，提前发现质量下滑趋势，干预而不是被动接受</div></div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: 行业生态 -->
+  <div class="section-head" id="s5">
+    <div class="section-num" style="background:var(--cyan);">5</div>
+    <div>
+      <div class="section-title-text">行业生态与生涯认知</div>
+      <div class="section-desc-text">这个岗位的战略地位、信号判断和长期价值</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">🗺️ 产业链坐标</div>
+    <div class="mono-block">
+<span class="c">模型公司（数据消费方）：Seed / OpenAI / 智元 / Figure AI</span>
+         │ 数据需求
+         ▼
+<span class="w">内部数据团队（字节 Seed AI 数据&安全团队）</span>
+→ 自给自足，不对外服务
+→ 核心 KPI：模型迭代速度，而非收入
+         │
+         │（同一层级）
+         ▼
+<span class="g">外部独立数据服务商：Scale AI / 光轮智能 / 觅蜂</span>
+→ 中立第三方，KPI：收入和客户满意度
+→ 天花板：通用数据市场，核心场景被客户自建后空间压缩
+         │
+         ▼
+<span class="c">底层采集基础设施：数采中心 / 劳务中介 / 一线采集员</span>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-title">📡 判断数据团队战略地位的信号</div>
+    <div class="compare-2col">
+      <div class="compare-col" style="background:rgba(22,163,74,0.06);border-color:rgba(22,163,74,0.2);">
+        <div class="compare-col-title" style="color:#86efac;">被重视的信号</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>数据 PM 参与模型训练策略讨论（不只是执行）</li>
+          <li>有专属的数据工程基础设施预算</li>
+          <li>数据质量问题可以 Block 模型发布</li>
+        </ul>
+      </div>
+      <div class="compare-col" style="background:rgba(220,38,38,0.06);border-color:rgba(220,38,38,0.2);">
+        <div class="compare-col-title" style="color:#fca5a5;">边缘化的信号</div>
+        <ul class="compare-col-list" style="color:#8aabbf;">
+          <li>只做执行，研究员说什么采什么</li>
+          <li>没有自主的供应商管理权限</li>
+          <li>数据质量问题经常被"先用着再说"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="conclusion-box">
+    <div class="conclusion-inner">
+      <div class="conclusion-label">长期价值判断</div>
+      <div class="conclusion-text">
+        <p style="margin-bottom:14px;"><strong>Pre-train/Mid-train 数据的供应链管理能力，在大模型行业里是真正的稀缺能力。</strong>合规体系（版权授权）、质量体系（五层验证）、供应商体系（SOW + 管理），三块能同时建好的人极少。</p>
+        <p style="margin-bottom:14px;">随着模型能力逼近公开数据天花板，<em>高质量过程性数据的稀缺程度只会越来越高</em>——公开互联网数据已经被反复训练，边际价值在下降；但"专家真实推理过程"从未被大规模系统采集过，这个缺口不会自动填上。</p>
+        <p><strong>做好这个岗位的核心：</strong>不是"采了多少数据"，而是"采的数据有多少真正转化成了模型能力提升"。建立可量化的数据价值评估体系，让每一次采购决策都有数据支撑，才是这个岗位真正的竞争力。</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="site-footer">
+  <p>© 2026 Kyrie AI Insight · 内容整合自对话记录，仅供个人参考</p>
+  <p style="margin-top:6px;">信息截至 2026 年 7 月</p>
+</div>
+
+</body>
+</html>
