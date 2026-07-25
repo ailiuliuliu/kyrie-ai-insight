@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GPU 经济学：AI 视频赛道的生死账本 · Kyrie AI 洞察</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070d1a;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.09);
+  --text: #c8d8e8;
+  --muted: #5a7a8a;
+  --green: #16a34a;
+  --blue: #2563eb;
+  --cyan: #0891b2;
+  --cyan-light: #cffafe;
+  --orange: #ea580c;
+  --red: #dc2626;
+  --yellow: #ca8a04;
+  --shadow: 0 2px 16px rgba(0,0,0,0.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: linear-gradient(160deg, #070d1a 0%, #0a1020 50%, #0d1520 100%);
+  color: #c8d8e8;
+  font-family: 'Inter', 'Noto Serif SC', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.site-header { padding: 48px 56px 36px; text-align: center; }
+.header-kv { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.header-avatar {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, #0891b2, #2563eb);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.header-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 700;
+  background: linear-gradient(135deg, #67e8f9 0%, #93c5fd 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.header-sub { font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 4px; }
+.header-meta { display: flex; justify-content: center; gap: 20px; margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.35); }
+.header-meta span { display: flex; align-items: center; gap: 4px; }
+
+/* ── NAV ── */
+.main-nav {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 6px;
+  padding: 14px 40px;
+  background: rgba(10,16,32,0.95); backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08);
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-btn {
+  padding: 7px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; cursor: pointer;
+  border: 1.5px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.5); text-decoration: none; transition: all 0.18s;
+}
+.nav-btn:hover { background: rgba(8,145,178,0.15); color: #67e8f9; border-color: rgba(8,145,178,0.4); }
+.nav-btn.active { background: rgba(8,145,178,0.25); color: #67e8f9; border-color: rgba(8,145,178,0.45); }
+
+/* ── MAIN ── */
+.main-wrap { max-width: 1100px; margin: 0 auto; padding: 40px 40px 100px; }
+
+/* ── OVERVIEW ── */
+.overview-box {
+  background: linear-gradient(135deg, rgba(8,145,178,0.12) 0%, rgba(37,99,235,0.12) 100%);
+  border: 1px solid rgba(8,145,178,0.25); border-radius: 16px; padding: 28px 32px; margin-bottom: 48px;
+}
+.overview-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #22d3ee; margin-bottom: 10px; }
+.overview-text { font-size: 15px; line-height: 1.9; color: #b8c8e0; }
+.overview-text strong { color: #e2e8f0; }
+.overview-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.overview-tag { padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 600; border: 1px solid; }
+
+/* ── PART DIVIDER ── */
+.part-divider { margin: 52px 0 28px; display: flex; align-items: center; gap: 14px; }
+.part-label { font-family: 'Noto Serif SC', serif; font-size: 22px; font-weight: 700; color: #c8d8e8; white-space: nowrap; }
+.part-line { flex: 1; height: 2px; background: rgba(255,255,255,0.08); border-radius: 2px; }
+.part-badge { font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 999px; white-space: nowrap; }
+
+/* ── STATS GRID ── */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+.stats-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+.stat-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 18px 20px; transition: transform 0.18s, box-shadow 0.18s;
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.stat-label { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 6px; font-weight: 500; }
+.stat-value { font-size: 22px; font-weight: 700; color: #e2e8f0; line-height: 1.2; }
+.stat-note { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; }
+
+/* ── INFO BLOCK ── */
+.info-block {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 24px 28px; margin-bottom: 20px;
+}
+.info-block-title { font-size: 15px; font-weight: 700; color: #c8d8e8; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.info-block p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 10px; }
+.info-block p:last-child { margin-bottom: 0; }
+.info-block strong { color: #e2e8f0; }
+.info-block em { color: #22d3ee; font-style: normal; font-weight: 600; }
+
+/* ── CODE BLOCK ── */
+.code-block {
+  background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px; padding: 16px 20px; margin: 12px 0;
+  font-family: 'Monaco', 'Menlo', monospace; font-size: 13px;
+  color: #a5f3fc; line-height: 1.7; overflow-x: auto;
+}
+
+/* ── HIGHLIGHT BOX ── */
+.highlight-box {
+  background: linear-gradient(135deg, rgba(8,145,178,0.08) 0%, rgba(8,145,178,0.08) 100%);
+  border: 1px solid rgba(8,145,178,0.2); border-radius: 12px;
+  padding: 16px 20px; margin: 12px 0; font-size: 13px; color: #b8c8e0; line-height: 1.8;
+}
+.highlight-box strong { color: #67e8f9; }
+
+.warn-box {
+  background: rgba(220,38,38,0.07); border: 1px solid rgba(220,38,38,0.2);
+  border-radius: 12px; padding: 16px 20px; margin: 12px 0; font-size: 13px; color: #fca5a5; line-height: 1.8;
+}
+.warn-box strong { color: #f87171; }
+
+.success-box {
+  background: rgba(22,163,74,0.08); border: 1px solid rgba(22,163,74,0.2);
+  border-radius: 12px; padding: 16px 20px; margin: 12px 0; font-size: 13px; color: #86efac; line-height: 1.8;
+}
+.success-box strong { color: #4ade80; }
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto; margin-bottom: 20px;
+  border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);
+}
+.data-table { width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.03); }
+.data-table th {
+  padding: 11px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.08);
+  text-align: left; white-space: nowrap;
+}
+.data-table td {
+  padding: 11px 14px; font-size: 13px; color: rgba(255,255,255,0.6);
+  border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; line-height: 1.65;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: rgba(255,255,255,0.02); }
+.data-table td strong { color: #e2e8f0; }
+.data-table td.highlight { background: rgba(8,145,178,0.06); color: #a5f3fc; font-weight: 600; }
+.data-table th.highlight { background: rgba(8,145,178,0.15); color: #67e8f9; }
+
+/* survival badges */
+.sv-high { color: #4ade80; font-weight: 700; }
+.sv-mid { color: #fbbf24; font-weight: 700; }
+.sv-low { color: #f87171; font-weight: 700; }
+
+/* ── COST LADDER ── */
+.cost-ladder { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+.cost-rung {
+  background: rgba(255,255,255,0.04); border-radius: 14px; padding: 18px 20px;
+  border-left: 4px solid; text-align: center;
+}
+.cost-label { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 8px; font-weight: 600; }
+.cost-num { font-size: 26px; font-weight: 700; line-height: 1.2; }
+.cost-sub { font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; }
+
+/* ── 2-COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+
+/* ── VERDICT TABLE ── */
+.verdict-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+.verdict-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px; padding: 18px 20px;
+}
+.verdict-q { font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 6px; font-weight: 600; }
+.verdict-a { font-size: 13px; color: #c8d8e8; line-height: 1.65; }
+.verdict-a strong { color: #67e8f9; }
+
+/* ── FOOTER ── */
+.site-footer {
+  text-align: center; padding: 24px 40px; font-size: 12px;
+  color: rgba(255,255,255,0.35); border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+@media (max-width: 900px) {
+  .main-wrap { padding: 24px 16px 60px; }
+  .stats-grid, .cost-ladder, .verdict-grid, .two-col { grid-template-columns: 1fr; }
+  .stats-grid-3 { grid-template-columns: 1fr 1fr; }
+  .site-header { padding: 32px 20px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="header-kv">
+    <div class="header-avatar">⚡</div>
+    <h1 class="header-title">GPU 经济学：AI 视频赛道的生死账本</h1>
+  </div>
+  <p class="header-sub">没有任何一家 AI open-ended 视频公司公布过净利润为正</p>
+  <div class="header-meta">
+    <span>📅 数据截至：2026年7月</span>
+    <span>📊 数据来源：Cantor Fitzgerald · Kuaishou IR · Sacra · Appfigures · AA Video Arena</span>
+  </div>
+</header>
+
+<!-- ── NAV ── -->
+<nav class="main-nav">
+  <a class="nav-btn" href="#cost">§1 成本本质</a>
+  <a class="nav-btn" href="#ledger">§2 谁亏谁赚</a>
+  <a class="nav-btn" href="#moat">§3 护城河与供给</a>
+  <a class="nav-btn" href="#path">§4 降本路径</a>
+  <a class="nav-btn" href="#revenue">§5 收入侧与开源</a>
+  <a class="nav-btn" href="#verdict">§6 底线判断</a>
+</nav>
+
+<div class="main-wrap">
+
+<!-- ── OVERVIEW ── -->
+<div class="overview-box">
+  <div class="overview-label">核心结论</div>
+  <div class="overview-text">
+    AI 视频是目前<strong>单位成本最高、付费转化率最低、规模化路径最模糊</strong>的 AI 赛道。当前每生成一个10秒720p视频成本约 <strong>$1.30</strong>，而构建可持续订阅经济学需要降到 <strong>$0.01</strong>，差距 130 倍。乐观情景下，Rubin 硬件 × 蒸馏算法叠加，约 <strong>2027年底</strong>可达临界点；基准情景下，<strong>2028年中</strong>（$0.04/clip）仅能支撑 B2B 场景，C2C 订阅可能永远无法单独盈利。目前唯一已证明盈利的模式是<strong>数字人</strong>（HeyGen），因为它靠缓存复用把推理边际成本压到接近零。
+  </div>
+  <div class="overview-tags">
+    <span class="overview-tag" style="color:#22d3ee;border-color:rgba(8,145,178,0.35);background:rgba(8,145,178,0.1);">$1.30→$0.01 临界点</span>
+    <span class="overview-tag" style="color:#86efac;border-color:rgba(22,163,74,0.35);background:rgba(22,163,74,0.1);">HeyGen 已盈亏平衡</span>
+    <span class="overview-tag" style="color:#f87171;border-color:rgba(220,38,38,0.35);background:rgba(220,38,38,0.1);">Sora 2026年4月关停</span>
+    <span class="overview-tag" style="color:#fbbf24;border-color:rgba(202,138,4,0.35);background:rgba(202,138,4,0.1);">开源Wan 2.7已超可灵</span>
+    <span class="overview-tag" style="color:#a78bfa;border-color:rgba(124,58,237,0.35);background:rgba(124,58,237,0.1);">基准情景 2028年中 $0.04</span>
+  </div>
+</div>
+
+<!-- ══ §1 成本的物理本质 ══ -->
+<div class="part-divider" id="cost">
+  <span class="part-label">§1 成本的物理本质：为什么视频比文本贵160倍</span>
+  <div class="part-line"></div>
+  <span class="part-badge" style="background:rgba(220,38,38,0.15);color:#f87171;border:1px solid rgba(220,38,38,0.3);">结构性，非优化问题</span>
+</div>
+
+<!-- 反直觉事实 -->
+<div class="info-block">
+  <div class="info-block-title">⚡ 先从一个反直觉的事实说起</div>
+  <p>Sora 烧掉 $1M/天，不是因为 OpenAI 运营效率低——那已经是<strong>限流后</strong>的数字。如果让 Sora 满负荷运行，Cantor Fitzgerald 的分析师测算是 <em>$15M/天</em>。</p>
+  <div class="code-block">一个10秒720p视频 = 4张H100并行跑约40分钟
+GPU计算成本 = ~$1.30/clip
+4.5M用户 × 25%日活 × 10视频/人 = 1130万视频/天
+$1.30 × 1130万 = $14.7M/天</div>
+  <p>对比：Sora 6个月<strong>总收入 $2.1M</strong>。不是月收入，是全生命周期总收入。</p>
+  <div class="warn-box">Bill Peebles（Sora 负责人）2025年11月公开发文：<strong>"The economics are currently completely unsustainable."</strong><br>两个月后签了迪士尼 $10 亿合作——再两个月后，<strong>2026年4月26日宣布关停</strong>。</div>
+</div>
+
+<!-- 模态成本阶梯 -->
+<div class="cost-ladder">
+  <div class="cost-rung" style="border-color:#22d3ee;">
+    <div class="cost-label">文本（1000字）</div>
+    <div class="cost-num" style="color:#22d3ee;">$0.008</div>
+    <div class="cost-sub">基准 1x</div>
+  </div>
+  <div class="cost-rung" style="border-color:#fbbf24;">
+    <div class="cost-label">图片（Midjourney级）</div>
+    <div class="cost-num" style="color:#fbbf24;">$0.03–0.05</div>
+    <div class="cost-sub">约贵 5x</div>
+  </div>
+  <div class="cost-rung" style="border-color:#f87171;">
+    <div class="cost-label">视频（10秒 720p）</div>
+    <div class="cost-num" style="color:#f87171;">$1.30</div>
+    <div class="cost-sub">贵 <strong style="color:#f87171;">~160x</strong></div>
+  </div>
+</div>
+
+<div class="two-col">
+  <div class="info-block" style="margin-bottom:0;">
+    <div class="info-block-title">🔢 原因一：输入复杂度指数级增长</div>
+    <p>一个10秒720p视频 ≈ <strong>8万个时空 patches</strong>（图片只有几百个 token）。Transformer 的计算量与 token 数量是<strong>平方关系</strong>：patches 翻倍，计算量翻4倍。</p>
+    <p>分辨率 720p → 4K：成本 <em>×9</em><br>时长 10s → 30s：成本 <em>×3</em><br>两者叠加：4K + 30s ≈ 当前成本 <strong>×27</strong>，无任何公司能盈利</p>
+  </div>
+  <div class="info-block" style="margin-bottom:0;">
+    <div class="info-block-title">🔄 原因二：多轮去噪迭代</div>
+    <p>DiT 不是一次性生成，是从"噪声"出发做 <strong>20–50 次迭代去噪</strong>，每次都要处理所有帧。</p>
+    <p><strong>注意力运算占推理时间的 85% 以上</strong>，这是 IRE 引擎（爱诗科技 PixVerse R1）重点优化的环节——把步骤从 50+ 压到 1–4 步，推理成本理论上可降 10–30x。</p>
+  </div>
+</div>
+
+
+<!-- ══ §2 谁亏谁赚 ══ -->
+<div class="part-divider" id="ledger">
+  <span class="part-label">§2 谁在亏，谁在赚：行业账本（2026年中）</span>
+  <div class="part-line"></div>
+  <span class="part-badge" style="background:rgba(22,163,74,0.15);color:#4ade80;border:1px solid rgba(22,163,74,0.3);">HeyGen 是目前唯一已验证的盈利范式</span>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>公司</th>
+        <th>收入规模</th>
+        <th>利润状态</th>
+        <th>融资总额</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>HeyGen</strong></td>
+        <td class="highlight">~$200M ARR</td>
+        <td><span class="sv-high">✅ 盈亏平衡</span></td>
+        <td>$74M</td>
+        <td>数字人（非open-ended），ARR/融资比 = 2.7x</td>
+      </tr>
+      <tr>
+        <td><strong>Midjourney</strong></td>
+        <td>$500M ARR</td>
+        <td><span class="sv-high">✅ 自第一个月盈利</span></td>
+        <td>$0（未融资）</td>
+        <td>图片，成本$0.03–0.05，不是视频</td>
+      </tr>
+      <tr>
+        <td><strong>MiniMax 海螺</strong></td>
+        <td>$7900万（2025）</td>
+        <td><span class="sv-mid">⚠️ 毛利率25%</span></td>
+        <td>—</td>
+        <td>同比+94%，最接近健康模型</td>
+      </tr>
+      <tr>
+        <td><strong>可灵 / 快手</strong></td>
+        <td>~$240M ARR</td>
+        <td><span class="sv-mid">⚠️ 未披露毛利</span></td>
+        <td>快手上市公司</td>
+        <td>快手IR数据，有平台分摊优势</td>
+      </tr>
+      <tr>
+        <td><strong>PixVerse</strong></td>
+        <td>$5000万 ARR</td>
+        <td><span class="sv-mid">⚠️ "接近盈亏平衡"</span></td>
+        <td>超$5.5亿（3年8轮）</td>
+        <td>商业化不到1年，但"接近"有水分</td>
+      </tr>
+      <tr>
+        <td><strong>Runway</strong></td>
+        <td>~$4400万收入</td>
+        <td><span class="sv-low">❌ EBITDA亏$1.55亿</span></td>
+        <td>$500M+</td>
+        <td>每赚$1，再亏$3.5</td>
+      </tr>
+      <tr>
+        <td><strong>Pika</strong></td>
+        <td>$760万收入</td>
+        <td><span class="sv-low">❌ 亏损</span></td>
+        <td>$8000万</td>
+        <td>融资/收入比严重失衡</td>
+      </tr>
+      <tr>
+        <td><strong>Sora（OpenAI）</strong></td>
+        <td>$210万（全生命周期）</td>
+        <td><span class="sv-low">❌ $1M+/天运营成本</span></td>
+        <td>OpenAI 体系</td>
+        <td><strong>2026年4月26日关停</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- HeyGen 原理 -->
+<div class="info-block">
+  <div class="info-block-title">🏆 为什么 HeyGen 能赚钱：数字人的成本结构根本不同</div>
+  <div class="table-wrap" style="margin-bottom:12px;">
+    <table class="data-table">
+      <thead>
+        <tr><th></th><th>Open-ended 视频生成</th><th class="highlight">数字人（HeyGen）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>成本结构</td><td>每生成一个视频 = 全量推理</td><td class="highlight">编码一次 → 缓存复用 N 次</td></tr>
+        <tr><td>边际成本</td><td>恒定高（$1.30/clip）</td><td class="highlight">趋近于零</td></tr>
+        <tr><td>类比</td><td>服务生意（每次重新做）</td><td class="highlight">软件生意（编译一次无限分发）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>HeyGen Avatar V 架构：用户的身份视频被编码为可复用的「人格嵌入」（personality embedding），在所有后续去噪步骤中被缓存在 KV 级别。<strong>第一次生成贵，第 N 次几乎免费。</strong></p>
+  <div class="highlight-box">资本市场在奖励错误模式：HeyGen 融资 $74M 已盈亏平衡，ARR $200M；Synthesia 融资 <strong>$536M</strong> 仍亏损，ARR $150M。VC 按"增长叙事"估值，但 Sora 关停证明——没有单位经济的增长终将崩塌。</div>
+</div>
+
+
+<!-- ══ §3 护城河与GPU供给 ══ -->
+<div class="part-divider" id="moat">
+  <span class="part-label">§3 护城河：成本结构差异与 GPU 供给现实</span>
+  <div class="part-line"></div>
+  <span class="part-badge" style="background:rgba(202,138,4,0.15);color:#fbbf24;border:1px solid rgba(202,138,4,0.3);">中国成本优势可能被高估</span>
+</div>
+
+<div class="two-col">
+  <div class="info-block" style="margin-bottom:0;">
+    <div class="info-block-title">🇨🇳 中国玩家的"隐性补贴"（⚠️ 可能被高估）</div>
+    <p>H800 / 昇腾910B 比 H100 便宜；国内电力 $0.05/度 vs 美国 $0.10+/度；国家算力补贴直接输血。这带来了明显的定价差距：</p>
+    <p style="margin:8px 0;">可灵 Pro：<strong>$0.026/秒</strong>｜Runway Pro：<strong>$0.09/秒</strong></p>
+    <div class="warn-box" style="margin-top:8px;">但华为昇腾 910B 视频推理效率仅为 H100 的 <strong>30–40%</strong>（软件生态不成熟），国产芯片效率损失基本抵消了电力和人工节省。地缘风险概率 >70% 继续升级，成本护城河比预想更脆弱。</div>
+  </div>
+  <div class="info-block" style="margin-bottom:0;">
+    <div class="info-block-title">📺 平台型公司的天然优势（真实护城河）</div>
+    <p>快手是最独特的一个：本身就是内容分发平台。</p>
+    <p>用可灵生成的视频直接发快手 → 平台内容密度提升 → 广告收入分摊 GPU 成本。<strong>Runway / Pika 没有这个结构，纯靠订阅 cover GPU。</strong></p>
+    <p>Google（Veo + Gemini Flash）同理：模型成本通过 YouTube 广告和 Workspace 订阅摊销。</p>
+    <div class="success-box" style="margin-top:8px;">平台分摊是<strong>真实且难以复制</strong>的护城河，开源模型打不到这里。</div>
+  </div>
+</div>
+
+<!-- GPU供给 -->
+<div class="info-block" style="margin-top:16px;">
+  <div class="info-block-title">💾 GPU 供给侧：成本真能降下来吗？</div>
+  <p><strong>HBM 产能缺口持续到 2028–2029 年</strong>：三大 HBM 供应商 2026 年产能已全部预售给 NVIDIA。需求年增 80–100%，供给年增仅 50–60%。云 GPU 租赁价格因此额外溢价 25–40%。</p>
+
+  <div class="table-wrap" style="margin:12px 0;">
+    <table class="data-table">
+      <thead>
+        <tr><th>GPU</th><th>NVIDIA 营销声称</th><th>实际推理提升</th><th>兑现率</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>H100 vs A100</td><td>30x</td><td>3–5x</td><td>10–17%</td></tr>
+        <tr><td>B200 vs H100</td><td>30x</td><td>10–15x</td><td>33–50%</td></tr>
+        <tr><td class="highlight"><strong>Rubin vs Blackwell</strong></td><td class="highlight">10x</td><td class="highlight">预计 3–5x</td><td class="highlight">30–50%（预测）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Rubin Ultra 已从 4-die 缩减到 dual-die（CoWoS-L 良率问题），100% 液冷强制（1800–2300W TDP），淘汰大部分现有数据中心。采样 Q4 2026，<strong>量产 Q1 2027</strong>。</p>
+
+  <div class="table-wrap" style="margin-top:12px;">
+    <table class="data-table">
+      <thead>
+        <tr><th>层级</th><th>代表</th><th>GPU实际成本</th><th>交付周期</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>第一梯队</td><td>Meta / 微软 / Google</td><td><span class="sv-high">基准价 -15~25%</span></td><td>8–16周</td></tr>
+        <tr><td>第二梯队</td><td>中型云 / 独角兽</td><td>基准价</td><td>20–30周</td></tr>
+        <tr><td class="highlight"><strong>第三梯队</strong></td><td class="highlight"><strong>AI视频创业公司</strong></td><td class="highlight"><strong>基准价 +50~100%</strong></td><td class="highlight">36–52周</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin-top:10px;">AI 视频创业公司每生成一个视频的实际 GPU 成本，是超大规模企业内部成本的 <strong>2–6 倍</strong>。</p>
+</div>
+
+
+<!-- ══ §4 降本路径与杰文斯 ══ -->
+<div class="part-divider" id="path">
+  <span class="part-label">§4 降本路径与杰文斯悖论</span>
+  <div class="part-line"></div>
+  <span class="part-badge" style="background:rgba(8,145,178,0.15);color:#67e8f9;border:1px solid rgba(8,145,178,0.3);">基准情景：2028年中 $0.04/clip</span>
+</div>
+
+<div class="info-block">
+  <div class="info-block-title">🎯 盈利的数学临界点：需要从 $1.30 降到 $0.01</div>
+  <p>Midjourney 的参照系：图片成本 $0.03–0.05/张，定价 $10–30/月，可生成数百张，毛利率极高。</p>
+  <div class="code-block">AI 视频达到 $0.01/clip 时：
+$20/月订阅 × 100次生成 × $0.01成本 = $1成本
+毛利率 = (20-1)/20 = 95%  ← 这才是 Midjourney 的世界
+
+现在：$1.30/clip，差 130 倍</div>
+</div>
+
+<!-- 三档预测 -->
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr><th>情景</th><th>硬件降本（Rubin）</th><th>算法降本（蒸馏+量化）</th><th>叠加后成本</th><th>预计时间</th><th>B2B/C2C 可行性</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>乐观</strong></td><td>÷10</td><td>÷13</td>
+        <td class="highlight"><strong>$0.01</strong></td><td class="highlight">2027年底</td>
+        <td>B2B ✅ C2C ✅</td>
+      </tr>
+      <tr>
+        <td><strong style="color:#fbbf24;">基准</strong></td><td>÷4</td><td>÷8</td>
+        <td><strong style="color:#fbbf24;">$0.04</strong></td><td style="color:#fbbf24;">2028年中</td>
+        <td>B2B ✅ C2C ❌</td>
+      </tr>
+      <tr>
+        <td><strong style="color:#f87171;">悲观</strong></td><td>÷2</td><td>÷3</td>
+        <td><strong style="color:#f87171;">$0.22</strong></td><td style="color:#f87171;">2029年+</td>
+        <td>仅高价值B2B ⚠️</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 杰文斯 -->
+<div class="info-block">
+  <div class="info-block-title">⚠️ 最关键的陷阱：杰文斯悖论</div>
+  <p>LLM 文本推理成本这 3 年下降了 280 倍，但总推理支出反而<strong>上涨了 320%</strong>。越便宜 → 越多人用 → 总量指数增长。</p>
+  <div class="highlight-box">
+    <strong>视频 vs LLM 的关键区别：</strong>LLM 的杰文斯悖论成立，是因为每多一个 API 调用都有明确使用场景（自动化/代码/客服）。视频不同——普通人不会因为成本从 $1.30 降到 $0.01 就每天生成 1000 个视频，<strong>除非平台创造分发场景</strong>（快手/抖音/TikTok 信息流就是那个场景）。
+  </div>
+  <p style="margin-top:10px;"><strong>对可灵的特异性含义：</strong></p>
+  <p>✅ 受益：成本降 → 快手平台更多 AI 视频内容 → 更多广告库存 → 广告收入分摊 GPU 成本</p>
+  <p>⚠️ 风险：如果开源压低 C2C 付费，可灵可能只剩平台分摊这一条盈利路径，本质上变成快手生态的「AI 视频基础设施」</p>
+</div>
+
+
+<!-- ══ §5 收入侧与开源 ══ -->
+<div class="part-divider" id="revenue">
+  <span class="part-label">§5 收入侧：用户分层、开源冲击与"够好"阈值</span>
+  <div class="part-line"></div>
+  <span class="part-badge" style="background:rgba(124,58,237,0.15);color:#c4b5fd;border:1px solid rgba(124,58,237,0.3);">B2B 是唯一可持续利润来源</span>
+</div>
+
+<!-- 三层分层 -->
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr><th>层级</th><th>典型用户</th><th>月付费意愿</th><th>生成量</th><th>单用户经济</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>C2C 休闲</strong></td>
+        <td>好奇尝鲜、社交发布</td><td>$5–15</td><td>2–10 clips/月</td>
+        <td><span class="sv-low">亏 $2–13/用户</span></td>
+      </tr>
+      <tr>
+        <td><strong>C2C 专业</strong></td>
+        <td>YouTuber、独立导演</td><td>$100–300</td><td>50–200 clips/月</td>
+        <td><span class="sv-mid">勉强打平或微亏</span></td>
+      </tr>
+      <tr>
+        <td class="highlight"><strong>B2B 企业</strong></td>
+        <td class="highlight">广告代理商、电商、培训</td>
+        <td class="highlight">$5K–50K/年合同</td>
+        <td class="highlight">定制批量</td>
+        <td class="highlight"><span class="sv-high">可盈利</span>（4.2x ROI 已验证）</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="warn-box">C2C 休闲层是「流量陷阱」：付费转化率仅 3–12%，年流失率 43%（传统 SaaS 的 2 倍），每个付费用户在流失前只贡献 2–3 个月收入。<strong>纯 C2C 订阅在当前成本下是结构性亏损，不是定价问题。</strong></div>
+
+<!-- 付费漏斗 -->
+<div class="table-wrap" style="margin-top:16px;">
+  <table class="data-table">
+    <thead>
+      <tr><th>指标</th><th class="highlight">可灵</th><th>Runway</th><th>Pika</th><th>Sora</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>付费转化率</td><td class="highlight">~0.5–1%</td><td>~3–5%</td><td>~8–12%</td><td>≈0%</td></tr>
+      <tr><td>ARPU（月）</td><td class="highlight">~$7</td><td>~$12</td><td>~$8</td><td>—</td></tr>
+      <tr><td>年流失率</td><td class="highlight">未披露</td><td>43%</td><td>~35%</td><td>100%（关停）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 开源冲击 -->
+<div class="info-block" style="margin-top:16px;">
+  <div class="info-block-title">🔓 开源冲击：视频版的 Llama 时刻</div>
+  <div class="table-wrap" style="margin-bottom:12px;">
+    <table class="data-table">
+      <thead>
+        <tr><th>模型</th><th>开源</th><th>Elo（AA Video Arena）</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="highlight"><strong>Wan 2.7</strong></td><td class="highlight">✅ Apache 2.0</td><td class="highlight"><strong>1164</strong></td><td class="highlight">开源第一，超过可灵和Veo</td></tr>
+        <tr><td><strong>Kling 3.0</strong></td><td>❌</td><td>1112</td><td>商业最强</td></tr>
+        <tr><td><strong>Veo 3.1</strong></td><td>❌</td><td>1096</td><td>Google 商业</td></tr>
+        <tr><td>HunyuanVideo</td><td>✅</td><td>~1080</td><td>腾讯开源</td></tr>
+        <tr><td>CogVideoX</td><td>✅</td><td>~1050</td><td>智谱开源</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>当前市场最高价差高达 <strong>34 倍</strong>：Veo 3.1 $0.75/秒 → 自建开源 <$0.05/视频。Fal/Replicate 开源托管仅 $0.05–0.20/视频。</p>
+  <div class="highlight-box">
+    <strong>对可灵的含义：</strong>Wan 2.7 免费且质量更好，可灵的 C2C 订阅定价权会被直接侵蚀。但 <strong>B2B/API/平台内嵌场景有护城河（SLA、合规、快手分发）——这是开源打不到的地方。</strong><br><br>
+    <strong>对纯工具公司的含义：</strong>Runway 2026年7月推出 Media Router（多模型编排），这是"当模型商品化，就做编排层"的转型——同 LLM 领域的 litellm/OpenRouter 逻辑。Pika 没有 orchestration 故事，风险最高。
+  </div>
+</div>
+
+<!-- 够好阈值 -->
+<div class="two-col">
+  <div class="info-block" style="margin-bottom:0;">
+    <div class="info-block-title">✅ 已跨过"够好"阈值的场景</div>
+    <p>消费者盲测：89% 无法区分 AI 视频和传统视频；人类检测准确率 50.7%（等同于抛硬币）。</p>
+    <p>• 营销素材 &amp; 广告<br>• 培训视频<br>• 电商产品视频（转化率提升 40%）<br>• 社媒内容 &amp; 模板特效<br>• 影视预览 &amp; 分镜</p>
+  </div>
+  <div class="info-block" style="margin-bottom:0;">
+    <div class="info-block-title">❌ 尚未跨过阈值的场景</div>
+    <p>B2B 场景的"够好"标准远低于 C2C 专业创作，这正是 B2B 付费意愿高 10–100 倍的根本原因。</p>
+    <p>• 电影最终镜头<br>• 奢侈品品牌主视觉<br>• 复杂人物表演 &amp; 长时序<br>• 需要精确物理逻辑的场景</p>
+  </div>
+</div>
+
+
+<!-- ══ §6 底线判断 ══ -->
+<div class="part-divider" id="verdict">
+  <span class="part-label">§6 修正后的底线判断</span>
+  <div class="part-line"></div>
+  <span class="part-badge" style="background:rgba(8,145,178,0.15);color:#67e8f9;border:1px solid rgba(8,145,178,0.3);">v3 整合版 · 2026.07.25</span>
+</div>
+
+<!-- 修正对比 -->
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr><th>问题</th><th>原版判断</th><th class="highlight">修正后判断</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>AI 视频能盈利吗？</td>
+        <td>没有一家证明净盈利</td>
+        <td class="highlight">HeyGen 已达盈亏平衡，但它是<strong>数字人</strong>而非 open-ended 生成</td>
+      </tr>
+      <tr>
+        <td>Open-ended 何时盈利？</td>
+        <td>Rubin+蒸馏 ≈ 2027年底</td>
+        <td class="highlight"><strong>基准情景 2028年中</strong>（$0.04/clip），仅支撑 B2B；C2C 订阅可能永远无法单独盈利</td>
+      </tr>
+      <tr>
+        <td>可灵的核心优势</td>
+        <td>成本优势 + 平台分摊</td>
+        <td class="highlight">成本优势<strong>被高估</strong>（国产芯片效率30–40%），<strong>平台分摊是真实护城河</strong>，需叠加数字人+API</td>
+      </tr>
+      <tr>
+        <td>开源的影响</td>
+        <td>未提及</td>
+        <td class="highlight"><strong>最大变量</strong>——Wan 2.7 已超可灵，34倍价差正在击穿 C2C 定价权</td>
+      </tr>
+      <tr>
+        <td>谁最先死？</td>
+        <td>纯C2C+无护城河+融资不足18月</td>
+        <td class="highlight">同上 + <strong>没有 orchestration 转型的纯工具公司（Pika 风险最高）</strong></td>
+      </tr>
+      <tr>
+        <td>可灵核心风险</td>
+        <td>H800 供应收紧</td>
+        <td class="highlight">地缘风险 >70% 概率升级，国产芯片视频推理效率仅 30–40%，<strong>成本护城河比预想更脆弱</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 存活概率 -->
+<div class="info-block">
+  <div class="info-block-title">🏁 谁有资格活到盈利那一天</div>
+  <div class="table-wrap" style="margin-top:12px;">
+    <table class="data-table">
+      <thead>
+        <tr><th>公司</th><th>存活概率</th><th>核心依据</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>HeyGen</strong></td><td><span class="sv-high">✅ 高</span></td><td>已盈亏平衡 + 缓存复用经济模型，ARPU $50–200/月</td></tr>
+        <tr><td><strong>可灵 / 快手</strong></td><td><span class="sv-high">✅ 中高</span></td><td>平台分摊 + B2B/API + 数字人潜力，但地缘风险是硬约束</td></tr>
+        <tr><td><strong>Runway</strong></td><td><span class="sv-mid">⚠️ 中低</span></td><td>Media Router 转型方向对，但烧钱 $1.55亿/年，时间窗口 &lt;18月</td></tr>
+        <tr><td><strong>PixVerse</strong></td><td><span class="sv-mid">⚠️ 中</span></td><td>接近盈亏平衡 + 增长快，但规模小、护城河薄</td></tr>
+        <tr><td><strong>Synthesia</strong></td><td><span class="sv-mid">⚠️ 中低</span></td><td>场景对（企业培训）但烧了 $5.36亿，资本效率极低</td></tr>
+        <tr><td><strong>Pika</strong></td><td><span class="sv-low">❌ 低</span></td><td>收入 $760万、融资 $8000万，无 orchestration 故事，最暴露</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 最终结论 -->
+<div class="highlight-box" style="margin-top:12px; padding:20px 24px;">
+  <strong style="font-size:14px;">竞争焦点已从"谁省"转向"谁有定价权/分发权"</strong><br><br>
+  成本下降后，大家都能省。真正的竞争变成：<br>
+  📺 <strong>谁有分发能力</strong>（快手/YouTube）→ 生成越多，内容越多，广告越多，正循环<br>
+  🔒 <strong>谁有场景锁定</strong>（HeyGen数字人 / Adobe工作流）→ 替换成本高，定价权在<br>
+  🔧 <strong>谁只是工具</strong>（Runway/Pika）→ 开源+降价=无定价缓冲，最先被挤出<br><br>
+  可灵最可能的终局：<strong>盈利不靠用户订阅，而靠平台内嵌 + 广告变现 + B2B API + 数字人的组合</strong>——本质上成为快手生态的「AI 视频基础设施」。
+</div>
+
+<!-- 可灵待验证变量 -->
+<div class="info-block" style="margin-top:20px;">
+  <div class="info-block-title">🔍 可灵盈利路径：待补全的变量</div>
+  <p>如果能补齐以下数字，就能精确测算可灵的盈利时间点：</p>
+  <div class="two-col" style="margin-top:12px;">
+    <div>
+      <p><strong>已知变量</strong></p>
+      <p>• 可灵 ARR ≈ $240M<br>• 可灵 Pro 定价 = $0.026/秒（Runway 约 1/3）<br>• 快手平台广告分摊（规模未知）</p>
+    </div>
+    <div>
+      <p><strong>未知变量（关键缺口）</strong></p>
+      <p>• GPU 实际采购价（H800/昇腾具体成本）<br>• 可灵实际生成量（DAU × 人均生成次数）<br>• 快手对可灵的内部补贴规模</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- end main-wrap -->
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <p>Kyrie AI 洞察 · GPU 经济学 v3 整合版 · 数据截至 2026年7月</p>
+  <p style="margin-top:6px;"><a href="research.html" style="color:rgba(255,255,255,0.4);text-decoration:none;">← 返回 AI 专题调研</a></p>
+</footer>
+
+</body>
+</html>
