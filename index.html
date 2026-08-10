@@ -538,7 +538,11 @@ body {
   <div class="timeline-nav">
     <span class="timeline-label">Timeline</span>
     <div class="timeline-track">
-      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0803')">
+      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0810')">
+        <span class="timeline-date">2026.08.09</span>
+      </button>
+      <div class="timeline-line"></div>
+      <button class="timeline-btn" onclick="switchNewsTab(event, 'week0803')">
         <span class="timeline-date">2026.08.02</span>
       </button>
       <div class="timeline-line"></div>
@@ -581,9 +585,187 @@ body {
   </div>
 
   <!-- ═══════════════════════════════════ -->
+  <!-- 第11期：2026.8.4–8.10              -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="date-panel active" id="week0810">
+
+  <!-- 本周必读 -->
+  <div id="mustread0810" style="scroll-margin-top:64px;">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(202,138,4,0.15);">⭐</div>
+      <div>
+        <div class="section-name">本周必读</div>
+        <div class="section-desc">从本周资讯中提炼3条最具结构性价值的新闻</div>
+      </div>
+      <span class="section-tag">编辑精选</span>
+    </div>
+    <div class="mustread-card">
+      <div class="mustread-summary">
+        本周核心判断：AI 行业进入<strong>「人才体制化出走 × 开源模型正面叫板 × 全球监管从纸面走向执法」</strong>三线并行的新阶段。Google DeepMind 一日内洗牌——Jeff Dean 离职创业、Demis Hassabis 退居幕后——标志大厂AI组织的第一次深层断裂；阿里 Qwen 3.8-Max 和 Meta Muse Code 同周发布，开源与闭源的边界继续模糊；EU AI Act 执法权正式生效，<strong>「先跑再说」的时代宣告结束。</strong>
+      </div>
+      <div class="mustread-list">
+        <div class="mustread-item">
+          <div class="mustread-rank rank-1">🥇</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://www.cnbc.com/2026/08/05/google-chief-scientist-jeff-dean-leaving-company-after-27-years.html" target="_blank">Google DeepMind 大洗牌：Jeff Dean 27年后离职创业，Demis Hassabis 让出运营权</a></div>
+            <div class="mustread-why">Jeff Dean 携 4 位顶级研究员（含 Sanjay Ghemawat、Oriol Vinyals、Quoc Le）创办 Discovery Loop（公共效益公司），Google 将投资此公司；Hassabis 转任 DeepMind 董事长 + Alphabet 首席科学家，CTO Koray Kavukcuoglu 接手日常运营并直接向 Pichai 汇报；Gemini 4 仍未发布。Alphabet 当日市值蒸发超 $1800 亿。<em>这不是正常的人才流动，是大厂AI组织的第一次结构性断裂——DeepMind 从 Google Brain 合并来的整合还没走完，核心人才就开始以创业方式撤出。Google 的应对是「投资他们创业公司」，本质是用资本绑住已离开的人。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-red">人才出走</span>
+              <span class="ntag ntag-blue">Google</span>
+              <span class="ntag ntag-orange">格局信号</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-2">🥈</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://highlearningrate.substack.com/p/qwen38-max-native-computer-use-eu" target="_blank">阿里发布 Qwen 3.8-Max：2.4T 参数 MoE，声称仅次于 Fable 5，下周开源权重</a></div>
+            <div class="mustread-why">阿里在 WAIC 预览后正式发布 Qwen 3.8-Max（2.4T 参数 / 95B 激活），API 定价 $2/$6 per M tokens，承诺一周内开放权重。同时推出 Qwen-CUA 评估计算机使用 Agent 能力，使用 4 万可验证任务训练。<em>这是开源大模型对闭源前沿的又一次正面叫板——继 GLM-5.2 之后，国内开源派在能力层持续逼近闭源顶级。关键信号是「开源权重承诺」：让企业自部署成为可行选项，与闭源 API 形成真正的竞争压力。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-green">开源模型</span>
+              <span class="ntag ntag-cyan">阿里</span>
+              <span class="ntag ntag-blue">自部署</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-3">🥉</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://olakai.ai/blog/eu-ai-act-enforcement-august-2026" target="_blank">EU AI Act 执法权正式生效：全球 AI 监管从「纸上规则」变成「真刀真枪」</a></div>
+            <div class="mustread-why">8 月 2 日起，EU AI Act 第 50 条透明度规则强制执行——所有聊天机器人须告知用户「你在与 AI 对话」、AI 生成内容须机器可读标记、深度伪造须披露；同时 AI Office 获得对通用 AI 模型提供商的监督与罚款权（最高 €1500 万或全球营业额 3%）。<em>这是全球首个 AI 监管从提案阶段转入可执法阶段的里程碑，标志着「move fast, figure out rules later」时代的正式结束。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-yellow">监管</span>
+              <span class="ntag ntag-red">执法</span>
+              <span class="ntag ntag-purple">EU AI Act</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三个资讯模块 -->
+  <div class="modules-grid" style="margin-top:24px;">
+
+    <!-- AI 应用 -->
+    <div class="card" id="app-news-0810">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(8,145,178,0.15);">📱</div>
+        <div>
+          <div class="card-title">AI 应用</div>
+          <div class="card-subtitle">产品动态 · 商业化进展 · 场景落地</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://medium.com/@davidakpovi/ai-news-week-of-august-3-9-2026-8dfa677ffca3" target="_blank">Meta 推出 Muse Code：基于 Muse Spark 1.2 的 AI 编程工具</a></div>
+            <div class="news-date">8.5</div>
+          </div>
+          <div class="news-item-body">Meta 发布 AI 编程助手 Muse Code，基于 Muse Spark 1.2 模型，支持写代码、修 Bug、自动验证、并行多 Agent 协作，可从中断点自动恢复。定价 $1.25/$4.25 per M tokens。<strong>AI 编程赛道迎来第五位重量级选手（Cursor/Codeium/Copilot/Claude Code/Muse Code），价格战正在加剧。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-purple">Meta</span><span class="ntag ntag-blue">AI编程</span><span class="ntag ntag-green">价格战</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://highlearningrate.substack.com/p/qwen38-max-native-computer-use-eu" target="_blank">Qwen-CUA：阿里推出计算机使用 Agent 评估框架</a></div>
+            <div class="news-date">8.3</div>
+          </div>
+          <div class="news-item-body">Qwen 与 XLang 联合发布 Qwen-CUA 报告和参考 Demo，基于 4 万可验证任务、近 10 万 vCPU 训练，强调不依赖隐藏页面状态的纯像素评估。<strong>计算机使用 Agent 的评估从「跑分」走向「可复现证据」。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-cyan">阿里</span><span class="ntag ntag-green">Agent</span><span class="ntag ntag-blue">评测</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.marketingprofs.com/opinions/2026/55472/ai-update-august-7-2026-ai-news-and-views-from-the-past-week" target="_blank">Shopify：AI 搜索为商家带来的流量和订单同比翻 3 倍</a></div>
+            <div class="news-date">8.7</div>
+          </div>
+          <div class="news-item-body">Shopify 财报显示 AI 搜索流量和订单同比翻 3 倍，AI 引荐访客直达产品页的频率远高于传统搜索，购买路径被压缩。<strong>AI 搜索不是替代传统搜索，而是在扩大电商流量总盘子——AI 入口对电商的价值首次被量化验证。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-orange">电商</span><span class="ntag ntag-green">AI搜索</span><span class="ntag ntag-cyan">商业化</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 大模型 -->
+    <div class="card" id="model-news-0810">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(124,58,237,0.15);">🧠</div>
+        <div>
+          <div class="card-title">大模型能力</div>
+          <div class="card-subtitle">模型发布 · 能力评测 · 格局演变</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.techtimes.com/articles/322710/20260802/openais-astra-solves-ten-decade-old-math-problems-machine-checkable-lean-proofs.htm" target="_blank">OpenAI Astra 解决 10 个开放数学问题：AI 从「跑分」进入「原创研究」</a></div>
+            <div class="news-date">8.1</div>
+          </div>
+          <div class="news-item-body">OpenAI 未公开模型 Astra 解决了 10 个困扰数学界十年以上的开放问题，包括 1999 年以来首个非 sofic 群的显式构造，全部附带 Lean 4 机器可验证证明，计算成本约 $2000。Fields 奖得主 Timothy Gowers 无犹豫推荐其中一项证明发表顶刊。<strong>AI 数学能力从「做已知题」跨越到「做未知题」——原创研究的边界正在被计算力推开。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-orange">OpenAI</span><span class="ntag ntag-purple">数学</span><span class="ntag ntag-red">能力突破</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.cnbc.com/2026/08/05/google-chief-scientist-jeff-dean-leaving-company-after-27-years.html" target="_blank">Google DeepMind 领导层大洗牌：Gemini 4 延期叠加人才出走</a></div>
+            <div class="news-date">8.5–8.6</div>
+          </div>
+          <div class="news-item-body">Gemini 4 原定 6 月发布至今未出，继 Jumper 去 Anthropic、Shazeer 去 OpenAI 之后，Jeff Dean 等 5 人同日离开。CTO Koray Kavukcuoglu 接手负责 Gemini 4 开发。<strong>人才流失正在成为模型格局最灵敏的先行指标——Google 在前沿模型竞争中已从领导者变为追赶者。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">人才流失</span><span class="ntag ntag-blue">Google</span><span class="ntag ntag-orange">格局信号</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://radicaldatascience.wordpress.com/2026/08/02/ai-news-briefs-bulletin-board-for-august-2026" target="_blank">NVIDIA 发布 Alpamayo 2 Super：面向 Robotaxi 的推理模型</a></div>
+            <div class="news-date">8.4</div>
+          </div>
+          <div class="news-item-body">NVIDIA 发布 Alpamayo 2 Super 商业许可版，专为 Robotaxi 和自动驾驶场景设计，支持罕见驾驶场景推理，决策可审查。<strong>AI 模型正在从通用走向垂直行业——自动驾驶成为第一个获得专属前沿推理模型的领域。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-green">NVIDIA</span><span class="ntag ntag-cyan">自动驾驶</span><span class="ntag ntag-blue">垂直模型</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI 产业上下游（全宽） -->
+  <div class="card" id="industry-news-0810" style="margin-bottom:28px;">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(234,88,12,0.15);">🏭</div>
+      <div>
+        <div class="card-title">AI 产业上下游</div>
+        <div class="card-subtitle">芯片算力 · 供应链 · 云厂商 · 融资并购</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://mlq.ai/news/amazon-raises-2026-ai-capex-to-220b-says-capacity-wont-meet-demand-through-2027" target="_blank">Amazon 上调 AI 资本支出至 $2200 亿，称产能仍将供不应求至 2027</a></div>
+          <div class="news-date">8.1</div>
+        </div>
+        <div class="news-item-body">Amazon Q2 财报将 2026 全年 CapEx 从 $2000 亿上调至 $2200 亿，增量主要来自 HBM 存储芯片成本上升。AWS 收入同比增 37% 至 $422 亿，但仍称「AI 产能到 2027 年仍不够」。<strong>四大超大规模云厂商 2026 CapEx 总额达 ~$7250 亿，同比增 77%——但瓶颈已从 GPU 转向存储和电力。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-orange">Amazon</span><span class="ntag ntag-red">存储瓶颈</span><span class="ntag ntag-yellow">资本支出</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://radicaldatascience.wordpress.com/2026/08/02/ai-news-briefs-bulletin-board-for-august-2026" target="_blank">AMD 收购 AI 推理芯片创业公司 Taalas</a></div>
+          <div class="news-date">8.7</div>
+        </div>
+        <div class="news-item-body">AMD 同意收购多伦多 AI 芯片创业公司 Taalas，其定制硅将 AI 模型硬编码到芯片中以减少推理计算和内存瓶颈，交易条款未披露。<strong>AMD 在 NVIDIA 主导的 AI 芯片市场中寻求差异化路径——从通用 GPU 转向模型专用推理芯片。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-blue">AMD</span><span class="ntag ntag-orange">收购</span><span class="ntag ntag-cyan">推理芯片</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://newmarketpitch.com/blogs/news/ai-chip-funding-news" target="_blank">OLIX 融资 $3.12 亿：光子互联 AI 推理芯片挑战 NVIDIA 垄断</a></div>
+          <div class="news-date">8.3</div>
+        </div>
+        <div class="news-item-body">伦敦芯片创业公司 OLIX 完成 $3.12 亿 B 轮融资，采用 SRAM + 光子互联架构替代 HBM，声称吞吐量/MW 更优且不受 HBM 供应制约。由 25 岁创始人 James Dacombe 于 2024 年创立。<strong>不用 HBM 的路线正在成为芯片创业的新共识——绕开存储瓶颈，从架构层面重新定义 AI 推理。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-green">光子芯片</span><span class="ntag ntag-orange">融资</span><span class="ntag ntag-cyan">推理优化</span></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /date-panel week0810 -->
+
+  <!-- ═══════════════════════════════════ -->
   <!-- 第10期：2026.7.28–8.3              -->
   <!-- ═══════════════════════════════════ -->
-  <div class="date-panel active" id="week0803">
+  <div class="date-panel" id="week0803">
 
   <!-- 本周必读 -->
   <div id="mustread0803" style="scroll-margin-top:64px;">
@@ -2492,7 +2674,7 @@ body {
 </div>
 
 <footer class="site-footer">
-  Kyrie 的 AI 洞察基地 · 数据来源：Anthropic / OpenAI / Reuters / TechCrunch / BuildFastWithAI · 2026.07.15 更新
+  Kyrie 的 AI 洞察基地 · 数据来源：Anthropic / OpenAI / Reuters / TechCrunch / CNBC / BuildFastWithAI · 2026.08.10 更新
 </footer>
 
 <script>
