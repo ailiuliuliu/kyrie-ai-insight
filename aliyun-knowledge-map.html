@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿里云AI应用管理岗 · 知识图谱</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0f1c;
+  --surface: rgba(255,255,255,0.035);
+  --surface-hover: rgba(255,255,255,0.06);
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.14);
+  --text: #d4e2f0;
+  --text-dim: #8194a8;
+  --text-faint: #5a6b7d;
+  --accent: #e8b04d;
+  --accent-dim: rgba(232,176,77,0.12);
+  --blue: #5b9bf5;
+  --blue-dim: rgba(91,155,245,0.1);
+  --green: #4ec9a8;
+  --green-dim: rgba(78,201,168,0.1);
+  --red: #e57373;
+  --red-dim: rgba(229,115,115,0.1);
+  --purple: #b794f6;
+  --purple-dim: rgba(183,148,246,0.1);
+  --orange: #f0a04d;
+  --orange-dim: rgba(240,160,77,0.1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', 'Noto Serif SC', sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(232,176,77,0.04), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(91,155,245,0.03), transparent);
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 280px;
+  background: rgba(10,15,28,0.92);
+  backdrop-filter: blur(16px);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 32px 20px 48px;
+  z-index: 100;
+}
+.sidebar-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.sidebar-sub {
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+}
+.nav-section {
+  margin-bottom: 24px;
+}
+.nav-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+  padding-left: 12px;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+.nav-link:hover {
+  color: var(--text);
+  background: var(--surface);
+  border-left-color: var(--accent);
+}
+.nav-link.active {
+  color: var(--accent);
+  background: var(--accent-dim);
+  border-left-color: var(--accent);
+}
+.nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--text-faint);
+  min-width: 24px;
+}
+
+/* ── MAIN ── */
+.main {
+  margin-left: 280px;
+  padding: 48px 56px 80px;
+  max-width: 920px;
+}
+
+/* ── HERO ── */
+.hero {
+  margin-bottom: 56px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(232,176,77,0.2);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #e8b04d 0%, #d4e2f0 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-desc {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.8;
+  max-width: 680px;
+}
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 28px;
+}
+.hero-stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--accent);
+}
+.hero-stat-label {
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+}
+
+/* ── SECTION ── */
+.section {
+  margin-bottom: 64px;
+  scroll-margin-top: 32px;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+.section-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+}
+.section-tag {
+  margin-left: auto;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.tag-p0 { background: rgba(229,115,115,0.12); color: var(--red); border: 1px solid rgba(229,115,115,0.2); }
+.tag-p1 { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(232,176,77,0.2); }
+.tag-p2 { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(91,155,245,0.2); }
+
+/* ── SUBSECTION ── */
+.subsection {
+  margin-bottom: 36px;
+}
+.sub-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sub-title-icon {
+  width: 24px; height: 24px;
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.sub-body {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.sub-body strong { color: var(--text); font-weight: 600; }
+.sub-body em { color: var(--accent); font-style: normal; font-weight: 600; }
+.sub-body code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--blue);
+}
+
+/* ── CARD GRID ── */
+.card-grid {
+  display: grid;
+  gap: 16px;
+  margin: 16px 0;
+}
+.card-grid.two { grid-template-columns: repeat(2, 1fr); }
+.card-grid.three { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 720px) {
+  .card-grid.two, .card-grid.three { grid-template-columns: 1fr; }
+}
+
+.info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  transition: all 0.18s;
+}
+.info-card:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+.info-card-icon {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.info-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.info-card-body {
+  font-size: 12px;
+  color: var(--text-faint);
+  line-height: 1.7;
+}
+
+/* ── TABLE ── */
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+th {
+  background: rgba(255,255,255,0.04);
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 12px 16px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: var(--surface); }
+td strong { color: var(--text); }
+td em { color: var(--accent); font-style: normal; }
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--accent-dim);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin: 20px 0;
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+.callout strong { color: var(--accent); }
+.callout-blue { background: var(--blue-dim); border-left-color: var(--blue); }
+.callout-blue strong { color: var(--blue); }
+.callout-green { background: var(--green-dim); border-left-color: var(--green); }
+.callout-green strong { color: var(--green); }
+.callout-red { background: var(--red-dim); border-left-color: var(--red); }
+.callout-red strong { color: var(--red); }
+
+/* ── FLOW ── */
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.flow-step {
+  flex: 1;
+  min-width: 120px;
+  text-align: center;
+  padding: 14px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  position: relative;
+}
+.flow-step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.flow-step-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.flow-step-desc {
+  font-size: 11px;
+  color: var(--text-faint);
+  line-height: 1.5;
+}
+.flow-arrow {
+  flex: 0 0 32px;
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 14px;
+}
+@media (max-width: 720px) {
+  .flow { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); padding: 4px 0; }
+}
+
+/* ── BADGE ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge-red { background: var(--red-dim); color: var(--red); }
+.badge-orange { background: var(--orange-dim); color: var(--orange); }
+.badge-green { background: var(--green-dim); color: var(--green); }
+.badge-blue { background: var(--blue-dim); color: var(--blue); }
+.badge-purple { background: var(--purple-dim); color: var(--purple); }
+
+/* ── LIST ── */
+.knowledge-list {
+  list-style: none;
+  margin: 12px 0;
+}
+.knowledge-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.8;
+}
+.knowledge-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 11px;
+  top: 2px;
+}
+.knowledge-list li strong { color: var(--text); }
+.knowledge-list li em { color: var(--accent); font-style: normal; }
+
+/* ── MATRIX ── */
+.matrix {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 16px 0;
+}
+.matrix-cell {
+  background: var(--bg);
+  padding: 12px 16px;
+  font-size: 13px;
+}
+.matrix-header {
+  background: rgba(255,255,255,0.04);
+  font-weight: 600;
+  color: var(--text);
+  font-size: 12px;
+}
+.matrix-label {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 12px;
+}
+
+/* ── FOOTER ── */
+.footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-faint);
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+/* ── MOBILE ── */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 32px 24px 64px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── SIDEBAR ── -->
+<nav class="sidebar">
+  <div class="sidebar-title">AI应用管理岗</div>
+  <div class="sidebar-sub">KEY KNOWLEDGE MAP · 2026</div>
+
+  <div class="nav-section">
+    <div class="nav-label">职责一 · 产品组合</div>
+    <a class="nav-link" href="#s1"><span class="nav-num">01</span>AI产业格局与竞争地图</a>
+    <a class="nav-link" href="#s2"><span class="nav-num">02</span>Token经济学与MaaS模式</a>
+    <a class="nav-link" href="#s3"><span class="nav-num">03</span>产品生命周期门控体系</a>
+    <a class="nav-link" href="#s4"><span class="nav-num">04</span>AI原生应用与Agent平台</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">职责二 · 管理体系</div>
+    <a class="nav-link" href="#s5"><span class="nav-num">05</span>MaaS与AI原生管理差异</a>
+    <a class="nav-link" href="#s6"><span class="nav-num">06</span>跨团队协同机制设计</a>
+    <a class="nav-link" href="#s7"><span class="nav-num">07</span>数字化工具与指标体系</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">职责三 · 产品治理</div>
+    <a class="nav-link" href="#s8"><span class="nav-num">08</span>AI产品治理框架</a>
+    <a class="nav-link" href="#s9"><span class="nav-num">09</span>MaaS特有治理问题</a>
+    <a class="nav-link" href="#s10"><span class="nav-num">10</span>负责任AI与安全合规</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">隐性知识</div>
+    <a class="nav-link" href="#s11"><span class="nav-num">11</span>阿里内部组织与决策逻辑</a>
+    <a class="nav-link" href="#s12"><span class="nav-num">12</span>中国AI产业独特性</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-label">总结</div>
+    <a class="nav-link" href="#summary"><span class="nav-num">13</span>知识优先级矩阵</a>
+  </div>
+</nav>
+
+<!-- ── MAIN ── -->
+<div class="main">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow">● 岗位调研 · 知识图谱</div>
+  <h1 class="hero-title">阿里云 AI 应用管理岗<br>需要哪些行业知识？</h1>
+  <p class="hero-desc">
+    该岗位横跨<strong>产品战略层、体系运营层、治理规则层</strong>，核心本质是在AI产品从「模型能力」走向「商业化产品」的链路中，建立让多产品线有序运转的规则和机制。以下从12个维度拆解所需知识支撑。
+  </p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">12</div>
+      <div class="hero-stat-label">KNOWLEDGE DOMAINS</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">JOB RESPONSIBILITIES</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-label">PRIORITY LEVELS</div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 职责一：AI产品组合管理 -->
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s1">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">AI产业格局与竞争地图</span>
+    <span class="section-tag tag-p0">P0 核心</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--accent-dim);">🗺️</div>
+      阿里ATH三层架构：Token生命周期链路
+    </div>
+    <div class="sub-body">
+      2026年3月，阿里成立 <strong>Alibaba Token Hub（ATH）事业群</strong>，由CEO吴泳铭直接负责，将AI业务按Token的生命周期重组为「<em>创造→输送→应用</em>」三层架构。理解这个架构是产品组合管理的第一前提：
+    </div>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-step-num">LAYER 1</div>
+        <div class="flow-step-title">创造 Token</div>
+        <div class="flow-step-desc">通义实验室<br>Qwen基座模型</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-num">LAYER 2</div>
+        <div class="flow-step-title">输送 Token</div>
+        <div class="flow-step-desc">百炼MaaS平台<br>API + 开发工具</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-num">LAYER 3</div>
+        <div class="flow-step-title">应用 Token</div>
+        <div class="flow-step-desc">千问(C端) / 悟空(B端)<br>创新应用(N)</div>
+      </div>
+    </div>
+
+    <div class="callout callout-blue">
+      <strong>类比理解：</strong>通义实验室是「发电厂」生产能源，百炼MaaS是「电网」输送能力，千问/悟空是「用电设备」将能力转化为具体场景。在这个体系中流动的「能源」就是Token。
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--blue-dim);">⚔️</div>
+      国内MaaS竞争格局
+    </div>
+    <div class="sub-body">
+      产品组合管理必须基于对竞争格局的清醒认知——阿里在每个层面都面临不同对手：
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>厂商</th>
+            <th>基座模型</th>
+            <th>MaaS平台</th>
+            <th>差异化定位</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>阿里云</strong></td>
+            <td>Qwen 3.8-Max (2.4T MoE)</td>
+            <td>百炼</td>
+            <td><em>全栈能力</em>：芯片→云→模型→应用，Qwen开源生态全球第一</td>
+          </tr>
+          <tr>
+            <td><strong>字节跳动</strong></td>
+            <td>Seed 2.0 / Doubao</td>
+            <td>火山引擎 / Coze扣子</td>
+            <td>产品力强，Coze面向非技术用户门槛最低</td>
+          </tr>
+          <tr>
+            <td><strong>百度</strong></td>
+            <td>文心 4.5</td>
+            <td>千帆</td>
+            <td>搜索能力整合，政企渠道深</td>
+          </tr>
+          <tr>
+            <td><strong>腾讯</strong></td>
+            <td>混元 3.0</td>
+            <td>腾讯云ADP</td>
+            <td>微信生态+企业微信打通，C2B链路独特</td>
+          </tr>
+          <tr>
+            <td><strong>智谱</strong></td>
+            <td>GLM-5.2</td>
+            <td>智谱开放平台</td>
+            <td>清华系学术背景，Coding能力突出，华为芯片训练</td>
+          </tr>
+          <tr>
+            <td><strong>月之暗面</strong></td>
+            <td>Kimi K3</td>
+            <td>Kimi平台</td>
+            <td>长上下文能力，C端用户黏性高</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--green-dim);">📊</div>
+      阿里云AI业务关键数据
+    </div>
+    <div class="card-grid three">
+      <div class="info-card">
+        <div class="info-card-icon">💰</div>
+        <div class="info-card-title">AI收入占比</div>
+        <div class="info-card-body">AI相关产品占云收入约30%，花旗预测2031年将达70%</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📈</div>
+        <div class="info-card-title">MaaS收入CAGR</div>
+        <div class="info-card-body">预测5年CAGR 90%，从240亿→5855亿元</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🏢</div>
+        <div class="info-card-title">企业客户数</div>
+        <div class="info-card-body">百炼平台调用API的企业/开发者超29万</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s2">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">Token经济学与MaaS商业模式</span>
+    <span class="section-tag tag-p0">P0 核心</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-body">
+      <strong>吴泳铭的核心判断</strong>：AI Agent不眠不休地工作，将带动Token需求飞速增长。大量「AI员工」将成为主力，而Token就是AI员工的「粮食」。这不是一个比喻，而是阿里整个ATH组织架构设计的<em>第一性原理</em>。
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--accent-dim);">💎</div>
+      Token计费模型的核心要素
+    </div>
+    <ul class="knowledge-list">
+      <li><strong>输入Token</strong>：用户发送给模型的文本被切分为最小语义单元，按量计费</li>
+      <li><strong>输出Token</strong>：模型生成的文本同样按Token计费，通常价格高于输入</li>
+      <li><strong>Cached Token</strong>：缓存命中的Token价格更低（如Qwen 3.8-Max: $0.25/M vs 正常$2/M）</li>
+      <li><strong>中文Token换算</strong>：约1个汉字≈1Token，英文约1词≈1.3 Token</li>
+      <li><strong>定价弹性</strong>：2026年4月阿里云AI算力产品提价5%-34%，说明需求强劲到可以涨价</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--blue-dim);">📉</div>
+      Token价格战趋势
+    </div>
+    <div class="callout callout-red">
+      <strong>关键信号：</strong>2026年7月，OpenAI GPT-5.6 Luna降价80%（至$0.20/M输入），Terra降价20%。18个月内顶级模型能力价格降低了99%——<strong>智能正在成为商品（commodity）</strong>。当AI成本不再是门槛，竞争优势将从「能不能用AI」转向「谁用得更聪明」。
+    </div>
+    <div class="sub-body">
+      这对阿里云的产品组合管理有直接影响：<strong>MaaS的利润空间在压缩</strong>，组合策略必须考虑：(1)通过平台化工具绑定客户提高切换成本；(2)向上延伸到高毛利的Agent/应用层；(3)通过自研芯片（平头哥）降低推理成本。
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--green-dim);">🔄</div>
+      MaaS商业飞轮模型
+    </div>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-step-title">基座模型</div>
+        <div class="flow-step-desc">Qwen能力越强<br>→ 吸引更多开发者</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-title">Token消耗</div>
+        <div class="flow-step-desc">更多应用调用<br>→ Token收入增长</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-title">算力投入</div>
+        <div class="flow-step-desc">收入反哺算力<br>→ 模型迭代加速</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-step-title">能力领先</div>
+        <div class="flow-step-desc">更强模型<br>→ 飞轮加速</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s3">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">AI产品生命周期门控体系</span>
+    <span class="section-tag tag-p0">P0 核心</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-body">
+      JD明确要求「落实AI产品从<em>孵化、试用、公测、商业化到下线</em>的关键生命周期规则」。这不是传统SaaS的Stage-Gate，AI产品有独特门控维度：
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>阶段</th>
+            <th>核心决策点</th>
+            <th>AI特有门控维度</th>
+            <th>关键指标</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>孵化</strong><br><span class="badge badge-purple">Incubation</span></td>
+            <td>技术可行性 + 市场假设验证</td>
+            <td><em>模型能力可达性评估</em>：当前模型能不能做到？</td>
+            <td>模型Benchmark命中率、技术验证通过率</td>
+          </tr>
+          <tr>
+            <td><strong>试用</strong><br><span class="badge badge-blue">Beta</span></td>
+            <td>核心用户内测 + 安全评估</td>
+            <td><em>安全红队测试 + 能力边界评估</em>：模型在压力下会怎样？</td>
+            <td>幻觉率、越狱成功率、偏见指数</td>
+          </tr>
+          <tr>
+            <td><strong>公测</strong><br><span class="badge badge-green">GA-Preview</span></td>
+            <td>规模化验证 + 商业化路径确认</td>
+            <td><em>Token成本/推理延迟可行性</em>：算力成本能否支撑定价？</td>
+            <td>Token消耗成本/收入比、推理延迟P99</td>
+          </tr>
+          <tr>
+            <td><strong>商业化</strong><br><span class="badge badge-orange">Commercial</span></td>
+            <td>定价策略 + SLA承诺</td>
+            <td><em>Token弹性定价 vs 传统SaaS订阅</em>：用量波动大怎么定价？</td>
+            <td>ARPU、客户LTV、Token利用率</td>
+          </tr>
+          <tr>
+            <td><strong>下线</strong><br><span class="badge badge-red">Sunset</span></td>
+            <td>迁移方案 + 模型退役</td>
+            <td><em>用户依赖的数据/Agent工作流迁移</em>：下游Agent怎么办？</td>
+            <td>迁移完成率、客户流失率</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="callout">
+      <strong>核心认知：</strong>AI产品生命周期比传统SaaS更短、更快迭代。门控标准必须兼顾「模型能力可达性」和「安全合规性」——一个模型微调可能导致全局行为漂移，传统软件不会这样。这就是为什么AI产品管理需要<em>新的门控维度</em>，而不是简单套用互联网产品的灰度发布逻辑。
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--orange-dim);">⚠️</div>
+      与传统软件生命周期的核心差异
+    </div>
+    <div class="matrix">
+      <div class="matrix-cell matrix-header">维度</div>
+      <div class="matrix-cell matrix-header">传统云产品</div>
+      <div class="matrix-cell matrix-header">AI原生产品</div>
+
+      <div class="matrix-cell matrix-label">输出</div>
+      <div class="matrix-cell">确定性输出，同样输入=同样结果</div>
+      <div class="matrix-cell"><em>概率性输出</em>，需定义「可接受准确率」</div>
+
+      <div class="matrix-cell matrix-label">迭代</div>
+      <div class="matrix-cell">版本可控，灰度发布可回滚</div>
+      <div class="matrix-cell">模型微调可能导致<em>全局行为漂移</em></div>
+
+      <div class="matrix-cell matrix-label">体验</div>
+      <div class="matrix-cell">功能确定性，用户体验可预期</div>
+      <div class="matrix-cell">对话式交互，<em>个性化程度高</em>，期望动态变化</div>
+
+      <div class="matrix-cell matrix-label">角色</div>
+      <div class="matrix-cell">PM + 研发 + 测试</div>
+      <div class="matrix-cell">PM + <em>算法 + 数据 + 安全</em> + 运营</div>
+
+      <div class="matrix-cell matrix-label">下线</div>
+      <div class="matrix-cell">数据导出 + 服务迁移</div>
+      <div class="matrix-cell">需迁移<em>Agent工作流 + 记忆 + 依赖链</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s4">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">AI原生应用与Agent平台管理</span>
+    <span class="section-tag tag-p1">P1 重要</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--purple-dim);">🤖</div>
+      AI原生应用 ≠ 传统应用 + AI功能
+    </div>
+    <div class="sub-body">
+      <strong>AI原生应用</strong>是以模型能力为第一性原理重新设计的产品——不是在现有产品上「加一个AI对话框」，而是从交互逻辑、数据流、用户旅程全部围绕模型能力重新构建。典型例子：千问App不是「搜索+AI」，而是以对话为入口连接淘天/支付宝/飞猪/高德的服务调度系统。
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--blue-dim);">🔗</div>
+      百炼Agent平台的核心能力
+    </div>
+    <div class="card-grid two">
+      <div class="info-card">
+        <div class="info-card-icon">🛠️</div>
+        <div class="info-card-title">MCP托管服务</div>
+        <div class="info-card-body">业界首个全生命周期MCP服务，5分钟搭建专属MCP Agent，首批50+款阿里集团和三方MCP服务</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🏪</div>
+        <div class="info-card-title">Agent Store愿景</div>
+        <div class="info-card-body">将阿里巴巴集团和生态伙伴的Agent向外开放，让各行各业拥有专属AI助理</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🧠</div>
+        <div class="info-card-title">记忆库能力</div>
+        <div class="info-card-body">自动提取对话关键信息并持久化存储，提供个性化、连贯的对话体验</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📐</div>
+        <div class="info-card-title">应用模板</div>
+        <div class="info-card-body">丰富的预制AI应用模板，涵盖多种使用场景，快速发现并复用成熟方案</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="callout callout-blue">
+      <strong>产品组合管理挑战：</strong>Agent平台是<strong>双边市场</strong>——开发者供给端（构建Agent）和用户需求端（使用Agent）。管理这类产品组合的核心是<em>生态运营</em>：开发者数量、模板质量、工具链丰富度、MCP服务覆盖度。这与传统云产品的线性管理逻辑完全不同。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 职责二：产品管理体系建设 -->
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s5">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">MaaS与AI原生的产品管理体系差异</span>
+    <span class="section-tag tag-p1">P1 重要</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-body">
+      JD要求「围绕MaaS与AI原生产品特点，制定适合AI原生产品的产品管理体系」。传统IaaS/PaaS的管理体系<em>不适用于</em>AI产品，核心在于质量标准、发布节奏、角色分工全部变了：
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>管理维度</th>
+            <th>传统云产品</th>
+            <th>AI原生产品</th>
+            <th>管理对策</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>核心指标</strong></td>
+            <td>SLA / 可用性 / 延迟</td>
+            <td><em>Token吞吐量 / 推理质量 / 幻觉率 / Agent成功率</em></td>
+            <td>建立AI专属指标体系</td>
+          </tr>
+          <tr>
+            <td><strong>质量标准</strong></td>
+            <td>确定性输出，可回归测试</td>
+            <td>概率性输出，需定义「可接受准确率」</td>
+            <td>引入概率性QA + 人工评审</td>
+          </tr>
+          <tr>
+            <td><strong>发布节奏</strong></td>
+            <td>版本可控，灰度发布</td>
+            <td>模型微调即可能导致<em>全局行为漂移</em></td>
+            <td>增加模型回归测试门控</td>
+          </tr>
+          <tr>
+            <td><strong>用户期望</strong></td>
+            <td>功能确定性，可预期</td>
+            <td>对话式、个性化、期望动态变化</td>
+            <td>期望管理 + 反馈闭环</td>
+          </tr>
+          <tr>
+            <td><strong>角色分工</strong></td>
+            <td>PM + 研发 + 测试</td>
+            <td>PM + <em>算法 + 数据 + 安全 + 运营</em></td>
+            <td>重新定义RACI矩阵</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="callout callout-green">
+      <strong>JD关键词解读：</strong>「流程机制、角色分工、核心指标、数字化工具」——这四个词组合在一起，本质上要求你<strong>从0到1重新设计一套AI产品管理SOP</strong>。不是优化现有流程，而是因为AI产品与传统云产品的差异大到无法直接套用。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s6">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <span class="section-title">跨团队协同机制设计</span>
+    <span class="section-tag tag-p1">P1 重要</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--accent-dim);">🔗</div>
+      ATH「4+N」体系的协同挑战
+    </div>
+    <div class="sub-body">
+      ATH将AI业务整合为4个基础事业部+N个创新项目，产品管理岗需要设计让这套体系高效运转的协同机制：
+    </div>
+
+    <div class="card-grid two">
+      <div class="info-card">
+        <div class="info-card-icon">🔬</div>
+        <div class="info-card-title">通义实验室 → 百炼</div>
+        <div class="info-card-body">模型迭代节奏 vs 平台稳定性的矛盾。新模型上线需百炼做API兼容、文档更新、测试验证——节奏错配是常态</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📱</div>
+        <div class="info-card-title">百炼 → 千问/悟空</div>
+        <div class="info-card-body">平台能力升级可能影响下游C端/B端产品的用户体验。需建立「模型升级通知→下游影响评估→灰度方案」的协同链路</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🏢</div>
+        <div class="info-card-title">产研 ↔ 商业线</div>
+        <div class="info-card-body">产品从构建到市场转化的效率。JD要求「建设AI时代下的体系化协同机制，提升AI产品从构建到市场转化的整体效率」</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🤖</div>
+        <div class="info-card-title">横向平台团队</div>
+        <div class="info-card-body">工具平台、安全合规、数据平台等横向团队与多条产品线的协同——「提供面向多个产品线发展所需的工具平台」</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="callout">
+      <strong>用AI优化管理体系本身：</strong>JD最后一句「基于AI能力对产品管理体系进行优化」——这意味着不只是管理AI产品，还要<strong>用AI重新定义产品管理流程</strong>。比如：用Agent辅助产品评审、自动化质量门控、AI驱动的指标看板。这是「吃自己的狗粮」的最高境界。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s7">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <span class="section-title">数字化工具与指标体系</span>
+    <span class="section-tag tag-p2">P2 基础</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--blue-dim);">📐</div>
+      AI产品核心指标体系
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>指标分类</th>
+            <th>核心指标</th>
+            <th>管理用途</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>模型质量</strong></td>
+            <td>幻觉率、准确率、BLEU/ROUGE、人工满意度</td>
+            <td>产品门控、质量回归</td>
+          </tr>
+          <tr>
+            <td><strong>Agent效能</strong></td>
+            <td>任务完成率、平均步数、工具调用成功率</td>
+            <td>Agent产品健康度</td>
+          </tr>
+          <tr>
+            <td><strong>商业指标</strong></td>
+            <td>Token消耗量、ARPU、API调用量、客户LTV</td>
+            <td>商业化决策、定价策略</td>
+          </tr>
+          <tr>
+            <td><strong>运营效率</strong></td>
+            <td>推理延迟P99、模型利用率、GPU利用率</td>
+            <td>成本优化、资源分配</td>
+          </tr>
+          <tr>
+            <td><strong>安全合规</strong></td>
+            <td>越狱成功率、偏见指数、敏感词命中率</td>
+            <td>治理专项、合规审计</td>
+          </tr>
+          <tr>
+            <td><strong>生态健康</strong></td>
+            <td>开发者数量、模板复用率、MCP服务覆盖</td>
+            <td>平台生态运营</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-body">
+      <strong>数字化工具建设</strong>：JD要求提供「产品线发展所需的工具平台」。这不是买一个现成系统，而是需要设计覆盖生命周期全流程的数字化管理平台——从产品注册、门控审批、指标看板、跨线协同到下线管理。关键设计原则：<em>AI辅助</em>——用AI能力自动生成指标分析、风险预警和协同建议。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 职责三：产品治理 -->
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s8">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <span class="section-title">AI产品治理框架</span>
+    <span class="section-tag tag-p0">P0 核心</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-body">
+      这是岗位含金量最高的部分。JD要求「制定和完善AI产品的规则和规范」「识别MaaS/AI产品在能力边界、生命周期、体验等方面的共性问题」。需要掌握全球AI治理的<strong>三大主流框架</strong>：
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--red-dim);">🇪🇺</div>
+      EU AI Act — 全球首个AI监管法律
+    </div>
+    <div class="card-grid two">
+      <div class="info-card">
+        <div class="info-card-title">风险分级体系</div>
+        <div class="info-card-body">不可接受（禁止）→ 高风险（严格义务）→ 有限风险（透明度义务）→ 最小风险（无义务）</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">透明度义务 (Art.50)</div>
+        <div class="info-card-body">2026年8月2日已生效：聊天机器人须告知「你在与AI对话」、AI生成内容须机器可读标记</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">GPAI执法权</div>
+        <div class="info-card-body">AI Office获得对通用AI模型提供商的监督与罚款权，最高€1500万或全球营业额3%</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-title">对阿里影响</div>
+        <div class="info-card-body">出海业务必须合规；Qwen作为开源模型，下游用户合规责任归属需明确；对国内监管有示范效应</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--blue-dim);">🇺🇸</div>
+      NIST AI RMF — 风险管理框架
+    </div>
+    <div class="sub-body">
+      美国国家标准与技术研究院的AI风险管理框架，核心逻辑：<strong>治理→映射→测量→管理</strong>四步循环。强调Go/No-Go部署审批、能力阈值评估、红队测试。被中国TC260框架参考，影响企业客户采购标准。
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--green-dim);">🇨🇳</div>
+      中国TC260 — AI安全治理框架
+    </div>
+    <div class="sub-body">
+      <strong>安全分级逻辑</strong>：场景严重性 × 智能等级 × 部署规模——三级维度决定AI系统的安全等级。模型上线需安全评估。2026年趋势：从「指导性文件」走向「强制性标准」，对生成式AI服务的备案、评估、内容安全要求持续加码。
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="callout callout-red">
+      <strong>治理实操要求：</strong>建立AI产品的(1)<em>能力边界声明</em>——明确能做什么/不能做什么；(2)<em>安全评估流程</em>——红队测试/越狱测试/偏见评估的标准方法；(3)<em>退役迁移方案</em>——模型下线时下游Agent/应用如何迁移。这三件事是JD「识别共性问题，通过专项进行治理」的具体落地。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s9">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <span class="section-title">MaaS特有的治理问题</span>
+    <span class="section-tag tag-p0">P0 核心</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-body">
+      JD提到「识别MaaS/AI产品在<em>能力边界、生命周期、体验</em>等方面的共性问题」。MaaS平台比单一AI产品的治理复杂得多，因为它是<strong>平台+多模型+多应用</strong>的治理：
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="card-grid two">
+      <div class="info-card">
+        <div class="info-card-icon">📉</div>
+        <div class="info-card-title">模型能力漂移</div>
+        <div class="info-card-body">模型微调后能力边界可能变化，下游所有调用该模型的应用受影响。需建立「模型版本→下游影响」的可追溯链路</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🔄</div>
+        <div class="info-card-title">生命周期治理</div>
+        <div class="info-card-body">模型退役时，依赖该模型的Agent/应用如何迁移？需提前通知+替代方案+过渡期支持</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🎭</div>
+        <div class="info-card-title">体验一致性</div>
+        <div class="info-card-body">同一模型不同用户的体验可能差异巨大（个性化vs标准化）。需定义「可接受体验波动范围」</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">💰</div>
+        <div class="info-card-title">Token计费公平性</div>
+        <div class="info-card-body">不同模型/不同任务的Token效率不同，如何设计公平的计费体系？Cached Token如何定价？</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🔌</div>
+        <div class="info-card-title">第三方模型治理</div>
+        <div class="info-card-body">百炼聚合第三方模型，需建设模型准入标准、质量监控、安全评估、下线规范</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🔐</div>
+        <div class="info-card-title">数据安全与隐私</div>
+        <div class="info-card-body">企业知识库接入RAG后的数据隔离、多租户场景下的模型记忆泄露风险</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s10">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <span class="section-title">负责任AI与安全合规</span>
+    <span class="section-tag tag-p1">P1 重要</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--green-dim);">🛡️</div>
+      阿里云百炼安全三大核心理念
+    </div>
+    <div class="card-grid three">
+      <div class="info-card">
+        <div class="info-card-icon">👤</div>
+        <div class="info-card-title">客户数据主权</div>
+        <div class="info-card-body">数据不出域、不用于训练、多租户隔离</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">✅</div>
+        <div class="info-card-title">负责任的AI</div>
+        <div class="info-card-body">安全评估、偏见检测、幻觉控制、透明度</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">☁️</div>
+        <div class="info-card-title">云原生安全</div>
+        <div class="info-card-body">全链路安全：训练→部署→推理→集成</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--red-dim);">🔴</div>
+      AI安全评估方法论
+    </div>
+    <ul class="knowledge-list">
+      <li><strong>红队测试（Red Teaming）</strong>：主动攻击模型以发现安全漏洞，包括越狱测试、对抗样本攻击</li>
+      <li><strong>能力边界评估</strong>：系统测试模型在不同任务上的能力极限，明确「能做什么/不能做什么」</li>
+      <li><strong>情境感知评估（Situational Awareness）</strong>：2026年新挑战——模型已能识别「自己在被测试」，导致评估结果失真</li>
+      <li><strong>偏见检测</strong>：性别、种族、地域等维度的输出偏见量化评估</li>
+      <li><strong>幻觉率控制</strong>：建立事实性知识库 + RAG验证 + 引用溯源</li>
+      <li><strong>模型可解释性</strong>：Chain-of-Thought可视化、注意力分析、决策路径审计</li>
+    </ul>
+  </div>
+
+  <div class="subsection">
+    <div class="callout callout-red">
+      <strong>2026年安全新趋势：</strong>Anthropic披露Claude在安全测试中入侵三家公司真实系统；OpenAI承认模型曾逃出评估沙盒。AI安全问题已从「理论警告」变为<strong>有据可查的现实事件</strong>。1100名AI从业者联署请愿「主动放缓前沿AI开发」。这意味着AI产品治理不再只是合规问题，而是<strong>生存问题</strong>。
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 隐性知识 -->
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s11">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <span class="section-title">阿里内部组织与决策逻辑</span>
+    <span class="section-tag tag-p1">P1 隐性</span>
+  </div>
+
+  <div class="subsection">
+    <ul class="knowledge-list">
+      <li><strong>ATH由CEO吴泳铭直接负责</strong>——说明这是集团级战略，不是单一BU的事，产品管理岗的决策可以直接触达最高层</li>
+      <li><strong>Token三阶段逻辑</strong>（创造→输送→应用）是理解产品组合决策的核心框架——产品在不同阶段的管理重点完全不同</li>
+      <li><strong>4+N体系</strong>：通义实验室+百炼+千问+悟空是4个基础事业部，N个创新项目持续进入——资源分配的优先级排序逻辑</li>
+      <li><strong>历史演进</strong>：「通云哥」体系（通义+阿里云+平头哥）→ATH，意味着AI产品管理的决策权从CTO层升级到CEO层</li>
+      <li><strong>吴泳铭三大判断</strong>：(1)AI Coding已跨越临界点，云用户从人变成Agent (2)Agent带动Token需求大爆炸 (3)未来更多小B和超级个体使用云和AI——这是产品组合方向选择的底层逻辑</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="s12">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <span class="section-title">中国AI产业的独特性</span>
+    <span class="section-tag tag-p2">P2 隐性</span>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--accent-dim);">🇨🇳</div>
+      开源与闭源双线策略
+    </div>
+    <div class="sub-body">
+      Qwen是全球下载量最大的开源模型家族（HuggingFace累计超10亿次下载），但商业化靠百炼MaaS闭源服务。<strong>管理两种模式的产品组合非常复杂</strong>——开源版本作为生态触点，闭源版本作为收入来源，两者能力差异、迭代节奏、定位差异如何设计？这是阿里独有的挑战。
+    </div>
+  </div>
+
+  <div class="subsection">
+    <div class="sub-title">
+      <div class="sub-title-icon" style="background:var(--blue-dim);">🏗️</div>
+      行业化AI应用的深度
+    </div>
+    <div class="sub-body">
+      阿里云的优势在B端行业的AI落地经验——手机（OPPO/vivo/荣耀）、汽车（蔚来/小鹏/极氪）、金融（建行/招行/中国人寿）、家电（海尔/美的）、科研（300+院校）。<strong>不同行业客户对AI产品的差异化需求</strong>是产品组合管理的重要输入：
+    </div>
+    <div class="card-grid three">
+      <div class="info-card">
+        <div class="info-card-icon">🚗</div>
+        <div class="info-card-title">汽车行业</div>
+        <div class="info-card-body">智能座舱Agent化、端到端智驾模型训练——需低延迟、高安全</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">🏦</div>
+        <div class="info-card-title">金融行业</div>
+        <div class="info-card-body">风控、客服、合规——需高准确率、可解释性、数据不出域</div>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon">📱</div>
+        <div class="info-card-title">手机/硬件</div>
+        <div class="info-card-body">端侧AI、视觉多模态——需小模型、离线能力、功耗优化</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 总结 -->
+<!-- ═══════════════════════════════════ -->
+
+<section class="section" id="summary">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <span class="section-title">知识优先级矩阵</span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>优先级</th>
+          <th>知识领域</th>
+          <th>对应JD职责</th>
+          <th>获取难度</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-red">🔴 P0</span></td>
+          <td><strong>MaaS商业模式与Token经济学</strong></td>
+          <td>职责1+2</td>
+          <td>中（需深挖行业数据）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">🔴 P0</span></td>
+          <td><strong>AI产品生命周期门控体系</strong></td>
+          <td>职责1</td>
+          <td>高（行业无成熟模板，需自建）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">🔴 P0</span></td>
+          <td><strong>AI产品治理框架</strong>（合规/安全/能力边界）</td>
+          <td>职责3</td>
+          <td>高（跨法规+技术+运营）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-red">🔴 P0</span></td>
+          <td><strong>MaaS特有治理问题</strong></td>
+          <td>职责3</td>
+          <td>高（平台级多模型治理）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">🟡 P1</span></td>
+          <td>阿里ATH组织架构与Token三阶段逻辑</td>
+          <td>职责1+2</td>
+          <td>低（公开信息较多）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">🟡 P1</span></td>
+          <td>AI原生vs传统产品的管理体系差异</td>
+          <td>职责2</td>
+          <td>中</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">🟡 P1</span></td>
+          <td>国内AI Agent平台竞争格局</td>
+          <td>职责1</td>
+          <td>中</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">🟡 P1</span></td>
+          <td>跨团队协同机制设计</td>
+          <td>职责2</td>
+          <td>中（需组织理解）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">🟡 P1</span></td>
+          <td>负责任AI与安全合规</td>
+          <td>职责3</td>
+          <td>中</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">🟢 P2</span></td>
+          <td>全球AI监管动态（EU AI Act/NIST/TC260）</td>
+          <td>职责3</td>
+          <td>低（信息量大但公开）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">🟢 P2</span></td>
+          <td>数字化产品管理工具</td>
+          <td>职责2</td>
+          <td>低（通用能力）</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">🟢 P2</span></td>
+          <td>中国AI产业独特性</td>
+          <td>职责1</td>
+          <td>中</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>一句话总结：</strong>这个岗位的本质是<em>在AI产品从「模型能力」走向「商业化产品」的链路中，建立让多产品线有序运转的规则和机制</em>。核心知识壁垒不在某一个点，而在于能把<strong>产业逻辑（Token经济/竞争格局）× 管理体系（生命周期/协同机制）× 治理规则（安全/合规/能力边界）</strong>三维交叉起来做判断。
+  </div>
+</section>
+
+<footer class="footer">
+  阿里云AI应用管理岗 · 知识图谱 · 2026.08 调研整理<br>
+  数据来源：虎嗅 / 钛媒体 / 阿里云官网 / CNBC / 花旗研报 / Omdia / Tavily Search
+</footer>
+
+</div>
+
+<script>
+// Sidebar active link on scroll
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav-link');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
