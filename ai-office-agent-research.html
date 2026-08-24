@@ -35,6 +35,22 @@ body {
   min-height: 100vh;
 }
 
+/* ── TOP BAR ── */
+.top-bar {
+  position: sticky; top: 0; z-index: 200;
+  height: 48px;
+  display: flex; align-items: center;
+  padding: 0 24px;
+  background: rgba(7,13,26,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.site-logo {
+  text-decoration: none;
+  font-weight: 800; font-size: 15px; letter-spacing: 0.02em;
+  color: #c8d8e8;
+}
+.site-logo span { color: #2563eb; }
+
 /* ── HEADER ── */
 .site-header { padding: 48px 56px 36px; text-align: center; }
 .header-kv { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 14px; }
@@ -237,6 +253,11 @@ body {
 </style>
 </head>
 <body>
+
+<!-- ── TOP BAR ── -->
+<div class="top-bar">
+  <a class="site-logo" href="https://ailiuliuliu.github.io/kyrie-ai-insight/research.html">Kyrie <span>AI Insight</span></a>
+</div>
 
 <!-- ── HEADER ── -->
 <header class="site-header">
