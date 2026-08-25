@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7BHTYGVGF9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7BHTYGVGF9');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阿里云业务与MaaS战略深度调研报告 | 2026.08</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23059669'/><path d='M8 22V12l4 6 4-8 4 5 4-7v14H8z' fill='none' stroke='white' stroke-width='2'/></svg>">
+<style>
+:root {
+  --bg: #070d1a;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.09);
+  --text: #c8d8e8;
+  --muted: rgba(255,255,255,0.4);
+  --green: #16a34a;
+  --green-light: rgba(22,163,74,0.15);
+  --blue: #2563eb;
+  --blue-light: rgba(37,99,235,0.15);
+  --purple: #7c3aed;
+  --purple-light: rgba(124,58,237,0.15);
+  --orange: #ea580c;
+  --orange-light: rgba(234,88,12,0.15);
+  --cyan: #0891b2;
+  --cyan-light: rgba(8,145,178,0.15);
+  --yellow: #ca8a04;
+  --yellow-light: rgba(202,138,4,0.15);
+  --red: #dc2626;
+  --red-light: rgba(220,38,38,0.15);
+  --shadow: 0 2px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+  --color-bg: #070d1a;
+  --color-bg-card: rgba(255,255,255,0.04);
+  --color-bg-table-header: rgba(255,255,255,0.06);
+  --color-border: rgba(255,255,255,0.09);
+  --color-border-light: rgba(255,255,255,0.06);
+  --color-text-primary: #c8d8e8;
+  --color-text-secondary: rgba(200,216,232,0.75);
+  --color-text-muted: rgba(255,255,255,0.38);
+  --color-success: #4ade80;
+  --color-info: #60a5fa;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
+  --color-purple: #c4b5fd;
+  --gradient-hero: linear-gradient(135deg, #6ee7b7 0%, #93c5fd 100%);
+  --content-max-width: 1200px;
+  --spacing-xl: 48px;
+  --spacing-lg: 24px;
+  --spacing-md: 16px;
+  --spacing-sm: 8px;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --transition-normal: 0.2s ease;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-hover: 0 8px 24px rgba(0,0,0,0.4);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "SF Pro Display", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  background: linear-gradient(160deg, #070d1a 0%, #0a1020 50%, #0d1520 100%);
+  background-attachment: fixed;
+}
+.container { max-width: var(--content-max-width); margin: 0 auto; padding: 20px; }
+.header { text-align: center; padding: var(--spacing-xl) 0; position: relative; }
+.site-link-wrap { display: flex; justify-content: flex-start; margin-bottom: 18px; }
+.site-link {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px;
+  border-radius: 999px; text-decoration: none; color: var(--color-success);
+  background: rgba(10,16,32,0.95); border: 1px solid rgba(5,150,105,0.18);
+  box-shadow: 0 6px 18px rgba(5,150,105,0.10); font-size: 14px; font-weight: 700;
+  transition: all var(--transition-normal);
+}
+.site-link span { color: var(--color-info); }
+.site-link:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(5,150,105,0.14); }
+.header::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gradient-hero);
+}
+.header-title {
+  font-size: 34px; font-weight: 800; background: var(--gradient-hero);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px;
+}
+.header-meta { font-size: 14px; color: var(--color-text-muted); }
+.header-version {
+  display: inline-flex; gap: 8px; margin-top: 10px; align-items: center;
+}
+.version-badge {
+  padding: 3px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  background: rgba(5,150,105,0.12); color: var(--color-success);
+  border: 1px solid rgba(5,150,105,0.25);
+}
+.version-old {
+  padding: 3px 12px; border-radius: 999px; font-size: 12px;
+  background: rgba(255,255,255,0.06); color: var(--color-text-muted);
+  border: 1px solid rgba(255,255,255,0.12); text-decoration: line-through;
+}
+.tab-nav {
+  display: flex; gap: 8px; background: rgba(10,16,32,0.92);
+  backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg); padding: 5px;
+  position: sticky; top: 12px; z-index: 100; margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-card); overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.tab-nav::-webkit-scrollbar { height: 4px; }
+.tab-nav::-webkit-scrollbar-thumb { background: var(--color-success); border-radius: 2px; }
+.tab-btn {
+  flex: 1; padding: 10px 16px; border: none; background: transparent;
+  border-radius: 10px; font-size: 14px; font-weight: 600;
+  color: var(--color-text-secondary); cursor: pointer; transition: all var(--transition-normal);
+}
+.tab-btn.active {
+  background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+  color: #fff; box-shadow: 0 4px 14px rgba(5,150,105,0.15);
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 300ms ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section {
+  background: var(--color-bg-card); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-card);
+}
+h2 { font-size: 22px; font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--spacing-md); }
+h3 { font-size: 16px; font-weight: 600; color: var(--color-text-primary); margin: var(--spacing-lg) 0 var(--spacing-md) 0; }
+h4 { font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin: 16px 0 10px 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-md); margin: var(--spacing-lg) 0; }
+.stat-card {
+  background: var(--color-bg-card); border-radius: var(--radius-md);
+  border: 1px solid var(--color-border); padding: 20px; text-align: center;
+  transition: all var(--transition-normal);
+}
+.stat-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); border-color: var(--color-success); }
+.stat-value { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.stat-value.green { color: var(--color-success); }
+.stat-value.blue { color: var(--color-info); }
+.stat-value.purple { color: var(--color-purple); }
+.stat-value.orange { color: var(--color-warning); }
+.stat-label { font-size: 13px; color: var(--color-text-muted); }
+table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--color-border-light); }
+th { background: var(--color-bg-table-header); font-weight: 600; font-size: 14px; color: var(--color-text-primary); }
+tr:last-child td { border-bottom: none; }
+.highlight-col { background: rgba(5,150,105,0.08) !important; font-weight: 600; }
+.tag { display: inline-flex; padding: 2px 8px; border-radius: 9999px; font-size: 12px; font-weight: 500; }
+.tag-green { background: rgba(5,150,105,0.12); color: #4ade80; }
+.tag-blue { background: rgba(37,99,235,0.12); color: #60a5fa; }
+.tag-orange { background: rgba(217,119,6,0.12); color: #fbbf24; }
+.tag-red { background: rgba(225,29,72,0.12); color: #f87171; }
+.tag-purple { background: rgba(124,58,237,0.12); color: #c4b5fd; }
+.insight-box {
+  border-left: 3px solid var(--color-warning); background: rgba(217,119,6,0.06);
+  padding: var(--spacing-md) 20px; margin: var(--spacing-md) 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.insight-title { color: var(--color-warning); font-weight: 600; margin-bottom: 8px; }
+.data-callout {
+  display: inline-flex; align-items: baseline; gap: 4px; padding: 4px 10px;
+  background: rgba(5,150,105,0.1); border-radius: 6px;
+}
+.data-number { font-size: 20px; font-weight: 700; color: var(--color-success); }
+ul { padding-left: 20px; }
+li { margin-bottom: 8px; }
+p { margin-bottom: 8px; }
+p:last-child { margin-bottom: 0; }
+strong { color: var(--color-text-primary); }
+/* layer diagram */
+.layer-diagram {
+  display: flex; flex-direction: column; gap: 10px; margin: 20px 0;
+}
+.layer-item {
+  border-radius: var(--radius-md); padding: 16px 20px;
+  border: 1px solid var(--color-border); background: rgba(255,255,255,0.03);
+  display: flex; align-items: flex-start; gap: 16px;
+}
+.layer-badge {
+  flex-shrink: 0; padding: 4px 10px; border-radius: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  min-width: 60px; text-align: center;
+}
+.layer-content { flex: 1; }
+.layer-title { font-size: 14px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
+.layer-desc { font-size: 13px; color: var(--color-text-muted); line-height: 1.6; }
+/* competitor card */
+.comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.comp-card {
+  border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  padding: 20px; background: rgba(255,255,255,0.03);
+}
+.comp-card.red    { border-color: rgba(220,38,38,0.25); }
+.comp-card.yellow { border-color: rgba(202,138,4,0.25); }
+.comp-card.green  { border-color: rgba(22,163,74,0.25); }
+.comp-card.gray   { border-color: rgba(255,255,255,0.15); }
+.comp-name { font-size: 15px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px; }
+.comp-sub { font-size: 12px; color: var(--color-text-muted); margin-bottom: 12px; }
+.comp-section-title { font-size: 12px; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin: 10px 0 6px; }
+.comp-card ul { padding-left: 18px; margin-bottom: 0; }
+.comp-card li { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 4px; line-height: 1.55; }
+/* trend change card */
+.trend-card {
+  border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  padding: 16px 20px; margin-bottom: 12px; background: rgba(255,255,255,0.03);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.trend-label {
+  grid-column: 1 / -1; font-size: 12px; font-weight: 700;
+  color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0;
+}
+.trend-old, .trend-new { font-size: 13px; line-height: 1.65; }
+.trend-old { color: var(--color-text-muted); }
+.trend-old-label { font-size: 11px; font-weight: 700; color: var(--color-text-muted); margin-bottom: 4px; }
+.trend-new-label { font-size: 11px; font-weight: 700; color: var(--color-success); margin-bottom: 4px; }
+.trend-new { color: var(--color-text-secondary); }
+/* ARR progress */
+.arr-ladder { display: flex; flex-direction: column; gap: 8px; margin: 14px 0; }
+.arr-item {
+  display: flex; align-items: center; gap: 12px; padding: 10px 16px;
+  border-radius: var(--radius-md); background: rgba(255,255,255,0.03);
+  border: 1px solid var(--color-border-light);
+}
+.arr-date { font-size: 12px; font-weight: 700; color: var(--color-text-muted); min-width: 90px; }
+.arr-value { font-size: 15px; font-weight: 700; color: var(--color-success); min-width: 80px; }
+.arr-bar-wrap { flex: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+.arr-bar { height: 100%; background: linear-gradient(90deg, #059669, #6ee7b7); border-radius: 3px; }
+.arr-note { font-size: 11px; color: var(--color-text-muted); min-width: 100px; text-align: right; }
+/* service grid */
+.svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0; }
+.svc-card {
+  border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  padding: 16px; background: rgba(255,255,255,0.03);
+}
+.svc-num { font-size: 11px; font-weight: 700; color: var(--color-success); margin-bottom: 4px; }
+.svc-name { font-size: 13px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px; }
+.svc-desc { font-size: 12px; color: var(--color-text-muted); line-height: 1.6; }
+/* pricing tiers */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 14px 0; }
+.pricing-card {
+  border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  padding: 18px; background: rgba(255,255,255,0.03); text-align: center;
+}
+.pricing-card.featured { border-color: rgba(5,150,105,0.35); background: rgba(5,150,105,0.05); }
+.pricing-tier { font-size: 12px; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 6px; }
+.pricing-price { font-size: 22px; font-weight: 700; color: var(--color-success); margin-bottom: 8px; }
+.pricing-desc { font-size: 12px; color: var(--color-text-muted); line-height: 1.6; }
+/* verdict */
+.verdict-box {
+  background: linear-gradient(135deg, rgba(5,150,105,0.1) 0%, rgba(37,99,235,0.1) 100%);
+  border: 1px solid rgba(5,150,105,0.25); border-radius: var(--radius-lg);
+  padding: 24px 28px; margin-top: 12px;
+}
+.verdict-title { font-size: 15px; font-weight: 700; color: var(--color-success); margin-bottom: 12px; }
+.verdict-text { font-size: 14px; color: var(--color-text-secondary); line-height: 1.85; }
+/* footer */
+.site-footer {
+  text-align: center; padding: 24px 40px; font-size: 12px;
+  color: var(--color-text-muted); border-top: 1px solid var(--color-border); margin-top: 40px;
+}
+@media (max-width: 900px) {
+  .comp-grid { grid-template-columns: 1fr; }
+  .svc-grid { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .svc-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .trend-card { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ── HEADER ── -->
+  <div class="header">
+    <div class="site-link-wrap">
+      <a href="index.html" class="site-link">Kyrie <span>AI Insight</span></a>
+    </div>
+    <div class="header-title">阿里云业务与MaaS战略深度调研报告</div>
+    <div class="header-meta">调研时间：2026年8月 | 数据截至：2027财年Q1（2026.4-6月） | 版本：v2.0</div>
+    <div class="header-version">
+      <span class="version-old">v1.0 · 2026.03</span>
+      <span style="color:rgba(255,255,255,0.2);font-size:12px;">→</span>
+      <span class="version-badge">v2.0 · 2026.08 · 最新</span>
+    </div>
+  </div>
+
+  <!-- ── TAB NAV ── -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('overview')">核心发现</button>
+    <button class="tab-btn" onclick="switchTab('trends')">趋势变化</button>
+    <button class="tab-btn" onclick="switchTab('cloud')">阿里云整体</button>
+    <button class="tab-btn" onclick="switchTab('maas')">MaaS业务</button>
+    <button class="tab-btn" onclick="switchTab('compare')">竞对对比</button>
+    <button class="tab-btn" onclick="switchTab('insights')">深度洞察</button>
+  </div>
+
+  <!-- ══════════ TAB 1 · 核心发现 ══════════ -->
+  <div id="overview" class="tab-content active">
+
+    <div class="section">
+      <h2>🎯 一句话判断</h2>
+      <div class="verdict-box">
+        <div class="verdict-text">
+          AI云"局部泼天富贵，大盘原地踏步"——Token与MaaS高速爆发，但中国公有云整体增速仍在<strong>8-11%</strong>，传统政企需求未见全面复苏。阿里云以<strong>45%的外部收入增速（22季度新高）</strong>领跑国内，AI收入占比突破30%，百炼ARR预计2027财年末超300亿元。但资本开支黑洞（FY2026自由现金流净流出466亿元）和内部算力错配，是这份高速增长背后的真实代价。
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>📊 关键数据锚</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value green">+45%</div>
+          <div class="stat-label">FY2027 Q1外部收入增速<br>22个季度新高</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value blue">124亿</div>
+          <div class="stat-label">AI收入（FY2027 Q1）<br>连续12季度三位数增长</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value purple">8倍</div>
+          <div class="stat-label">百炼客户数同比增速<br>FY2027 Q1</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value orange">49.5%</div>
+          <div class="stat-label">火山引擎MaaS Token份额<br>IDC 2025，反超阿里云</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🌐 市场格局速览</h2>
+      <table>
+        <tr><th>口径</th><th>第一</th><th>第二</th><th>第三</th><th>数据来源</th></tr>
+        <tr>
+          <td><span class="tag tag-green">中国IaaS</span></td>
+          <td class="highlight-col"><strong>阿里云 32.8% ↑</strong></td>
+          <td>腾讯云 9.1% ↓</td>
+          <td>华为云</td>
+          <td>Gartner 2025</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-blue">中国AI云全栈</span></td>
+          <td class="highlight-col"><strong>阿里云 38.1%</strong></td>
+          <td>火山引擎 20.4%</td>
+          <td>百度智能云</td>
+          <td>Omdia 2025</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-orange">中国MaaS Token量</span></td>
+          <td style="color:#f87171;"><strong>火山引擎 49.5%</strong></td>
+          <td>阿里云 28%</td>
+          <td>百度智能云 10%</td>
+          <td>IDC 2025</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-purple">全球IaaS（Q2 2026）</span></td>
+          <td>AWS 28%</td>
+          <td>Azure 20%</td>
+          <td>Google Cloud 15%</td>
+          <td>Synergy Research</td>
+        </tr>
+      </table>
+      <div class="insight-box">
+        <div class="insight-title">⚠️ 核心矛盾：谁是MaaS第一？</div>
+        <p>答案取决于用哪把尺。<strong>按Token量</strong>，火山引擎49.5%第一；<strong>按收入规模</strong>，阿里云仍是绝对领先（火山2025年MaaS实际营收仅约15亿元）；<strong>按全栈AI云份额</strong>，阿里云38.1%同样第一。Token份额≠商业价值，这是理解当前市场格局的关键。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>💡 三大核心优势（对比3月，依然成立）</h2>
+      <div class="insight-box">
+        <div class="insight-title">优势 1：全栈AI能力（通云哥三角）</div>
+        <p>大模型（通义实验室）+ 云平台（阿里云）+ 自研芯片（平头哥）三层均具备顶级能力。全球仅阿里与谷歌同时做到，形成从算力成本到模型性能的垂直整合闭环。</p>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">优势 2：开源生态护城河</div>
+        <p>Qwen衍生模型数超<strong>10万个</strong>，全球下载量超<strong>3亿次</strong>，Hugging Face开源榜长期霸榜。开源生态反哺商业化：新加坡AISG等政府级项目基于Qwen架构构建本国模型。</p>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">优势 3：Agent驱动的MaaS飞轮</div>
+        <p>月之暗面、智谱、MiniMax等头部AI公司背后的云服务商是阿里云，Agent爆发直接转化为百炼Token消耗增量。百炼ARR从80亿元（FY2026 Q4）→预计300亿元（FY2027末），路径清晰。</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>⚠️ 核心风险（对比3月，有恶化）</h2>
+      <ul>
+        <li><strong>资本开支黑洞扩大：</strong>FY2026自由现金流净流出<strong>466亿元</strong>，3月报告中"现金流尚可"的判断不再成立；资本开支从3800亿元可能上调至4800亿元</li>
+        <li><strong>内部算力错配：</strong>"云、AI分灶算账"导致ATH自研需要的算力被销售体系优先分配给付费外部客户，Qwen在"排队等卡"——PAI团队2026.6并入ATH是补救，但制度矛盾未根本解决</li>
+        <li><strong>2030年目标降调：</strong>3月电话会提"五年1000亿美元"，8月最新财报确认为"2030年1000亿元人民币（约140亿美元）"——目标缩水约85%，是管理层对激进目标的重新锚定</li>
+        <li><strong>MaaS Token份额被反超：</strong>火山引擎以49.5%反超阿里云28%，且份额仍在扩大，在"Token量=行业话语权"的叙事中，阿里云处于被动解释位置</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- ══════════ TAB 2 · 趋势变化 ══════════ -->
+  <div id="trends" class="tab-content">
+
+    <div class="section">
+      <h2>🔄 3月预判兑现情况</h2>
+      <p style="margin-bottom:16px;color:var(--color-text-muted);font-size:13px;">以下是3月版报告的5个核心认知，在2026年8月的最新验证结果：</p>
+
+      <div class="trend-card">
+        <div class="trend-label">认知 1 · 涨价预判</div>
+        <div class="trend-old">
+          <div class="trend-old-label">3月版判断</div>
+          涨价是成本压力信号，厂商被动为之，时间点不确定
+        </div>
+        <div class="trend-new">
+          <div class="trend-new-label">8月验证 ✅ 兑现，比预期更快</div>
+          <strong>2026.3.18</strong>阿里云率先主动涨价（GPU 5-34%，CPFS存储+30%），百度同日跟进，腾讯云4月跟进。行业正式告别价格战，进入"价值定价"阶段。
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-label">认知 2 · MaaS成最大收入产品</div>
+        <div class="trend-old">
+          <div class="trend-old-label">3月版判断</div>
+          MaaS将成为阿里云最大收入产品（预期性判断）
+        </div>
+        <div class="trend-new">
+          <div class="trend-new-label">8月验证 ✅ 兑现中，路径清晰</div>
+          百炼ARR：FY2026 Q4超<strong>80亿元</strong> → FY2027 Q1预计超<strong>100亿元</strong> → FY2027末目标<strong>300亿元</strong>。AI收入占比FY2026 Q4首超30%（89.71亿元），FY2027 Q1达124亿元。
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-label">认知 3 · Agent是MaaS的未来驱动力</div>
+        <div class="trend-old">
+          <div class="trend-old-label">3月版判断</div>
+          Agent是MaaS增长的"未来驱动力"
+        </div>
+        <div class="trend-new">
+          <div class="trend-new-label">8月验证 ✅ 已经发生</div>
+          Agent已接管增量——一次Agent任务消耗数万至数十万Token，是普通对话的<strong>10-100倍</strong>。IDC预计2026年全年中国MaaS Token消耗量升至约40000万亿次（2025年为1944万亿，同比增长约20倍）。
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-label">认知 4 · 阿里云MaaS份额领先</div>
+        <div class="trend-old">
+          <div class="trend-old-label">3月版判断</div>
+          阿里云在MaaS市场保持领先
+        </div>
+        <div class="trend-new">
+          <div class="trend-new-label">8月验证 ⚠️ 格局已分裂</div>
+          按Token量口径，火山引擎以<strong>49.5%</strong>反超成第一（阿里云28%）；但按收入规模，阿里云仍是绝对领先（火山2025年MaaS营收约15亿元，不足阿里云的1/10）。
+        </div>
+      </div>
+
+      <div class="trend-card">
+        <div class="trend-label">认知 5 · 现金流状况</div>
+        <div class="trend-old">
+          <div class="trend-old-label">3月版判断</div>
+          资本开支大，但现金流尚可
+        </div>
+        <div class="trend-new">
+          <div class="trend-new-label">8月验证 ❌ 比预期更严峻</div>
+          FY2026全年自由现金流净流出<strong>466亿元</strong>，资本开支1220亿元（+45%）。吴泳铭表示未来3年资本开支可能从3800亿元上调至4800亿元。
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🆕 3月版未覆盖的重大新认知</h2>
+      <div class="insight-box">
+        <div class="insight-title">新认知 1：Token成为云厂商新北极星指标</div>
+        <p>阿里云内部销售考核已从营收转向<strong>Token消耗量管理</strong>。2026.3成立ATH事业群（Alibaba Token Hub），统管通义实验室、MaaS（百炼）、千问、悟空-钉钉、AI创新5个事业部，标志着"Token经济"正式进入组织层面。</p>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">新认知 2：内部算力错配是阿里的制度性隐忧</div>
+        <p>"云、AI分灶算账"导致ATH自研需要的算力被销售体系优先分配给付费外部客户，Qwen在"排队等卡"。2026.6 PAI团队强制并入ATH，算力调度权从销售导向切回研发导向——这是补救，但制度矛盾能否根本解决，决定AI飞轮能否真正自驱。</p>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">新认知 3：华为云主动战略收缩</div>
+        <p>宣布2026年12月停售AppStage等4类云服务，聚焦政企私有化部署。华为云明确表示不以Token总量作为KPI——这不是"输了"，而是选择不参加Token叙事游戏，专注军工、核电、大型央企等封闭市场。</p>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">新认知 4：MaaS进入"灰姑娘水晶鞋"竞争阶段</div>
+        <p>OpenRouter提出的理论正在中国市场验证：AI模型发布第一个月进来的用户留存率极高，产生深度绑定。因此各大厂商（智谱、Kimi、MiniMax、字节、阿里）纷纷推出低价Coding Plan抢先发用户——先用价格吸引，再用迁移成本锁定。</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════ TAB 3 · 阿里云整体 ══════════ -->
+  <div id="cloud" class="tab-content">
+
+    <!-- 3.1 业务架构 -->
+    <div class="section">
+      <h2>3.1 业务架构：从IaaS到MaaS的三层结构</h2>
+      <p style="margin-bottom:16px;color:var(--color-text-muted);font-size:13px;">阿里云不是单一产品，而是三层叠加的云服务体系。MaaS（百炼）不是独立业务，而是建立在IaaS算力之上的服务形态——MaaS的每一次Token消耗，都会带动IaaS层的算力需求，并拉动PaaS层数据库、存储等二阶消费，形成协同飞轮。</p>
+      <div class="layer-diagram">
+        <div class="layer-item" style="border-color:rgba(124,58,237,0.3);background:rgba(124,58,237,0.06);">
+          <div class="layer-badge" style="background:rgba(124,58,237,0.15);color:#c4b5fd;">MaaS</div>
+          <div class="layer-content">
+            <div class="layer-title">百炼大模型服务平台</div>
+            <div class="layer-desc">模型调用 / 微调 / RAG / Agent / 多模态 · Token计费 · 增速最快 · FY2027 Q1客户数同比8倍增长</div>
+          </div>
+        </div>
+        <div class="layer-item" style="border-color:rgba(37,99,235,0.3);background:rgba(37,99,235,0.06);">
+          <div class="layer-badge" style="background:rgba(37,99,235,0.15);color:#60a5fa;">PaaS</div>
+          <div class="layer-content">
+            <div class="layer-title">开发者平台与数据服务</div>
+            <div class="layer-desc">PolarDB / MaxCompute / ACK容器 / 函数计算 · 传统优势 · 稳定增长 · 被MaaS带动二阶消费</div>
+          </div>
+        </div>
+        <div class="layer-item" style="border-color:rgba(22,163,74,0.3);background:rgba(22,163,74,0.06);">
+          <div class="layer-badge" style="background:rgba(22,163,74,0.15);color:#4ade80;">IaaS</div>
+          <div class="layer-content">
+            <div class="layer-title">基础算力与存储网络</div>
+            <div class="layer-desc">GPU实例 / ECS / OSS / CPFS · 自研平头哥GPU+英伟达混合供应 · AI驱动高端算力需求爆发</div>
+          </div>
+        </div>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">🔗 MaaS与阿里云的关系</div>
+        <p>MaaS是阿里云收入增长的"新引擎"，IaaS/PaaS是"底盘"。客户通过百炼调用模型，背后消耗的是阿里云的GPU算力；客户在百炼上构建知识库，拉动阿里云向量数据库和对象存储的消费。两者高度协同，不可分割。</p>
+      </div>
+    </div>
+
+    <!-- 3.2 战略组织 -->
+    <div class="section">
+      <h2>3.2 战略组织：2026年的"通云哥"三角</h2>
+      <p style="margin-bottom:16px;color:var(--color-text-muted);font-size:13px;">2026年3月，阿里完成围绕AI的最重要组织重构，形成"通义实验室+阿里云+平头哥"的通云哥战略三角——全球仅阿里与谷歌同时具备大模型、云平台、自研芯片三层全栈能力。</p>
+      <table>
+        <tr><th>组织</th><th>角色</th><th>核心进展（2026年）</th></tr>
+        <tr>
+          <td><strong>通义实验室</strong></td>
+          <td>模型研发</td>
+          <td>Qwen 3.8-Max（2026.8，2.4万亿参数）；Qwen衍生模型超10万个；Hugging Face开源榜前四包揽</td>
+        </tr>
+        <tr>
+          <td><strong>阿里云</strong></td>
+          <td>云平台与MaaS商业化</td>
+          <td>外部收入+45%（22季度新高）；ATH事业群成立；MaaS百炼ARR冲刺300亿</td>
+        </tr>
+        <tr>
+          <td><strong>平头哥</strong></td>
+          <td>自研芯片供应</td>
+          <td>真武810E累计出货56万片；真武M890发布（性能3倍）；60%+芯片服务外部客户，覆盖400+家企业</td>
+        </tr>
+      </table>
+      <h3 style="margin-top:20px;">ATH事业群（Alibaba Token Hub，2026.3成立）</h3>
+      <ul>
+        <li>统管5个事业部：<strong>通义实验室 / MaaS业务线（百炼）/ 千问（C端）/ 悟空-钉钉（企业应用）/ AI创新</strong></li>
+        <li>2026.6 PAI团队并入ATH——算力调度权从销售导向切回研发导向</li>
+        <li>意义：把"模型研发→MaaS商业化→C端推广→企业应用落地"四段串联成统一指挥体系</li>
+      </ul>
+      <h3 style="margin-top:16px;">平头哥芯片：不是"卖芯片"，而是成本杠杆</h3>
+      <ul>
+        <li><strong>真武810E</strong>（2026.1正式亮相）：96GB HBM2e，性能对齐英伟达H20，累计出货<strong>56万片</strong>（截至2026.5）</li>
+        <li><strong>真武M890</strong>（2026.5发布）：性能3倍于810E，144GB显存，800GB/s互联带宽；路线图延伸至2028年（V900 → J900）</li>
+        <li>吴泳铭明确：平头哥芯片产能扩大是驱动阿里云未来毛利率显著提升的<strong>核心杠杆</strong>——降低对英伟达的外购依赖，打通IaaS→MaaS的成本传导链</li>
+      </ul>
+    </div>
+
+    <!-- 3.3 财务数据 -->
+    <div class="section">
+      <h2>3.3 财务数据：最新两个季度</h2>
+      <div class="insight-box" style="border-left-color:#2563EB;background:rgba(37,99,235,0.06);">
+        <div class="insight-title" style="color:#60a5fa;">📅 财年说明</div>
+        <p><strong>阿里巴巴财年定义</strong>：每年4月1日至次年3月31日。<strong>FY2027 Q1</strong> = 2026年4-6月（最新季度），财报于2026年8月发布。</p>
+      </div>
+      <table>
+        <tr><th>财季</th><th>外部收入增速</th><th>AI收入占比</th><th>AI收入绝对值</th><th>备注</th></tr>
+        <tr>
+          <td>FY2026 Q4（2026.1-3月）</td>
+          <td>+40%</td>
+          <td class="highlight-col"><strong>首次超30%</strong></td>
+          <td>89.71亿元</td>
+          <td>云收入416.26亿，+38%</td>
+        </tr>
+        <tr>
+          <td class="highlight-col"><strong>FY2027 Q1（2026.4-6月，最新）</strong></td>
+          <td class="highlight-col"><strong>+45%（22季度新高）</strong></td>
+          <td class="highlight-col"><strong>进一步提升</strong></td>
+          <td class="highlight-col"><strong>124亿元</strong></td>
+          <td>调整后EBITA +133%，利润率12%</td>
+        </tr>
+        <tr>
+          <td>FY2026全年</td>
+          <td>+28.6%</td>
+          <td>—</td>
+          <td>—</td>
+          <td>总营收1581亿元</td>
+        </tr>
+      </table>
+      <h3>资本开支与现金流压力</h3>
+      <table>
+        <tr><th>指标</th><th>数值</th><th>说明</th></tr>
+        <tr><td>FY2026资本开支</td><td class="highlight-col"><strong>1220亿元</strong></td><td>同比+45%，历史最高</td></tr>
+        <tr><td>FY2026自由现金流</td><td style="color:#f87171;"><strong>净流出466亿元</strong></td><td>重资产建设期，3月版"现金流尚可"判断不再成立</td></tr>
+        <tr><td>未来3年资本开支计划</td><td><strong>3800亿 → 可能上调至4800亿元</strong></td><td>吴泳铭财报电话会表述</td></tr>
+        <tr><td>2030年战略目标</td><td><strong>外部云收入1000亿元人民币（约140亿美元）+ 毛利率20%+</strong></td><td>注：3月电话会曾说"1000亿美元"，8月确认已降调</td></tr>
+      </table>
+    </div>
+
+    <!-- 3.4 产品线全景 -->
+    <div class="section">
+      <h2>3.4 关键产品线全景</h2>
+      <table>
+        <tr><th>产品/方向</th><th>定位</th><th>当前阶段（2026.8）</th><th>战略价值</th></tr>
+        <tr>
+          <td><strong>百炼（MaaS平台）</strong></td>
+          <td>企业/开发者AI应用中台</td>
+          <td>ARR >80亿 → 目标300亿（FY2027末）</td>
+          <td>最核心的收入增量</td>
+        </tr>
+        <tr>
+          <td><strong>通义千问（Qwen模型）</strong></td>
+          <td>开源+闭源双线大模型</td>
+          <td>Qwen 3.8-Max（2026.8，2.4万亿参数，100万Token上下文）</td>
+          <td>技术声誉 + 生态流量入口</td>
+        </tr>
+        <tr>
+          <td><strong>千问App（C端）</strong></td>
+          <td>个人AI超级助手</td>
+          <td>MAU 2.03亿（2026.3），全球AI应用第三；已拓展AI眼镜/PC/汽车多终端</td>
+          <td>C端心智 + 数据反哺模型</td>
+        </tr>
+        <tr>
+          <td><strong>平头哥芯片（算力）</strong></td>
+          <td>国产GPU替代+降本</td>
+          <td>真武810E出货56万片，M890在途，60%+服务外部客户</td>
+          <td>毛利率提升 + 供应链安全</td>
+        </tr>
+        <tr>
+          <td><strong>钉钉+悟空（企业应用）</strong></td>
+          <td>AI原生企业办公平台</td>
+          <td>隶属ATH事业群悟空事业部</td>
+          <td>企业存量用户AI转化入口</td>
+        </tr>
+        <tr>
+          <td><strong>PAI（AI平台工程）</strong></td>
+          <td>大规模分布式训练基础设施</td>
+          <td>2026.6并入ATH</td>
+          <td>模型研发效率 + 外部训练服务</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ══════════ TAB 4 · MaaS业务 ══════════ -->
+  <div id="maas" class="tab-content">
+
+    <!-- 4.1 核心指标 -->
+    <div class="section">
+      <h2>4.1 百炼核心指标</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value green">8倍</div>
+          <div class="stat-label">客户数同比增速<br>FY2027 Q1</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value blue">5倍</div>
+          <div class="stat-label">日均Token收入增速<br>2026.4初→5.13</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value purple">150+</div>
+          <div class="stat-label">平台聚合模型数<br>含通义+第三方</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value orange">30%+</div>
+          <div class="stat-label">AI收入占外部收入<br>FY2026 Q4首次突破</div>
+        </div>
+      </div>
+      <h3>百炼ARR增长轨迹</h3>
+      <div class="arr-ladder">
+        <div class="arr-item">
+          <div class="arr-date">FY2026 Q4</div>
+          <div class="arr-value">>80亿元</div>
+          <div class="arr-bar-wrap"><div class="arr-bar" style="width:27%;"></div></div>
+          <div class="arr-note">2026.3 财报确认</div>
+        </div>
+        <div class="arr-item">
+          <div class="arr-date">FY2027 Q1</div>
+          <div class="arr-value">>100亿元</div>
+          <div class="arr-bar-wrap"><div class="arr-bar" style="width:33%;"></div></div>
+          <div class="arr-note">2026.8 财报预期</div>
+        </div>
+        <div class="arr-item">
+          <div class="arr-date">FY2027末</div>
+          <div class="arr-value">>300亿元</div>
+          <div class="arr-bar-wrap"><div class="arr-bar" style="width:100%;"></div></div>
+          <div class="arr-note">官方目标</div>
+        </div>
+      </div>
+      <div class="insight-box">
+        <div class="insight-title">💡 增长核心来源</div>
+        <p><strong>① Agent爆发：</strong>月之暗面/智谱/MiniMax背后的云服务商是阿里云，Agent是最大受益方<br>
+        <strong>② 长尾效应：</strong>低门槛Token计费大幅降低准入，中小开发者和学生团队进入计费体系<br>
+        <strong>③ 全家桶效应：</strong>MaaS引流带动向量数据库、对象存储、函数计算等高毛利PaaS产品的二阶消费</p>
+      </div>
+    </div>
+
+    <!-- 4.2 六大服务层 -->
+    <div class="section">
+      <h2>4.2 百炼六大核心服务能力</h2>
+      <p style="margin-bottom:14px;color:var(--color-text-muted);font-size:13px;">百炼2023年推出，2026年全面升级为"模型工厂+应用引擎"双核架构，覆盖从模型调用到应用部署的全链路。</p>
+      <div class="svc-grid">
+        <div class="svc-card">
+          <div class="svc-num">①</div>
+          <div class="svc-name">模型调用（API）</div>
+          <div class="svc-desc">150+款大模型（通义千问全系+DeepSeek/Llama等第三方），兼容OpenAI API格式，按Token计费（输入1元/百万起）</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">②</div>
+          <div class="svc-name">模型微调（Fine-Tuning）</div>
+          <div class="svc-desc">支持SFT、RLHF等训练方式，用户上传私有数据训练专属模型，适用于法律/金融/医疗等垂直领域</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">③</div>
+          <div class="svc-name">知识库构建（RAG）</div>
+          <div class="svc-desc">接入企业内部文档/数据库，向量化存储，构建私有知识检索增强生成，适用于内部问答/客服/合规审查</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">④</div>
+          <div class="svc-name">智能体开发（Agent Studio）</div>
+          <div class="svc-desc">零代码可视化工作流编排，内置100+行业模板（智能客服/文档问答/数据分析师），业务人员5分钟搭建专属Agent</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">⑤</div>
+          <div class="svc-name">应用部署与运维</div>
+          <div class="svc-desc">一键打包发布为Web应用或API服务，内置监控/日志/限流/负载均衡，无需额外搭建MLOps</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">⑥</div>
+          <div class="svc-name">多模态扩展</div>
+          <div class="svc-desc">图像理解、语音转文字、视频分析、代码生成等多模态能力统一接入，适用于内容审核/智能硬件/视觉识别</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4.3 客户分层 -->
+    <div class="section">
+      <h2>4.3 客户分层与计费体系（2026.6 Token Plan上线）</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-tier">个人开发者</div>
+          <div class="pricing-price">1元/百万Token起</div>
+          <div class="pricing-desc">新用户7000万免费Token<br>高校师生额外3000万Token<br>按量付费，无门槛</div>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-tier">中小企业 · 团队版</div>
+          <div class="pricing-price">198元/席位·月</div>
+          <div class="pricing-desc">包季低至4.5折<br>2.5亿Token/席位·月<br>企业级智能体 + 权限管控</div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-tier">大型企业 · 企业版</div>
+          <div class="pricing-price">定制化年框</div>
+          <div class="pricing-desc">无限Token + 私有部署<br>内网隔离 + 数据不出企业<br>金融/政务/医疗核心需求</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4.4 黏性护城河 -->
+    <div class="section">
+      <h2>4.4 MaaS的黏性护城河</h2>
+      <div class="insight-box">
+        <div class="insight-title">🔒 为什么迁移成本极高？</div>
+        <p>
+          <strong>· Fine-Tuning锁定：</strong>客户在百炼上完成微调后，私有模型数据和训练参数无法迁出<br>
+          <strong>· RAG数据锁定：</strong>知识库的向量化数据深度绑定在阿里云向量数据库中，迁移需重建整套索引<br>
+          <strong>· Agent工作流锁定：</strong>编排逻辑与阿里云函数计算/云数据库生态深度集成，迁移等于重写<br>
+          <strong>· 结论：</strong>进入MaaS全链路服务后，迁移到竞对的隐性成本是显性费用的数倍——这是百炼ARR可持续增长的核心逻辑
+        </p>
+      </div>
+      <h3 style="margin-top:20px;">MaaS 1.0 → 2.0 演进</h3>
+      <table>
+        <tr><th>阶段</th><th>时间</th><th>核心能力</th><th>客户关系</th></tr>
+        <tr>
+          <td><span class="tag tag-blue">MaaS 1.0</span></td>
+          <td>2022-2024</td>
+          <td>简单API调用，按Token计费，客户自助接入</td>
+          <td>弱绑定，易迁移</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-green">MaaS 2.0</span></td>
+          <td>2025至今</td>
+          <td>全生命周期能力交付 + Agent开发 + 应用部署</td>
+          <td>深度绑定，迁移成本极高</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- ══════════ TAB 5 · 竞对对比 ══════════ -->
+  <div id="compare" class="tab-content">
+
+    <!-- 5.1 宏观格局 -->
+    <div class="section">
+      <h2>5.1 宏观市场格局</h2>
+      <h3>全球云市场（Q2 2026，Synergy Research Group）</h3>
+      <table>
+        <tr><th>厂商</th><th>全球IaaS份额</th><th>Q2 2026营收</th><th>YoY增速</th><th>AI差异化路径</th></tr>
+        <tr>
+          <td><strong>AWS</strong></td>
+          <td class="highlight-col"><strong>28%</strong></td>
+          <td>$42.2B</td>
+          <td>+37%（18季度新高）</td>
+          <td>Bedrock多模型市场（Claude/Llama/Mistral），与Anthropic深度绑定</td>
+        </tr>
+        <tr>
+          <td><strong>Azure</strong></td>
+          <td>20%</td>
+          <td>$39.3B</td>
+          <td>+32%（Azure+云合计+43%）</td>
+          <td>OpenAI GPT-5独家集成，M365 Copilot，AI ARR $37B（+123%）</td>
+        </tr>
+        <tr>
+          <td><strong>Google Cloud</strong></td>
+          <td>15%</td>
+          <td>$24.8B</td>
+          <td class="highlight-col"><strong>+82%（增速最快）</strong></td>
+          <td>Vertex AI（Gemini Enterprise），数据原生+BigQuery，AI增速最快</td>
+        </tr>
+        <tr>
+          <td><strong>阿里云</strong></td>
+          <td>4-5%（全球）/ <strong>36%（国内）</strong></td>
+          <td>~416亿元（FY27Q1）</td>
+          <td>+45%</td>
+          <td>全栈自研（通云哥），MaaS百炼，国内份额第一</td>
+        </tr>
+      </table>
+      <div class="insight-box">
+        <div class="insight-title">🌍 国际三巨头格局说明</div>
+        <p>国际三巨头合计占据全球约<strong>63%</strong>云市场。阿里云全球份额约4-5%，与三巨头差距巨大。但在中国本土，阿里云份额（36%）接近AWS在全球的领先程度——<strong>中国本土才是真正的护城河</strong>，海外市场是阿里云对标AWS Bedrock实现突破的战略窗口，但也是当前最薄弱环节。</p>
+      </div>
+      <h3 style="margin-top:20px;">中国市场三套口径</h3>
+      <table>
+        <tr><th>口径</th><th>第一</th><th>第二</th><th>第三</th><th>数据来源</th></tr>
+        <tr>
+          <td><span class="tag tag-green">中国IaaS份额</span></td>
+          <td class="highlight-col"><strong>阿里云 32.8% ↑</strong></td>
+          <td>腾讯云 9.1% ↓</td>
+          <td>华为云</td>
+          <td>Gartner 2025</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-blue">中国AI云全栈</span></td>
+          <td class="highlight-col"><strong>阿里云 38.1%</strong></td>
+          <td>火山引擎 20.4%</td>
+          <td>百度智能云</td>
+          <td>Omdia 2025</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-orange">中国MaaS Token量</span></td>
+          <td style="color:#f87171;"><strong>火山引擎 49.5%</strong></td>
+          <td>阿里云 28%</td>
+          <td>百度智能云 10%</td>
+          <td>IDC 2025</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 5.2 四大竞对画像 -->
+    <div class="section">
+      <h2>5.2 四大竞对深度画像</h2>
+      <div class="comp-grid">
+
+        <!-- 火山引擎 -->
+        <div class="comp-card red">
+          <div class="comp-name">🔴 火山引擎（字节跳动）</div>
+          <div class="comp-sub">Token量第一，但收入-体量比仍有鸿沟</div>
+          <div class="comp-section-title">实力基本面</div>
+          <ul>
+            <li>Token份额：2024年46.4% → 2025H1 49.2% → 2025全年<strong>49.5%</strong>，持续扩大</li>
+            <li>规模：150万+企业和个人用户；140+家企业累计Token消耗超1万亿</li>
+            <li>豆包日均Token：2026.6突破<strong>180万亿</strong>，过去一年增长10倍，月均增速仍近40%</li>
+          </ul>
+          <div class="comp-section-title">核心增长驱动</div>
+          <ul>
+            <li><strong>Seedance 2.0（视频生成）</strong>：单月收入超10亿元，是2026年MaaS收入暴增最大功臣</li>
+            <li><strong>ArkClaw龙虾Agent</strong>：企业复杂任务自动执行，推动Agent场景Token量级倍升</li>
+          </ul>
+          <div class="comp-section-title">收入规模 vs Token份额的落差</div>
+          <ul>
+            <li>2025年实际MaaS营收约<strong>15亿元</strong>；2026年目标上调至150亿（10倍增速），且目标仍在每月上调</li>
+            <li>整体营收约200亿/年，仅为阿里云的八分之一</li>
+            <li>49.5%的Token份额≠49.5%的收入份额——大量Token是低单价视频/多模态调用，而非高价值企业定制服务</li>
+          </ul>
+          <div class="comp-section-title">核心短板</div>
+          <ul>
+            <li>IaaS/PaaS企业级基础薄弱，金融/政务客户很难信任字节</li>
+            <li><strong>Coding能力是明确短板</strong>，在企业级软件开发Agent场景竞争力不足</li>
+            <li>字节自有业务（抖音/豆包App）的流量优势形成的Token量，无法直接转化为B端客户信任</li>
+          </ul>
+        </div>
+
+        <!-- 百度智能云 -->
+        <div class="comp-card yellow">
+          <div class="comp-name">🟡 百度智能云</div>
+          <div class="comp-sub">政企中标第一，但财务健康度亮红灯</div>
+          <div class="comp-section-title">实力基本面</div>
+          <ul>
+            <li>政企中标：2025年AI大模型相关中标<strong>109个项目、9亿元合同额</strong>，项目数与金额连续两年双第一</li>
+            <li>GPU云Q1 2026：<strong>+184%</strong>（昆仑芯驱动），智能云基础设施+79%，当季财报最大亮点</li>
+          </ul>
+          <div class="comp-section-title">差异化产品</div>
+          <ul>
+            <li><strong>文心一言+千帆平台</strong>：与百炼定位相近，政企场景积累深厚（金融38个项目居首、国家电网合作）</li>
+            <li><strong>百度伐谋（2025.11）</strong>：可商用自演进超级Agent，基于自进化算法寻找"全局最优解"；典型案例：汽车风阻验证从10小时压缩至1分钟</li>
+          </ul>
+          <div class="comp-section-title">2026年战略</div>
+          <ul>
+            <li>AI业务增速目标从100%上调至<strong>200%</strong>，口号"全力抢第一"</li>
+            <li>成立PSIG（产品与战略预研小组）加速技术商业转化</li>
+          </ul>
+          <div class="comp-section-title">财务压力（核心风险）</div>
+          <ul>
+            <li>Q1 2026总营收321亿（<strong>-1.1% YoY</strong>），净利润腰斩（34亿 vs 上年同期77亿）</li>
+            <li>非GAAP净利润43亿，净利润率仅14%，自由现金流<strong>-32亿</strong></li>
+            <li>搜索广告主业萎缩是根本压力来源——百度是"烧着老业务补贴AI新业务"</li>
+          </ul>
+        </div>
+
+        <!-- 腾讯云 -->
+        <div class="comp-card green">
+          <div class="comp-name">🟢 腾讯云</div>
+          <div class="comp-sub">微信生态是护城河，但AI云存在感最弱</div>
+          <div class="comp-section-title">实力基本面</div>
+          <ul>
+            <li>企业服务Q1 2026：<strong>+20%</strong>（管理层明确归因于AI需求带动GPU/CPU/存储资源）</li>
+            <li>IaaS份额9.1%（下滑），MaaS Token量未进国内前五——Token时代存在感四大中最弱</li>
+          </ul>
+          <div class="comp-section-title">产品与生态</div>
+          <ul>
+            <li>已发布<strong>"腾讯云Agent产品全景图"</strong>：覆盖模型层+云基础设施+Harness全链路智能体方案</li>
+            <li>开源<strong>Cube Sandbox沙箱服务</strong>；推出Agent Storage原生存储底座（向量存储成本降低）</li>
+            <li><strong>WorkBuddy</strong>：企业级AI助手，依托企微+腾讯文档生态，客户留存率较高</li>
+          </ul>
+          <div class="comp-section-title">不可复制优势</div>
+          <ul>
+            <li>微信（月活13亿+）+ 企业微信（真实企业用户数千万）是其他云厂商无法复制的私域流量入口</li>
+            <li>游戏、社交、金融（微众银行）等场景下的AI能力深度集成，C端渗透路径独特</li>
+          </ul>
+          <div class="comp-section-title">最大隐忧</div>
+          <ul>
+            <li>在"谁的Token量更大"的2026年叙事中，腾讯云没有拿得出手的数字</li>
+            <li>缺乏一个像豆包/文心/千问级别的"旗舰模型"叙事，在资本市场和行业认知中偏弱</li>
+          </ul>
+        </div>
+
+        <!-- 华为云 -->
+        <div class="comp-card gray">
+          <div class="comp-name">⚫ 华为云</div>
+          <div class="comp-sub">主动收缩，聚焦政企私有化，是不同的战略选择</div>
+          <div class="comp-section-title">实力基本面</div>
+          <ul>
+            <li>政务云+金融私有化部署是核心优势，国产算力生态（昇腾910B系列）是其他国内云厂商不具备的护城河</li>
+            <li>对真正的政务敏感项目，华为云的信任背书仍然是第一</li>
+          </ul>
+          <div class="comp-section-title">2026年战略收缩信号</div>
+          <ul>
+            <li>宣布<strong>2026年12月起停售AppStage等4类云服务</strong>，精简非核心产品线</li>
+            <li>不以Token量或MaaS市场份额作为KPI——这不是"输了"，而是选择不参加这个游戏</li>
+          </ul>
+          <div class="comp-section-title">深层逻辑</div>
+          <ul>
+            <li>华为核心利润来自运营商设备和消费者硬件，云是"生态配套"而非"第一增长极"</li>
+            <li>在Token经济叙事主导的2026年，华为云缺乏存在感；但在军工、核电、大型央企等场景，竞争对手根本进不来</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════ TAB 6 · 深度洞察 ══════════ -->
+  <div id="insights" class="tab-content">
+
+    <div class="section">
+      <h2>💎 五大深度洞察</h2>
+
+      <div class="insight-box">
+        <div class="insight-title">洞察 1：Token量≠商业价值，50%的Token正在被浪费</div>
+        <p>现有Token增长高度集中于大模型创业公司（月之暗面/智谱等），本质是"VC资金→算力消耗"的循环。传统大型企业CIO仍以算力成本而非Token价值来决策，MaaS真正渗透传统行业仍是早期。火山引擎49.5%的Token份额只换来约15亿元的MaaS收入，而阿里云28%的份额对应的收入规模远超火山——Token是过程指标，不是结果指标。</p>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-title">洞察 2：阿里云的制度性矛盾正在形成拖累</div>
+        <p>"云、AI分灶算账"导致ATH自研需要的算力被销售体系优先分配给付费外部客户，Qwen在"排队等卡"。PAI团队2026.6强制并入ATH是补救举措，但制度矛盾能否从根本上解决，决定了阿里云AI飞轮能不能真正自驱。如果内部算力分配问题持续，通义实验室的模型迭代速度将被竞争对手（DeepSeek/字节）拉开差距。</p>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-title">洞察 3："1000亿美元"变成"1000亿元"——目标降调背后的信号</div>
+        <p>3月电话会说的"五年内云+AI外部收入1000亿美元"，8月已悄然改为"2030年1000亿元人民币（约140亿美元）"，两者差了7倍。这不是笔误，是管理层在资本市场压力下对激进目标的重新锚定。在当前45%的外部云增速下，2030年1000亿元人民币意味着5年CAGR约43%——仍属极高，但比"1000亿美元"这个不可能完成的任务现实得多。</p>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-title">洞察 4：涨价是行业拐点，但客户流失风险被低估</div>
+        <p>阿里云3月率先涨价终结价格战，这是健康信号。但涨价后哪些客户会迁移到开源自部署方案（Qwen权重开放），哪些会留存，是未来半年最值得跟踪的变量。<strong>开源生态悖论：</strong>Qwen开源越成功，潜在"反噬"百炼商业化的可能性也越大——客户可以选择下载开源权重自行部署，而非付费使用百炼API。</p>
+      </div>
+
+      <div class="insight-box">
+        <div class="insight-title">洞察 5：全球云厂商MaaS同步爆发，竞争参照系转向</div>
+        <p>AWS Bedrock Q1 2026客户支出环比+170%，Google Cloud Q2 2026增速82%（Vertex AI驱动），MaaS不再是阿里云的差异化——而是全球云厂商的共同叙事。阿里云在海外市场（全球IaaS份额仅4-5%）的增长，是对标AWS Bedrock实现突破的战略窗口，但也是当前最薄弱的环节。真正的竞争不在国内Token份额，而在全球企业级AI服务的商业化能力。</p>
+      </div>
+    </div>
+
+    <!-- 底线判断 -->
+    <div class="section">
+      <h2>🏁 底线判断</h2>
+      <div class="verdict-box">
+        <div class="verdict-title">综合评级：谨慎乐观</div>
+        <div class="verdict-text">
+          阿里云是国内AI云市场<strong>收入规模最大、全栈能力最完整</strong>的玩家，45%的外部收入增速和300亿ARR目标路径清晰，通云哥三角（模型+云+芯片）构建了真正的长期壁垒。<br><br>
+          但三个变量值得持续跟踪：<strong>①</strong> 内部算力分配问题能否在2026年内根本解决；<strong>②</strong> 涨价后客户留存率数据（FY2027 Q2财报是关键观察点）；<strong>③</strong> 百炼ARR能否在FY2027末达到300亿元目标——若达成，MaaS将正式超越IaaS成为阿里云最大收入来源，届时估值逻辑将彻底重构。
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- /container -->
+
+<div class="site-footer">
+  Kyrie AI Insight · 阿里云MaaS深度调研 v2.0 · 数据截至2026年8月 · 上一版：2026年3月
+</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector(`.tab-btn[onclick="switchTab('${id}')"]`).classList.add('active');
+}
+</script>
+</body>
+</html>
