@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7BHTYGVGF9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7BHTYGVGF9');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无处安放的生产力：AI取代人力的需求侧审判 | 2026.09</title>
+<link rel="icon" type="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23dc2626'/><path d='M16 7v12M16 24v2' stroke='white' stroke-width='3' stroke-linecap='round'/></svg>">
+<style>
+:root {
+  --bg: #070d1a;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.09);
+  --text: #c8d8e8;
+  --red: #dc2626;
+  --red-light: rgba(220,38,38,0.15);
+  --amber: #f59e0b;
+  --amber-light: rgba(245,158,11,0.15);
+  --blue: #2563eb;
+  --blue-light: rgba(37,99,235,0.15);
+  --purple: #7c3aed;
+  --purple-light: rgba(124,58,237,0.15);
+  --green: #16a34a;
+  --green-light: rgba(22,163,74,0.15);
+  --cyan: #0891b2;
+  --cyan-light: rgba(8,145,178,0.15);
+  --color-bg-card: rgba(255,255,255,0.04);
+  --color-bg-table-header: rgba(255,255,255,0.06);
+  --color-border: rgba(255,255,255,0.09);
+  --color-border-light: rgba(255,255,255,0.06);
+  --color-text-primary: #c8d8e8;
+  --color-text-secondary: rgba(200,216,232,0.78);
+  --color-text-muted: rgba(255,255,255,0.38);
+  --color-danger: #f87171;
+  --color-warning: #fbbf24;
+  --color-info: #60a5fa;
+  --color-success: #4ade80;
+  --color-purple: #c4b5fd;
+  --gradient-hero: linear-gradient(135deg, #f87171 0%, #fbbf24 100%);
+  --content-max-width: 1200px;
+  --spacing-xl: 48px;
+  --spacing-lg: 24px;
+  --spacing-md: 16px;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --transition-normal: 0.2s ease;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-hover: 0 8px 24px rgba(0,0,0,0.4);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "SF Pro Display", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  background: linear-gradient(160deg, #0d0709 0%, #120a10 50%, #0d1520 100%);
+  background-attachment: fixed;
+}
+.container { max-width: var(--content-max-width); margin: 0 auto; padding: 20px; }
+.header { text-align: center; padding: var(--spacing-xl) 0 32px; position: relative; }
+.header::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gradient-hero);
+}
+.site-link-wrap { display: flex; justify-content: flex-start; margin-bottom: 18px; }
+.site-link {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px;
+  border-radius: 999px; text-decoration: none; color: var(--color-danger);
+  background: rgba(20,10,14,0.95); border: 1px solid rgba(220,38,38,0.2);
+  box-shadow: 0 6px 18px rgba(220,38,38,0.08); font-size: 14px; font-weight: 700;
+  transition: all var(--transition-normal);
+}
+.site-link span { color: var(--color-warning); }
+.site-link:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(220,38,38,0.14); }
+.header-title {
+  font-size: 36px; font-weight: 800; background: var(--gradient-hero);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;
+}
+.header-sub { font-size: 17px; color: var(--color-text-primary); font-weight: 600; margin-bottom: 12px; }
+.header-meta { font-size: 13px; color: var(--color-text-muted); }
+.header-version { display: inline-flex; gap: 8px; margin-top: 10px; align-items: center; }
+.version-badge {
+  padding: 3px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  background: rgba(220,38,38,0.12); color: var(--color-danger);
+  border: 1px solid rgba(220,38,38,0.3);
+}
+.tab-nav {
+  display: flex; gap: 6px; background: rgba(18,10,14,0.94);
+  backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg); padding: 5px;
+  position: sticky; top: 12px; z-index: 100; margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-card); overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.tab-nav::-webkit-scrollbar { height: 4px; }
+.tab-nav::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+.tab-btn {
+  flex: 1; white-space: nowrap; padding: 10px 14px; border: none; background: transparent;
+  border-radius: 10px; font-size: 13.5px; font-weight: 600;
+  color: var(--color-text-secondary); cursor: pointer; transition: all var(--transition-normal);
+}
+.tab-btn.active {
+  background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
+  color: #fff; box-shadow: 0 4px 14px rgba(220,38,38,0.25);
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 300ms ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section {
+  background: var(--color-bg-card); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-card);
+}
+h2 { font-size: 21px; font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--spacing-md); }
+h3 { font-size: 16px; font-weight: 600; color: var(--color-text-primary); margin: var(--spacing-lg) 0 var(--spacing-md) 0; }
+h4 { font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin: 16px 0 10px 0; }
+p { margin-bottom: 10px; }
+p:last-child { margin-bottom: 0; }
+ul { padding-left: 20px; }
+li { margin-bottom: 8px; }
+strong { color: var(--color-text-primary); }
+table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; font-size: 14px; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--color-border-light); vertical-align: top; }
+th { background: var(--color-bg-table-header); font-weight: 600; font-size: 14px; color: var(--color-text-primary); }
+tr:last-child td { border-bottom: none; }
+.tag { display: inline-flex; padding: 2px 8px; border-radius: 9999px; font-size: 12px; font-weight: 500; }
+.tag-red { background: rgba(220,38,38,0.14); color: #fca5a5; }
+.tag-amber { background: rgba(245,158,11,0.14); color: #fcd34d; }
+.tag-blue { background: rgba(37,99,235,0.14); color: #93c5fd; }
+.tag-green { background: rgba(22,163,74,0.14); color: #86efac; }
+.tag-purple { background: rgba(124,58,237,0.14); color: #c4b5fd; }
+.tag-cyan { background: rgba(8,145,178,0.14); color: #67e8f9; }
+/* 核心公式 */
+.formula-box {
+  text-align: center; padding: 28px 20px; margin: var(--spacing-lg) 0;
+  background: linear-gradient(135deg, rgba(220,38,38,0.12), rgba(245,158,11,0.10));
+  border: 1px solid rgba(220,38,38,0.3); border-radius: var(--radius-lg);
+}
+.formula-main {
+  font-size: clamp(20px, 3.4vw, 30px); font-weight: 800;
+  background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: 0.02em;
+}
+.formula-sub { font-size: 13px; color: var(--color-text-muted); margin-top: 10px; }
+/* 大数字 */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-md); margin: var(--spacing-lg) 0; }
+.stats-grid.two { grid-template-columns: repeat(2, 1fr); }
+.stat-card {
+  background: var(--color-bg-card); border-radius: var(--radius-md);
+  border: 1px solid var(--color-border); padding: 20px; text-align: center;
+  transition: all var(--transition-normal);
+}
+.stat-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); border-color: var(--red); }
+.stat-value { font-size: 27px; font-weight: 700; margin-bottom: 6px; }
+.stat-value.red { color: var(--color-danger); }
+.stat-value.amber { color: var(--color-warning); }
+.stat-value.blue { color: var(--color-info); }
+.stat-value.green { color: var(--color-success); }
+.stat-label { font-size: 12.5px; color: var(--color-text-muted); line-height: 1.5; }
+.stat-src { font-size: 11px; color: rgba(255,255,255,0.22); margin-top: 6px; }
+/* 洞察框 */
+.insight-box {
+  border-left: 3px solid var(--amber); background: rgba(245,158,11,0.07);
+  padding: var(--spacing-md) 20px; margin: var(--spacing-md) 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.insight-box.red { border-left-color: var(--red); background: rgba(220,38,38,0.07); }
+.insight-box.blue { border-left-color: var(--blue); background: rgba(37,99,235,0.07); }
+.insight-title { color: var(--color-warning); font-weight: 700; margin-bottom: 6px; }
+.insight-box.red .insight-title { color: var(--color-danger); }
+.insight-box.blue .insight-title { color: var(--color-info); }
+/* 机制分层 */
+.layer-diagram { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+.layer-item {
+  border-radius: var(--radius-md); padding: 16px 20px;
+  border: 1px solid var(--color-border); background: rgba(255,255,255,0.03);
+  display: flex; align-items: flex-start; gap: 16px;
+}
+.layer-badge {
+  flex-shrink: 0; padding: 4px 10px; border-radius: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  min-width: 64px; text-align: center; margin-top: 2px;
+}
+.badge-red { background: rgba(220,38,38,0.15); color: #fca5a5; }
+.badge-amber { background: rgba(245,158,11,0.15); color: #fcd34d; }
+.badge-blue { background: rgba(37,99,235,0.15); color: #93c5fd; }
+.badge-green { background: rgba(22,163,74,0.15); color: #86efac; }
+.badge-purple { background: rgba(124,58,237,0.15); color: #c4b5fd; }
+.badge-gray { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+.layer-content { flex: 1; }
+.layer-title { font-size: 14.5px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
+.layer-desc { font-size: 13.5px; color: var(--color-text-muted); line-height: 1.65; }
+/* 案例卡 */
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.case-card {
+  border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  padding: 20px; background: rgba(255,255,255,0.03);
+}
+.case-card.red { border-color: rgba(220,38,38,0.28); }
+.case-card.amber { border-color: rgba(245,158,11,0.28); }
+.case-card.blue { border-color: rgba(37,99,235,0.28); }
+.case-card.green { border-color: rgba(22,163,74,0.28); }
+.case-name { font-size: 15px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
+.case-sub { font-size: 12px; color: var(--color-text-muted); margin-bottom: 10px; }
+.case-card ul { padding-left: 18px; margin-bottom: 8px; }
+.case-card li { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 5px; line-height: 1.6; }
+.case-verdict { font-size: 13px; color: var(--color-text-primary); border-top: 1px dashed var(--color-border); padding-top: 10px; margin-top: 4px; line-height: 1.6; }
+/* 四象限 */
+.quad-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.quad-card {
+  border-radius: var(--radius-md); padding: 20px;
+  border: 1px solid var(--color-border); background: rgba(255,255,255,0.03);
+}
+.quad-card.collapse { border-color: rgba(220,38,38,0.35); background: rgba(220,38,38,0.05); }
+.quad-card.dilute { border-color: rgba(245,158,11,0.35); background: rgba(245,158,11,0.05); }
+.quad-card.migrate { border-color: rgba(37,99,235,0.35); background: rgba(37,99,235,0.05); }
+.quad-card.power { border-color: rgba(22,163,74,0.35); background: rgba(22,163,74,0.05); }
+.quad-name { font-size: 15px; font-weight: 800; margin-bottom: 2px; }
+.quad-card.collapse .quad-name { color: var(--color-danger); }
+.quad-card.dilute .quad-name { color: var(--color-warning); }
+.quad-card.migrate .quad-name { color: var(--color-info); }
+.quad-card.power .quad-name { color: var(--color-success); }
+.quad-axis { font-size: 11.5px; color: var(--color-text-muted); margin-bottom: 10px; }
+.quad-card ul { padding-left: 18px; }
+.quad-card li { font-size: 13px; margin-bottom: 5px; line-height: 1.6; }
+/* 名词注释 */
+.glossary-item {
+  display: flex; gap: 16px; padding: 16px 20px; margin-bottom: 10px;
+  background: rgba(255,255,255,0.03); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.glossary-term {
+  flex-shrink: 0; width: 168px; font-weight: 800; font-size: 14px;
+  color: var(--color-warning); line-height: 1.5;
+}
+.glossary-term small { display: block; font-weight: 500; font-size: 11.5px; color: var(--color-text-muted); }
+.glossary-def { flex: 1; font-size: 13.5px; line-height: 1.7; }
+/* 演变路径 */
+.path-flow { display: flex; align-items: stretch; gap: 10px; margin: 18px 0; }
+.path-node {
+  flex: 1; text-align: center; padding: 16px 10px;
+  border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  background: rgba(255,255,255,0.03);
+}
+.path-node.mid { border-color: rgba(245,158,11,0.35); background: rgba(245,158,11,0.06); }
+.path-node.end { border-color: rgba(220,38,38,0.4); background: rgba(220,38,38,0.07); }
+.path-arrow { display: flex; align-items: center; color: var(--color-text-muted); font-size: 18px; }
+.path-title { font-size: 15px; font-weight: 800; color: var(--color-text-primary); margin-bottom: 4px; }
+.path-desc { font-size: 12px; color: var(--color-text-muted); line-height: 1.55; }
+/* 主栏 + 名词侧栏布局 */
+.content-wrap { display: grid; grid-template-columns: 1fr 296px; gap: 20px; align-items: start; }
+.glossary-sidebar {
+  position: sticky; top: 78px;
+  background: var(--color-bg-card); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: 18px 18px 8px;
+  box-shadow: var(--shadow-card);
+}
+.glossary-side-title { font-size: 15px; font-weight: 800; color: var(--color-text-primary); margin-bottom: 12px; }
+.glossary-side-item { padding: 11px 0; border-top: 1px solid var(--color-border-light); }
+.glossary-side-term { font-size: 13.5px; font-weight: 700; color: var(--color-warning); margin-bottom: 4px; }
+.glossary-side-def { font-size: 12.5px; line-height: 1.65; color: var(--color-text-muted); }
+.footer {
+  text-align: center; padding: 32px 20px; font-size: 12px;
+  color: var(--color-text-muted); border-top: 1px solid var(--color-border-light); margin-top: 32px;
+}
+@media (max-width: 900px) {
+  .content-wrap { grid-template-columns: 1fr; }
+  .glossary-sidebar { position: static; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .case-grid, .quad-grid { grid-template-columns: 1fr; }
+  .path-flow { flex-direction: column; }
+  .path-arrow { justify-content: center; transform: rotate(90deg); }
+  .glossary-item { flex-direction: column; gap: 6px; }
+  .glossary-term { width: auto; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="site-link-wrap">
+    <a class="site-link" href="research.html">← <span>Kyrie AI Insight</span></a>
+  </div>
+  <h1 class="header-title">无处安放的生产力</h1>
+  <div class="header-sub">AI 取代人力的需求侧审判</div>
+  <div class="header-meta">专题调研报告 · 数据口径截至 2026 年 8 月</div>
+  <div class="header-version">
+    <span class="version-badge">v1.0 · 2026.09</span>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab(event,'t1')">核心判断</button>
+  <button class="tab-btn" onclick="switchTab(event,'t3')">数据与案例</button>
+  <button class="tab-btn" onclick="switchTab(event,'t4')">机制拆解</button>
+  <button class="tab-btn" onclick="switchTab(event,'t5')">历史对照</button>
+  <button class="tab-btn" onclick="switchTab(event,'t6')">岗位地图</button>
+  <button class="tab-btn" onclick="switchTab(event,'t7')">反向证据</button>
+  <button class="tab-btn" onclick="switchTab(event,'t8')">人的出路</button>
+</div>
+
+<div class="content-wrap">
+<div class="main-col">
+
+<!-- T1 核心判断 -->
+<div class="tab-content active" id="t1">
+<div class="section">
+  <h2>一句话论断</h2>
+  <div class="formula-box">
+    <div class="formula-main">人头数 = 需求量 ÷ 单人产出</div>
+    <div class="formula-sub">AI 让分母爆炸，而分子（有支付能力的需求）涨不动的地方，人头必然向下</div>
+  </div>
+  <p>市面上关于"AI 是取代人还是增强人"的争论，大多停留在<strong>"AI 能不能做这件事"</strong>。本报告换一个视角：决定结局的不是能力边界，而是<strong>需求侧的数学约束</strong>——生产力可以无限扩张，需求不能。当 10 个人+100 个 Agent 能产出 50 份成果、而客观需求只需要 2 份时，"AI 助力生产力提升"必然坍缩为"AI 助力降本增效"。</p>
+</div>
+
+<div class="section">
+  <h2>三条推论</h2>
+  <div class="layer-diagram">
+    <div class="layer-item">
+      <span class="layer-badge badge-red">推论一</span>
+      <div class="layer-content">
+        <div class="layer-title">AI 取代人力是成本结构驱动的不可逆趋势</div>
+        <div class="layer-desc">Agent 的边际成本持续逼近算力成本——过去两年单位推理成本以每年约一个数量级的速度下降，而人力成本只涨不跌。两条成本曲线的交叉，没有任何力量能够逆转。工会、监管、伦理呼声都只能减速，不能转向。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-amber">推论二</span>
+      <div class="layer-content">
+        <div class="layer-title">决定取代速度与形态的不是 AI 的能力边界，而是需求弹性</div>
+        <div class="layer-desc">需求封顶的领域（客服、审核、翻译、标准化报表），"人机协同"只是裁员的过渡形态；需求可扩张的领域（代码、内容），因为需求增速跑不赢生产力增速，总人头依然向下——只是表现为"稀释"而非"消失"。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-blue">推论三</span>
+      <div class="layer-content">
+        <div class="layer-title">显性失业的烈度不是纯技术结果，而是政治经济学结果</div>
+        <div class="layer-desc">不可阻挡的是成本曲线的走向，可博弈的是分配制度重构的速度。最可能的路径是：<strong>先硬着陆 → 痛出政治共识 → 制度重构</strong>，中间隔着一个 5–10 年的阵痛期。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>本报告的结构</h2>
+  <table>
+    <tr><th style="width:140px;">模块</th><th>回答的问题</th></tr>
+    <tr><td><strong>数据与案例</strong></td><td>取代进行到哪一步了？招聘端、裁员端、成本端三组数据 + 五个公司样本</td></tr>
+    <tr><td><strong>机制拆解</strong></td><td>为什么"人机协同"挡不住取代？成本结构替代 × 需求弹性分野 × 演变路径</td></tr>
+    <tr><td><strong>历史对照</strong></td><td>为什么这次和工业革命不一样？需求侧三大引擎的熄火</td></tr>
+    <tr><td><strong>岗位地图</strong></td><td>哪些岗位先塌、哪些被稀释、哪些是"安全但内卷"的陷阱</td></tr>
+    <tr><td><strong>反向证据</strong></td><td>反方最有力的证据是什么？为什么它们修正节奏但不推翻方向</td></tr>
+    <tr><td><strong>人的出路</strong></td><td>哑铃结构下，个体与制度各自的选择</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- T3 数据与案例 -->
+<div class="tab-content" id="t3">
+<div class="section">
+  <h2>招聘端：入门级岗位先塌</h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-value red">-13%</div>
+      <div class="stat-label">AI 高暴露职业中 22–25 岁劳动者就业率相对降幅，资深员工同期稳定</div>
+      <div class="stat-src">斯坦福数字经济实验室《Canaries in the Coal Mine》2025/2026 修订</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value red">-35%</div>
+      <div class="stat-label">美国入门级岗位招聘启事降幅（自 2023 年 1 月起）</div>
+      <div class="stat-src">Revelio Labs，2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value amber">15%→7%</div>
+      <div class="stat-label">Big Tech 应届生招聘占比变化，绝对量较 2019 年下降超 50%</div>
+      <div class="stat-src">SignalFire，2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value amber">1222 万</div>
+      <div class="stat-label">中国 2025 届高校毕业生规模（连年新高）；16–24 岁城镇调查失业率约 17%</div>
+      <div class="stat-src">教育部 / 国家统计局，2025</div>
+    </div>
+  </div>
+  <p>冲击精准落在<strong>入口级</strong>：斯坦福的研究发现，同样是 AI 高暴露职业（软件开发、客服等），塌的是 22–25 岁年轻人的就业率，资深员工反而纹丝不动。中国的矛盾则是剪刀差——毕业生供给连年放量的同时，入口在收窄。</p>
+</div>
+
+<div class="section">
+  <h2>裁员端：从"降本"到"明说"</h2>
+  <table>
+    <tr><th style="width:170px;">信号</th><th>内容</th><th style="width:150px;">来源 / 时间</th></tr>
+    <tr><td><strong>AI 归因裁员量级</strong></td><td>美国企业公开归因于 AI/自动化的裁员 2025 年累计超 5 万人，2023 年该数字仅约 4 千人——两年放大一个数量级</td><td>Challenger, Gray &amp; Christmas</td></tr>
+    <tr><td><strong>CEO 公开预告</strong></td><td>Amazon CEO Andy Jassy 内部信：AI 将在未来几年"缩减公司员工总数"</td><td>2025.06</td></tr>
+    <tr><td><strong>工作量替代</strong></td><td>Benioff 称 AI 已承担 Salesforce 30–50% 的工作量，2025 年冻结工程师招聘</td><td>2025.06</td></tr>
+    <tr><td><strong>AI-first 招聘原则</strong></td><td>Shopify、Duolingo 先后规定：任何新增人头必须先证明 AI 做不了</td><td>2025</td></tr>
+    <tr><td><strong>雇主意向</strong></td><td>41% 的受访雇主计划因 AI 缩减员工规模</td><td>WEF《Future of Jobs 2025》</td></tr>
+  </table>
+  <div class="insight-box red">
+    <div class="insight-title">关键变化</div>
+    <p>2023–2024 年企业谈 AI 用的词是"增效"，2025 年起开始直接说"减人"。当 Shopify 把"证明 AI 做不了"设为招聘前置条件时，<strong>举证责任已经完成反转</strong>：默认不招人，例外才招。</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>成本端：两条曲线的交叉</h2>
+  <div class="stats-grid two">
+    <div class="stat-card">
+      <div class="stat-value red">≈100×</div>
+      <div class="stat-label">客服会话成本差：人工约 5–10 美元/次 vs AI 客服 0.1–0.5 美元/次</div>
+      <div class="stat-src">行业公开报价区间，2025</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value amber">30–55%</div>
+      <div class="stat-label">Copilot 类工具带来的编码提速；Agent 模式下单人产出放大倍数仍在快速上移</div>
+      <div class="stat-src">GitHub 测算，2024–2025</div>
+    </div>
+  </div>
+  <p>企业替换人力的决策函数从来不是"AI 能不能做到 100 分"，而是<strong>"AI 做到 80 分时的成本是否低于人力的 1/5"</strong>。这解释了为什么替代在 AI 能力远未完美时就已经开始。</p>
+</div>
+
+<div class="section">
+  <h2>公司案例墙：五种被替代的姿势</h2>
+  <div class="case-grid">
+    <div class="case-card red">
+      <div class="case-name">Klarna <span class="tag tag-red">降本型 · 过度替代回摆</span></div>
+      <div class="case-sub">瑞典支付公司 · 2022–2026</div>
+      <ul>
+        <li>2022–2024 裁减约 40% 员工，宣称 AI 承担 700 名客服的工作量、处理 2/3 客服会话</li>
+        <li>2025 年起反转：重新招聘人工客服——"客户还是想和人说话"</li>
+      </ul>
+      <div class="case-verdict"><strong>教训：</strong>不是"AI 不行"，而是 80% 能力替代在高情绪密度场景不达标。<strong>回摆是节奏问题，不是方向问题。</strong></div>
+    </div>
+    <div class="case-card blue">
+      <div class="case-name">IBM <span class="tag tag-blue">置换型</span></div>
+      <div class="case-sub">2025</div>
+      <ul>
+        <li>用 AI Agent 替代约 200 个 HR 岗位</li>
+        <li>同期增聘工程师与销售——人头总数变化不大的背后是岗位结构置换</li>
+      </ul>
+      <div class="case-verdict"><strong>启示：</strong>置换期的"总数稳定"具有迷惑性，被置换掉的职能永远不会回来。</div>
+    </div>
+    <div class="case-card red">
+      <div class="case-name">Chegg <span class="tag tag-red">需求坍塌型</span></div>
+      <div class="case-sub">美国教育科技 · 2023–2025</div>
+      <ul>
+        <li>AI 直接摧毁其问答付费需求，股价跌去 90% 以上</li>
+        <li>2025 年裁员约 45%</li>
+      </ul>
+      <div class="case-verdict"><strong>警示：</strong>最惨的不是被 AI 提效的行业，而是<strong>被 AI 抹掉需求</strong>的行业。</div>
+    </div>
+    <div class="case-card amber">
+      <div class="case-name">蓝色光标 <span class="tag tag-amber">中国样本</span></div>
+      <div class="case-sub">营销服务 · 2023 起</div>
+      <ul>
+        <li>"All in AI"，叫停文案与设计外包，全面转向 AIGC</li>
+        <li>中国营销服务业降本逻辑的早期样本</li>
+      </ul>
+      <div class="case-verdict"><strong>意义：</strong>同样的成本结构替代在中国服务业同步发生，只是公开数据更少。</div>
+    </div>
+    <div class="case-card green">
+      <div class="case-name">Amazon / Walmart <span class="tag tag-green">冻结型</span></div>
+      <div class="case-sub">2025</div>
+      <ul>
+        <li>不裁员但冻结人头：Walmart 公开表示未来 3 年业务增长而员工总数持平</li>
+        <li>Amazon 预告缩编的同时大规模投入 AI 基础设施</li>
+      </ul>
+      <div class="case-verdict"><strong>形态：</strong>"增长不增人"是人口退潮对冲在企业层面的微观表现（详见「历史对照」页）。</div>
+    </div>
+    <div class="case-card blue">
+      <div class="case-name">综合判断 <span class="tag tag-blue">五种姿势</span></div>
+      <div class="case-sub">降本 / 置换 / 坍塌 / 冻结 / 回摆</div>
+      <ul>
+        <li>五种姿势的共同点是：<strong>没有任何一种以"增加人头"为结局</strong></li>
+        <li>回摆型（Klarna）被引用最多，恰恰因为它是唯一的例外</li>
+      </ul>
+      <div class="case-verdict"><strong>结论：</strong>例外证明规则——替代的方向没有反例，只有节奏的分歧。</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- T4 机制拆解 -->
+<div class="tab-content" id="t4">
+<div class="section">
+  <h2>机制一：成本结构替代，而非能力替代</h2>
+  <p>企业不是等 AI 考到 100 分才动手。真实决策函数是：<strong>AI 做到 80 分 × 成本 1/10</strong>，就足以启动替代。客服不需要共情到完美，翻译不需要信达雅，初级代码不需要架构美感——大部分岗位的工资里，包含的是"够用"而非"完美"。这就是为什么替代总是比公众预期来得早：公众盯着能力上限，企业算的是成本下限。</p>
+</div>
+
+<div class="section">
+  <h2>机制二：需求弹性分野——B 端封顶，C 端可创造</h2>
+  <table>
+    <tr><th style="width:110px;"></th><th>B 端（企业需求）</th><th>C 端（消费需求）</th></tr>
+    <tr>
+      <td><strong>需求性质</strong></td>
+      <td>"解决问题"：一家公司只需要一份财报、一套客服体系，解决完了就没了</td>
+      <td>"满足欲望"：短视频证明人均内容消费时长可以从 0 涨到每天 2 小时</td>
+    </tr>
+    <tr>
+      <td><strong>AI 落地逻辑</strong></td>
+      <td><span class="tag tag-red">降本主战场</span> 同样产出用更少人做完</td>
+      <td><span class="tag tag-green">增量主战场</span> AI 陪伴、无限个性化内容等从零到一的品类</td>
+    </tr>
+    <tr>
+      <td><strong>对就业的含义</strong></td>
+      <td>人头直接向下，"协同"是过渡形态</td>
+      <td>有增量岗位，但体量尚小，接不住被挤出的人力</td>
+    </tr>
+  </table>
+  <div class="insight-box red">
+    <div class="insight-title">关键推论：为什么塌的是初级岗</div>
+    <p>即便需求可扩张，只要<strong>需求增速 &lt; 生产力增速</strong>，总人头依然向下——而且压力会不成比例地落在初级岗。原因有三层：</p>
+    <p><strong>① 替代顺序</strong>：AI 最先吃掉的是标准化、边界清晰的任务，而这恰好就是初级岗位的工作内容；资深员工的判断力、客户关系、责任承担暂不可替代。<br>
+    <strong>② 调整成本</strong>：冻结招聘、退休不递补，比裁掉资深员工（赔偿金、士气、法律风险）摩擦小得多，企业自然先焊死入口。<br>
+    <strong>③ 实证吻合</strong>：斯坦福数据显示 AI 高暴露职业中 22–25 岁就业率下滑约 13% 而资深员工纹丝不动——人头收缩很少表现为"裁一半人"，而是先表现为"入口焊死"。</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>机制三：演变路径——协同期是缓冲带，不是终态</h2>
+  <div class="path-flow">
+    <div class="path-node">
+      <div class="path-title">10 人</div>
+      <div class="path-desc">纯人力协作<br>产出 2 份成果</div>
+    </div>
+    <div class="path-arrow">→</div>
+    <div class="path-node mid">
+      <div class="path-title">5 人 + 5 Agent</div>
+      <div class="path-desc">协同期：口号是赋能<br>人做"监督与兜底"</div>
+    </div>
+    <div class="path-arrow">→</div>
+    <div class="path-node end">
+      <div class="path-title">1 人 + 9 Agent</div>
+      <div class="path-desc">终态：人退到"担责位"<br>判断、品味、签字</div>
+    </div>
+  </div>
+  <p>"人机协同期"的本质是<strong>组织消化技术冲击的缓冲带</strong>——它延缓冲击的社会烈度，让裁员以"不补员"的温和面目出现，但不改变人头向下的方向。判断一个组织处在哪个阶段，只看一个指标：<strong>新增 Agent 时是否同步新增人</strong>。</p>
+</div>
+
+<div class="section">
+  <h2>机制四："AI 组织升级"——协同期的组织形态，过渡型新职业</h2>
+  <p>招聘市场上新出现的"AI 组织升级专家"，负责规划"人+Agent"协同流程、重绘岗位边界与汇报线。怎么看这个岗位？</p>
+  <ul>
+    <li><strong>本质定性</strong>：AI 时代的 BPR 顾问。1990 年代 BPR 的口号同样是"赋能员工"，落地指标同样是"同样的事用更少的人做完"，最终伴随大规模裁员。话术会变，函数不变。</li>
+    <li><strong>自身命运</strong>：过渡型新职业。"如何编排 Agent"的知识正在被工具化——Multi-Agent 编排框架与自带 workflow 的 Agent 产品（Claude Code、Manus 等）把专家手工方案变成产品默认模板。<strong>设计协同的人，其工作本身也在被协同工具吸收。</strong></li>
+    <li><strong>真正的稀缺品</strong>：不是"会用 AI 的人"，而是"对产出负责的人"——判断力、品味、责任承担无法外包给 Agent。</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>机制五：Baumol 区——不是安全区，是内卷区</h2>
+  <p>被挤出的人力流向 AI 做不了的线下服务（护理、幼教、体验、"真人感"服务）。但这些岗位有两个结构性特征：<strong>生产力提不上去</strong>（鲍莫尔成本病）＋ <strong>劳动力持续涌入</strong>（被 AI 挤出的人）。供给过剩压低工资，形成哑铃下端——它吸收就业，但不提供体面。</p>
+</div>
+</div>
+
+<!-- T5 历史对照 -->
+<div class="tab-content" id="t5">
+<div class="section">
+  <h2>工业革命的需求膨胀，靠三个今天已熄火的外生引擎</h2>
+  <table>
+    <tr><th style="width:120px;">引擎</th><th>工业革命时期</th><th>AI 时代</th></tr>
+    <tr>
+      <td><strong>人口</strong></td>
+      <td>19 世纪欧洲人口翻数倍，需求底盘持续扩大</td>
+      <td>全球人口增速放缓，中美同步老龄化，多国进入负增长</td>
+    </tr>
+    <tr>
+      <td><strong>地理扩张</strong></td>
+      <td>殖民地市场倾销工业品，"市场是新的"</td>
+      <td>全球市场已被充分开发，没有新大陆</td>
+    </tr>
+    <tr>
+      <td><strong>全新品类</strong></td>
+      <td>铁路、电灯、汽车创造从零到一的需求</td>
+      <td>AI 新品类（陪伴、生成内容）体量尚小，接不住被挤出的人力</td>
+    </tr>
+  </table>
+  <p>三大引擎全部熄火后，只剩<strong>"降价激活存量需求"</strong>一条腿。这就是"生产力无处安放"的宏观含义：10 个人+100 个 Agent 能产出 50 份成果，但客观需求只需要 2 份——生产力提升于是必然坍缩为降本增效。</p>
+</div>
+
+<div class="section">
+  <h2>历史同样提示：阵痛的真实长度</h2>
+  <div class="stats-grid two">
+    <div class="stat-card">
+      <div class="stat-value red">≈50 年</div>
+      <div class="stat-label">"Engels' pause"：1790–1840 英国人均产出上升而普通工人实际工资停滞的时长</div>
+      <div class="stat-src">经济史研究（Allen 等）</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value red">24 万 → 不足 5 万</div>
+      <div class="stat-label">英国手织机织工人数（1820 → 1850），一代人被碾过</div>
+      <div class="stat-src">经济史统计</div>
+    </div>
+  </div>
+  <p>工业革命"新岗位接住旧人"的故事，是以<strong>两代人的时间尺度</strong>才兑现的。而 AI 时代没有这个余量：软件形态的 AI 扩散不需要物理资本重建——电气化用了 40 年走进工厂，Agent 只需要一次 API 接入。<strong>渗透速度数倍于历史上任何通用技术，意味着阵痛被压缩进更短的时间，烈度更高。</strong></p>
+</div>
+
+<div class="section">
+  <h2>一个被忽视的对冲变量：人口退潮</h2>
+  <p>中国劳动年龄人口自 2014 年达峰后持续萎缩，近年每年减少数百万；日韩欧更甚。<strong>AI 替代的冲击力，恰好撞上史上最猛的劳动力退潮</strong>——两股"史无前例"方向相反。</p>
+  <div class="insight-box blue">
+    <div class="insight-title">对冲的结果：失业率不爆炸，入口焊死</div>
+    <p>如果 AI 每年"消灭"的岗位 ≈ 人口自然退出的岗位，宏观失业率可能并不会爆炸，而是表现为<strong>招聘冻结</strong>（退休不递补、不再补员）——Walmart"业务增长、人头持平"就是这个形态的微观样本。杀伤落在年轻人身上，且在统计数据上很隐蔽：失业率高估不了冲击，<strong>招聘启事数才是先行指标</strong>。美国有移民缓冲人口，失业压力会比中国更显性。</p>
+  </div>
+  <p>因此对"1–2 年内史无前例失业潮"的更准确表述是：<strong>1–2 年内会看到史无前例的"入门级岗位消失潮"（招聘端塌方），但显性失业率是否爆炸，取决于它与人口退潮的对冲结果</strong>。前者几乎确定，后者不确定。</p>
+</div>
+
+<div class="section">
+  <h2>一个反直觉的利好：这次先砸中的是白领</h2>
+  <p>历史上自动化先打蓝领，蓝领缺少话语权，社会响应慢。这次先塌的是初级白领、程序员、分析师、客服——<strong>有学历、有发声能力、集中在核心城市的群体</strong>。这会极大加速政策响应：失业者的"政治权重"，决定制度修复的速度。讽刺但真实。</p>
+</div>
+</div>
+
+<!-- T6 岗位地图 -->
+<div class="tab-content" id="t6">
+<div class="section">
+  <h2>四象限：需求弹性 × AI 可替代性</h2>
+  <div class="quad-grid">
+    <div class="quad-card collapse">
+      <div class="quad-name">先塌区</div>
+      <div class="quad-axis">需求弹性低 × 可替代性高</div>
+      <ul>
+        <li><strong>岗位</strong>：客服、审核、翻译/口译、基础文案、初级代码、数据标注、标准化设计</li>
+        <li><strong>信号</strong>：微软研究院（2025）测算 AI 适用度最高的职业第一名就是口笔译；Revelio 入门级招聘启事 -35%</li>
+        <li><strong>结局</strong>：人头直接向下，"协同"只是过渡话术</li>
+      </ul>
+    </div>
+    <div class="quad-card dilute">
+      <div class="quad-name">稀释区</div>
+      <div class="quad-axis">需求弹性高 × 可替代性高</div>
+      <ul>
+        <li><strong>岗位</strong>：软件开发、内容创作、市场分析</li>
+        <li><strong>逻辑</strong>：总盘子在涨，但需求增速被生产力增速碾压</li>
+        <li><strong>结局</strong>：人头被稀释而非消失，初级岗先塌、资深岗集中化</li>
+      </ul>
+    </div>
+    <div class="quad-card migrate">
+      <div class="quad-name">迁移区</div>
+      <div class="quad-axis">需求弹性低 × 可替代性低</div>
+      <ul>
+        <li><strong>岗位</strong>：护理、幼教、线下体验、"真人感"服务</li>
+        <li><strong>陷阱</strong>：鲍莫尔成本病 + 劳动力持续涌入 = 工资被压低</li>
+        <li><strong>结局</strong>：安全但内卷，哑铃的下端</li>
+      </ul>
+    </div>
+    <div class="quad-card power">
+      <div class="quad-name">权力区</div>
+      <div class="quad-axis">需求弹性高 × 可替代性低</div>
+      <ul>
+        <li><strong>岗位</strong>：Agent 编排者、AI 产品负责人、掌握资本与算力资源者</li>
+        <li><strong>特征</strong>：人头稀少，拿走大部分增量收益</li>
+        <li><strong>结局</strong>：哑铃的上端，马太效应最剧烈的位置</li>
+      </ul>
+    </div>
+  </div>
+  <div class="insight-box">
+    <div class="insight-title">读图方式</div>
+    <p>纵轴（需求弹性）决定"这个领域会不会变大"，横轴（可替代性）决定"变大后还需不需要人"。<strong>只有双高的权力区是真安全</strong>；低弹性的两个象限，一个是悬崖，一个是泥潭。</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>时间维度：不是"会不会"，是"第几批"</h2>
+  <table>
+    <tr><th style="width:150px;">批次</th><th>岗位</th><th>当前状态（2026.08）</th></tr>
+    <tr><td><strong>第一批（进行中）</strong></td><td>客服、翻译、数据标注、基础文案</td><td>替代已在财报和裁员公告中显性可见</td></tr>
+    <tr><td><strong>第二批（加速中）</strong></td><td>初级代码、初级设计、标准化分析</td><td>招聘端塌方，裁员端未爆（入口焊死形态）</td></tr>
+    <tr><td><strong>第三批（前夜）</strong></td><td>中层管理、初级法务/会计、运营执行</td><td>Agent 长任务可靠性突破后即启动</td></tr>
+    <tr><td><strong>最后一批</strong></td><td>担责岗：签字、背锅、跨域判断</td><td>不是能力问题，是责任主体问题</td></tr>
+  </table>
+</div>
+</div>
+
+<!-- T7 反向证据 -->
+<div class="tab-content" id="t7">
+<div class="section">
+  <h2>反方最有力的五条证据</h2>
+  <div class="layer-diagram">
+    <div class="layer-item">
+      <span class="layer-badge badge-red">反方 1</span>
+      <div class="layer-content">
+        <div class="layer-title">Klarna 回摆：替代过度会反弹</div>
+        <div class="layer-desc">Klarna 重新招聘人工客服证明"AI 替代"在高情绪密度、低容错场景不达标。<strong>回应：</strong>成立，但这是渗透率的反复，不是方向的反转——回摆后的客服团队规模仍远小于替代前。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-red">反方 2</span>
+      <div class="layer-content">
+        <div class="layer-title">放射科悖论：Hinton 错了十年</div>
+        <div class="layer-desc">Hinton 2016 年断言"该停止培养放射科医生"，此后放射科医生就业不降反升——需求弹性（检查量大增）+ AI 作为互补品。<strong>回应：</strong>这是"稀释区"的正面样本，但 2026 年的影像 AI 能力正在重测这个结论；且该案例依赖医疗支付体系持续扩张这一特殊条件。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-red">反方 3</span>
+      <div class="layer-content">
+        <div class="layer-title">Jevons 效应局部成立</div>
+        <div class="layer-desc">AI 让"以前做不起的需求"变得可做——长尾个性化服务、小团队软件创业，正在创造新增岗位。<strong>回应：</strong>成立且珍贵，但目前增量岗位的体量与被消灭岗位差着数量级；且 Jevons 成立的前提是需求增速跑赢生产力增速。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-red">反方 4</span>
+      <div class="layer-content">
+        <div class="layer-title">历史任务创造率：60% 的职业是新发明的</div>
+        <div class="layer-desc">Autor 统计 2018 年美国约 60% 的职业在 1940 年不存在——技术一直在创造新任务。<strong>回应：</strong>这次的分歧在于，AI 是第一种"自己创造的新任务也能自己做"的通用技术。任务创造率能否跑赢任务消灭率，是开放问题，不应默认历史会重演。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-red">反方 5</span>
+      <div class="layer-content">
+        <div class="layer-title">宏观失业率至今平稳</div>
+        <div class="layer-desc">美欧失业率仍在历史低位，"失业潮"在统计上不存在。<strong>回应：</strong>这是"入口焊死"形态的典型误判——冲击落在招聘端（入门级岗位）而非裁员端，落在 22–25 岁群体而非总体。等它在失业率上显形时，已经是滞后指标。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>综判</h2>
+  <div class="insight-box">
+    <div class="insight-title">回摆与增量都是节奏层面的修正</div>
+    <p>五条反方证据都有真实的部分，但没有一条指向"方向反转"。它们共同说明：取代不是匀速的，会有反复、有缓冲、有局部增量——<strong>但尚未出现推翻方向性判断的证据</strong>。对决策者而言，正确的姿势不是赌反转，而是利用缓冲期完成迁移。</p>
+  </div>
+</div>
+</div>
+
+<!-- T8 人的出路 -->
+<div class="tab-content" id="t8">
+<div class="section">
+  <h2>个体层面：四个迁移方向</h2>
+  <div class="layer-diagram">
+    <div class="layer-item">
+      <span class="layer-badge badge-green">方向一</span>
+      <div class="layer-content">
+        <div class="layer-title">向"不可外包"迁移</div>
+        <div class="layer-desc">判断力、跨域整合、责任承担（签字权、背锅权）、人际信任。Agent 能生成方案，但担责的必须是人——最后一批被替代的永远是"责任主体"，这不是能力问题，是制度问题。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-green">方向二</span>
+      <div class="layer-content">
+        <div class="layer-title">从"执行者"变"经营者"</div>
+        <div class="layer-desc">个体杠杆被 AI 放大：一人公司、微型团队的单位产出可抵过去的小公司。出路从"找岗位"转向"拥有资产与工作流"——你拥有的 Agent 编队，就是你的生产资料。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-amber">方向三</span>
+      <div class="layer-content">
+        <div class="layer-title">接受哑铃现实，主动选端</div>
+        <div class="layer-desc">中间层（可标准化的白领执行岗）持续塌陷，向两端分流：上端是 Agent 经营者，下端是真人服务业。最危险的位置是停在中间等回暖——中间不会回暖。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-blue">方向四</span>
+      <div class="layer-content">
+        <div class="layer-title">押注"真人溢价"赛道</div>
+        <div class="layer-desc">当 AI 生成内容无限供给，"真人"本身成为稀缺品：真人教育、真人陪伴、线下体验、手工制品。这与迁移区不同——不是被动流入低端服务，而是主动经营"真人"作为品牌溢价。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>制度层面：当"劳动换收入"的主渠道失灵</h2>
+  <p>当 Agent 成本 &lt;&lt; 人力成本成为稳态，分配必须部分与劳动脱钩。候选工具已经从边缘议题走向主流政治议程：</p>
+  <table>
+    <tr><th style="width:160px;">工具</th><th>逻辑</th><th>进展（截至 2026.08）</th></tr>
+    <tr><td><strong>UBI / 现金转移</strong></td><td>直接托底，分配与劳动脱钩</td><td>OpenResearch 美国试点（2024）验证基本保障改善；多国地方试点扩大</td></tr>
+    <tr><td><strong>自动化税 / 算力税</strong></td><td>对替代人力的资本征税，减缓替代速度、筹资托底</td><td>韩国 2017 年首开先例（削减自动化税收优惠）；欧盟持续辩论</td></tr>
+    <tr><td><strong>缩短工时</strong></td><td>把工作分着做：四天工作制摊薄总岗位收缩</td><td>英国 61 家企业试点后 92% 选择延续；冰岛公共部门常态化</td></tr>
+    <tr><td><strong>数据分红 / 主权 AI 基金</strong></td><td>全民持有 AI 资本份额，分享生产力红利</td><td>阿拉斯加永久基金模式被反复引用；多国讨论数据要素分红</td></tr>
+  </table>
+  <div class="insight-box blue">
+    <div class="insight-title">这次的特殊之处</div>
+    <p>历史上自动化先砸蓝领，社会响应以"代"计。这次先塌的是有学历、有发声能力、集中在核心城市的白领——<strong>失业者的政治权重，决定制度修复的速度</strong>。制度响应可能来得比历史上任何一次都快，但大概率仍晚于冲击本身：先硬着陆、痛出共识、再重构，是我们这代人真实要经历的序列。</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>结语：审判的对象不是人</h2>
+  <p>"需求侧审判"审判的从来不是劳动者的能力，而是一个把<strong>收入分配完全绑定在雇佣关系上</strong>的制度。生产力第一次可以脱离人而存在——这在长期是人类的解放叙事，在短期是分配制度的期末考试。考试的题目只有一道：<strong>当 1 个人+9 个 Agent 就能产出全部所需时，剩下 9 个人凭什么分享成果？</strong></p>
+  <p>答好这道题之前，个体的最优策略是清晰的：站到分母上（成为经营者），而不是留在分子里（等待被约分）。</p>
+</div>
+</div>
+</div><!-- /main-col -->
+
+<aside class="glossary-sidebar">
+  <div class="glossary-side-title">📖 名词解释</div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">Agent（智能体）</div>
+    <div class="glossary-side-def">能自主规划、调用工具、连续执行多步任务的 AI 系统，区别于一问一答的聊天机器人。本报告中取代人力的主体形态。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">Baumol 成本病（鲍莫尔病）</div>
+    <div class="glossary-side-def">护理、教育、现场表演等行业生产力提不上去，但工资必须跟随全社会上涨。本文引申：被 AI 挤出的劳动力涌入这些行业，供给过剩反而压低工资，形成"安全但内卷"的陷阱。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">Jevons 悖论（杰文斯悖论）</div>
+    <div class="glossary-side-def">1865 年杰文斯发现：蒸汽机效率越高，煤炭总消耗不降反升——变便宜刺激了总需求。引申：AI 降本可能做大需求总量，但前提是需求增速跑赢生产力增速。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">Engels' pause（恩格斯暂停）</div>
+    <div class="glossary-side-def">工业革命早期（约 1790–1840）英国人均产出增长而普通工人实际工资停滞约半个世纪，得名于恩格斯《英国工人阶级状况》。技术红利与劳动者的兑现之间，可能隔着一整代人。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">BPR（业务流程再造）</div>
+    <div class="glossary-side-def">1990 年代管理思潮，主张用信息技术彻底重构企业流程。口号是"赋能员工"，落地多伴随大规模裁员。本文将"AI 组织升级专家"类比为 AI 时代的 BPR 顾问。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">UBI（全民基本收入）</div>
+    <div class="glossary-side-def">无条件向全民定期发放现金的制度设想，是"分配与劳动脱钩"的候选方案。已有真实试点：OpenResearch 2024 年美国试验（每人每月 1000 美元 × 3 年）显示基本保障显著改善。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">哑铃结构（就业极化）</div>
+    <div class="glossary-side-def">中间层（可标准化的白领执行岗）塌陷，就业向"高技能上端"与"低工资下端"两极聚集的形态。哑铃两端变重，中间的杆变细。</div>
+  </div>
+</aside>
+
+</div><!-- /content-wrap -->
+
+<div class="footer">
+  Kyrie 的 AI 洞察基地 · 专题调研 · 数据来源：Stanford Digital Economy Lab / Revelio Labs / SignalFire / Challenger, Gray &amp; Christmas / WEF / 国家统计局 等公开资料 · 2026.09
+</div>
+
+</div>
+<script>
+function switchTab(evt, id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  evt.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
