@@ -531,14 +531,18 @@ body {
   <div class="part-divider" id="news">
     <span class="part-label">📰 AI 行业资讯</span>
     <div class="part-line"></div>
-    <span class="part-num">持续更新 · 16期</span>
+    <span class="part-num">持续更新 · 17期</span>
   </div>
 
   <!-- 时间轴导航 -->
   <div class="timeline-nav">
     <span class="timeline-label">Timeline</span>
     <div class="timeline-track">
-      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0913')">
+      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week0920')">
+        <span class="timeline-date">2026.09.20</span>
+      </button>
+      <div class="timeline-line"></div>
+      <button class="timeline-btn" onclick="switchNewsTab(event, 'week0913')">
         <span class="timeline-date">2026.09.13</span>
       </button>
       <div class="timeline-line"></div>
@@ -605,9 +609,190 @@ body {
   </div>
 
   <!-- ═══════════════════════════════════ -->
+  <!-- 第17期：2026.9.14–9.20              -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="date-panel active" id="week0920">
+
+  <!-- 本周必读 -->
+  <div id="mustread0920" style="scroll-margin-top:64px;">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(202,138,4,0.15);">⭐</div>
+      <div>
+        <div class="section-name">本周必读</div>
+        <div class="section-desc">从本周资讯中提炼3条最具结构性价值的新闻</div>
+      </div>
+      <span class="section-tag">编辑精选</span>
+    </div>
+    <div class="mustread-card">
+      <div class="mustread-summary">
+        本周核心判断：AI 行业进入<strong>「终端 Agent 落地战 × 资本化冲刺 × 安全叙事反噬」</strong>三线并进的一周。豆包手机助手消费者版随努比亚 NaviX Ultra 开售，字节用"助手+合作硬件+协议开放"把 GUI Agent 推上 C 端货架；Anthropic 传 IPO 前发新模型，同期企业 token 消耗首次被 OpenAI 反超，格局信号开始闪烁；四大 AI 巨头被订阅用户起诉"合谋放慢开发"——安全承诺第一次成为反垄断弹药。
+      </div>
+      <div class="mustread-list">
+        <div class="mustread-item">
+          <div class="mustread-rank rank-1">🥇</div>
+          <div class="mustread-content">
+            <div class="mustread-title">豆包手机助手消费者版随努比亚 NaviX Ultra 开售：屏幕问答 +「操作手机」Beta + SAEP 协议开放</div>
+            <div class="mustread-why">9 月 14 日，豆包手机助手消费者版正式发布，随合作伙伴努比亚的 NaviX Ultra（12+512GB）开售：升级屏幕问答能力，用户可直接基于屏幕内容提问并获取任务执行；开放"操作手机"Beta；同步推出 SAEP 协议，开放 GUI 操作能力。<em>字节绕开了"造不造手机"的路径之争，用"助手+合作硬件+协议开放"三件套把 GUI Agent 落到 C 端货架。SAEP 的野心是成为终端操作领域的 MCP——谁定义 Agent 操作手机的协议，谁就握住下一代入口的底座。继苹果 Siri AI 之后，终端 Agent 落地战在国内正式开打。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-red">字节跳动</span>
+              <span class="ntag ntag-blue">豆包手机助手</span>
+              <span class="ntag ntag-purple">GUI Agent</span>
+              <span class="ntag ntag-green">SAEP协议</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-2">🥈</div>
+          <div class="mustread-content">
+            <div class="mustread-title">Anthropic 传考虑 IPO 前发布新模型；企业 token 消耗上周首次被 OpenAI 反超</div>
+            <div class="mustread-why">据 Reuters（9.18–19），Anthropic 正考虑在 IPO 前发布一款新模型；同一报道披露，上周企业客户在 OpenAI 模型上的 token 消耗首次超过 Anthropic——这是企业侧用量格局的首次反转。<em>Token 消耗是 AI 时代的"用电量"：Claude Code 建立的企业开发者心智是 Anthropic 估值的核心支柱，OpenAI 在 B 端能耗上的反超意味着分发广度开始转化为实际用量。Anthropic 需要"新模型+IPO"双拳回应——资本化窗口不等人，模型节奏必须服务于上市叙事。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-orange">Anthropic</span>
+              <span class="ntag ntag-blue">OpenAI</span>
+              <span class="ntag ntag-red">IPO</span>
+              <span class="ntag ntag-purple">企业token</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-3">🥉</div>
+          <div class="mustread-content">
+            <div class="mustread-title">OpenAI/Anthropic/Google/SpaceXAI 被诉反垄断：订阅用户指控"合谋放慢 AI 开发"</div>
+            <div class="mustread-why">9 月 18 日，据 Daily Journal 与 Bloomberg Law，订阅用户对 OpenAI、Anthropic、Google、SpaceXAI 提起反垄断诉讼，指控其涉嫌达成"放慢 AI 开发"的协议。<em>安全叙事正在反噬发起者：实验室把"谨慎发布"当品牌资产讲了三年，原告现在把它当作卡特尔行为的证据。无论诉讼结果如何，这件事会改变所有前沿实验室的法律算计——每一次"出于安全考虑"的延期发布，都可能成为法庭上的呈堂证供。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-red">反垄断诉讼</span>
+              <span class="ntag ntag-blue">OpenAI</span>
+              <span class="ntag ntag-orange">Anthropic</span>
+              <span class="ntag ntag-purple">AI监管</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三个模块：模型 + 应用 -->
+  <div class="modules-grid" style="margin-top:24px;">
+
+    <!-- 大模型 -->
+    <div class="card" id="model-news-0920">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(124,58,237,0.15);">🧠</div>
+        <div>
+          <div class="card-title">大模型</div>
+          <div class="card-subtitle">模型发布 · 能力评测 · 格局演变</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title">Google 发布 Gemini 3.8 Live 与 Extended Thinking</div>
+            <div class="news-date">9.15</div>
+          </div>
+          <div class="news-item-body">Google 上线 Gemini 3.8 Live 与 3.8 Live Extended Thinking，继续加码实时多模态交互与扩展思考链。<strong>Live 系列是 Google 在"实时语音视频交互"上的持续迭代——对话式入口的竞争打到毫秒级延迟与思考深度的组合战。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">Google</span><span class="ntag ntag-purple">Gemini 3.8</span><span class="ntag ntag-cyan">实时交互</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title">阿里 Qwen3.8-Omni-Flash：首个围绕 Agent 能力打造的全模态模型，视频输入成本降约 89%</div>
+            <div class="news-date">9.18</div>
+          </div>
+          <div class="news-item-body">阿里通义千问发布 Qwen3.8-Omni-Flash，定位"首个围绕智能体能力打造的全模态模型"，原生音视频理解+推理，视频输入成本较前代降约 89%。<strong>"为 Agent 造模型"正在取代"为榜单造模型"——视频输入成本脚踝斩比跑分提升更关乎 Agent 能否规模化干活。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-orange">阿里</span><span class="ntag ntag-blue">Qwen3.8</span><span class="ntag ntag-green">全模态</span><span class="ntag ntag-red">降本</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title">字节 Doubao-Seed-2.1-Pro 上线，评测社区现"新不如旧"争议</div>
+            <div class="news-date">9.15</div>
+          </div>
+          <div class="news-item-body">字节上线 Doubao-Seed-2.1-Pro(260915) 版本；沙丘社区等实测后出现"让新模型干 24 小时，效果却不如旧模型"的争议。<strong>模型迭代进入"体感不明显期"——版本号通胀、用户体感通缩，厂商必须回答"为什么值得升级"，这比刷榜难得多。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">字节跳动</span><span class="ntag ntag-blue">豆包</span><span class="ntag ntag-yellow">评测争议</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 应用 -->
+    <div class="card" id="app-news-0920">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(8,145,178,0.15);">📱</div>
+        <div>
+          <div class="card-title">AI 应用</div>
+          <div class="card-subtitle">Agent · 办公协同 · 垂直落地</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title">飞书上半年 ARR 增速创新高，与「豆包工作」原生融合</div>
+            <div class="news-date">9.15</div>
+          </div>
+          <div class="news-item-body">据财新，飞书上半年 ARR 增速创新高；近期最重要的更新是与"豆包工作"的原生融合——二者共用同一套账号体系、调用更完整的上下文。<strong>协同办公+Agent 的原生融合是国内企业 AI 分发的标准答案：字节在 B 端复制"全家桶+流量池"打法，飞书正在成为豆包 Agent 的企业入口。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">飞书</span><span class="ntag ntag-red">豆包工作</span><span class="ntag ntag-green">企业AI</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title">Manus 传即将完成 5 亿美元融资，估值 40 亿美元</div>
+            <div class="news-date">9.17</div>
+          </div>
+          <div class="news-item-body">据彭博社，AI 智能体公司 Manus 即将完成 5 亿美元融资，估值达 40 亿美元。<strong>从一年前的"套壳质疑"到 40 亿估值，资本市场为通用 Agent 的 PMF 投下信任票——Agent 应用层的估值锚正在被重新定义，也给国内 Agent 创业者打开了新的融资天花板。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-orange">Manus</span><span class="ntag ntag-green">融资</span><span class="ntag ntag-purple">通用Agent</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title">OpenAI 推出 Astra for Law：GPT-6 Astra 正式进军法律行业</div>
+            <div class="news-date">9.17</div>
+          </div>
+          <div class="news-item-body">OpenAI 发布法律行业 AI 产品 Astra for Law：GPT-6 Astra 搭配法律分析与写作指令、全新的 Legal Search Index（覆盖 2.3 亿+判例索引）。<strong>OpenAI 开始亲自下场做垂直行业——平台与应用的边界再次模糊，Harvey 等法律 AI 独角兽迎来"房东变对手"的时刻。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">OpenAI</span><span class="ntag ntag-purple">GPT-6 Astra</span><span class="ntag ntag-orange">法律AI</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI 产业上下游（全宽） -->
+  <div class="card" id="industry-news-0920" style="margin-bottom:28px;">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(234,88,12,0.15);">🏭</div>
+      <div>
+        <div class="card-title">AI 产业上下游</div>
+        <div class="card-subtitle">芯片算力 · 供应链 · 云厂商 · 融资并购</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title">华为全联接大会：Agentic Cloud 全面落地，要做"最开放的 Agentic Cloud"</div>
+          <div class="news-date">9.18</div>
+        </div>
+        <div class="news-item-body">华为云在全联接大会 2026 宣布企业级 AI 产品全面落地，定调"最开放的 Agentic Cloud"；MiniMax 现场演示多模态大模型与华为云的结合。<strong>云厂商的 Agent 叙事从"提供算力"升级为"提供 Agent 生产环境"——开放性成为对标 AWS/Azure 的差异化武器。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-red">华为云</span><span class="ntag ntag-blue">Agentic Cloud</span><span class="ntag ntag-orange">MiniMax</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title">联发科发布天玑 9600 系列：旗舰定位直接叫"Agentic AI 芯片"</div>
+          <div class="news-date">9.15</div>
+        </div>
+        <div class="news-item-body">联发科发布天玑 9600 Pro / 9600 M 旗舰 5G 芯片，官方定位"Agentic AI 芯片"。<strong>芯片卖点从"跑大模型"变成"跑 Agent"——端侧叙事跟着软件形态走，"Agentic"成为 2026 下半年硬件发布会的标配词汇，与豆包手机助手同日同周呼应。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-cyan">联发科</span><span class="ntag ntag-blue">天玑9600</span><span class="ntag ntag-green">端侧AI</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title">地瓜机器人完成 4 亿美元 C 轮：未来资产领投，美团战投</div>
+          <div class="news-date">9.17</div>
+        </div>
+        <div class="news-item-body">地平线系地瓜机器人完成 4 亿美元 C 轮融资，未来资产领投，美团战略投资，高瓴、合肥国投、南山战新投等参与；钛媒体评论称"资本不再为 Demo 买单，只为量产续费"。<strong>具身智能融资进入"量产验证"阶段——出货量和客户结构取代演示视频成为估值依据。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-purple">具身智能</span><span class="ntag ntag-green">融资</span><span class="ntag ntag-orange">美团</span></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /date-panel week0920 -->
+
+  <!-- ═══════════════════════════════════ -->
   <!-- 第16期：2026.9.7–9.13               -->
   <!-- ═══════════════════════════════════ -->
-  <div class="date-panel active" id="week0913">
+  <div class="date-panel" id="week0913">
 
   <!-- 本周必读 -->
   <div id="mustread0913" style="scroll-margin-top:64px;">
