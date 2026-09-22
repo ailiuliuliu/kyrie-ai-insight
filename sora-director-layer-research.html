@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7BHTYGVGF9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7BHTYGVGF9');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sora 之死与导演层的崛起：视频生成的分工重构 | 2026.09</title>
+<link rel="icon" type="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23dc2626'/><path d='M16 7v12M16 24v2' stroke='white' stroke-width='3' stroke-linecap='round'/></svg>">
+<style>
+:root {
+  --bg: #070d1a;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.09);
+  --text: #c8d8e8;
+  --red: #dc2626;
+  --red-light: rgba(220,38,38,0.15);
+  --amber: #f59e0b;
+  --amber-light: rgba(245,158,11,0.15);
+  --blue: #2563eb;
+  --blue-light: rgba(37,99,235,0.15);
+  --purple: #7c3aed;
+  --purple-light: rgba(124,58,237,0.15);
+  --green: #16a34a;
+  --green-light: rgba(22,163,74,0.15);
+  --cyan: #0891b2;
+  --cyan-light: rgba(8,145,178,0.15);
+  --color-bg-card: rgba(255,255,255,0.04);
+  --color-bg-table-header: rgba(255,255,255,0.06);
+  --color-border: rgba(255,255,255,0.09);
+  --color-border-light: rgba(255,255,255,0.06);
+  --color-text-primary: #c8d8e8;
+  --color-text-secondary: rgba(200,216,232,0.78);
+  --color-text-muted: rgba(255,255,255,0.38);
+  --color-danger: #f87171;
+  --color-warning: #fbbf24;
+  --color-info: #60a5fa;
+  --color-success: #4ade80;
+  --color-purple: #c4b5fd;
+  --gradient-hero: linear-gradient(135deg, #f87171 0%, #fbbf24 100%);
+  --content-max-width: 1200px;
+  --spacing-xl: 48px;
+  --spacing-lg: 24px;
+  --spacing-md: 16px;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --transition-normal: 0.2s ease;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-hover: 0 8px 24px rgba(0,0,0,0.4);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "SF Pro Display", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  background: linear-gradient(160deg, #0d0709 0%, #120a10 50%, #0d1520 100%);
+  background-attachment: fixed;
+}
+.container { max-width: var(--content-max-width); margin: 0 auto; padding: 20px; }
+.header { text-align: center; padding: var(--spacing-xl) 0 32px; position: relative; }
+.header::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gradient-hero);
+}
+.site-link-wrap { display: flex; justify-content: flex-start; margin-bottom: 18px; }
+.site-link {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px;
+  border-radius: 999px; text-decoration: none; color: var(--color-danger);
+  background: rgba(20,10,14,0.95); border: 1px solid rgba(220,38,38,0.2);
+  box-shadow: 0 6px 18px rgba(220,38,38,0.08); font-size: 14px; font-weight: 700;
+  transition: all var(--transition-normal);
+}
+.site-link span { color: var(--color-warning); }
+.site-link:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(220,38,38,0.14); }
+.header-title {
+  font-size: 36px; font-weight: 800; background: var(--gradient-hero);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px;
+}
+.header-sub { font-size: 17px; color: var(--color-text-primary); font-weight: 600; margin-bottom: 12px; }
+.header-meta { font-size: 13px; color: var(--color-text-muted); }
+.header-version { display: inline-flex; gap: 8px; margin-top: 10px; align-items: center; }
+.version-badge {
+  padding: 3px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;
+  background: rgba(220,38,38,0.12); color: var(--color-danger);
+  border: 1px solid rgba(220,38,38,0.3);
+}
+.tab-nav {
+  display: flex; gap: 6px; background: rgba(18,10,14,0.94);
+  backdrop-filter: blur(20px) saturate(1.8);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg); padding: 5px;
+  position: sticky; top: 12px; z-index: 100; margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-card); overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.tab-nav::-webkit-scrollbar { height: 4px; }
+.tab-nav::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+.tab-btn {
+  flex: 1; white-space: nowrap; padding: 10px 14px; border: none; background: transparent;
+  border-radius: 10px; font-size: 13.5px; font-weight: 600;
+  color: var(--color-text-secondary); cursor: pointer; transition: all var(--transition-normal);
+}
+.tab-btn.active {
+  background: linear-gradient(135deg, #dc2626 0%, #f59e0b 100%);
+  color: #fff; box-shadow: 0 4px 14px rgba(220,38,38,0.25);
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; animation: fadeIn 300ms ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section {
+  background: var(--color-bg-card); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: var(--spacing-lg); margin-bottom: var(--spacing-md);
+  box-shadow: var(--shadow-card);
+}
+h2 { font-size: 21px; font-weight: 700; color: var(--color-text-primary); margin-bottom: var(--spacing-md); }
+h3 { font-size: 16px; font-weight: 600; color: var(--color-text-primary); margin: var(--spacing-lg) 0 var(--spacing-md) 0; }
+h4 { font-size: 14px; font-weight: 600; color: var(--color-text-primary); margin: 16px 0 10px 0; }
+p { margin-bottom: 10px; }
+p:last-child { margin-bottom: 0; }
+ul { padding-left: 20px; }
+li { margin-bottom: 8px; }
+strong { color: var(--color-text-primary); }
+table { width: 100%; border-collapse: collapse; margin: var(--spacing-md) 0; font-size: 14px; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--color-border-light); vertical-align: top; }
+th { background: var(--color-bg-table-header); font-weight: 600; font-size: 14px; color: var(--color-text-primary); }
+tr:last-child td { border-bottom: none; }
+.tag { display: inline-flex; padding: 2px 8px; border-radius: 9999px; font-size: 12px; font-weight: 500; }
+.tag-red { background: rgba(220,38,38,0.14); color: #fca5a5; }
+.tag-amber { background: rgba(245,158,11,0.14); color: #fcd34d; }
+.tag-blue { background: rgba(37,99,235,0.14); color: #93c5fd; }
+.tag-green { background: rgba(22,163,74,0.14); color: #86efac; }
+.tag-purple { background: rgba(124,58,237,0.14); color: #c4b5fd; }
+.tag-cyan { background: rgba(8,145,178,0.14); color: #67e8f9; }
+/* 核心公式 */
+.formula-box {
+  text-align: center; padding: 28px 20px; margin: var(--spacing-lg) 0;
+  background: linear-gradient(135deg, rgba(220,38,38,0.12), rgba(245,158,11,0.10));
+  border: 1px solid rgba(220,38,38,0.3); border-radius: var(--radius-lg);
+}
+.formula-main {
+  font-size: clamp(20px, 3.4vw, 30px); font-weight: 800;
+  background: var(--gradient-hero); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: 0.02em;
+}
+.formula-sub { font-size: 13px; color: var(--color-text-muted); margin-top: 10px; }
+/* 大数字 */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--spacing-md); margin: var(--spacing-lg) 0; }
+.stats-grid.two { grid-template-columns: repeat(2, 1fr); }
+.stat-card {
+  background: var(--color-bg-card); border-radius: var(--radius-md);
+  border: 1px solid var(--color-border); padding: 20px; text-align: center;
+  transition: all var(--transition-normal);
+}
+.stat-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); border-color: var(--red); }
+.stat-value { font-size: 27px; font-weight: 700; margin-bottom: 6px; }
+.stat-value.red { color: var(--color-danger); }
+.stat-value.amber { color: var(--color-warning); }
+.stat-value.blue { color: var(--color-info); }
+.stat-value.green { color: var(--color-success); }
+.stat-label { font-size: 12.5px; color: var(--color-text-muted); line-height: 1.5; }
+.stat-src { font-size: 11px; color: rgba(255,255,255,0.22); margin-top: 6px; }
+/* 洞察框 */
+.insight-box {
+  border-left: 3px solid var(--amber); background: rgba(245,158,11,0.07);
+  padding: var(--spacing-md) 20px; margin: var(--spacing-md) 0;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+.insight-box.red { border-left-color: var(--red); background: rgba(220,38,38,0.07); }
+.insight-box.blue { border-left-color: var(--blue); background: rgba(37,99,235,0.07); }
+.insight-box.green { border-left-color: var(--green); background: rgba(22,163,74,0.07); }
+.insight-title { color: var(--color-warning); font-weight: 700; margin-bottom: 6px; }
+.insight-box.red .insight-title { color: var(--color-danger); }
+.insight-box.blue .insight-title { color: var(--color-info); }
+.insight-box.green .insight-title { color: var(--color-success); }
+/* 机制分层 */
+.layer-diagram { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+.layer-item {
+  border-radius: var(--radius-md); padding: 16px 20px;
+  border: 1px solid var(--color-border); background: rgba(255,255,255,0.03);
+  display: flex; align-items: flex-start; gap: 16px;
+}
+.layer-badge {
+  flex-shrink: 0; padding: 4px 10px; border-radius: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  min-width: 64px; text-align: center; margin-top: 2px;
+}
+.badge-red { background: rgba(220,38,38,0.15); color: #fca5a5; }
+.badge-amber { background: rgba(245,158,11,0.15); color: #fcd34d; }
+.badge-blue { background: rgba(37,99,235,0.15); color: #93c5fd; }
+.badge-green { background: rgba(22,163,74,0.15); color: #86efac; }
+.badge-purple { background: rgba(124,58,237,0.15); color: #c4b5fd; }
+.badge-cyan { background: rgba(8,145,178,0.15); color: #67e8f9; }
+.badge-gray { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+.layer-content { flex: 1; }
+.layer-title { font-size: 14.5px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
+.layer-desc { font-size: 13.5px; color: var(--color-text-muted); line-height: 1.65; }
+/* 案例卡 */
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.case-grid.three { grid-template-columns: repeat(3, 1fr); }
+.case-card {
+  border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  padding: 20px; background: rgba(255,255,255,0.03);
+}
+.case-card.red { border-color: rgba(220,38,38,0.28); }
+.case-card.amber { border-color: rgba(245,158,11,0.28); }
+.case-card.blue { border-color: rgba(37,99,235,0.28); }
+.case-card.green { border-color: rgba(22,163,74,0.28); }
+.case-card.purple { border-color: rgba(124,58,237,0.28); }
+.case-name { font-size: 15px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
+.case-sub { font-size: 12px; color: var(--color-text-muted); margin-bottom: 10px; }
+.case-card ul { padding-left: 18px; margin-bottom: 8px; }
+.case-card li { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 5px; line-height: 1.6; }
+.case-verdict { font-size: 13px; color: var(--color-text-primary); border-top: 1px dashed var(--color-border); padding-top: 10px; margin-top: 4px; line-height: 1.6; }
+/* 演变路径 */
+.path-flow { display: flex; align-items: stretch; gap: 10px; margin: 18px 0; }
+.path-node {
+  flex: 1; text-align: center; padding: 16px 10px;
+  border-radius: var(--radius-md); border: 1px solid var(--color-border);
+  background: rgba(255,255,255,0.03);
+}
+.path-node.mid { border-color: rgba(245,158,11,0.35); background: rgba(245,158,11,0.06); }
+.path-node.end { border-color: rgba(220,38,38,0.4); background: rgba(220,38,38,0.07); }
+.path-arrow { display: flex; align-items: center; color: var(--color-text-muted); font-size: 18px; }
+.path-title { font-size: 15px; font-weight: 800; color: var(--color-text-primary); margin-bottom: 4px; }
+.path-desc { font-size: 12px; color: var(--color-text-muted); line-height: 1.55; }
+/* 价值链地图 */
+.chain-layer {
+  border-radius: var(--radius-md); padding: 20px 22px; margin-bottom: 4px;
+  border: 1px solid var(--color-border); position: relative;
+}
+.chain-layer.director { border-color: rgba(245,158,11,0.45); background: rgba(245,158,11,0.07); }
+.chain-layer.render { border-color: rgba(220,38,38,0.4); background: rgba(220,38,38,0.06); }
+.chain-layer.dist { border-color: rgba(37,99,235,0.35); background: rgba(37,99,235,0.05); }
+.chain-name { font-size: 16px; font-weight: 800; color: var(--color-text-primary); margin-bottom: 3px; }
+.chain-players { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px; }
+.chain-note { font-size: 12.5px; color: var(--color-text-muted); line-height: 1.6; }
+.chain-arrow { text-align: center; color: var(--color-text-muted); font-size: 15px; padding: 2px 0; }
+/* 主栏 + 名词侧栏布局 */
+.content-wrap { display: grid; grid-template-columns: 1fr 296px; gap: 20px; align-items: start; }
+.glossary-sidebar {
+  position: sticky; top: 78px;
+  background: var(--color-bg-card); border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); padding: 18px 18px 8px;
+  box-shadow: var(--shadow-card);
+}
+.glossary-side-title { font-size: 15px; font-weight: 800; color: var(--color-text-primary); margin-bottom: 12px; }
+.glossary-side-item { padding: 11px 0; border-top: 1px solid var(--color-border-light); }
+.glossary-side-term { font-size: 13.5px; font-weight: 700; color: var(--color-warning); margin-bottom: 4px; }
+.glossary-side-def { font-size: 12.5px; line-height: 1.65; color: var(--color-text-muted); }
+.footer {
+  text-align: center; padding: 32px 20px; font-size: 12px;
+  color: var(--color-text-muted); border-top: 1px solid var(--color-border-light); margin-top: 32px;
+}
+@media (max-width: 900px) {
+  .content-wrap { grid-template-columns: 1fr; }
+  .glossary-sidebar { position: static; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .case-grid, .case-grid.three { grid-template-columns: 1fr; }
+  .path-flow { flex-direction: column; }
+  .path-arrow { justify-content: center; transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <div class="site-link-wrap">
+    <a class="site-link" href="research.html">← <span>Kyrie AI Insight</span></a>
+  </div>
+  <h1 class="header-title">Sora 之死与导演层的崛起</h1>
+  <div class="header-sub">视频生成的分工重构：渲染层与导演层的正式分离</div>
+  <div class="header-meta">专题调研报告 · 数据口径截至 2026 年 9 月</div>
+  <div class="header-version">
+    <span class="version-badge">v1.0 · 2026.09</span>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab(event,'t1')">核心判断</button>
+  <button class="tab-btn" onclick="switchTab(event,'t2')">事件复盘</button>
+  <button class="tab-btn" onclick="switchTab(event,'t3')">边界核实</button>
+  <button class="tab-btn" onclick="switchTab(event,'t4')">导演层落地</button>
+  <button class="tab-btn" onclick="switchTab(event,'t5')">产业影响</button>
+  <button class="tab-btn" onclick="switchTab(event,'t6')">价值链地图</button>
+</div>
+
+<div class="content-wrap">
+<div class="main-col">
+
+<!-- T1 核心判断 -->
+<div class="tab-content active" id="t1">
+<div class="section">
+  <h2>一句话论断</h2>
+  <div class="formula-box">
+    <div class="formula-main">当生成不再是瓶颈，「决定生成什么」就成了最贵的环节</div>
+    <div class="formula-sub">OpenAI 退出渲染层、占据导演层——Sora 之死与 GPT-6 导演工作流的走红，是同一块硬币的两面</div>
+  </div>
+  <p>2026 年 9 月 24 日，Sora API 正式停服——OpenAI 用两年时间走完了一个视频生成产品从封神到退场的完整周期。但几乎在同一时间，创作者圈流传起另一个说法：<strong>"GPT-6 可以帮你更好地驾驭视频生成模型。"</strong></p>
+  <p>这两个看似矛盾的信号指向同一件事：<strong>OpenAI 退出了视频生产的"渲染层"，转而占据"导演层"</strong>。GPT-6 Astra 一帧视频都渲染不了，但它正在成为视频生产流水线的调度中枢——写剧本、拆分镜、管角色一致性、生成结构化提示词、通过 MCP 驱动第三方视频模型和剪辑软件。本报告的核心判断是：<strong>视频生成行业正在发生一次"分工重构"——创意编排（导演层）与像素渲染（渲染层）正式分离，而前者才是利润和权力的聚集地。</strong></p>
+</div>
+
+<div class="section">
+  <h2>三条推论</h2>
+  <div class="layer-diagram">
+    <div class="layer-item">
+      <span class="layer-badge badge-red">推论一</span>
+      <div class="layer-content">
+        <div class="layer-title">Sora 之死是资本选择，不是技术失败</div>
+        <div class="layer-desc">关停时 Sora 并非没有用户——消费级 App 上线仅六个月。杀死它的是资本账：视频渲染推理成本最高、同质化最快、还拖累了迪士尼合作。OpenAI 需要向 IPO 市场讲一个利润更干净的故事。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-amber">推论二</span>
+      <div class="layer-content">
+        <div class="layer-title">导演层天然属于推理模型，不属于视频模型</div>
+        <div class="layer-desc">Pre-production 的核心痛点——长程规划、角色一致性追踪、多镜头逻辑——恰好是推理模型的能力甜区。在渲染前用 LLM 把故事逻辑钉死，能直接减少昂贵的废片率。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-blue">推论三</span>
+      <div class="layer-content">
+        <div class="layer-title">渲染层厂商面临"CDN 化"风险</div>
+        <div class="layer-desc">当 LLM 抹平提示词工程门槛，视频模型的差异化战场从"生成质量"转向"被编排的易用性"。不抢导演层的模型厂，可能沦为被编排层比价切换的可替换渲染后端。</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- T2 事件复盘 -->
+<div class="tab-content" id="t2">
+<div class="section">
+  <h2>Sora 的 25 个月：从封神到退场</h2>
+  <div class="path-flow">
+    <div class="path-node">
+      <div class="path-title">2024.2</div>
+      <div class="path-desc">Sora 演示发布，"世界模拟器"叙事震动行业</div>
+    </div>
+    <div class="path-arrow">→</div>
+    <div class="path-node">
+      <div class="path-title">2025.9.30</div>
+      <div class="path-desc">Sora 2 发布：同步对话与音效，消费级 App 上线</div>
+    </div>
+    <div class="path-arrow">→</div>
+    <div class="path-node mid">
+      <div class="path-title">2026.3.24</div>
+      <div class="path-desc">OpenAI 宣布关停 Sora；迪士尼随后退出合作交易</div>
+    </div>
+    <div class="path-arrow">→</div>
+    <div class="path-node end">
+      <div class="path-title">2026.9.24</div>
+      <div class="path-desc">Sora API（sora-2 全系）正式停服，官方挂出数据导出指南</div>
+    </div>
+  </div>
+  <div class="insight-box red">
+    <div class="insight-title">官方定性与市场解读</div>
+    华尔街见闻将关停定性为 <strong>"IPO 前一次蓄力性的优先级重排"</strong>：Altman 聚焦"募资、供应链、Agent"三件事，产品线和管理架构同步深度重组。量子位的标题则更直白——《OpenAI 关停 Sora！25 个月从封神到退场》。迪士尼方面的回应颇有风度："我们尊重 OpenAI 退出视频生成业务、将战略重心转向其它领域的决定。"
+  </div>
+  <div class="insight-box">
+    <div class="insight-title">关键细节：杀死 Sora 的不是产品失败</div>
+    关停时 Sora 并非没有用户——App 上线仅六个月，品牌认知度仍在。真正的问题是<strong>资本账</strong>：视频渲染是推理成本最高、同质化最快的业务之一，Veo、可灵、Seedance 以季度为单位互卷，毛利被持续压缩。对一家冲刺 IPO 的公司，这条业务线消耗算力资本却讲不出利润故事。
+  </div>
+</div>
+</div>
+
+<!-- T3 边界核实 -->
+<div class="tab-content" id="t3">
+<div class="section">
+  <h2>"GPT-6 做视频"传言的正本清源</h2>
+  <p>创作者圈流传的说法需要精确化。依据 OpenAI 官方模型页（2026.9.4 由 elser.ai 核实）：</p>
+  <table>
+    <tr><th style="width:32%;">能力</th><th style="width:16%;">状态</th><th>说明</th></tr>
+    <tr><td>文本输入 / 输出</td><td><span class="tag tag-green">✅ 原生支持</span></td><td>推理模型的本职</td></tr>
+    <tr><td>图像输入（看懂图片）</td><td><span class="tag tag-green">✅ 原生支持</span></td><td>可分析构图、提取文字、比对角色帧差异、审阅分镜</td></tr>
+    <tr><td>图像生成</td><td><span class="tag tag-amber">⚠️ 工具调用</span></td><td>通过 Responses API 调图像工具，模型本身不是渲染器</td></tr>
+    <tr><td><strong>视频输入 / 输出</strong></td><td><span class="tag tag-red">❌ 官方明确不支持</span></td><td>平台上有视频端点 ≠ 这个模型能输出视频</td></tr>
+  </table>
+  <div class="insight-box blue">
+    <div class="insight-title">一句话边界："Planning is not rendering"</div>
+    Astra 产出的是<strong>剧本、分镜表、角色规格书、视频提示词——而不是视频文件</strong>。elser.ai 的概括一针见血：做规划不等于做渲染。"模型能看懂图片""App 能生成图片""模型能输出视频"是三个完全不同的命题，大量网传说法把它们混为一谈。
+  </div>
+</div>
+
+<div class="section">
+  <h2>为什么这个边界反而值钱</h2>
+  <p>视频生成的错误是<strong>昂贵的</strong>：运动、身份、运镜、时长可能同时崩坏，每次重渲都在烧钱。Astra 的正确用法是在渲染之前，用推理把故事逻辑、角色设定、镜头语言全部钉死——<strong>把传给渲染器的变量数量压到最小</strong>。这不是"GPT-6 也能做视频"，而是"GPT-6 让视频模型少浪费你的钱"。</p>
+  <div class="insight-box green">
+    <div class="insight-title">分镜提示词的五层结构（社区沉淀的标准件）</div>
+    主体（谁在场）→ 动作（一个主要可见运动）→ 环境（地点/时间/次级运动）→ 运镜（景别+一个有动机的镜头移动）→ 连续性（必须保持不变的特征与道具）。Astra 批量产出这种结构化提示词的能力，是普通用户手写提示词无法企及的——这正是"驾驭视频模型"传言的技术内核。
+  </div>
+</div>
+</div>
+
+<!-- T4 导演层落地 -->
+<div class="tab-content" id="t4">
+<div class="section">
+  <h2>三条已验证的落地路径</h2>
+  <div class="case-grid three">
+    <div class="case-card amber">
+      <div class="case-name">路径一：提示词工厂</div>
+      <div class="case-sub">单人模式 · 社区已固化的标准流水线</div>
+      <ul>
+        <li>故事推理：把创意压成可视化的戏剧弧线，删去无法被展示或听到的说明性内容</li>
+        <li>角色规格：从参考图提取稳定特征，标记不确定项</li>
+        <li>分镜表：每镜头含景别/动作/运镜/时长/光线/连续性六要素</li>
+        <li>渲染后帧图回传 Astra 做 QC 比对</li>
+      </ul>
+      <div class="case-verdict">市场印证：飞书上《GPT-6 Astra 提示词大师课》已经开卖——需求真实存在。</div>
+    </div>
+    <div class="case-card purple">
+      <div class="case-name">路径二：Filmera MCP</div>
+      <div class="case-sub">编排模式 · 9 月病毒传播的源头</div>
+      <ul>
+        <li>9.12–13，创作者 el.cine 开源 Filmera 项目</li>
+        <li>Astra/Claude 通过 MCP 连接后，一句创意描述自动生成角色卡、道具表、场景设定、分镜与全部提示词</li>
+        <li>原帖 "wtf.. gpt-6 astra has automated AI filmmaking" 9.16 前后被大量转发</li>
+      </ul>
+      <div class="case-verdict">"GPT-6 自动拍电影"传言的直接出处——准确说是"自动完成拍摄前的所有案头工作"。</div>
+    </div>
+    <div class="case-card blue">
+      <div class="case-name">路径三：接管剪辑软件</div>
+      <div class="case-sub">执行模式 · Reddit r/codex 实验（9.10）</div>
+      <ul>
+        <li>给 Astra 接入视频编辑器的控制权</li>
+        <li>素材生成（ChatGPT Images 2.5）到剪辑成片全程自主</li>
+        <li>第一版剪辑约 1.5 小时完成</li>
+      </ul>
+      <div class="case-verdict">从"帮你写提示词"进化到"帮你动手剪"——Computer Use 能力向创作软件延伸的早期样本。</div>
+    </div>
+  </div>
+  <p style="margin-top:6px;">同一模式的国内变体也已出现：<strong>OpenMontage</strong> 用 AI 编程助手编排可灵、Runway、Veo 生成素材，自动完成剪辑、配音、字幕、合成的全流程。</p>
+</div>
+
+<div class="section">
+  <h2>OpenAI 的战略逻辑：为什么是导演层</h2>
+  <div class="layer-diagram">
+    <div class="layer-item">
+      <span class="layer-badge badge-red">红海</span>
+      <div class="layer-content">
+        <div class="layer-title">渲染层：重资本、快同质、合作不稳</div>
+        <div class="layer-desc">视频推理成本全行业最高；Veo/可灵/Seedance 季度级互卷抹平质量差异；迪士尼退出证明大客户合作脆弱。毛利率撑不起 IPO 叙事。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-amber">甜区</span>
+      <div class="layer-content">
+        <div class="layer-title">导演层：恰好是推理模型的能力甜区</div>
+        <div class="layer-desc">长程推理、连续性追踪、多步骤规划——正是视频 pre-production 的核心痛点。Astra 不需要学会渲染，只需要比任何人都更懂"该怎么拍"。</div>
+      </div>
+    </div>
+    <div class="layer-item">
+      <span class="layer-badge badge-blue">错位</span>
+      <div class="layer-content">
+        <div class="layer-title">商业模式的优势错位</div>
+        <div class="layer-desc">渲染按秒烧 GPU，编排按 token 收费。导演层直接复用 OpenAI 已有的 API 收入引擎，渲染层却需要单独的重资产投入。<strong>放弃 Sora，等于用别人的 GPU 做自己的生意。</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- T5 产业影响 -->
+<div class="tab-content" id="t5">
+<div class="section">
+  <h2>渲染层厂商的新考题</h2>
+  <p>当 LLM 抹平提示词工程门槛，视频模型的竞争维度发生迁移：</p>
+  <table>
+    <tr><th style="width:24%;">维度</th><th>旧壁垒（正在失效）</th><th>新壁垒（正在形成）</th></tr>
+    <tr><td><strong>竞争焦点</strong></td><td>生成质量、时长、分辨率</td><td><strong>被编排的易用性</strong></td></tr>
+    <tr><td><strong>具体指标</strong></td><td>榜单跑分、演示视频</td><td>API 稳定性、角色一致性接口、MCP 适配度、结构化指令遵循能力</td></tr>
+    <tr><td><strong>失效原因</strong></td><td>头部模型季度级互卷，差异被追平</td><td>导演层需要"听话"的渲染器，不听话的会被编排层换掉</td></tr>
+  </table>
+  <div class="insight-box red">
+    <div class="insight-title">二选一的宿命</div>
+    对可灵、Veo、Seedance、Runway 来说，选择变成：<strong>自己上抢导演层</strong>（做 Agent 化的创作入口），<strong>或者接受"可替换渲染后端"的宿命</strong>——像 CDN 一样被编排层比价切换。前者要补的是交互与工作流能力，后者要补的是 API 经济。
+  </div>
+</div>
+
+<div class="section">
+  <h2>中国玩家的窗口期</h2>
+  <div class="case-grid">
+    <div class="case-card red">
+      <div class="case-name">快手可灵</div>
+      <div class="case-sub">渲染层头部 · 导演层待补</div>
+      <ul>
+        <li>Sora 退出后，渲染层少了一个最强品牌对手</li>
+        <li>被第三方编排（OpenMontage 等）已是事实，说明 API 可用性过关</li>
+        <li>但导演层主动权不在自己手里：角色一致性、多镜头叙事的工作流入口仍是空白</li>
+      </ul>
+      <div class="case-verdict">窗口期的关键动作：把"被编排"变成"可编排"——主动开放标准化接口，同时自建 Agent 化创作入口，两头下注。</div>
+    </div>
+    <div class="case-card blue">
+      <div class="case-name">字节即梦（Seedance）</div>
+      <div class="case-sub">渲染 + 导演全家桶潜力股</div>
+      <ul>
+        <li>字节同时拥有 Seedance（渲染层）与豆包（导演层候选）</li>
+        <li>9.14 豆包手机助手开售，GUI Agent 已到 C 端货架</li>
+        <li>"豆包编排 + 即梦渲染"的全家桶是可预见的下一步</li>
+      </ul>
+      <div class="case-verdict">国内唯一一家天然集齐两层能力的玩家——如果整合执行到位，可能第一个交出"中国版导演层"答卷。</div>
+    </div>
+  </div>
+  <div class="insight-box">
+    <div class="insight-title">一个反直觉的净效应</div>
+    OpenAI 退出视频生成，反而可能<strong>扩大</strong>视频生成总市场——Astra 降低了所有竞品模型的使用门槛，为整个行业做了免费的"售前咨询"。卖铲子的不挖矿了，改行给所有矿工当调度。<strong>但风险同样存在</strong>：导演层依赖渲染层的 API 开放度，头部模型厂随时可能既当裁判又当运动员——限制第三方编排、扶持自家入口。
+  </div>
+</div>
+</div>
+
+<!-- T6 价值链地图 -->
+<div class="tab-content" id="t6">
+<div class="section">
+  <h2>分工重构后的价值链地图</h2>
+  <div class="chain-layer director">
+    <div class="chain-name">🎬 导演层：创意编排</div>
+    <div class="chain-players">GPT-6 Astra · Claude · 豆包 ｜ 工具：Filmera（MCP）· OpenMontage</div>
+    <div class="chain-note">剧本、分镜、角色一致性、结构化提示词、QC。<strong>权力与利润正在向这一层聚集</strong>——它决定"生成什么"，并按 token 收费，边际成本极低。</div>
+  </div>
+  <div class="chain-arrow">▼</div>
+  <div class="chain-layer render">
+    <div class="chain-name">🎞 渲染层：像素生成</div>
+    <div class="chain-players">Veo · 可灵 · Seedance · Runway（Sora 已退出）</div>
+    <div class="chain-note">按秒烧 GPU，同质化与价格战最激烈的一层。新壁垒是"被编排的易用性"：API 稳定性、一致性接口、MCP 适配。</div>
+  </div>
+  <div class="chain-arrow">▼</div>
+  <div class="chain-layer dist">
+    <div class="chain-name">📡 分发层：流量变现</div>
+    <div class="chain-players">抖音 · TikTok · YouTube · 快手</div>
+    <div class="chain-note">不受本次重构影响的一层——无论谁导演、谁渲染，内容最终都要回到流量平台变现。分发层的地位反而被间接加固。</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>结论</h2>
+  <div class="formula-box">
+    <div class="formula-main">代工厂赚辛苦钱，定义产品的人拿走利润</div>
+    <div class="formula-sub">视频生成正在复制汽车工业与消费电子的终局结构</div>
+  </div>
+  <p>Sora 之死与 GPT-6 导演层的崛起，是同一块硬币的两面。OpenAI 用一次干脆的战略收缩告诉市场：<strong>生成能力本身不再是稀缺品，稀缺的是把创意翻译成可执行生产指令的能力</strong>。这与消费电子产业同构——富士康掌握制造，苹果掌握定义，利润分布人尽皆知。</p>
+  <p>对从业者的行动含义只有一条：<strong>别再把精力押在"学会某个视频模型"上——模型的操作界面会被导演层抹平；要押在"学会导演"上</strong>：故事结构、镜头语言、连续性管理。工具会换，导演永远稀缺。</p>
+</div>
+</div>
+
+</div><!-- /main-col -->
+
+<aside class="glossary-sidebar">
+  <div class="glossary-side-title">📖 名词解释</div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">渲染层（Rendering Layer）</div>
+    <div class="glossary-side-def">视频生成的"像素工厂"——把提示词变成视频文件的模型层，如 Veo、可灵、Seedance。特点是重算力、按秒计费、同质化竞争激烈。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">导演层（Director Layer）</div>
+    <div class="glossary-side-def">本报告提出的概念：视频生产中负责"决定生成什么"的编排层——剧本、分镜、角色一致性、结构化提示词与 QC，由推理大模型承担，按 token 收费。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">MCP（Model Context Protocol）</div>
+    <div class="glossary-side-def">Anthropic 提出的模型-工具互联协议，让 LLM 能标准化地调用外部软件。Filmera 通过 MCP 让 Astra/Claude 直接驱动视频生产工作流。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">Filmera</div>
+    <div class="glossary-side-def">创作者 el.cine 于 2026.9 开源的 AI 电影工作流项目。LLM 经 MCP 接入后，一句创意即可自动生成角色卡、道具表、场景设定与全部提示词，是"GPT-6 自动拍电影"传言的源头。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">分镜表（Shot List）</div>
+    <div class="glossary-side-def">逐镜头列出景别、动作、运镜、时长、光线、连续性约束的拍摄计划表。AI 视频时代它取代自然语言提示词，成为导演层向渲染层传递意图的标准件。</div>
+  </div>
+  <div class="glossary-side-item">
+    <div class="glossary-side-term">Computer Use</div>
+    <div class="glossary-side-def">AI 直接操作电脑图形界面（点击、输入、拖拽）完成任务的能力。GPT-6 Astra 接管视频剪辑软件的实验即基于此能力。</div>
+  </div>
+</aside>
+
+</div><!-- /content-wrap -->
+
+<div class="footer">
+  Kyrie 的 AI 洞察基地 · 专题调研 · 数据来源：OpenAI 官方文档与帮助中心 / elser.ai / Reddit r/codex / X (@EHuanglu) / 量子位 / 华尔街见闻 / 钛媒体 等公开资料 · 2026.09
+</div>
+
+</div>
+<script>
+function switchTab(evt, id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  evt.currentTarget.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
