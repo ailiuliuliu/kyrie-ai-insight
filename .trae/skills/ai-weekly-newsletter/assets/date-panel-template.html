@@ -1,0 +1,107 @@
+<!-- ═══════════════════════════════════ -->
+<!-- 第N期：YYYY.M.D–M.D                  -->
+<!-- 插到所有 date-panel 之前；id 用 weekMMDD（周日日期） -->
+<!-- ═══════════════════════════════════ -->
+<div class="date-panel active" id="weekMMDD">
+
+  <!-- 本周必读 -->
+  <div id="mustreadMMDD" style="scroll-margin-top:64px;">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(202,138,4,0.15);">⭐</div>
+      <div>
+        <div class="section-name">本周必读</div>
+        <div class="section-desc">从本周资讯中提炼3条最具结构性价值的新闻</div>
+      </div>
+      <span class="section-tag">编辑精选</span>
+    </div>
+    <div class="mustread-card">
+      <div class="mustread-summary">
+        本周核心判断：……<strong>「主线A × 主线B × 主线C」</strong>……
+      </div>
+      <div class="mustread-list">
+        <div class="mustread-item">
+          <div class="mustread-rank rank-1">🥇</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="原文URL" target="_blank" style="color:inherit;text-decoration:none;">标题</a></div>
+            <div class="mustread-why">客观事实叙述（日期、主体、数据、口径标注）。<em>判断段：我的判断是……。传闻/未复现信息在此保留谨慎口径。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-blue">标签</span>
+            </div>
+          </div>
+        </div>
+        <!-- rank-2 🥈 / rank-3 🥉 结构同上 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 两个模块并排：模型 + 应用 -->
+  <div class="modules-grid" style="margin-top:24px;">
+
+    <div class="card" id="model-news-MMDD">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(124,58,237,0.15);">🧠</div>
+        <div>
+          <div class="card-title">大模型</div>
+          <div class="card-subtitle">模型发布 · 能力评测 · 格局演变</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="原文URL" target="_blank" style="color:inherit;text-decoration:none;">标题</a></div>
+            <div class="news-date">M.D</div>
+          </div>
+          <div class="news-item-body">事实。<strong>判断收束句。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">标签</span></div>
+        </div>
+        <!-- 共 3 条 -->
+      </div>
+    </div>
+
+    <div class="card" id="app-news-MMDD">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(8,145,178,0.15);">📱</div>
+        <div>
+          <div class="card-title">AI 应用</div>
+          <div class="card-subtitle">Agent · 办公协同 · 垂直落地</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <!-- 同 news-item 结构，共 3 条 -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 上下游：全宽三列 -->
+  <div class="card" id="industry-news-MMDD" style="margin-bottom:28px;">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(234,88,12,0.15);">🏭</div>
+      <div>
+        <div class="card-title">AI 产业上下游</div>
+        <div class="card-subtitle">芯片算力 · 供应链 · 云厂商 · 融资并购</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="原文URL" target="_blank" style="color:inherit;text-decoration:none;">标题</a></div>
+          <div class="news-date">M.D</div>
+        </div>
+        <div class="news-item-body">事实。<strong>判断收束句。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-red">标签</span></div>
+      </div>
+      <!-- 共 3 条 -->
+    </div>
+  </div>
+
+</div><!-- /date-panel weekMMDD -->
+
+<!--
+时间轴（timeline-track 内，插在最前）：
+  <button class="timeline-btn active" onclick="switchNewsTab(event, 'weekMMDD')">
+    <span class="timeline-date">YYYY.MM.DD</span>
+  </button>
+  <div class="timeline-line"></div>
+同时把原第一个按钮的 active 去掉；part-num 改为「持续更新 · N期」。
+-->
