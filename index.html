@@ -511,7 +511,7 @@ body {
   </div>
   <p class="header-sub">AI 行业资讯追踪 · 专题深度调研 · 持续更新</p>
   <div class="header-meta">
-    <span>📅 最近更新：2026年10月27日</span>
+    <span>📅 最近更新：2026年11月9日</span>
     <span>📰 本期资讯：12条（新）</span>
   </div>
 </header>
@@ -531,14 +531,18 @@ body {
   <div class="part-divider" id="news">
     <span class="part-label">📰 AI 行业资讯</span>
     <div class="part-line"></div>
-    <span class="part-num">持续更新 · 22期</span>
+    <span class="part-num">持续更新 · 23期</span>
   </div>
 
   <!-- 时间轴导航 -->
   <div class="timeline-nav">
     <span class="timeline-label">Timeline</span>
     <div class="timeline-track">
-      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week1025')">
+      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week1101')">
+        <span class="timeline-date">2026.11.01</span>
+      </button>
+      <div class="timeline-line"></div>
+      <button class="timeline-btn" onclick="switchNewsTab(event, 'week1025')">
         <span class="timeline-date">2026.10.25</span>
       </button>
       <div class="timeline-line"></div>
@@ -629,9 +633,190 @@ body {
   </div>
 
   <!-- ═══════════════════════════════════ -->
+  <!-- 第23期：2026.10.26–11.01              -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="date-panel active" id="week1101">
+
+  <!-- 本周必读 -->
+  <div id="mustread1101" style="scroll-margin-top:64px;">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(202,138,4,0.15);">⭐</div>
+      <div>
+        <div class="section-name">本周必读</div>
+        <div class="section-desc">从本周资讯中提炼3条最具结构性价值的新闻</div>
+      </div>
+      <span class="section-tag">编辑精选</span>
+    </div>
+    <div class="mustread-card">
+      <div class="mustread-summary">
+        这周最值得记住的是两件事：博通替 Anthropic 借了 630 亿美元去买芯片，把算力成本从"资本开支"转成了"租赁负债"；同时 AI Agent 第一次在实战中攻破了一家模型公司自己的系统。<strong>模型层的竞争已经从比参数，转向比谁能更便宜地把活干完</strong>——GPT-6.1 Terra 和 Gemini 4 Carbon 在同一周分别给出价格与专精方向两种答案。
+      </div>
+      <div class="mustread-list">
+        <div class="mustread-item">
+          <div class="mustread-rank rank-1">🥇</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://www.broadcom.com/company/news/financial-releases/64786" target="_blank" style="color:inherit;text-decoration:none;">博通牵头 630 亿美元为 Anthropic 融资买芯片：算力账单变成租赁负债</a></div>
+            <div class="mustread-why">10 月 26 日官方新闻稿：BofA、Blackstone、Citi、Morgan Stanley 联合宣布 630 亿美元融资，代号 Project North Star。结构是新设 SPV 借款购买 Broadcom XPU 加速器与网络方案，再租给 Anthropic，设备 2027 年起交付。优先担保贷款约 435 亿（占 69%，BofA/Citi/MS 承销），次级约 180 亿（Blackstone 承担约 90 亿自有基金）。博通提供残值支持（未偿租赁额 72.5% 减机架处置价值），披露担保上限约 290 亿美元（另有口径称满额部署后潜在敞口约 430 亿）。Anthropic 招股书口径预计支付逾 1252 亿美元租金（约五年，不含息）；银行计划 2027 年一季度发行约 210 亿美元投资级债券。WSJ 10.27 报道陈福阳周末紧急谈判、上调利率才稳住银行承诺，部分银行曾考虑退出。<em>我的判断是，这是把芯片采购从资本开支改成设备租赁的结构创新：Anthropic 拿到的不是现金，是设备使用权，但五年 1252 亿租金是硬约束。更值得记住的是博通的残值担保——它把一部分模型公司的算力风险挪到了自己账上，芯片厂商从此不只是卖卡的，而是算力资产的最后接盘人。上周 Anthropic 刚把 4500 亿云长约写进招股书，这周又加一笔租赁负债，它的收入增速必须跑赢两层承诺的叠加。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-orange">Broadcom</span>
+              <span class="ntag ntag-red">630亿美元</span>
+              <span class="ntag ntag-purple">设备租赁</span>
+              <span class="ntag ntag-blue">Anthropic</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-2">🥈</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://www.washingtonpost.com/technology/2026/10/26/researchers-cybersecurity-start-up-cathedral-got-inside-anthropic/" target="_blank" style="color:inherit;text-decoration:none;">Cathedral 用 AI Agent 攻破 Anthropic 内部系统：数日正面强攻未果，绕道第三方 SaaS 不到 12 小时得手</a></div>
+            <div class="mustread-why">华盛顿邮报 10 月 26 日首报：Cathedral（2026 年成立、四位前 DOGE 成员创办，融资 1.6 亿美元、估值 14 亿，a16z/Sequoia 投资，报道口径）在 Anthropic 的 bug bounty 项目中派 AI Agent 正面攻击其自有系统，数日未果；转而利用第三方行政/销售 SaaS 漏洞，不到 12 小时进入内部业务与通信系统，触及会议纪要、薪资、Offer、Slack（含前沿模型讨论）、部分客户与伙伴联系方式。Anthropic 确认受影响的是"有限范围的销售、HR、IT 系统"，强调 Claude 对话、源代码、模型权重未暴露，同日切断访问、停用涉事第三方软件、通知联邦机构。双方就"12 小时 vs 数日"与披露完整性争执（Anthropic 称 Cathedral 发现两个漏洞只报一个）；Cognition CISO Alex Stamos 评价"They found something big here"。<em>我的判断是，攻击面不在模型本身，而在模型公司用来卖模型的周边 SaaS——这对所有把 Agent 接进内网的企业都是同一个提醒：你的安全水位由最弱的那个供应商决定。Agent 的进攻效率第一次被实战量化（数日强攻 vs 12 小时绕道），以后 bug bounty 和渗透测试的计价方式都会被改写。最会防守的公司尚且被这样攻破，"模型能力强=系统安全"这个等式可以正式作废了。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-red">Agent攻防</span>
+              <span class="ntag ntag-orange">Anthropic</span>
+              <span class="ntag ntag-purple">第三方SaaS</span>
+              <span class="ntag ntag-blue">供应链安全</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-3">🥉</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://openai.com/index/introducing-gpt-6-1-terra/" target="_blank" style="color:inherit;text-decoration:none;">OpenAI 发布 GPT-6.1 Terra：干活模型价格砍半，网络安全评级 Critical</a></div>
+            <div class="mustread-why">10 月 26 日官方发布，定位计算机操作、视觉推理与日常专业工作。API 定价 1 美元/百万输入、5 美元/百万输出，较 GPT-5.6 Terra 与 GPT-6.1 Sol 低 50%，缓存输入 0.05 美元。官方称任务速度超 GPT-6 Astra 与 GPT-6.1 Sol 三倍以上；Terminal-Bench 4.0 得 50.3%（前代 21.5%）；内部事实错误率低推理档从 53.6% 降至 16.7%、最高推理档 4.3%；Agents' Last Exam 中推理档领先 15 个百分点、成本约三分之一。Preparedness Framework 网络安全评级 Critical、生物化学 High。已在 API、ChatGPT Work、Codex 提供，同日上线 Amazon Bedrock，并发布 system card addendum。<em>我的判断是，把价格压到 1/5 美元档，是把"能干活"的模型往规模化铺——OpenAI 在抢的是企业 Agent 工作流的默认选项，不是榜单。但网络安全 Critical 评级和低价同日出现，意味着更强的攻击能力被更便宜地卖出去，和本周 Cathedral 攻破 Anthropic 放在一起看，攻防成本的剪刀差正在拉大：防守方要花的钱越来越多，进攻方的门票越来越便宜。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-red">OpenAI</span>
+              <span class="ntag ntag-blue">GPT-6.1 Terra</span>
+              <span class="ntag ntag-green">降价50%</span>
+              <span class="ntag ntag-purple">Critical评级</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三个模块：模型 + 应用 -->
+  <div class="modules-grid" style="margin-top:24px;">
+
+    <!-- 大模型 -->
+    <div class="card" id="model-news-1101">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(124,58,237,0.15);">🧠</div>
+        <div>
+          <div class="card-title">大模型</div>
+          <div class="card-subtitle">模型发布 · 能力评测 · 格局演变</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/" target="_blank" style="color:inherit;text-decoration:none;">Gemini 4 Carbon：谷歌最强模型主攻网络安全，只先给防御者用</a></div>
+            <div class="news-date">10.28</div>
+          </div>
+          <div class="news-item-body">Google DeepMind 10 月 28 日官宣 Gemini 4 Carbon，称最强模型，主打网络安全与长程推理。登顶更新版 Artificial Analysis Intelligence Index v5.0（59 分）；SEC-bench Pro 88.2%（挖漏洞）、ExploitGym 54.8%（漏洞利用）、CWE-bench 71.0%（修补），官方称 Chrome 团队反馈其生成高质量补丁的表现超另一家实验室前沿模型 10 倍以上。发布策略刻意克制：先向部分网络安全防御者受控开放，经 Fairwind Program 逐步扩至可信伙伴，并参与美国政府自愿预发布测试；参数、架构与全面开放时间未披露。API 定价与 Argon 相同，2 美元/百万输入、10 美元/百万输出，缓存输入 95% off。WebDev Arena 排名升至第 4（1768 分，+89 Elo）。<strong>它没有全面开放，只给防御者——先让防守方拿到最强攻击能力，是一种少见的发布伦理。我的判断是，这个顺序本身就是产品：把"先用权"卖给政府和安全厂商，比直接开放 API 更能建立信任溢价。但开发者和企业要用还得等，谷歌在通用市场的份额窗口继续让给 OpenAI 和 Anthropic，Carbon 的克制是有代价的。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">Google</span><span class="ntag ntag-purple">Gemini 4 Carbon</span><span class="ntag ntag-green">网络安全</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://mistral.ai/news/mistral-large-4/" target="_blank" style="color:inherit;text-decoration:none;">Mistral Large 4 开放权重：1.05T 西方最大开源模型，API 同步砍半价</a></div>
+            <div class="news-date">10.29</div>
+          </div>
+          <div class="news-item-body">Mistral 10 月 29 日开放 Large 4（代号 Le Chonk）权重：1.05T 总参、49B 激活（含嵌入与输出层 52B），1M 上下文，原生多模态（文本+图像输入、文本输出），160+ 语言。3800 张 NVIDIA Grace Blackwell 在欧洲自建数据中心从零训练；较三周前预览版追加 RL 后 Terminal-Bench 4.0 从 28% 升至 41%，官方称 Artificial Analysis Coding Agent Index 48% 与 GLM-5.3 基本持平、单任务 token 消耗少 47%。Hugging Face 上线 FP8 与 NVFP4 版本，许可证为修改版 MIT（Mistral Ecosystem Open-Weight License）：允许商用，但 MaaS/API 转售须单独商业授权。API 价格从预览期 1.36/4.18 美元降至 0.70/2.10（输入/输出，百万 token），缓存输入 0.07——这是正式降价而非口径差异。第三方智能指数 26，落后 DeepSeek V4.1 Flash 与 GLM-5.3 约六分，厂商口径未经独立复核。<strong>西方最大开源权重模型选择"降价+放权重"双管齐下，明显冲着自托管和欧洲主权叙事去。我的判断是，许可证里那条"MaaS 转售须单独授权"才是真意：开放的是权重，不是商业分发权——它欢迎企业自部署，但不欢迎别人拿它的模型卖 API。0.70 美元的输入价已经打到 DeepSeek 射程内，欧洲模型第一次在政策叙事之外拿出了价格武器。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">Mistral</span><span class="ntag ntag-green">开放权重</span><span class="ntag ntag-purple">1.05T</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://huggingface.co/inclusionAI/Ling-3.1-flash-1019" target="_blank" style="color:inherit;text-decoration:none;">蚂蚁 Ling-3.1-flash 开源：560B 总参 25B 激活，MIT 许可非 gated</a></div>
+            <div class="news-date">10.28</div>
+          </div>
+          <div class="news-item-body">蚂蚁 inclusionAI 10 月 28 日放出 Ling-3.1-flash-1019 完整权重（10 月 29 日上千问平台）：560B 总参、25B 激活，BailingMoeV3 架构（512 专家、每 token 激活 8 个），1M 上下文（现行服务开放 256K），FP8 精度，MIT 许可、非 gated，下载即用。这是 Ling-3.1-flash 的追加后训练版，厂商口径 AA-Briefcase 约 1400→1524 Elo、AutomationBench-AA 62%→68%、CritPt 18%→26%、SciCode 54%→57%、Artificial Analysis 智能指数 41→44，均未经第三方复核。<strong>国内开源继续走"大总参+小激活"路线，MIT + 非 gated 对自部署最友好。我的判断是，蚂蚁这步棋的目标不是榜单，是把 Ling 系列塞进企业自托管的候选清单——25B 激活意味着推理成本可控，560B 总参意味着能力上限够高，这个组合在私有化部署场景很有杀伤力。但分数全是厂商口径，真实位置要等 Artificial Analysis 等第三方复核后才能确认。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">蚂蚁</span><span class="ntag ntag-green">开源权重</span><span class="ntag ntag-blue">MIT许可</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 应用 -->
+    <div class="card" id="app-news-1101">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(8,145,178,0.15);">📱</div>
+        <div>
+          <div class="card-title">AI 应用</div>
+          <div class="card-subtitle">Agent · 办公协同 · 垂直落地</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="http://www.gd.xinhuanet.com/20261029/f8124fbc48364a57bfaf4ed478b93cf4/c.html" target="_blank" style="color:inherit;text-decoration:none;">腾讯 Buddy One 全面开放：WorkBuddy 90 亿次任务请求，混元 Hy4 预告</a></div>
+            <div class="news-date">10.29</div>
+          </div>
+          <div class="news-item-body">腾讯 10 月 29 日全球数字生态大会发布 Buddy One：以 WorkBuddy 为工作台的一体化套件，打通腾讯文档、腾讯会议、腾讯网盘、ima、腾讯设计，统一账号、积分池、数据池，VIP 连续包月 700 元；同步发布腾讯网盘作为 Agent 时代统一存储。混元 Hy4 与 Hy4 Flash"即将推出"，重点强化长程任务、思维链效率、首次引入视觉理解。WorkBuddy 3 月上线以来累计完成 90 亿次任务请求，企业版落地 50+ 行业、覆盖中国企业 500 强 50%、100 强 60%，生态伙伴/开发者超 5 万家、上架 Skills 超 20 万；已在广东省政数局、深圳航空、深圳通落地，国内首批通过信通院"可信 AI"评估。汤道生引述国家部门数据：中国日均 Token 调用量从 2024 年初 1000 亿增至今年 7 月超 500 万亿，两年增超 5000 倍。<strong>腾讯把 AI 办公从单点工具收成"套件+统一账户+积分池"，本质是拿生态入口换 Agent 分发权。我的判断是，90 亿次请求和 500 强覆盖是 B 端底气，但 700 元/月的 C 端定价能不能立住，要看 Hy4 落地后的体验——字节豆包绑飞书、阿里千问绑钉钉，腾讯这张牌绑的是微信生态外最后的自留地，三国杀正式进入套件战阶段。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">腾讯</span><span class="ntag ntag-blue">Buddy One</span><span class="ntag ntag-green">WorkBuddy</span><span class="ntag ntag-purple">混元Hy4</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.apple.com.cn/newsroom/2026/10/apple-creator-studio-adds-powerful-new-ai-features-and-even-more-creative-tools/" target="_blank" style="color:inherit;text-decoration:none;">Apple Creator Studio 上智能功能：OpenAI 写 PPT、Google Cloud 画图，按月限额</a></div>
+            <div class="news-date">10.27</div>
+          </div>
+          <div class="news-item-body">Apple 10 月 27 日新闻稿：Keynote/Pages/Numbers/Freeform/Pixelmator Pro 集成生成式功能——图像生成、图形生成、超分辨率与自动裁剪、演示文稿生成、演讲者备注生成、幻灯片整理、Numbers Magic Fill，并为三款办公应用引入理解文档上下文的 assistant（beta）与 MCP 协议支持。官方支持页确认：演示文稿生成由 OpenAI 驱动，图像/图形/备注生成走 Google Cloud；需订阅 Apple Creator Studio（12.99 美元/月）；月额度示例：50 张图、250 个图形、50 份演示文稿、700 页备注；不与个人 ChatGPT/Google 账号打通；更新 11 月随 App Store 免费推送给订阅用户。<strong>Apple 自己不做模型，用 OpenAI + Google Cloud 当后台，包进 12.99 美元订阅里收渠道租。我的判断是，这是"模型中性"策略的标准形态——AI 能力不是它的，但入口、额度和计费全是它的；对 OpenAI 和谷歌来说，能进 Apple 的订阅包就意味着十几亿设备的触达，哪怕按调用量被抽成也值。按月限额的设计则很诚实：生成式功能的单位经济还没跑通，先用额度把成本锁住。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-cyan">Apple</span><span class="ntag ntag-blue">Creator Studio</span><span class="ntag ntag-green">MCP</span><span class="ntag ntag-purple">渠道收租</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.anthropic.com/research/early-progress-drug-development" target="_blank" style="color:inherit;text-decoration:none;">Anthropic 收购一人药企 Mithril Medicine：Claude 协调 11 家实验室，18 个月走到小鼠验证</a></div>
+            <div class="news-date">10.27</div>
+          </div>
+          <div class="news-item-body">Anthropic 10 月 27 日披露收购 Mithril Medicine——一家只有一名全职员工的生物技术公司（创始人 Cody Tranbarger，交易 2026 年 7 月完成、本周披露）。Tranbarger 用 Claude 协调 11 家外部实验室的合同、物流、实验与项目交接，把 LAMA2 相关先天性肌营养不良的双特异性抗体疗法从构想到小鼠初步验证做到不到 18 个月。小鼠数据：最高剂量组握力/肌肉力量约为未治疗组 2 倍；8 只未治疗鼠 4 只死亡 vs 最高剂量组 8 只中 1 只死亡——但研究未经同行评审、未随机分组、不同时间测试，官方强调不能归因于治疗。管线计划 2027 年选定候选药、LAMA2 最快 2028 年底进人体临床。同步公布与 BMS、BigHat、Divergence、Enveda、Generate Biomedicines、The Column Group 六家伙伴的早期结果：Enveda 1061 页生产记录审阅从 25 小时降至 3 小时内并查出 11 个已知 + 7 个未发现合规问题；Generate 用 Claude Code 把 CAR-T 某段基因指令缩短约 70%、受体表达约 10 倍。<strong>一人公司 + Claude 协调 11 家实验室，是"AI 压缩组织规模"最具体的样本。我的判断是，这件事的价值不在药物本身——小鼠数据没随机、没同行评审，Anthropic 自己也划清了界线——而在它证明了项目管理这个瓶颈可以被模型抹平：罕见病研发过去死于"养不起一个团队"，现在一个人加一群外包实验室就能跑到临床前。这个模式一旦成立，长尾适应症的管线数量会涨一个数量级。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-orange">Anthropic</span><span class="ntag ntag-purple">AI制药</span><span class="ntag ntag-cyan">一人公司</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI 产业上下游（全宽） -->
+  <div class="card" id="industry-news-1101" style="margin-bottom:28px;">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(234,88,12,0.15);">🏭</div>
+      <div>
+        <div class="card-title">AI 产业上下游</div>
+        <div class="card-subtitle">芯片算力 · 供应链 · 云厂商 · 融资并购</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://fortune.com/2026/10/26/microsoft-offers-buyouts-to-nearly-30-of-workforce-in-ongoing-ai-shift/" target="_blank" style="color:inherit;text-decoration:none;">微软向约 6 万人提供自愿离职：27% 员工，AI 替代进入执行阶段</a></div>
+          <div class="news-date">10.26</div>
+        </div>
+        <div class="news-item-body">Fortune/Bloomberg 10 月 26 日报道，微软向约 6 万名员工（约占总数 27%）提供自愿离职方案，覆盖美/英/加/印。美国方案为 8 周起薪补偿 + 股票继续归属 + 医保延续；员工须 12 月首周前接受、12 月 31 日离职。Fortune 同文提及微软截至 6 月季度资本支出达 410 亿美元。<strong>用"自愿离职"而不是裁员，是把人力成本调整包装成选择，但 27% 的规模说明 AI 替代在头部公司已经进入执行阶段。我的判断是，这组数字要和 410 亿资本支出放在一起看：钱从人力预算流向算力预算，同一个转型在报表两侧同时发生。微软敢开这个口子，是因为它判断 AI 工具带来的产出足以覆盖流失的人力——这个判断如果成立，其他大厂的跟进只是时间问题。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-blue">Microsoft</span><span class="ntag ntag-red">6万人</span><span class="ntag ntag-purple">AI替代</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-satellite-response/" target="_blank" style="color:inherit;text-decoration:none;">Google Project Suncatcher：在轨 TPU 首次回传完整 AI 响应，太空中写了一首俳句</a></div>
+          <div class="news-date">10.30</div>
+        </div>
+        <div class="news-item-body">谷歌 10 月 30 日官方博客披露：10 月 1 日搭 SpaceX Transporter-18 与 Planet 合作发射的原型卫星载 4 颗数据中心级 Trillium（TPU v6e），约 1kW 太阳能预算，同一时刻只能跑一颗、每次约 15–20 分钟。地面站上行 prompt，在斯瓦尔巴（挪威）过境时下行 Gemma 4 生成的空间俳句（"Blue marble below / Data streams in silent grace / Starlight feeds my core"）——数据中心级 TPU 首次在轨生成并回传完整 AI 响应。后续将测热应力与辐射，2027 年目标双星互联 + 星间光链路（远期需 10 Tbps）；研究论文（Joule）示例为 81 星编队、约 650 km 晨昏同步轨道、集群半径约 1 km。与 Starcloud（H100）、SpaceX/英伟达 Starmind AI1 构成太空算力竞赛。<strong>现在更像工程验证——1kW 功率、一次 15 分钟、一句俳句，离"太空数据中心"还很远。我的判断是，它的意义在于把算力的物理边界从地面机房推到轨道：地面数据中心的约束是电和地，轨道上太阳能是免费的、散热靠辐射、土地无限——如果发射成本继续按 SpaceX 的曲线下降，太空算力的长期成本模型有可能反转。谷歌先卡位，赌的是十年后的能源账本。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-blue">Google</span><span class="ntag ntag-green">太空算力</span><span class="ntag ntag-purple">TPU在轨</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://www.anthropic.com/news" target="_blank" style="color:inherit;text-decoration:none;">Anthropic 正式公开递交 S-1：H1 营收 163 亿美元，4170 亿算力承诺钉死</a></div>
+          <div class="news-date">10.26</div>
+        </div>
+        <div class="news-item-body">Anthropic 10 月 26 日官方宣布公开递交 S-1（ticker "ANT"），把上周草案里的数字变成正式披露：H1 2026 营收 162.86 亿（去年同期 11.63 亿，约 14 倍）、净亏 807.48 亿（其中约 723.88 亿为可转债/衍生负债/SAFE 公允价值变动等非现金计提，经营亏损 6.93 亿、较上年 21.35 亿收窄 68%）、调整后经营利润 16 亿。2025 全年营收 45.85 亿、净亏 419.65 亿。自 2025 年底以来承诺投入高达 4170 亿美元获取算力与基建（期限 1–20 年）；前九个月约四分之一收入来自前五大客户。Amazon 持 62 亿美元本金可转债（Amazon 自估 97.9 亿）+ 100 亿美元无投票权优先股；Anthropic 承诺未来十年至少向 AWS 支出 1100 亿美元。<strong>正式递交把草案数字钉死了：营收增长是真的，亏损主体是非现金计提也是真的。我的判断是，4170 亿算力承诺加 1100 亿 AWS 支出，意味着上市估值故事必须建立在"规模继续翻倍"上——本周博通那笔 630 亿租赁融资正是在这个承诺结构上又叠了一层。Anthropic 上市后的每个季度，市场都会拿收入增速去除以这些硬承诺，分母不会变小。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-orange">Anthropic</span><span class="ntag ntag-blue">S-1</span><span class="ntag ntag-red">IPO</span></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /date-panel week1101 -->
+
+  <!-- ═══════════════════════════════════ -->
   <!-- 第22期：2026.10.19–10.25              -->
   <!-- ═══════════════════════════════════ -->
-  <div class="date-panel active" id="week1025">
+  <div class="date-panel" id="week1025">
 
   <!-- 本周必读 -->
   <div id="mustread1025" style="scroll-margin-top:64px;">
