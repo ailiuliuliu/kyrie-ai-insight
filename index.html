@@ -531,14 +531,18 @@ body {
   <div class="part-divider" id="news">
     <span class="part-label">📰 AI 行业资讯</span>
     <div class="part-line"></div>
-    <span class="part-num">持续更新 · 23期</span>
+    <span class="part-num">持续更新 · 24期</span>
   </div>
 
   <!-- 时间轴导航 -->
   <div class="timeline-nav">
     <span class="timeline-label">Timeline</span>
     <div class="timeline-track">
-      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week1101')">
+      <button class="timeline-btn active" onclick="switchNewsTab(event, 'week1108')">
+        <span class="timeline-date">2026.11.08</span>
+      </button>
+      <div class="timeline-line"></div>
+      <button class="timeline-btn" onclick="switchNewsTab(event, 'week1101')">
         <span class="timeline-date">2026.11.01</span>
       </button>
       <div class="timeline-line"></div>
@@ -633,9 +637,190 @@ body {
   </div>
 
   <!-- ═══════════════════════════════════ -->
+  <!-- 第24期：2026.11.02–11.08              -->
+  <!-- ═══════════════════════════════════ -->
+  <div class="date-panel active" id="week1108">
+
+  <!-- 本周必读 -->
+  <div id="mustread1108" style="scroll-margin-top:64px;">
+    <div class="section-title">
+      <div class="section-icon" style="background:rgba(202,138,4,0.15);">⭐</div>
+      <div>
+        <div class="section-name">本周必读</div>
+        <div class="section-desc">从本周资讯中提炼3条最具结构性价值的新闻</div>
+      </div>
+      <span class="section-tag">编辑精选</span>
+    </div>
+    <div class="mustread-card">
+      <div class="mustread-summary">
+        这周的记忆点是两天的对撞：11 月 4 日，Kimi 把 2.8 万亿权重放上 Hugging Face、腾讯 Hy4 带着视觉理解和电脑操作落地、千问借 Apple 智能进入国行 iPhone——国产模型同一天兑现三张牌；11 月 5 日，美股反手抛售，纳指跌 5.52%、费城半导体跌 12.25%，中期选举把数据中心从增长故事变成选票议题。<strong>能力开放的速度第一次明显快过资本与政策的承受力</strong>——OpenAI 在同一天给出另一种答案：GPT-6 Cyber 不开放卖，最强的攻击能力按安全资质分级发放。
+      </div>
+      <div class="mustread-list">
+        <div class="mustread-item">
+          <div class="mustread-rank rank-1">🥇</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://huggingface.co/moonshotai/Kimi-K3.1-Pro" target="_blank" style="color:inherit;text-decoration:none;">Kimi K3.1 Pro 权重如期开放：2.8 万亿参数上 Hugging Face，MIT 系许可</a></div>
+            <div class="mustread-why">11 月 4 日，月之暗面兑现 10 月 23 日发布时的承诺，把 Kimi K3.1 Pro 完整权重放上 Hugging Face（仓库 11.2 创建、11.4 公开），同步上架魔搭社区。2.8 万亿总参、1040 亿激活，100 万 token 上下文，原生多模态（MoonViT-V2 视觉编码器 4 亿参数）；MXFP4 量化感知训练，112 个文件约 1.56TB，官方推荐 vLLM/SGLang/TokenSpeed，最低 8 卡 B300 或 GB300 级配置，8 卡 H100/H200 装不下。许可证在 MIT 基础上加两条限制：卖模型 API 且年营收超 2000 万美元须另签协议；月活超 1 亿或月收入超 2000 万美元的产品须在界面署名"Kimi K3.1-Pro"。Terminal-Bench 4.0 得 65.7%（超 GPT-6 Astra 的 58.2%，仅次于 Claude Opus 5.5 的 66.4%）；Artificial Analysis 智能指数 46.5，比此前开源最高的 DeepSeek-V4.1-Flash 高约 14 分。官方还在中训练与 RL 两阶段剔除攻击性网络数据，内部攻击基准 xdev-bench-hard 从 90.5% 压到 81.0%。<em>我的判断是，这条新闻的关键不是"最大开源"又一次易主，而是兑现节奏——说好 11 月 4 日前放权重就卡着点放，中国开源阵营把"按时交付"做成了信誉资产。但 1.56TB 权重加 8 卡 B300 起步的部署门槛意味着，这个"开源"的红利主要流向有云厂商和 Blackwell 算力的团队，个人开发者看个热闹；许可证里那条"大厂转售另签"和 Mistral 上周的条款如出一辙：开放的是权重，不是商业分发权。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-red">Kimi</span>
+              <span class="ntag ntag-green">开放权重</span>
+              <span class="ntag ntag-purple">2.8万亿</span>
+              <span class="ntag ntag-blue">MIT系许可</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-2">🥈</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="http://www.chinanews.com.cn/cj/2026/11-06/10726992.shtml" target="_blank" style="color:inherit;text-decoration:none;">美股 11.5 AI 抛售：纳指跌 5.52%、费半跌 12.25%，数据中心第一次被选票定价</a></div>
+            <div class="mustread-why">11 月 5 日美股大幅下挫：纳指跌 5.52% 收 24315 点（19 个月最大单日跌幅，较 10 月高点回落超 10% 进入技术性回调），标普 500 跌 4.36%，道指跌 3.44%；费城半导体指数暴跌 12.25%（2020 年 3 月以来最大单日跌幅），英伟达跌 9.26%（市值蒸发约 4470 亿美元）、AMD 跌 17.26%、美光跌 17.46%、闪迪跌 22.26%，甲骨文、CoreWeave 等云基建同步重挫，标普 500 单日市值蒸发约 2.9 万亿美元。触发点是 11 月 4 日中期选举：民主党夺回参众两院，13 州 40 余项数据中心相关公投中 38 项被否、6 城市全面禁止新建，得州候任州长呼吁暂停数据中心开发。同日中概股逆势上涨（金龙指数 +0.43%），11 月 6 日抛售传导至日韩，KOSPI 触发熔断。花旗策略师指出："一旦改变数据中心扩建的节奏，就开始改变众多供应商的基本面轨迹。"<em>我的判断是，这次暴跌的定价对象不是业绩，而是政策——选民把电费和水费账单投进了选票箱，AI 资本开支第一次遇到"民意约束"这个变量。过去两年算力扩张的隐含假设是"地方政府永远欢迎数据中心"，11 月 4 日之后这个假设作废：审批周期拉长、电网成本被政客推向科技巨头，产业链估值锚会从"增速"切换到"订单可见度"。值得记住的是同一天中概科技股反向上涨——资金在重新划分"谁受美国政策约束、谁不受"，这个分化逻辑后面还会反复出现。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-red">美股暴跌</span>
+              <span class="ntag ntag-orange">中期选举</span>
+              <span class="ntag ntag-purple">数据中心</span>
+              <span class="ntag ntag-blue">资本开支重定价</span>
+            </div>
+          </div>
+        </div>
+        <div class="mustread-item">
+          <div class="mustread-rank rank-3">🥉</div>
+          <div class="mustread-content">
+            <div class="mustread-title"><a href="https://openai.com/index/introducing-gpt-6-cyber/" target="_blank" style="color:inherit;text-decoration:none;">OpenAI 发布 GPT-6 Cyber：ExploitGym 48.5%，只卖给"持证"的红队</a></div>
+            <div class="mustread-why">11 月 5 日 OpenAI 官宣 GPT-6 Cyber——GPT-6 Astra 的网络安全特化版，105 万 token 上下文，API 定价 20/100 美元（百万输入/输出，恰为 Astra 两倍），Preparedness 网络安全档从 GPT-5.6 Cyber 的 High 升至 Critical。官方口径：ExploitGym 48.5%（5.6 Cyber 32.1%、Astra 42.4%）；RemoteExploitBench 完成 95% 任务（Astra 全部拒绝）；实战成果包括为 Firefox 找到 81 个高危漏洞、从 Linux 内核 2308 个候选中复现 1724 个漏洞并写出 948 个本地提权利用（成本约 121 万美元，补丁已提交内核维护者）、验证 Brotli 一个严重 RCE。发布方式刻意收紧：仅限 Daybreak Red 审批客户经 API 与 Codex 使用，组织须 SSO+MFA+IP 白名单，个人须 FIDO2 实体密钥；与工控安全公司 Dragos 合作加护栏，"蜜罐越界"违规率从 5.51% 压到 0.07%。外部 Irregular 评测 288 题解出 90 题（Astra 96），两者都攻不破完全加固目标。<em>我的判断是，GPT-6 Cyber 最重要的不是分数，是分发方式——OpenAI 第一次把 Critical 级能力按"安全资质+用途审查"分级售卖，和谷歌 Gemini 4 Carbon"先给防御者"是同一方向：前沿能力开始像管制物品一样凭许可流通。948 个 Linux 提权漏洞花 121 万美元，平均每个约 1300 美元——攻击成本被量化到这个量级，防守方的补丁人力模型必须重写。往后"谁有资格用最强模型"会从合规问题变成竞争壁垒，Daybreak Red 的审批名单本身就是一份权力清单。</em></div>
+            <div class="news-tags" style="margin-top:6px;">
+              <span class="ntag ntag-red">OpenAI</span>
+              <span class="ntag ntag-blue">GPT-6 Cyber</span>
+              <span class="ntag ntag-purple">分级售卖</span>
+              <span class="ntag ntag-green">Critical评级</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 三个模块：模型 + 应用 -->
+  <div class="modules-grid" style="margin-top:24px;">
+
+    <!-- 大模型 -->
+    <div class="card" id="model-news-1108">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(124,58,237,0.15);">🧠</div>
+        <div>
+          <div class="card-title">大模型</div>
+          <div class="card-subtitle">模型发布 · 能力评测 · 格局演变</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="http://finance.people.com.cn/n1/2026/1104/c1004-40827754.html" target="_blank" style="color:inherit;text-decoration:none;">腾讯混元 Hy4 正式发布：770B/49B 激活，首次视觉理解 + 电脑操作</a></div>
+            <div class="news-date">11.04</div>
+          </div>
+          <div class="news-item-body">11 月 4 日腾讯混元发布 Hy4 正式版：770B 总参、约 49B 激活 MoE，1M 上下文，首次引入视觉理解（细粒度图像、复杂图表、数学视觉推理）与 Computer Use（结合命令行与图形界面，针对 Blender、CAD 专项训练）。已上线腾讯云 TokenHub、元宝、企业微信大圆、ima，与 WorkBuddy/CodeBuddy 深度共设计——可连通企微聊天记录、邮件、文档、日程与会议，识别多项目待跟进事项；API 接入 OpenRouter 等平台，定价维持输入 6 元/百万 token、输出 18 元，官方称发布后调用量激增、推理集群紧急扩容十倍。预告近期开源权重并发布系统卡，Hy4 Flash 随后推出。内部评测：WorkBuddy 场景 12 项中 9 项国内第一；213 位金融专家众测 579 项任务得分 3.04，高于 Kimi K3.1 Pro（2.68）、GLM-5.3（2.68）、DeepSeek-V4.1-Flash（2.97）。第三方 Artificial Analysis 智能指数 35 分、单任务成本约 1 美元，约为同分 Grok 4.7 的十分之一，但知识评测幻觉率 89%（Kimi K3.1 Pro 为 37%）。<strong>腾讯这次把"能干活"写进模型定位——视觉理解、电脑操作、企微数据连通，三个能力都指向 Agent 落地而非榜单。我的判断是，Hy4 真正的壁垒不在 770B 参数，而在与 WorkBuddy/CodeBuddy 的共设计：模型直接长在企业微信的聊天记录和会议日程里，这是字节和阿里都拿不到的训练场。但 89% 的幻觉率提醒一件事：跑分能力、成本优势和事实可靠性是三件事，把它放进引用类生产流程之前，检索增强还是省不掉。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">腾讯</span><span class="ntag ntag-blue">混元Hy4</span><span class="ntag ntag-green">Computer Use</span><span class="ntag ntag-purple">770B</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://tech.meituan.com/2026/11/02/Meituan-LongCat-2.5.html" target="_blank" style="color:inherit;text-decoration:none;">美团 LongCat-2.5：1.6 万亿参数全程国产算力，只上 API 不放权重</a></div>
+            <div class="news-date">11.02</div>
+          </div>
+          <div class="news-item-body">11 月 2 日美团发布 LongCat-2.5：1.6 万亿总参、每 token 激活约 480 亿，1M 上下文，原生多模态（视觉信号转成统一 token 直接进主干），面向长程智能体任务；全程国产算力训练，针对国产单卡显存不足 80GB 的约束做超节点任务分工，长上下文监督微调单卡吞吐较 DDP 基线提升 86%；推理侧 W4A4 量化，输入处理与逐 token 生成吞吐较 W8A8 基线均提升约四成、首 token 延迟缩短 16%。自建基准 AutomationBench/LongCatClawBench 领先 Claude-Opus-5 与 GPT-5.6-Sol，公共基准 Terminal Bench v4.0 得分 38.5 超 GPT-5.6-Sol 但落后 Claude-Opus-5。目前仅官网体验加 API 上线，兼容 Claude Code、Codex、Hermes 等主流 Harness，权重开源无时间表。基于 LongCat 的 AI 经营工作台"妙手"已服务古茗、益禾堂等连锁品牌。<strong>在本周一堆开源权重里，美团反向操作——1.6T 模型只给 API 不给权重。我的判断是，这个选择和"不做 Token 工厂、只服务主业"的表态一致：模型是商家工具的底座，不是要卖给开发者的产品，不开权重反而保住差异化。"全程国产算力"的工程细节比参数本身更有信息量——它证明国产卡已能跑通万亿级全流程，这条路线每验证一次，对英伟达受限供给的依赖叙事就弱一分。但自建基准的"领先 Opus-5"只在自家考卷上成立，两个口径都要摆上桌。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">美团</span><span class="ntag ntag-blue">LongCat-2.5</span><span class="ntag ntag-green">国产算力</span><span class="ntag ntag-purple">1.6万亿</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://openai.com/index/introducing-images-2-6/" target="_blank" style="color:inherit;text-decoration:none;">OpenAI 发布 Images 2.6：提速 50%、直出 GIF，盲测包揽 LMArena 前五</a></div>
+            <div class="news-date">11.04</div>
+          </div>
+          <div class="news-item-body">11 月 4 日 OpenAI 发布 GPT Image 2.6，ChatGPT、Codex 与 API 同步上线：官方称生成速度较上代快 50%，支持直接把图片做成 GIF 动图；API 推出 GPT-Image-2.6 Flare 与 Sunburst 两个模型，新增复杂度参数供开发者调节生成前的规划程度，编辑时更好保留人物、产品与品牌细节一致性。11 月 7 日 LMArena 用户盲测榜：文生图 Sunburst 第二、Flare 第四，OpenAI 包揽前五，编辑榜 Sunburst 第三。<strong>一周之内从发布到霸榜，OpenAI 在图像生成上的领先已从卖点变成默认项。我的判断是，这次升级的商业含义在"复杂度参数"——把规划程度的控制权交给开发者，等于把成本与质量的取舍做成了 API 旋钮，图像生成正式从"出图工具"变成可编排的工作流组件；对竞品来说，差距已不在单点画质，而在迭代节奏。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">OpenAI</span><span class="ntag ntag-blue">Images 2.6</span><span class="ntag ntag-green">GIF动图</span><span class="ntag ntag-purple">LMArena</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 应用 -->
+    <div class="card" id="app-news-1108">
+      <div class="card-header">
+        <div class="card-icon" style="background:rgba(8,145,178,0.15);">📱</div>
+        <div>
+          <div class="card-title">AI 应用</div>
+          <div class="card-subtitle">Agent · 办公协同 · 垂直落地</div>
+        </div>
+      </div>
+      <div class="news-list">
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://36kr.com/p/4056394748597127" target="_blank" style="color:inherit;text-decoration:none;">国行 Apple 智能开测：千问接入 Siri、写作工具、视觉智能，12 月随 iOS 27.3 全量</a></div>
+            <div class="news-date">11.04</div>
+          </div>
+          <div class="news-item-body">11 月 4 日，国行 Apple Intelligence 随 iOS 27.3 开发者 Beta 首次开放测试，阿里千问被集成进 Siri、写作工具、视觉智能三个系统级入口（用户可自主选择开通，调用前弹窗确认权限）；视觉智能中"询问"由千问承担、"搜索"由百度视觉承担。首批支持 iPhone 15 Pro 及更新机型，iPad 与 Mac 暂未纳入，12 月随 iOS 27.3 正式版推送；苹果明确本次更新不含 WWDC 上演示的新一代 Siri AI。此前 10 月 31 日双方压哨官宣合作，2025 年 2 月蔡崇信确认阿里胜出、2026 年 7 月备案落地；媒体口径称苹果已专门为中国市场训练由双方共同开发的模型。首批实测反馈：实时翻译与屏幕识别可用，视觉识别错误率偏高，AI 索引任务导致发热耗电（测试者口径）。Omdia 预估 iOS 中国大陆装机约 3.5 亿。<strong>我的判断是，这是千问拿到的最值钱的一张入场券——不是 API 合同，是系统级分发：不用下载、不用教育、嵌在 Siri 和相机里，3.5 亿装机量的推理入口直接变成千问的 Token 增量。对苹果这是迟到两年的补课，对阿里这是一次"苹果级验收"的信用背书，B 端销售会反复引用。但注意边界：Apple 智能主体仍是苹果自研模型，千问只是"可选扩展"，和海外版 ChatGPT 的位置一模一样；首批实测口碑也提醒赶工痕迹明显，12 月正式版才是大考。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-cyan">Apple</span><span class="ntag ntag-red">阿里千问</span><span class="ntag ntag-blue">iOS 27.3</span><span class="ntag ntag-green">系统级入口</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://www.jiemian.com/article/15295027.html" target="_blank" style="color:inherit;text-decoration:none;">可灵 Kling 4.0 Flash 全面开放：官网 + API + MCP/CLI + Adobe 三件套插件</a></div>
+            <div class="news-date">11.04</div>
+          </div>
+          <div class="news-item-body">11 月 4 日可灵 AI 宣布 Kling 4.0 Flash 全面开放：所有用户可通过官网与 API 使用，支持 MCP、CLI 及 AI 插件接入，创作者还可在 Adobe Photoshop、Premiere Pro、After Effects 内通过可灵插件直接调用。Flash 版主打快速出量：3–20 秒、720p，覆盖文生、图生与全能参考三类；主版本 Kling 4.0（9 月底发布、10 月中全量）支持 30 秒长镜头、最多 10 个关键帧、15 种混合参考、立体声口型同步。<strong>可灵这步的重点不是模型升级，是分发姿势——MCP、CLI、Adobe 插件一起上，把视频生成塞进创作者已有的工作流，而不是让人来官网排队。我的判断是，"进 Adobe 三件套"是信号最强的动作：专业创作者不愿切换工具，那就把模型送上门；先用便宜的 Flash 版占住批量出草稿的场景，主版本再收成片的钱——视频模型的竞争已从"谁生成得好"转到"谁离工作流近"。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-red">快手</span><span class="ntag ntag-blue">可灵4.0 Flash</span><span class="ntag ntag-green">全面开放</span><span class="ntag ntag-purple">Adobe插件</span></div>
+        </div>
+        <div class="news-item">
+          <div class="news-item-header">
+            <div class="news-item-title"><a href="https://cursor.com/changelog/voice-chat" target="_blank" style="color:inherit;text-decoration:none;">Cursor 上线智能体实时语音：Hey Siri 唤起，跨 IDE/Web/iOS</a></div>
+            <div class="news-date">11.06</div>
+          </div>
+          <div class="news-item-body">11 月 6 日 Cursor 发布与智能体的实时语音聊天：语音提更改、问进展、听播报，覆盖 Agent 窗口、IDE、Web 与 iOS，支持搜索历史通话，iOS 可用 Hey Siri 唤起。<strong>语音把"盯 Agent 跑长任务"从键盘前解放出来——不用守在屏幕前也能插话纠偏。我的判断是，这步棋在把 Cursor 从编码工具往工作台推：交互入口越多，替换成本越高；当 Agent 跑几十分钟的任务成为常态，"随时能说一嘴"会从锦上添花变成标配，编码工具的竞争开始蔓延到交互层。</strong></div>
+          <div class="news-tags"><span class="ntag ntag-blue">Cursor</span><span class="ntag ntag-green">语音交互</span><span class="ntag ntag-cyan">Agent工作台</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- AI 产业上下游（全宽） -->
+  <div class="card" id="industry-news-1108" style="margin-bottom:28px;">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(234,88,12,0.15);">🏭</div>
+      <div>
+        <div class="card-title">AI 产业上下游</div>
+        <div class="card-subtitle">芯片算力 · 供应链 · 云厂商 · 融资并购</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="http://cpc.people.com.cn/n1/2026/1106/c64387-40828828.html" target="_blank" style="color:inherit;text-decoration:none;">乌镇峰会《智能体发展自律公约》：信通院联合 20 家签署八条自律</a></div>
+          <div class="news-date">11.04</div>
+        </div>
+        <div class="news-item-body">11 月 4 日，2026 年世界互联网大会乌镇峰会上，中国信通院联合华为、阿里、腾讯、小米、百度、火山引擎、蚂蚁、荣耀、OPPO 等 20 家单位发布《智能体发展自律公约》，提出八条措施：健全智能体信任体系（分层次、可验证的身份标识，身份验证与权限授予控制）、建设互联基础设施、提升互操作水平、提升安全防护能力、健全治理机制、保护用户权益、加速赋能千行百业、推动技术普惠共享。同日主论坛发布《携手构建全球开放人工智能行动倡议》，呼吁共建共享算力池与高质量数据集、设立开源种子基金支持全球南方本地化开发；蔡崇信在开幕式表示"AI 只有开源才能普及"。<strong>治理对象从"模型"扩展到"智能体行为"是这份公约的真正信号——身份标识、权限控制、互联互操作，每一条都对应 Agent 进入真实工作流后的新风险面。我的判断是，20 家头部厂商集体签署的意义不在约束力（自律公约没有罚则），而在抢定义权：监管细则落地之前，行业先把自己能接受的规则写出来，谁参与起草，谁就把自家架构写进了事实标准。和本周 OpenAI、谷歌把攻击能力"持证分发"放在一起看，中美在同一周各自把治理边界往前推了一格。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-red">乌镇峰会</span><span class="ntag ntag-blue">自律公约</span><span class="ntag ntag-green">智能体治理</span><span class="ntag ntag-purple">20家签署</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://www.unite.ai/openai-to-acquire-pierre-computer-and-bring-code-storage-to-codex/" target="_blank" style="color:inherit;text-decoration:none;">OpenAI 收购代码存储公司 Pierre：Codex 要吃下代码托管</a></div>
+          <div class="news-date">11.04</div>
+        </div>
+        <div class="news-item-body">11 月 4 日 OpenAI 宣布收购代码存储服务 Pierre（交易尚待监管批准）。Codex 此前已在用 Pierre 的 Trees 与 Diffs 库做文件浏览与变更审查；收购后项目继续公开，功能将逐步并入 Codex。<strong>这笔收购的指向很清楚——Codex 不满足于写代码，要往代码托管与评审这个 GitHub 的核心腹地走。我的判断是，买一家"代码存储"公司补的是 Agent 工作流里最重的一环：代码放哪、谁审、怎么追溯；当 Agent 成为主要代码生产者，托管平台的中立性会被重新拷问——GitHub（微软）与 Codex（OpenAI）这对曾经的搭档，在代码资产入口上要变成对手了。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-red">OpenAI</span><span class="ntag ntag-blue">Pierre</span><span class="ntag ntag-purple">并购</span><span class="ntag ntag-green">Codex</span></div>
+      </div>
+      <div class="news-item">
+        <div class="news-item-header">
+          <div class="news-item-title"><a href="https://news.qq.com/rain/a/20261106A064OX00" target="_blank" style="color:inherit;text-decoration:none;">路透：约 60 万块英伟达 H200 滞留香港，内地进口未放行</a></div>
+          <div class="news-date">11.06</div>
+        </div>
+        <div class="news-item-body">路透社 11 月 6 日报道：约 60 万块英伟达 H200 存放在香港等待运往内地，北京方面未批准大规模进口，仅数家大厂各获约 1 万块配额；渠道上 8 卡 H200 服务器价格涨至超 600 万元人民币，约为一年前的 3 倍。<strong>审批节奏比禁运更能精确调节依赖度——芯片停在仓库里，需求端涨价、供给端断顿，国产算力替代的时间窗口就这样被买出来。我的判断是，这条新闻要和同周美团 LongCat-2.5"全程国产算力训练"放在一起看：当 H200 的获取从市场问题变成配额问题，"用国产卡把训练跑通"就不再是备选方案而是必答题；对英伟达而言，60 万块库存意味着中国区收入预期要重新校准——哪怕明天放行，放行的节奏也不由它掌控。</strong></div>
+        <div class="news-tags"><span class="ntag ntag-green">英伟达</span><span class="ntag ntag-red">H200</span><span class="ntag ntag-orange">出口管制</span><span class="ntag ntag-blue">国产替代</span></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /date-panel week1108 -->
+
+  <!-- ═══════════════════════════════════ -->
   <!-- 第23期：2026.10.26–11.01              -->
   <!-- ═══════════════════════════════════ -->
-  <div class="date-panel active" id="week1101">
+  <div class="date-panel" id="week1101">
 
   <!-- 本周必读 -->
   <div id="mustread1101" style="scroll-margin-top:64px;">
